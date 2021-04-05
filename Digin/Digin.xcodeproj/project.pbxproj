@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2292381E261B431700B50884 /* UIView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2292381D261B431700B50884 /* UIView_extension.swift */; };
+		22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22923828261B45CA00B50884 /* NSObject_extension.swift */; };
+		2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2292382B261B461300B50884 /* UIAlertController_extension.swift */; };
+		22923834261B471C00B50884 /* UIViewController_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22923833261B471C00B50884 /* UIViewController_extension.swift */; };
 		F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F121DED426185A6C00B09F21 /* .swiftlint.yml */; };
 		F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEDB26185C3000B09F21 /* MainViewController.swift */; };
 		F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2292381D261B431700B50884 /* UIView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_extension.swift; sourceTree = "<group>"; };
+		22923828261B45CA00B50884 /* NSObject_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject_extension.swift; sourceTree = "<group>"; };
+		2292382B261B461300B50884 /* UIAlertController_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController_extension.swift; sourceTree = "<group>"; };
+		22923833261B471C00B50884 /* UIViewController_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_extension.swift; sourceTree = "<group>"; };
 		F121DED426185A6C00B09F21 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F121DEDB26185C3000B09F21 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_extension.swift; sourceTree = "<group>"; };
@@ -91,7 +99,11 @@
 		F121DEE8261B3C7300B09F21 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				22923828261B45CA00B50884 /* NSObject_extension.swift */,
 				F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */,
+				2292381D261B431700B50884 /* UIView_extension.swift */,
+				2292382B261B461300B50884 /* UIAlertController_extension.swift */,
+				22923833261B471C00B50884 /* UIViewController_extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -218,9 +230,13 @@
 			files = (
 				F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */,
 				F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */,
+				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
+				2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */,
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,
+				22923834261B471C00B50884 /* UIViewController_extension.swift in Sources */,
+				22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
