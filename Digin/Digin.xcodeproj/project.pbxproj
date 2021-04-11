@@ -72,12 +72,11 @@
 			children = (
 				F173475E261855C5009EC5D6 /* Main.storyboard */,
 				F121DEDB26185C3000B09F21 /* MainViewController.swift */,
-				F121DF2A26230BA000B09F21 /* TabBarFactory.swift */,
-				F121DF1F262308AC00B09F21 /* SearchViewController.swift */,
-				F121DF22262308C500B09F21 /* NewsFeedViewController.swift */,
-				F121DF192623083400B09F21 /* MainTabBarController.swift */,
-				F121DF1C2623087900B09F21 /* HomeViewController.swift */,
-				F121DF25262308DF00B09F21 /* MypageViewController.swift */,
+				F121DF352623381C00B09F21 /* MyPage */,
+				F121DF342623381200B09F21 /* Home */,
+				F121DF312623374000B09F21 /* Tab */,
+				F121DF322623376A00B09F21 /* Search */,
+				F121DF332623377600B09F21 /* NewsFeed */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -130,6 +129,56 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		F121DF312623374000B09F21 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				F121DF2A26230BA000B09F21 /* TabBarFactory.swift */,
+				F121DF192623083400B09F21 /* MainTabBarController.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		F121DF322623376A00B09F21 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F121DF1F262308AC00B09F21 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		F121DF332623377600B09F21 /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				F121DF22262308C500B09F21 /* NewsFeedViewController.swift */,
+			);
+			path = NewsFeed;
+			sourceTree = "<group>";
+		};
+		F121DF342623381200B09F21 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F121DF1C2623087900B09F21 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F121DF352623381C00B09F21 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				F121DF25262308DF00B09F21 /* MypageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		F121DF362623382F00B09F21 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F121DF122623049600B09F21 /* LoginViewController.swift */,
+				F121DF162623075B00B09F21 /* SignUpViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		F173474C261855C5009EC5D6 = {
 			isa = PBXGroup;
 			children = (
@@ -150,12 +199,11 @@
 		F1734757261855C5009EC5D6 /* Digin */ = {
 			isa = PBXGroup;
 			children = (
+				F121DF362623382F00B09F21 /* Login */,
 				F121DEE6261B3BF900B09F21 /* Common */,
 				F121DEE3261B396300B09F21 /* Application */,
 				F121DEDE26185CE200B09F21 /* Main */,
 				F121DEE5261B3BE600B09F21 /* Resources */,
-				F121DF122623049600B09F21 /* LoginViewController.swift */,
-				F121DF162623075B00B09F21 /* SignUpViewController.swift */,
 			);
 			path = Digin;
 			sourceTree = "<group>";
