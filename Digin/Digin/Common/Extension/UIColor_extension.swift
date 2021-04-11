@@ -8,21 +8,16 @@
 import Foundation
 import UIKit
 
-enum diginColor {
-    
+enum DiginColor {
     case mainColor
 }
 
 extension UIColor {
-    
-    static func appColor(_ name: diginColor) -> UIColor {
-          
+    static func appColor(_ name: DiginColor) -> UIColor {
         switch name {
-        
         //FIXME: 추후 색상 수정
         case .mainColor:
             return UIColor(red: 242/255, green: 145/255, blue: 145/255, alpha: 1)
         }
-        
     }
 }

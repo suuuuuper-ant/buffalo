@@ -8,8 +8,7 @@
 import Foundation
 
 extension NSObject {
-    
-    //MARK: Storyboard idetifier
+    // MARK: - 'Storyboard idetifier'
     static var reuseIdentifier: String {
         return String(describing: self)
     }

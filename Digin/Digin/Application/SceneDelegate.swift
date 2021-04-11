@@ -44,9 +44,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     func lauchandVisble(with scene: UIWindowScene) {
+
         let window = UIWindow(windowScene: scene)
         self.window = window
-        self.window?.rootViewController = MainViewController()
+        self.window?.rootViewController = LoginViewController()
         self.window?.makeKeyAndVisible()
     }
 }

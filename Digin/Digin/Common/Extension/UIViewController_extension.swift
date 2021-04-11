@@ -8,9 +8,9 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    
-    //MARK: 커스텀 백버튼 설정
-    func setBackBtn(color: UIColor){
+
+    // MARK: 커스텀 백버튼 설정
+    func setBackBtn(color: UIColor) {
 
         //백버튼 이미지 파일 이름에 맞게 변경
         let backBtn = UIBarButtonItem(image: UIImage(named: "btBackarrow"),
@@ -23,8 +23,8 @@ extension UIViewController {
         navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
     }
 
-    @objc func pop(){
+    @objc func pop() {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
 }
