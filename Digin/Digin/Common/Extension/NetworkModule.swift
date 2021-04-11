@@ -12,14 +12,11 @@ import UIKit
  */
 typealias HTTPHeader = (value: String, field: String)
 
-
 /**
  - api call 할때 쓰는 http method  call 객체
  */
 class NetworkRouter {
     static let shared = NetworkRouter()
-    
-
     /**
     - HTTPBody에서 담아 보낼 데이터가 있다면 사용하는 메서드
      - parameters:
@@ -30,22 +27,20 @@ class NetworkRouter {
         - timeoutInterval: api 호출 시 응답대기신간을 말하며 기본적으로 URLRequest의 기본시간을 60초를 기본값으로 설정 해놓음
         - completionHandler: Swift의 Result enum을 사용하며, 결과값을 파싱한 타입으로 반환 하는 것과 결과값이 실패했을 때 Error타입으로 보내줌
      */
-    func post<T: Decodable>(_ url: String, body: [String: Any]? ,headers: [HTTPHeader]?, model: T.Type, timeoutInterval: TimeInterval = 60, completionHandler: @escaping ((Result<T, Error>) -> Void)) {
-        
+    func post<T: Decodable>(_ url: String, body: [String: Any]?, headers: [HTTPHeader]?, model: T.Type, timeoutInterval: TimeInterval = 60, completionHandler: @escaping ((Result<T, Error>) -> Void)) {
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         if let requestBody = body, let body = try? JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted) {
             request.httpBody = body
         }
-       
         request.timeoutInterval = timeoutInterval
         if let headers = headers {
             for header in headers {
                 request.setValue(header.value, forHTTPHeaderField: header.field)
             }
         }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else { return }
             let decoder = JSONDecoder()
             do {
@@ -56,7 +51,6 @@ class NetworkRouter {
             }
         }.resume()
     }
-    
     /**
      - 단순 데이터 조회를 해야하는 용도로 사용하는 메서드
      - parameters:
@@ -66,8 +60,7 @@ class NetworkRouter {
         - timeoutInterval: api 호출 시 응답대기신간을 말하며 기본적으로 URLRequest의 기본시간을 60초를 기본값으로 설정 해놓음
         - completionHandler: Swift의 Result enum을 사용하며, 결과값을 파싱한 타입으로 반환 하는 것과 결과값이 실패했을 때 Error타입으로 보내줌
      */
-    func get<T: Decodable>(_ url: String, headers: [HTTPHeader]?, model: T.Type, timeoutInterval: TimeInterval = 60,completionHandler: @escaping ((Result<T, Error>) -> Void)) {
-        
+    func get<T: Decodable>(_ url: String, headers: [HTTPHeader]?, model: T.Type, timeoutInterval: TimeInterval = 60, completionHandler: @escaping ((Result<T, Error>) -> Void)) {
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -77,7 +70,7 @@ class NetworkRouter {
                 request.setValue(header.value, forHTTPHeaderField: header.field)
             }
         }
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
             guard let data = data, error == nil else { return }
             let decoder = JSONDecoder()
             do {
@@ -96,12 +89,11 @@ class NetworkRouter {
         - timeoutInterval: api 호출 시 응답대기신간을 말하며 기본적으로 URLRequest의 기본시간을 60초를 기본값으로 설정 해놓음
         - completionHandler: Swift의 Result enum을 사용하며, 결과값을  헤더에서 마지막 수정시간을 반환하는 문자열, 결과값이 실패했을 때 Error타입으로 보내줌
      */
-    func head(_ url: String, timeoutInterval: TimeInterval = 60, completionHandler: @escaping ((Result<String,Error>)->Void)) {
+    func head(_ url: String, timeoutInterval: TimeInterval = 60, completionHandler: @escaping ((Result<String, Error>) -> Void)) {
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "HEAD"
         request.timeoutInterval = timeoutInterval
-        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let response = response as? HTTPURLResponse, data != nil else {
                 if let error = error {
@@ -109,7 +101,6 @@ class NetworkRouter {
                 }
                 return
             }
-            
             guard let lastModified = response.allHeaderFields["Last-Modified"] as? String else { return }
             completionHandler(.success(lastModified))
         }.resume()
