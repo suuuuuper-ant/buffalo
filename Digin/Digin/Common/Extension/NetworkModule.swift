@@ -31,16 +31,18 @@ class NetworkRouter {
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        if let requestBody = body, let body = try? JSONSerialization.data(withJSONObject: requestBody, options: .prettyPrinted) {
+        if let requestBody = body, let body = try? JSONSerialization.data(withJSONObject: requestBody) {
             request.httpBody = body
         }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.timeoutInterval = timeoutInterval
         if let headers = headers {
             for header in headers {
                 request.setValue(header.value, forHTTPHeaderField: header.field)
             }
         }
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
             guard let data = data, error == nil else { return }
             let decoder = JSONDecoder()
             do {
