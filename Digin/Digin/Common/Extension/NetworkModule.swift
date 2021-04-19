@@ -47,6 +47,35 @@ class NetworkRouter {
             let decoder = JSONDecoder()
             do {
                 let result = try decoder.decode(model.self, from: data)
+             //   let result = try? String(decoding: data, as: UTF8.self) as? T
+                completionHandler(.success(result))
+            } catch let error {
+                completionHandler(.failure(error))
+            }
+        }.resume()
+    }
+
+    func post(_ url: String, body: [String: Any]?, headers: [HTTPHeader]?, timeoutInterval: TimeInterval = 60, completionHandler: @escaping ((Result<String, Error>) -> Void)) {
+        guard let url = URL(string: url) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        if let requestBody = body, let body = try? JSONSerialization.data(withJSONObject: requestBody) {
+            request.httpBody = body
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.timeoutInterval = timeoutInterval
+        if let headers = headers {
+            for header in headers {
+                request.setValue(header.value, forHTTPHeaderField: header.field)
+            }
+        }
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            guard let data = data, error == nil else { return }
+            let decoder = JSONDecoder()
+            do {
+               // let result = try decoder.decode(model.self, from: data)
+                let result = try String(decoding: data, as: UTF8.self)
                 completionHandler(.success(result))
             } catch let error {
                 completionHandler(.failure(error))
