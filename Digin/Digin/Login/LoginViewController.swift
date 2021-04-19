@@ -23,6 +23,21 @@ class LoginViewController: UIViewController {
         signup.setTitle("SIGNUP", for: .normal)
         return signup
     }()
+
+    let emailTextField: UITextField = {
+        let email = UITextField()
+        email.translatesAutoresizingMaskIntoConstraints = false
+        email.placeholder = "input text.."
+        return email
+    }()
+
+    let passwordTextField: UITextField = {
+        let password = UITextField()
+        password.translatesAutoresizingMaskIntoConstraints = false
+        password.placeholder = "input password.."
+        return password
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
@@ -30,15 +45,52 @@ class LoginViewController: UIViewController {
         view.addSubview(label)
         label.text = "\(String(describing: self))"
         label.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
+
+        //id
+        view.addSubview(emailTextField)
+        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20).isActive = true
+
+        //password
+        view.addSubview(passwordTextField)
+        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20).isActive = true
+
         view.addSubview(loginButton)
         loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50).isActive = true
-        loginButton.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
+        loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50).isActive = true
+        loginButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
         view.addSubview(signUpButton)
         signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50).isActive = true
         signUpButton.addTarget(self, action: #selector(goToSignUp), for: .touchUpInside)
     }
+
+    @objc func signIn() {
+
+        let params = [
+            "email": "mooyaho",
+            "password": "mooyaho"
+        ] as [String: Any]
+
+        NetworkRouter.shared.post("http://3.35.143.195/auth/sign-in", body: params, headers: []) { (result) in
+            switch result {
+            case .success(let token):
+                UserDefaults.standard.setValue(token, forKey: "userToken")
+                DispatchQueue.main.async { [weak self] in
+                    self?.goToMain()
+                }
+
+            case .failure(let error):
+                print(error.localizedDescription)
+
+            }
+        }
+
+    }
+
     @objc func goToMain() {
         let mainTabBar = MainTabBarController()
         let scene = UIApplication.shared.connectedScenes.first

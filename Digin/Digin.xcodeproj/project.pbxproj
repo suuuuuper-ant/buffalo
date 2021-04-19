@@ -23,6 +23,8 @@
 		F121DF23262308C500B09F21 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DF22262308C500B09F21 /* NewsFeedViewController.swift */; };
 		F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DF25262308DF00B09F21 /* MypageViewController.swift */; };
 		F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DF2A26230BA000B09F21 /* TabBarFactory.swift */; };
+		F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */; };
+		F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562903262DC89B004FB256 /* HomeGridCell.swift */; };
 		F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1734758261855C5009EC5D6 /* AppDelegate.swift */; };
 		F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173475A261855C5009EC5D6 /* SceneDelegate.swift */; };
 		F1734760261855C5009EC5D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F173475E261855C5009EC5D6 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		F121DF22262308C500B09F21 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		F121DF25262308DF00B09F21 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		F121DF2A26230BA000B09F21 /* TabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFactory.swift; sourceTree = "<group>"; };
+		F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderView.swift; sourceTree = "<group>"; };
+		F1562903262DC89B004FB256 /* HomeGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridCell.swift; sourceTree = "<group>"; };
 		F1734755261855C5009EC5D6 /* Digin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1734758261855C5009EC5D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F173475A261855C5009EC5D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				F121DF1C2623087900B09F21 /* HomeViewController.swift */,
+				F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */,
+				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -311,11 +317,13 @@
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
+				F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,
 				22923834261B471C00B50884 /* UIViewController_extension.swift in Sources */,
 				F121DF132623049600B09F21 /* LoginViewController.swift in Sources */,
 				F121DF1D2623087900B09F21 /* HomeViewController.swift in Sources */,
 				22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */,
+				F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */,
 				F121DF23262308C500B09F21 /* NewsFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

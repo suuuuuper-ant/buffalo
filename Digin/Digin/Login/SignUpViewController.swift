@@ -57,8 +57,8 @@ class SignUpViewController: UIViewController {
 
         let params = [
             "name": "sdsd",
-            "email": "moo",
-            "password": "yaho"
+            "email": "mooyaho",
+            "password": "mooyaho"
         ] as [String: Any]
 
         NetworkRouter.shared.post("http://3.35.143.195/auth/sign-up", body: params, headers: [], model: String.self) { (result) in
