@@ -37,7 +37,7 @@ class SearchTabBarCotentFactory: TabBarCotentFactory {
 
 class NewsFeedTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
-        let newsFeed =  NewsFeedViewController()
+        let newsFeed =  UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsFeedViewController.reuseIdentifier)
         newsFeed.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
         return newsFeed
     }
