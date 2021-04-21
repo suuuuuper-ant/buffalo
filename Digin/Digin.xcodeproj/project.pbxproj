@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22618933262F07E900A9B77B /* NewsFeed.storyboard */; };
+		22618938262F09EA00A9B77B /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618937262F09EA00A9B77B /* FeedTableViewCell.swift */; };
+		2261893B262F0A0500A9B77B /* SkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261893A262F0A0500A9B77B /* SkeletonTableViewCell.swift */; };
+		2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */; };
+		22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */; };
+		22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618944262F120100A9B77B /* SkeletonLoadable.swift */; };
 		2292381E261B431700B50884 /* UIView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2292381D261B431700B50884 /* UIView_extension.swift */; };
 		22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22923828261B45CA00B50884 /* NSObject_extension.swift */; };
 		2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2292382B261B461300B50884 /* UIAlertController_extension.swift */; };
@@ -33,6 +39,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22618933262F07E900A9B77B /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
+		22618937262F09EA00A9B77B /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		2261893A262F0A0500A9B77B /* SkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTableViewCell.swift; sourceTree = "<group>"; };
+		2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
+		22618944262F120100A9B77B /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
 		2292381D261B431700B50884 /* UIView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_extension.swift; sourceTree = "<group>"; };
 		22923828261B45CA00B50884 /* NSObject_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject_extension.swift; sourceTree = "<group>"; };
 		2292382B261B461300B50884 /* UIAlertController_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController_extension.swift; sourceTree = "<group>"; };
@@ -153,7 +165,13 @@
 		F121DF332623377600B09F21 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				22618933262F07E900A9B77B /* NewsFeed.storyboard */,
 				F121DF22262308C500B09F21 /* NewsFeedViewController.swift */,
+				2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */,
+				22618937262F09EA00A9B77B /* FeedTableViewCell.swift */,
+				2261893A262F0A0500A9B77B /* SkeletonTableViewCell.swift */,
+				22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */,
+				22618944262F120100A9B77B /* SkeletonLoadable.swift */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -273,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */,
+				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
@@ -308,14 +327,19 @@
 			files = (
 				F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */,
 				F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */,
+				22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */,
 				F121DF1A2623083400B09F21 /* MainTabBarController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
 				F121DF172623075B00B09F21 /* SignUpViewController.swift in Sources */,
 				2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */,
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
+				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,
+				22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
+				22618938262F09EA00A9B77B /* FeedTableViewCell.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
+				2261893B262F0A0500A9B77B /* SkeletonTableViewCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,
