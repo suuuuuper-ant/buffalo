@@ -25,6 +25,15 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
         return greeting
     }()
 
+    let radomPickButton: UIButton = {
+       let randomPick = UIButton()
+        randomPick.setTitle("오늘 꼭 하나만 보고싶다면? (랜덤뽑기btn)", for: .normal)
+        randomPick.layer.cornerRadius = 10
+        randomPick.clipsToBounds = true
+        randomPick.translatesAutoresizingMaskIntoConstraints = false
+        randomPick.backgroundColor = .lightGray
+        return randomPick
+    }()
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -42,6 +51,12 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
         addSubview(greetingLabel)
         greetingLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25).isActive = true
         greetingLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 50).isActive = true
+
+        addSubview(radomPickButton)
+        radomPickButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        radomPickButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        radomPickButton.heightAnchor.constraint(equalToConstant: 73).isActive = true
+        radomPickButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
 
     }
 

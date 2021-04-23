@@ -49,7 +49,7 @@ class NewsFeedViewController: UIViewController {
         feedTableView.dataSource = self
 
         //FIXME: 동작 테스트 (추후 삭제)
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { _ in
+        let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { _ in
             print("FIRE!!!")
             self.isLoaded = true
 

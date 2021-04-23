@@ -10,8 +10,8 @@ import UIKit
 class HomeViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(HomeGridCell.self, forCellReuseIdentifier: "HomeGridCell")
-        tableView.register(HomeTitleHeaderView.self, forHeaderFooterViewReuseIdentifier: "HomeTitleHeaderView")
+        tableView.register(HomeGridCell.self, forCellReuseIdentifier: HomeGridCell.reuseIdentifier)
+        tableView.register(HomeTitleHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeTitleHeaderView.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
         return tableView
     }()
 
+    var data  = [["제약", "바이오", "제넥신"], ["국방", "화학", "수출"], ["배", "조선", "미국경제악화"], ["달러약세"], ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]]
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -38,16 +39,18 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return data.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeGridCell") as? HomeGridCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeGridCell.reuseIdentifier) as? HomeGridCell
+        let tags = data[indexPath.row]
+        cell?.configure(model: tags)
         return cell ?? UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HomeTitleHeaderView") as? HomeTitleHeaderView
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTitleHeaderView.reuseIdentifier) as? HomeTitleHeaderView
         return header
     }
 
@@ -62,5 +65,15 @@ extension HomeViewController: UITableViewDataSource {
 }
 
 extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 20
+    }
 
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+
+        let view: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.size.width, height: 20))
+        view.backgroundColor = .white
+
+        return view
+    }
 }

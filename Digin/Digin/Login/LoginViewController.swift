@@ -9,6 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    var isNOl = false
     let loginButton: UIButton = {
         let login = UIButton(type: .custom)
         login.translatesAutoresizingMaskIntoConstraints = false
