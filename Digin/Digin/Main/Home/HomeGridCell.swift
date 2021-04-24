@@ -164,8 +164,8 @@ class HomeGridPriceArea: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         print(frame.width * CGFloat(progressBarView.progress))
-        const?.constant = progressBarView.frame.width * CGFloat(progressBarView.progress)
         progressBarView.progress = Float(model)
+        const?.constant = progressBarView.frame.width * CGFloat(progressBarView.progress)
 
     }
     private func addSubiews() {
