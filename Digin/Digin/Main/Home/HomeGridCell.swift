@@ -53,6 +53,8 @@ class HomeGridCell: UITableViewCell {
         for idx in (model.count..<relativeTagStack.subviews.count) {
             (relativeTagStack.subviews[idx] as? UILabel)?.text = ""
         }
+
+        contentArea.model = Float.random(in: 0..<1)
     }
 
     private func setupConstraints() {
@@ -81,7 +83,7 @@ class HomeGridCell: UITableViewCell {
             contentArea.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 9),
             contentArea.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
             contentArea.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 18.5),
-            contentArea.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
+            contentArea.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140)
         ]
 
         contentArea.backgroundColor = .gray
@@ -121,6 +123,33 @@ class HomeGridPriceArea: UIView {
         image.backgroundColor = .yellow
         return image
     }()
+    lazy var progressBarView: UIProgressView = {
+        let progressBar = UIProgressView()
+        progressBar.progress = 0.5
+        progressBar.backgroundColor = .darkGray
+        progressBar.layer.cornerRadius = 10
+        progressBar.clipsToBounds = true
+        progressBar.layer.sublayers![1].cornerRadius = 10
+        progressBar.progressTintColor = .systemPink
+//        progressBar.subviews[1].clipsToBounds = true
+//        progressBar.transform = progressBar.transform.scaledBy(x: 1, y: 8)
+        return progressBar
+    }()
+
+    var currentPrice: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.text = "현재가\n59,999"
+        return label
+    }()
+
+    var model: Float = 0.5 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -132,15 +161,28 @@ class HomeGridPriceArea: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print(frame.width * CGFloat(progressBarView.progress))
+        const?.constant = progressBarView.frame.width * CGFloat(progressBarView.progress)
+        progressBarView.progress = Float(model)
+
+    }
     private func addSubiews() {
-           let subviews = [originLabel, dateLabel, byOrSellLabel, iconImageView]
+           let subviews = [originLabel,
+                           dateLabel,
+                           byOrSellLabel,
+                           iconImageView,
+                           progressBarView,
+                           currentPrice
+           ]
 
            subviews.forEach {
                self.addSubview($0)
                $0.translatesAutoresizingMaskIntoConstraints = false
            }
     }
-
+    var const: NSLayoutConstraint?
     private func setupConstraints() {
 
         originLabel.text = "한경컨센서스"
@@ -166,12 +208,77 @@ class HomeGridPriceArea: UIView {
             iconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             iconImageView.widthAnchor.constraint(equalToConstant: 20),
             iconImageView.heightAnchor.constraint(equalToConstant: 20)
-
         ]
+
+//        let targetPriceConstraint = [
+//            targetPriceLabel.topAnchor.constraint(equalTo: byOrSellLabel, constant: 10)
+//            tar
+//        ]
+
+        let progressBarConstraints = [
+            progressBarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
+            progressBarView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
+            progressBarView.heightAnchor.constraint(equalToConstant: 20),
+            progressBarView.bottomAnchor
+                .constraint(equalTo: bottomAnchor, constant: -16)
+        ]
+
+//        let currentPriceConstraints = [
+      const = currentPrice.centerXAnchor.constraint(equalTo: leadingAnchor, constant: frame.width * CGFloat(progressBarView.progress))
+        const?.isActive = true
+            currentPrice.bottomAnchor.constraint(equalTo: progressBarView.topAnchor, constant: -10).isActive = true
+     //   ]
         [originConstraints,
          buyOrSellConstraints,
          dateConstraints,
-         iconConstraints
+         iconConstraints,
+         progressBarConstraints
         ].forEach(NSLayoutConstraint.activate(_:))
     }
+}
+
+class ProgressBarView: UIView {
+    let progressLayer = CALayer()
+    var progress: CGFloat = 0.5 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    var currentPrice: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.text = "현재가/n59,999"
+        return label
+    }()
+
+    override func draw(_ rect: CGRect) {
+       // super.draw(rect)
+        let backgroundMask  = CAShapeLayer()
+        backgroundMask.path = UIBezierPath(roundedRect: rect, cornerRadius: rect.height * 0.25).cgPath
+        layer.mask = backgroundMask
+
+        let prorgressRect = CGRect(origin: .zero, size: CGSize(width: rect.width * progress, height: rect.height))
+        progressLayer.frame = prorgressRect
+       // layer.addSublayer(progressLayer)
+        progressLayer.backgroundColor = UIColor.systemPink.cgColor
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layer.addSublayer(progressLayer)
+        backgroundColor = .darkGray
+
+        addSubview(currentPrice)
+
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }

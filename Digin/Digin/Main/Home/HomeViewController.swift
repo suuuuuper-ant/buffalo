@@ -46,6 +46,7 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeGridCell.reuseIdentifier) as? HomeGridCell
         let tags = data[indexPath.row]
         cell?.configure(model: tags)
+
         return cell ?? UITableViewCell()
     }
 
