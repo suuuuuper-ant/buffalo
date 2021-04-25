@@ -1,0 +1,65 @@
+//
+//  HomeDummy.json
+//  Digin
+//
+//  Created by jinho jeong on 2021/04/25.
+//
+
+, ["국방", "화학", "수출"],
+["배", "조선", "미국경제악화"], ["달러약세"],
+["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
+
+{
+    
+    "data": [
+    
+        {
+            "interestingCompany": "SK바이오",
+            "tags": ["제약", "바이오", "제넥신"],
+            "isFavorite": false,
+            "currentPrice": "59.999원",
+            "targetPrice": "89.999원"
+            
+        },
+        {
+            "interestingCompany": "SK바이오",
+            "tags": ["국방", "화학", "수출"],
+            "isFavorite": true,
+            "currentPrice": "59.999원",
+            "targetPrice": "99.999원"
+        },
+        {
+            "interestingCompany": "S-oil",
+            "tags": ["배", "조선", "미국경제악화"],
+            "isFavorite": false,
+            "currentPrice": "59.999원",
+            "targetPrice": "119.999원"
+        },
+        {
+            "interestingCompany": "제이피모건",
+            "tags": ["달러약세"],
+            "isFavorite": true
+            "currentPrice": "39.999원",
+            "targetPrice": "119.999원"
+            
+        },
+        {
+            "interestingCompany": "메가박스",
+            "tags": ["배급사", "마블", "넷플릭스"],
+            "isFavorite": false,
+            "currentPrice": "29.999원",
+            "targetPrice": "79.999원"
+        },
+        {
+            
+            "interestingCompany": "인천조선소",
+            "tags": ["석유", "러시아"],
+            "isFavorite": false,
+            "currentPrice": "19.999원",
+            "targetPrice": "79.999원"
+        },
+        
+        
+    ]
+    
+}

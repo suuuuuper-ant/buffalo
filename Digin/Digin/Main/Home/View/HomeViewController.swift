@@ -4,7 +4,6 @@
 //
 //  Created by jinho jeong on 2021/04/11.
 //
-
 import UIKit
 
 class HomeViewController: UIViewController {
@@ -19,7 +18,11 @@ class HomeViewController: UIViewController {
         return tableView
     }()
 
-    var data  = [["제약", "바이오", "제넥신"], ["국방", "화학", "수출"], ["배", "조선", "미국경제악화"], ["달러약세"], ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]]
+    var data  = [
+        ["제약", "바이오", "제넥신"], ["국방", "화학", "수출"],
+        ["배", "조선", "미국경제악화"], ["달러약세"],
+        ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -32,9 +35,7 @@ class HomeViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-
     }
-
 }
 
 extension HomeViewController: UITableViewDataSource {
