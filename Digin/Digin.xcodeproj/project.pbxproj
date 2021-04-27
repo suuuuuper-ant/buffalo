@@ -36,9 +36,11 @@
 		F1734760261855C5009EC5D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F173475E261855C5009EC5D6 /* Main.storyboard */; };
 		F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1734761261855CA009EC5D6 /* Assets.xcassets */; };
 		F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */; };
-		F1A8DF5326358F0F00937B31 /* HomeDummy.json in Resources */ = {isa = PBXBuildFile; fileRef = F1A8DF5226358F0F00937B31 /* HomeDummy.json */; };
 		F1A8DF582635925700937B31 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF572635925700937B31 /* Company.swift */; };
 		F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF5C2635963700937B31 /* HomeRepository.swift */; };
+		F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */; };
+		F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */ = {isa = PBXBuildFile; fileRef = F1A8DF642635D3B200937B31 /* HomeDummy.json */; };
+		F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,9 +75,11 @@
 		F1734761261855CA009EC5D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1734764261855CA009EC5D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1734766261855CA009EC5D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1A8DF5226358F0F00937B31 /* HomeDummy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HomeDummy.json; sourceTree = "<group>"; };
 		F1A8DF572635925700937B31 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		F1A8DF5C2635963700937B31 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
+		F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F1A8DF642635D3B200937B31 /* HomeDummy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeDummy.json; sourceTree = "<group>"; };
+		F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHorizontalGridCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +192,7 @@
 				F1A8DF5B2635961600937B31 /* View */,
 				F1A8DF5A2635960700937B31 /* Model */,
 				F1A8DF5C2635963700937B31 /* HomeRepository.swift */,
+				F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -241,8 +246,8 @@
 		F1A8DF5A2635960700937B31 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F1A8DF5226358F0F00937B31 /* HomeDummy.json */,
 				F1A8DF572635925700937B31 /* Company.swift */,
+				F1A8DF642635D3B200937B31 /* HomeDummy.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 			children = (
 				F121DF1C2623087900B09F21 /* HomeViewController.swift */,
 				F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */,
+				F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */,
 				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
 			);
 			path = View;
@@ -320,7 +326,7 @@
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
-				F1A8DF5326358F0F00937B31 /* HomeDummy.json in Resources */,
+				F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,12 +367,14 @@
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
 				F1A8DF582635925700937B31 /* Company.swift in Sources */,
 				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
+				F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,
 				22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
 				22618938262F09EA00A9B77B /* FeedTableViewCell.swift in Sources */,
 				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
+				F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
 				2261893B262F0A0500A9B77B /* SkeletonTableViewCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */,

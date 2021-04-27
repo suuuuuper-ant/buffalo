@@ -8,9 +8,10 @@
 import UIKit
 import SwiftUI
 
-class HomeGridCell: UITableViewCell {
+class HomeGridCell: UICollectionViewCell {
     lazy var favoriteCompanyLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "관심기업"
         return label
     }()
@@ -31,11 +32,15 @@ class HomeGridCell: UITableViewCell {
         return like
     }()
 
-    lazy var contentArea: HomeGridPriceArea = HomeGridPriceArea()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+    lazy var contentArea: HomeGridPriceArea = {
+     let area = HomeGridPriceArea()
+        area.layer.cornerRadius = 15
+        area.layer.masksToBounds = true
+        return area
+    }()
+    lazy var roundShadowView = RoundShadowView()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         addSubiews()
         setupConstraints()
     }
@@ -44,28 +49,37 @@ class HomeGridCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(model: [String]) {
+    func configure(model: Company) {
 
-        model.enumerated().forEach { (index, str) in
+        model.tags.enumerated().forEach { (index, str) in
             (relativeTagStack.subviews[index] as? UILabel)?.text  = str
         }
 
-        for idx in (model.count..<relativeTagStack.subviews.count) {
+        for idx in (model.tags.count..<relativeTagStack.subviews.count) {
             (relativeTagStack.subviews[idx] as? UILabel)?.text = ""
         }
 
-        contentArea.model = Float.random(in: 0..<1)
+        favoriteCompanyLabel.text = model.interestingCompany
+
+        contentArea.model =  Float(model.currentPrice)! / (Float(model.targetPrice) ?? 0.0 )
     }
 
     private func setupConstraints() {
 
+        let roundShadowViewConstraints = [
+            roundShadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            roundShadowView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            roundShadowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            roundShadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+        ]
+
         let favoriteCompanyLabelConstraints = [
-            favoriteCompanyLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            favoriteCompanyLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20)
+            favoriteCompanyLabel.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 20),
+            favoriteCompanyLabel.topAnchor.constraint(equalTo: roundShadowView.topAnchor, constant: 20)
         ]
 
         let likeButtonConstraints = [
-            likeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
+            likeButton.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -14),
             likeButton.bottomAnchor.constraint(equalTo: relativeTagStack.bottomAnchor),
             likeButton.widthAnchor.constraint(equalToConstant: 20),
             likeButton.heightAnchor.constraint(equalToConstant: 20)
@@ -73,22 +87,24 @@ class HomeGridCell: UITableViewCell {
         likeButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         let relativeTagStackConstraints = [
-            relativeTagStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            relativeTagStack.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 20),
             relativeTagStack.topAnchor.constraint(equalTo: favoriteCompanyLabel.bottomAnchor, constant: 14),
             relativeTagStack.trailingAnchor.constraint(lessThanOrEqualTo: likeButton.leadingAnchor, constant: -40)
 
         ]
 
         let contentAreaConstraints = [
-            contentArea.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 9),
-            contentArea.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
+            contentArea.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 16),
+            contentArea.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -16),
             contentArea.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 18.5),
-            contentArea.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140)
+           // contentArea.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140)
+            contentArea.heightAnchor.constraint(equalToConstant: 114)
         ]
 
         contentArea.backgroundColor = .gray
 
-        [favoriteCompanyLabelConstraints,
+        [roundShadowViewConstraints,
+        favoriteCompanyLabelConstraints,
          relativeTagStackConstraints,
          likeButtonConstraints,
          contentAreaConstraints
@@ -96,11 +112,13 @@ class HomeGridCell: UITableViewCell {
     }
 
     private func addSubiews() {
-        backgroundColor = UIColor.lightGray
+        addSubview(roundShadowView)
+        roundShadowView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = UIColor.white
            let subviews = [favoriteCompanyLabel, relativeTagStack, likeButton, contentArea]
 
            subviews.forEach {
-               contentView.addSubview($0)
+            roundShadowView.addSubview($0)
                $0.translatesAutoresizingMaskIntoConstraints = false
            }
        }
@@ -112,7 +130,7 @@ class HomeGridPriceArea: UIView {
     lazy var dateLabel: UILabel = UILabel()
     lazy var byOrSellLabel: UILabel = {
         let label = UILabel()
-        label.text = "BUY or Sell"
+        label.text = "SELL"
         label.font = UIFont.systemFont(ofSize: 30)
         return label
 
@@ -161,7 +179,7 @@ class HomeGridPriceArea: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(frame.width * CGFloat(progressBarView.progress))
+
         progressBarView.progress = Float(model)
         const?.constant = progressBarView.frame.width * CGFloat(progressBarView.progress)
 
@@ -226,5 +244,70 @@ class HomeGridPriceArea: UIView {
          iconConstraints,
          progressBarConstraints
         ].forEach(NSLayoutConstraint.activate(_:))
+    }
+}
+
+class RoundShadowView: UIView {
+
+    let containerView = UIView()
+    private var shadowLayer: CAShapeLayer!
+    private var cornerRadius: CGFloat = 16.0
+    private var fillColor: UIColor = .white
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        layoutView()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func layoutView() {
+
+      // set the shadow of the view's layer
+      layer.backgroundColor = UIColor.clear.cgColor
+      layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 1)
+        layer.shadowOpacity = 0.1
+        layer.shadowRadius = 10.0
+
+      // set the cornerRadius of the containerView's layer
+      containerView.layer.cornerRadius = cornerRadius
+      containerView.layer.masksToBounds = true
+
+      addSubview(containerView)
+
+      //
+      // add additional views to the containerView here
+      //
+
+      // add constraints
+      containerView.translatesAutoresizingMaskIntoConstraints = false
+
+      // pin the containerView to the edges to the view
+      containerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+      containerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+      containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+      containerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        if shadowLayer == nil {
+            shadowLayer = CAShapeLayer()
+
+            shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+            shadowLayer.fillColor = fillColor.cgColor
+
+            shadowLayer.shadowColor = UIColor.lightGray.cgColor
+            shadowLayer.shadowPath = shadowLayer.path
+            shadowLayer.shadowOffset = CGSize(width: 0.0, height: 2)
+            shadowLayer.shadowOpacity = 0.3
+            shadowLayer.shadowRadius = 5
+
+            layer.insertSublayer(shadowLayer, at: 0)
+        }
     }
 }
