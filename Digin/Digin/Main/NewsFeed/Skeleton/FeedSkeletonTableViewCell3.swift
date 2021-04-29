@@ -1,17 +1,16 @@
 //
-//  SkeletonTableViewCell.swift
+//  FeedSkeletonTableViewCell3.swift
 //  Digin
 //
-//  Created by 김예은 on 2021/04/20.
+//  Created by 김예은 on 2021/04/29.
 //
 
 import UIKit
 
-///reference : https://github.com/jrasmusson/swift-arcade/blob/master/Animation/Shimmer/README.md
-
-class SkeletonTableViewCell: UITableViewCell {
+class FeedSkeletonTableViewCell3: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var lineView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +20,7 @@ class SkeletonTableViewCell: UITableViewCell {
 
     private func setup() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        lineView.backgroundColor = UIColor.appColor(.lightGrey2)
 
         //Create the CAGradientLayer
         let gradient = CAGradientLayer()
@@ -39,4 +39,4 @@ class SkeletonTableViewCell: UITableViewCell {
 
 }
 
-extension SkeletonTableViewCell: SkeletonLoadable {}
+extension FeedSkeletonTableViewCell3: SkeletonLoadable {}

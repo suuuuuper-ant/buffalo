@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2224BA862639368100E620C4 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BA852639368100E620C4 /* CustomSegmentedControl.swift */; };
+		2224BA892639378400E620C4 /* NewsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BA882639378400E620C4 /* NewsContainerViewController.swift */; };
+		2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BA90263943B900E620C4 /* FeedPageViewController.swift */; };
+		2224BA972639694D00E620C4 /* FeedTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BA962639694D00E620C4 /* FeedTableViewCell2.swift */; };
+		2224BA9B26396C1B00E620C4 /* FeedTableViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BA9A26396C1B00E620C4 /* FeedTableViewCell3.swift */; };
+		2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BA9D26396D2500E620C4 /* FeedTableViewCell4.swift */; };
+		2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BAB8263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift */; };
+		2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BABB263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift */; };
+		2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BABE263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift */; };
+		2224BAC2263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224BAC1263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift */; };
 		22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22618933262F07E900A9B77B /* NewsFeed.storyboard */; };
-		22618938262F09EA00A9B77B /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618937262F09EA00A9B77B /* FeedTableViewCell.swift */; };
-		2261893B262F0A0500A9B77B /* SkeletonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261893A262F0A0500A9B77B /* SkeletonTableViewCell.swift */; };
+		22618938262F09EA00A9B77B /* FeedTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618937262F09EA00A9B77B /* FeedTableViewCell1.swift */; };
 		2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */; };
 		22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */; };
 		22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618944262F120100A9B77B /* SkeletonLoadable.swift */; };
@@ -39,9 +48,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2224BA852639368100E620C4 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
+		2224BA882639378400E620C4 /* NewsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContainerViewController.swift; sourceTree = "<group>"; };
+		2224BA90263943B900E620C4 /* FeedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
+		2224BA962639694D00E620C4 /* FeedTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell2.swift; sourceTree = "<group>"; };
+		2224BA9A26396C1B00E620C4 /* FeedTableViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell3.swift; sourceTree = "<group>"; };
+		2224BA9D26396D2500E620C4 /* FeedTableViewCell4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell4.swift; sourceTree = "<group>"; };
+		2224BAB8263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSkeletonTableViewCell3.swift; sourceTree = "<group>"; };
+		2224BABB263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSkeletonTableViewCell1.swift; sourceTree = "<group>"; };
+		2224BABE263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSkeletonTableViewCell2.swift; sourceTree = "<group>"; };
+		2224BAC1263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSkeletonTableViewCell4.swift; sourceTree = "<group>"; };
 		22618933262F07E900A9B77B /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
-		22618937262F09EA00A9B77B /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
-		2261893A262F0A0500A9B77B /* SkeletonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonTableViewCell.swift; sourceTree = "<group>"; };
+		22618937262F09EA00A9B77B /* FeedTableViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell1.swift; sourceTree = "<group>"; };
 		2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
 		22618944262F120100A9B77B /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
@@ -83,6 +101,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2224BAA12639805B00E620C4 /* Skeleton */ = {
+			isa = PBXGroup;
+			children = (
+				22618944262F120100A9B77B /* SkeletonLoadable.swift */,
+				2224BABB263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift */,
+				2224BABE263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift */,
+				2224BAB8263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift */,
+				2224BAC1263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift */,
+			);
+			path = Skeleton;
+			sourceTree = "<group>";
+		};
 		F121DEDE26185CE200B09F21 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,12 +196,17 @@
 			isa = PBXGroup;
 			children = (
 				22618933262F07E900A9B77B /* NewsFeed.storyboard */,
+				2224BA852639368100E620C4 /* CustomSegmentedControl.swift */,
+				2224BA882639378400E620C4 /* NewsContainerViewController.swift */,
+				2224BA90263943B900E620C4 /* FeedPageViewController.swift */,
 				F121DF22262308C500B09F21 /* NewsFeedViewController.swift */,
 				2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */,
-				22618937262F09EA00A9B77B /* FeedTableViewCell.swift */,
-				2261893A262F0A0500A9B77B /* SkeletonTableViewCell.swift */,
+				22618937262F09EA00A9B77B /* FeedTableViewCell1.swift */,
+				2224BA962639694D00E620C4 /* FeedTableViewCell2.swift */,
+				2224BA9A26396C1B00E620C4 /* FeedTableViewCell3.swift */,
+				2224BA9D26396D2500E620C4 /* FeedTableViewCell4.swift */,
 				22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */,
-				22618944262F120100A9B77B /* SkeletonLoadable.swift */,
+				2224BAA12639805B00E620C4 /* Skeleton */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -326,8 +361,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */,
+				2224BAC2263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift in Sources */,
 				F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */,
+				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,
+				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
 				22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */,
+				2224BA892639378400E620C4 /* NewsContainerViewController.swift in Sources */,
 				F121DF1A2623083400B09F21 /* MainTabBarController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
 				F121DF172623075B00B09F21 /* SignUpViewController.swift in Sources */,
@@ -335,11 +374,14 @@
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
 				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,
+				2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */,
+				2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */,
 				22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
-				22618938262F09EA00A9B77B /* FeedTableViewCell.swift in Sources */,
+				22618938262F09EA00A9B77B /* FeedTableViewCell1.swift in Sources */,
+				2224BA9B26396C1B00E620C4 /* FeedTableViewCell3.swift in Sources */,
+				2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
-				2261893B262F0A0500A9B77B /* SkeletonTableViewCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,
@@ -347,6 +389,8 @@
 				F121DF132623049600B09F21 /* LoginViewController.swift in Sources */,
 				F121DF1D2623087900B09F21 /* HomeViewController.swift in Sources */,
 				22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */,
+				2224BA972639694D00E620C4 /* FeedTableViewCell2.swift in Sources */,
+				2224BA862639368100E620C4 /* CustomSegmentedControl.swift in Sources */,
 				F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */,
 				F121DF23262308C500B09F21 /* NewsFeedViewController.swift in Sources */,
 			);
