@@ -16,9 +16,7 @@ class HomeViewModel: ObservableObject {
     func fetch() {
 
         repository.fetchCopanies()?
-            //.receive(on: DispatchQueue.main)
-            .sink { co in
-                print("sd \(co)")
+            .sink { _ in
             } receiveValue: { homeCompany in
                 self.data = homeCompany.data
             }.store(in: &cancellables)

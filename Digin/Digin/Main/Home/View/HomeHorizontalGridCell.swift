@@ -35,8 +35,6 @@ class HomeHorizontalGridCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews([collectionView])
         addConstraints()
-        let cellWidth: CGFloat = floor(cellSize.width)
-        let insetX = (self.bounds.width - cellWidth) / 2.0
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
 
     }
@@ -81,7 +79,7 @@ extension HomeHorizontalGridCell: UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeGridCell.reuseIdentifier, for: indexPath) as? HomeGridCell
         let model = companeis[indexPath.row]
         cell?.configure(model: model)
-        return (cell as? UICollectionViewCell) ?? UICollectionViewCell()
+        return cell ?? UICollectionViewCell()
     }
 }
 
@@ -92,10 +90,7 @@ extension HomeHorizontalGridCell: UIScrollViewDelegate {
 
         let scrollOffset: CGFloat = scrollView.contentOffset.x
         var offset = targetContentOffset.pointee
-//        if  offset.x <= scrollOffset {
-//            return
-//        }
-        var beforeIndex: CGFloat = 0
+
         guard  let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         //320 : 셀사이즈
         let cellWidthIncludingSpacing = cellSize.width + layout.minimumLineSpacing
@@ -119,11 +114,11 @@ extension HomeHorizontalGridCell: UIScrollViewDelegate {
         }
 
         if currentIndex > roundedIndex {
-            beforeIndex = currentIndex
+
             currentIndex -= 1
             roundedIndex = currentIndex
         } else if currentIndex < roundedIndex {
-            beforeIndex = currentIndex
+
             currentIndex += 1
             roundedIndex = currentIndex
         }
@@ -136,10 +131,6 @@ extension HomeHorizontalGridCell: UIScrollViewDelegate {
         offset = CGPoint(x: (roundedIndex * cellWidthIncludingSpacing) - scrollView.contentInset.left, y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
 
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(" oofse: \(scrollView.contentOffset.x)")
     }
 
 }

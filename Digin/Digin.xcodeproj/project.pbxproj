@@ -38,6 +38,8 @@
 		F121DF23262308C500B09F21 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DF22262308C500B09F21 /* NewsFeedViewController.swift */; };
 		F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DF25262308DF00B09F21 /* MypageViewController.swift */; };
 		F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DF2A26230BA000B09F21 /* TabBarFactory.swift */; };
+		F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */; };
+		F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */; };
 		F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */; };
 		F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562903262DC89B004FB256 /* HomeGridCell.swift */; };
 		F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1734758261855C5009EC5D6 /* AppDelegate.swift */; };
@@ -84,6 +86,8 @@
 		F121DF22262308C500B09F21 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		F121DF25262308DF00B09F21 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		F121DF2A26230BA000B09F21 /* TabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFactory.swift; sourceTree = "<group>"; };
+		F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOpenView.swift; sourceTree = "<group>"; };
+		F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderView.swift; sourceTree = "<group>"; };
 		F1562903262DC89B004FB256 /* HomeGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridCell.swift; sourceTree = "<group>"; };
 		F1734755261855C5009EC5D6 /* Digin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +296,8 @@
 			children = (
 				F121DF1C2623087900B09F21 /* HomeViewController.swift */,
 				F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */,
+				F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */,
+				F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */,
 				F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */,
 				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
 			);
@@ -407,6 +413,7 @@
 				F1A8DF582635925700937B31 /* Company.swift in Sources */,
 				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
 				F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */,
+				F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,
 				2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */,
 				2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */,
@@ -416,10 +423,10 @@
 				22618938262F09EA00A9B77B /* FeedTableViewCell1.swift in Sources */,
 				2224BA9B26396C1B00E620C4 /* FeedTableViewCell3.swift in Sources */,
 				2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */,
+				F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
-                F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
-                F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
-                2261893B262F0A0500A9B77B /* SkeletonTableViewCell.swift in Sources */,
+				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
+				F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,

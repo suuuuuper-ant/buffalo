@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2PG-ey-mqf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2PG-ey-mqf">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -74,7 +74,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedTableViewCell1" id="bbS-nW-lOM" customClass="FeedTableViewCell1" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="260"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bbS-nW-lOM" id="srF-OD-acu">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
@@ -138,7 +138,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedTableViewCell2" id="gD7-P6-jA1" customClass="FeedTableViewCell2" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="288" width="414" height="120"/>
+                                        <rect key="frame" x="0.0" y="284.5" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gD7-P6-jA1" id="QF4-a4-EKX">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -184,7 +184,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedTableViewCell3" id="Vi1-UO-bDK" customClass="FeedTableViewCell3" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="408" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="404.5" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vi1-UO-bDK" id="smX-BC-iS7">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -220,7 +220,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedTableViewCell4" id="HuS-PH-9Ao" customClass="FeedTableViewCell4" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="448" width="414" height="160"/>
+                                        <rect key="frame" x="0.0" y="444.5" width="414" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HuS-PH-9Ao" id="gG6-Na-RCi">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
@@ -274,7 +274,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedSkeletonTableViewCell1" id="tnk-YQ-cEX" customClass="FeedSkeletonTableViewCell1" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="608" width="414" height="260"/>
+                                        <rect key="frame" x="0.0" y="604.5" width="414" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tnk-YQ-cEX" id="uiQ-HZ-plm">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
@@ -329,7 +329,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedSkeletonTableViewCell2" id="Ym9-HO-Zlh" customClass="FeedSkeletonTableViewCell2" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="868" width="414" height="120"/>
+                                        <rect key="frame" x="0.0" y="864.5" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ym9-HO-Zlh" id="NHU-AQ-aFl">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
@@ -375,7 +375,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedSkeletonTableViewCell3" id="1rQ-AB-DQR" customClass="FeedSkeletonTableViewCell3" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="988" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="984.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1rQ-AB-DQR" id="jxC-nl-8G1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -410,7 +410,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedSkeletonTableViewCell4" id="Oz8-t3-MZx" customClass="FeedSkeletonTableViewCell4" customModule="Digin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1032" width="414" height="160"/>
+                                        <rect key="frame" x="0.0" y="1028.5" width="414" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oz8-t3-MZx" id="Swc-7t-ArH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
