@@ -13,7 +13,15 @@ class HomeGridCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "관심기업"
+        label.numberOfLines = 2
+        label.lineBreakMode = .byWordWrapping
         return label
+    }()
+
+    lazy var companyImageView: UIImageView = {
+        let companyImage = UIImageView()
+        companyImage.backgroundColor = .red
+        return companyImage
     }()
 
     lazy var relativeTagStack: UIStackView = {
@@ -73,14 +81,22 @@ class HomeGridCell: UICollectionViewCell {
             roundShadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ]
 
+        let companyImageViewConstraints = [
+            companyImageView.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 16),
+            companyImageView.topAnchor.constraint(equalTo: roundShadowView.topAnchor, constant: 30),
+            companyImageView.widthAnchor.constraint(equalToConstant: 32),
+            companyImageView.heightAnchor.constraint(equalToConstant: 32)
+        ]
+
         let favoriteCompanyLabelConstraints = [
-            favoriteCompanyLabel.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 20),
-            favoriteCompanyLabel.topAnchor.constraint(equalTo: roundShadowView.topAnchor, constant: 20)
+            favoriteCompanyLabel.leadingAnchor.constraint(equalTo: companyImageView.trailingAnchor, constant: 10),
+            favoriteCompanyLabel.topAnchor.constraint(equalTo: companyImageView.topAnchor),
+            favoriteCompanyLabel.trailingAnchor.constraint(equalTo: likeButton.leadingAnchor, constant: -10)
         ]
 
         let likeButtonConstraints = [
             likeButton.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -14),
-            likeButton.bottomAnchor.constraint(equalTo: relativeTagStack.bottomAnchor),
+            likeButton.topAnchor.constraint(equalTo: companyImageView.topAnchor),
             likeButton.widthAnchor.constraint(equalToConstant: 20),
             likeButton.heightAnchor.constraint(equalToConstant: 20)
         ]
@@ -88,22 +104,23 @@ class HomeGridCell: UICollectionViewCell {
 
         let relativeTagStackConstraints = [
             relativeTagStack.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 20),
-            relativeTagStack.topAnchor.constraint(equalTo: favoriteCompanyLabel.bottomAnchor, constant: 14),
-            relativeTagStack.trailingAnchor.constraint(lessThanOrEqualTo: likeButton.leadingAnchor, constant: -40)
+            relativeTagStack.topAnchor.constraint(equalTo: companyImageView.bottomAnchor, constant: 17),
+            relativeTagStack.trailingAnchor.constraint(lessThanOrEqualTo: roundShadowView.trailingAnchor, constant: -40)
 
         ]
 
         let contentAreaConstraints = [
             contentArea.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 16),
             contentArea.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -16),
-            contentArea.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 18.5),
+            contentArea.topAnchor.constraint(equalTo: relativeTagStack.bottomAnchor, constant: 20),
            // contentArea.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140)
-            contentArea.heightAnchor.constraint(equalToConstant: 114)
+            contentArea.heightAnchor.constraint(equalToConstant: 115)
         ]
 
         contentArea.backgroundColor = .gray
 
         [roundShadowViewConstraints,
+         companyImageViewConstraints,
         favoriteCompanyLabelConstraints,
          relativeTagStackConstraints,
          likeButtonConstraints,
@@ -115,7 +132,7 @@ class HomeGridCell: UICollectionViewCell {
         addSubview(roundShadowView)
         roundShadowView.translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = UIColor.white
-           let subviews = [favoriteCompanyLabel, relativeTagStack, likeButton, contentArea]
+           let subviews = [companyImageView, favoriteCompanyLabel, relativeTagStack, likeButton, contentArea]
 
            subviews.forEach {
             roundShadowView.addSubview($0)

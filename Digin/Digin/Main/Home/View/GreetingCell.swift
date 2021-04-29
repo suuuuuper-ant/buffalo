@@ -1,13 +1,14 @@
 //
-//  HomeTitleHeaderView.swift
+//  GreetingCell.swift
 //  Digin
 //
-//  Created by jinho jeong on 2021/04/19.
+//  Created by jinho jeong on 2021/04/29.
 //
 
 import UIKit
 
-class HomeTitleHeaderView: UITableViewHeaderFooterView {
+class GreetingCell: UITableViewCell {
+
     let dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,20 +44,12 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
         slide.sliderCornerRadius = 80 / 2
         return slide
     }()
+
     let backContentView  = UIView()
 
-//    override var frame: CGRect {
-//        get {
-//            return super.frame
-//        }
-//        set {
-//            if newValue.width == 0 { return }
-//            super.frame = newValue
-//        }
-//    }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
 
     }
@@ -65,18 +58,14 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
     private func setupUI() {
         // background setting
         backgroundColor = .white
-        contentView.addSubview(backContentView)
+
+        addSubview(backContentView)
         backContentView.translatesAutoresizingMaskIntoConstraints = false
         backContentView.fittingView(self.contentView)
-
-        contentView.heightAnchor.constraint(equalToConstant: 354).isActive = true
+        backContentView.heightAnchor.constraint(equalToConstant: 354).isActive = true
 
         backContentView.addSubview(dateLabel)
         dateLabel.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 25).isActive = true
@@ -88,6 +77,7 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
 
         backContentView.addSubview(slideOpenView)
         slideOpenView.translatesAutoresizingMaskIntoConstraints = false
+
         slideOpenView.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 16).isActive = true
         slideOpenView.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor, constant: -16).isActive = true
         slideOpenView.heightAnchor.constraint(equalToConstant: 80).isActive = true
@@ -117,18 +107,6 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
         animation.duration = 3
 
         gradientMask.add(animation, forKey: nil)
-    }
-
-}
-
-extension UIView {
-
-    func fittingView(_ to: UIView) {
-        self.leadingAnchor.constraint(equalTo: to.leadingAnchor).isActive = true
-        self.trailingAnchor.constraint(equalTo: to.trailingAnchor).isActive = true
-        self.topAnchor.constraint(equalTo: to.topAnchor).isActive = true
-        self.bottomAnchor.constraint(equalTo: to.bottomAnchor).isActive = true
-
     }
 
 }

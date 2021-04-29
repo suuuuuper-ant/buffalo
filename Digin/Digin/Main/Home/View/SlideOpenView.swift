@@ -11,7 +11,18 @@ class SlideOpenView: UIView {
 
     let backgroundView = UIView()
     let indicatorView = UIView()
-    let textLabel = UILabel()
+    let textLabel: UILabel = {
+       let label = UILabel()
+        label.text = "밀어서 잠금해제"
+        label.textAlignment = .center
+        return label
+    }()
+
+    let showMeView: UIImageView = {
+        let showMe = UIImageView()
+        showMe.backgroundColor = .blue
+        return showMe
+    }()
     public var sliderCornerRadius: CGFloat = 30.0 {
             didSet {
                 backgroundView.layer.cornerRadius = sliderCornerRadius
@@ -48,9 +59,10 @@ class SlideOpenView: UIView {
     private func setupView() {
 
         addSubview(backgroundView)
-
+        addSubview(showMeView)
         backgroundView.addSubview(textLabel)
         backgroundView.addSubview(indicatorView)
+        showMeView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -90,6 +102,11 @@ class SlideOpenView: UIView {
         indicatorHeightAnchor?.isActive = true
         indicatorWidthAnchor = indicatorView.widthAnchor.constraint(equalTo: indicatorView.heightAnchor)
         indicatorWidthAnchor?.isActive = true
+
+        showMeView.centerXAnchor.constraint(equalTo: indicatorView.trailingAnchor, constant: -20).isActive = true
+        showMeView.bottomAnchor.constraint(equalTo: backgroundView.topAnchor, constant: -11).isActive = true
+        showMeView.widthAnchor.constraint(equalToConstant: 87).isActive = true
+        showMeView.heightAnchor.constraint(equalToConstant: 36).isActive = true
 
     }
     required init?(coder: NSCoder) {

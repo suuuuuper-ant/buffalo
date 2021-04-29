@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
+        tableView.estimatedSectionHeaderHeight = 354
         return tableView
     }()
 
@@ -40,8 +41,7 @@ class HomeViewController: UIViewController {
     func bindViewModel() {
         viewModel.$data
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] data in
-            print("this is result : \(data)")
+            .sink { [weak self] _ in
             self?.tableView.reloadData()
         }.store(in: &cancellables)
     }
@@ -75,18 +75,9 @@ extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTitleHeaderView.reuseIdentifier) as? HomeTitleHeaderView
-        header?.backgroundColor = .white
+
         return header
     }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 354
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 420
-    }
-
 }
 
 extension HomeViewController: UITableViewDelegate {

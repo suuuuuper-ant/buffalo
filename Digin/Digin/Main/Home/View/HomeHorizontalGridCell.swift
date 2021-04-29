@@ -30,15 +30,25 @@ class HomeHorizontalGridCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
+    let backContenView = UIView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubviews([collectionView])
+        addSubviews([backContenView])
         addConstraints()
-        collectionView.contentInset = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
 
     }
 
+    override var frame: CGRect {
+        get {
+            return super.frame
+        }
+        set {
+            if newValue.width == 0 { return }
+            super.frame = newValue
+        }
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,14 +58,17 @@ class HomeHorizontalGridCell: UITableViewCell {
             view.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(view)
         }
+        backContenView.backgroundColor = .blue
+        backContenView.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func addConstraints() {
 
-        collectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        backContenView.fittingView(self.contentView)
+        backContenView.heightAnchor.constraint(equalToConstant: 420).isActive = true
+
+        collectionView.fittingView(backContenView)
     }
 
     func configure(with model: [Company]) {
@@ -64,10 +77,9 @@ class HomeHorizontalGridCell: UITableViewCell {
         DispatchQueue.main.async { [weak self] in
 
             self?.collectionView.reloadData()
+
         }
-
     }
-
 }
 
 extension HomeHorizontalGridCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -86,7 +98,6 @@ extension HomeHorizontalGridCell: UICollectionViewDataSource, UICollectionViewDe
 extension HomeHorizontalGridCell: UIScrollViewDelegate {
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print("pointee: \(targetContentOffset.pointee), offset: \(scrollView.contentOffset.x)")
 
         let scrollOffset: CGFloat = scrollView.contentOffset.x
         var offset = targetContentOffset.pointee
@@ -96,12 +107,11 @@ extension HomeHorizontalGridCell: UIScrollViewDelegate {
         let cellWidthIncludingSpacing = cellSize.width + layout.minimumLineSpacing
 
         let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-        print("index: \(index)")
         let index2 = (scrollOffset + scrollView.contentInset.left) / cellWidthIncludingSpacing
         if index2 >= CGFloat(companeis.count - 1) {
             return
         }
-        print("index2:\(index2), count : \(companeis.count)")
+
         var roundedIndex = round(index)
         if scrollView.contentOffset.x > targetContentOffset.pointee.x {
             roundedIndex = floor(index)
