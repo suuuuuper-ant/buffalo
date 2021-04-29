@@ -41,9 +41,12 @@ class HomeGridCell: UICollectionViewCell {
     }()
 
     lazy var contentArea: HomeGridPriceArea = {
-     let area = HomeGridPriceArea()
+        let area = HomeGridPriceArea()
         area.layer.cornerRadius = 15
+        area.layer.borderColor = UIColor.init(named: "stock_blue")?.cgColor
+        area.layer.borderWidth = 1.0
         area.layer.masksToBounds = true
+
         return area
     }()
     lazy var roundShadowView = RoundShadowView()
@@ -113,15 +116,14 @@ class HomeGridCell: UICollectionViewCell {
             contentArea.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 16),
             contentArea.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -16),
             contentArea.topAnchor.constraint(equalTo: relativeTagStack.bottomAnchor, constant: 20),
-           // contentArea.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140)
             contentArea.heightAnchor.constraint(equalToConstant: 115)
         ]
 
-        contentArea.backgroundColor = .gray
+        contentArea.backgroundColor = .white
 
         [roundShadowViewConstraints,
          companyImageViewConstraints,
-        favoriteCompanyLabelConstraints,
+         favoriteCompanyLabelConstraints,
          relativeTagStackConstraints,
          likeButtonConstraints,
          contentAreaConstraints
@@ -130,15 +132,16 @@ class HomeGridCell: UICollectionViewCell {
 
     private func addSubiews() {
         addSubview(roundShadowView)
+        backgroundColor = UIColor.init(named: "home_background")
+        roundShadowView.backgroundColor = UIColor.init(named: "home_background")
         roundShadowView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = UIColor.white
-           let subviews = [companyImageView, favoriteCompanyLabel, relativeTagStack, likeButton, contentArea]
+        let subviews = [companyImageView, favoriteCompanyLabel, relativeTagStack, likeButton, contentArea]
 
-           subviews.forEach {
+        subviews.forEach {
             roundShadowView.addSubview($0)
-               $0.translatesAutoresizingMaskIntoConstraints = false
-           }
-       }
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
 }
 
 class HomeGridPriceArea: UIView {
@@ -196,70 +199,38 @@ class HomeGridPriceArea: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        progressBarView.progress = Float(model)
-        const?.constant = progressBarView.frame.width * CGFloat(progressBarView.progress)
-
     }
-    private func addSubiews() {
-           let subviews = [originLabel,
-                           dateLabel,
-                           byOrSellLabel,
-                           iconImageView,
-                           progressBarView,
-                           currentPrice
-           ]
 
-           subviews.forEach {
-               self.addSubview($0)
-               $0.translatesAutoresizingMaskIntoConstraints = false
-           }
+    private func addSubiews() {
+        let subviews = [
+            byOrSellLabel,
+            iconImageView
+        ]
+
+        subviews.forEach {
+            self.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     var const: NSLayoutConstraint?
     private func setupConstraints() {
 
-        originLabel.text = "한경컨센서스"
-        let originConstraints = [
-            originLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            originLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10)
-        ]
-
         let buyOrSellConstraints = [
-            byOrSellLabel.topAnchor.constraint(equalTo: originLabel.bottomAnchor, constant: 13),
-            byOrSellLabel.leadingAnchor.constraint(equalTo: originLabel.leadingAnchor)
-        ]
-
-        dateLabel.text = "21.04.23"
-        let dateConstraints = [
-            dateLabel.bottomAnchor.constraint(equalTo: originLabel.bottomAnchor),
-            dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -21),
-            dateLabel.leadingAnchor.constraint(greaterThanOrEqualTo: originLabel.trailingAnchor, constant: 48)
+            byOrSellLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 33),
+            byOrSellLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            byOrSellLabel.trailingAnchor.constraint(equalTo: iconImageView.leadingAnchor, constant: 16)
         ]
 
         let iconConstraints = [
-            iconImageView.centerYAnchor.constraint(equalTo: byOrSellLabel.centerYAnchor),
+            iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             iconImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             iconImageView.widthAnchor.constraint(equalToConstant: 20),
             iconImageView.heightAnchor.constraint(equalToConstant: 20)
         ]
 
-        let progressBarConstraints = [
-            progressBarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
-            progressBarView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -14),
-            progressBarView.heightAnchor.constraint(equalToConstant: 20),
-            progressBarView.bottomAnchor
-                .constraint(equalTo: bottomAnchor, constant: -16)
-        ]
-
-        const = currentPrice.centerXAnchor.constraint(equalTo: leadingAnchor, constant: frame.width * CGFloat(progressBarView.progress))
-        const?.isActive = true
-        currentPrice.bottomAnchor.constraint(equalTo: progressBarView.topAnchor, constant: -10).isActive = true
-
-        [originConstraints,
-         buyOrSellConstraints,
-         dateConstraints,
-         iconConstraints,
-         progressBarConstraints
+        [
+            buyOrSellConstraints,
+            iconConstraints
         ].forEach(NSLayoutConstraint.activate(_:))
     }
 }

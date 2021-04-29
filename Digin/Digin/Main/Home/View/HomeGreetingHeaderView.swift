@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeTitleHeaderView: UITableViewHeaderFooterView {
+class HomeGreetingHeaderView: UITableViewHeaderFooterView {
     let dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +19,7 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
     let greetingLabel: UILabel = {
         let greeting = UILabel()
         greeting.numberOfLines = 0
-        greeting.text = "가니님,\n오늘도 함꼐 디긴해요!"
+        greeting.text = "가은가가은가은간ㅇㅁㄴㅇㅁㄴㅁ나ㅣㅇㄴ미ㅏ언미ㅏ언ㅁ언미아넘인머인머ㅏㅣ엄ㅇ"
         greeting.font = UIFont.boldSystemFont(ofSize: 30)
         greeting.translatesAutoresizingMaskIntoConstraints = false
         return greeting
@@ -45,16 +45,6 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
     }()
     let backContentView  = UIView()
 
-//    override var frame: CGRect {
-//        get {
-//            return super.frame
-//        }
-//        set {
-//            if newValue.width == 0 { return }
-//            super.frame = newValue
-//        }
-//    }
-
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -67,31 +57,28 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
     }
 
     private func setupUI() {
         // background setting
-        backgroundColor = .white
         contentView.addSubview(backContentView)
         backContentView.translatesAutoresizingMaskIntoConstraints = false
+        slideOpenView.translatesAutoresizingMaskIntoConstraints = false
+        backContentView.addSubview(slideOpenView)
         backContentView.fittingView(self.contentView)
-
-        contentView.heightAnchor.constraint(equalToConstant: 354).isActive = true
-
-        backContentView.addSubview(dateLabel)
-        dateLabel.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 25).isActive = true
-        dateLabel.topAnchor.constraint(equalTo: backContentView.topAnchor, constant: 10).isActive = true
+        backContentView.setContentHuggingPriority(.defaultLow, for: .vertical)
 
         backContentView.addSubview(greetingLabel)
         greetingLabel.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 25).isActive = true
-        greetingLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 50).isActive = true
+        greetingLabel.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor, constant: -81).isActive = true
+        greetingLabel.topAnchor.constraint(equalTo: backContentView.topAnchor, constant: 120).isActive = true
+        greetingLabel.bottomAnchor.constraint(equalTo: slideOpenView.topAnchor, constant: -50).isActive = true
 
-        backContentView.addSubview(slideOpenView)
-        slideOpenView.translatesAutoresizingMaskIntoConstraints = false
         slideOpenView.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 16).isActive = true
         slideOpenView.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor, constant: -16).isActive = true
-        slideOpenView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        slideOpenView.bottomAnchor.constraint(equalTo: backContentView.bottomAnchor, constant: -20).isActive = true
+        slideOpenView.heightAnchor.constraint(equalToConstant: 132).isActive = true
+        slideOpenView.bottomAnchor.constraint(equalTo: backContentView.bottomAnchor, constant: -50).isActive = true
 
     }
 
@@ -118,7 +105,6 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
 
         gradientMask.add(animation, forKey: nil)
     }
-
 }
 
 extension UIView {
@@ -131,4 +117,13 @@ extension UIView {
 
     }
 
+}
+
+extension UITableView {
+    func updateHeaderViewHeight() {
+        if let header = self.tableHeaderView {
+            let newSize = header.systemLayoutSizeFitting(CGSize(width: self.bounds.width, height: 0))
+            header.frame.size.height = newSize.height
+        }
+    }
 }

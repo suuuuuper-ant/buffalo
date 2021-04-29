@@ -19,18 +19,26 @@ class HomeHorizontalGridCell: UITableViewCell {
         layout.minimumLineSpacing = 5
 
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 335, height: 420)
+        layout.itemSize = CGSize(width: 335, height: 410)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor.init(named: "home_background")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.backgroundColor = .white
         collectionView.register(HomeGridCell.self, forCellWithReuseIdentifier: HomeGridCell.reuseIdentifier)
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     let backContenView = UIView()
+
+    let pageControl: UIPageControl = {
+        let control = UIPageControl()
+        control.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        control.pageIndicatorTintColor = UIColor.init(named: "main_color")?.withAlphaComponent(0.2)
+        control.currentPageIndicatorTintColor = UIColor.init(named: "main_color")
+        return control
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -58,25 +66,38 @@ class HomeHorizontalGridCell: UITableViewCell {
             view.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(view)
         }
-        backContenView.backgroundColor = .blue
+
+        backContenView.backgroundColor = UIColor.init(named: "home_background")
+
         backContenView.addSubview(collectionView)
+        backContenView.addSubview(pageControl)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func addConstraints() {
 
         backContenView.fittingView(self.contentView)
-        backContenView.heightAnchor.constraint(equalToConstant: 420).isActive = true
 
-        collectionView.fittingView(backContenView)
+        collectionView.leadingAnchor.constraint(equalTo: backContenView.leadingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: backContenView.topAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: backContenView.trailingAnchor).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 410).isActive = true
+
+        pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20).isActive = true
+        pageControl.centerXAnchor.constraint(equalTo: backContenView.centerXAnchor).isActive = true
+        pageControl.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        pageControl.bottomAnchor.constraint(equalTo: backContenView.bottomAnchor, constant: -44).isActive = true
+
     }
 
     func configure(with model: [Company]) {
 
         companeis = model
         DispatchQueue.main.async { [weak self] in
-
-            self?.collectionView.reloadData()
+            guard let self = self else { return }
+            self.pageControl.numberOfPages = self.companeis.count < 5 ? self.companeis.count : 5
+            self.collectionView.reloadData()
 
         }
     }
@@ -135,11 +156,13 @@ extension HomeHorizontalGridCell: UIScrollViewDelegate {
 
         if roundedIndex >= 1 {
             offset = CGPoint(x: (roundedIndex * cellWidthIncludingSpacing) - scrollView.contentInset.left - 5, y: -scrollView.contentInset.top)
+            self.pageControl.currentPage =  Int(roundedIndex)
             return  targetContentOffset.pointee = offset
         }
 
         offset = CGPoint(x: (roundedIndex * cellWidthIncludingSpacing) - scrollView.contentInset.left, y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
+        self.pageControl.currentPage =  Int(roundedIndex)
 
     }
 

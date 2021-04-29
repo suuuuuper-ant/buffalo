@@ -9,12 +9,22 @@ import UIKit
 
 class SlideOpenView: UIView {
 
-    let backgroundView = UIView()
-    let indicatorView = UIView()
+    let backgroundView: UIView = {
+        let background = UIView()
+        background.backgroundColor = UIColor.init(named: "main_color")
+        return background
+    }()
+
+    let indicatorView: UIView = {
+        let indicator = UIView()
+        indicator.backgroundColor = UIColor.init(named: "pull_indicator")
+        return indicator
+    }()
     let textLabel: UILabel = {
        let label = UILabel()
         label.text = "밀어서 잠금해제"
         label.textAlignment = .center
+        label.textColor = .white
         return label
     }()
 
@@ -44,7 +54,7 @@ class SlideOpenView: UIView {
     }
 
     private var initialWidth: CGFloat {
-        return self.frame.width - self.frame.height
+        return self.frame.width - self.backgroundView.frame.height
     }
 
     private var didSetup: Bool = false
@@ -70,9 +80,6 @@ class SlideOpenView: UIView {
         panGestureRecognizer.minimumNumberOfTouches = 1
         indicatorView.addGestureRecognizer(panGestureRecognizer)
 
-        backgroundView.backgroundColor = .blue
-        indicatorView.backgroundColor = .lightGray
-
         backgroundView.clipsToBounds = true
         indicatorView.clipsToBounds = true
         backgroundView.layer.cornerRadius = sliderCornerRadius
@@ -87,18 +94,15 @@ class SlideOpenView: UIView {
 
         backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        backgroundView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        backgroundView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
-        textLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        textLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        textLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        textLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        textLabel.fittingView(backgroundView)
 
-        indicatorLeadingAnchor = indicatorView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: thumbnailViewStartingDistance)
+        indicatorLeadingAnchor = indicatorView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: thumbnailViewStartingDistance)
         indicatorLeadingAnchor?.isActive = true
-        indicatorView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        indicatorHeightAnchor = indicatorView.heightAnchor.constraint(equalTo: heightAnchor, constant: -thumbnailViewStartingDistance)
+        indicatorView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
+        indicatorHeightAnchor = indicatorView.heightAnchor.constraint(equalTo: backgroundView.heightAnchor, constant: -thumbnailViewStartingDistance)
         indicatorHeightAnchor?.isActive = true
         indicatorWidthAnchor = indicatorView.widthAnchor.constraint(equalTo: indicatorView.heightAnchor)
         indicatorWidthAnchor?.isActive = true
@@ -121,7 +125,9 @@ class SlideOpenView: UIView {
         case .began:
             break
         case .changed:
-
+            let persent = (translatedPoint / initialWidth)
+            print("\(persent)")
+            self.textLabel.alpha = 1.0 - persent
             if translatedPoint  >= initialWidth {
                 indicatorWidthAnchor?.constant = initialWidth
             } else if translatedPoint <= 0 {
@@ -132,17 +138,19 @@ class SlideOpenView: UIView {
             }
 
         case .ended:
-
+            var persent: CGFloat = 0.0
             if translatedPoint >= (initialWidth / 2) {
                 indicatorWidthAnchor?.constant = initialWidth
+
             } else {
                 let const = indicatorHeightAnchor?.constant ?? 0
                 let map = const + (thumbnailViewStartingDistance * 2)
-
+                persent = 1.0
                 indicatorWidthAnchor?.constant = map
             }
 
-            UIView.animate(withDuration: 0.1, delay: 0.1, options: [.curveEaseIn]) {
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseIn]) {
+                self.textLabel.alpha = persent
                 self.layoutIfNeeded()
             } completion: { _ in
 

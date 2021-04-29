@@ -41,7 +41,7 @@
 		F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */; };
 		F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */; };
 		F1504BCA263B00C2007C82F2 /* GreetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC9263B00C2007C82F2 /* GreetingCell.swift */; };
-		F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */; };
+		F1562901262DC538004FB256 /* HomeGreetingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562900262DC538004FB256 /* HomeGreetingHeaderView.swift */; };
 		F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562903262DC89B004FB256 /* HomeGridCell.swift */; };
 		F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1734758261855C5009EC5D6 /* AppDelegate.swift */; };
 		F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F173475A261855C5009EC5D6 /* SceneDelegate.swift */; };
@@ -90,7 +90,7 @@
 		F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOpenView.swift; sourceTree = "<group>"; };
 		F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		F1504BC9263B00C2007C82F2 /* GreetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingCell.swift; sourceTree = "<group>"; };
-		F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderView.swift; sourceTree = "<group>"; };
+		F1562900262DC538004FB256 /* HomeGreetingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGreetingHeaderView.swift; sourceTree = "<group>"; };
 		F1562903262DC89B004FB256 /* HomeGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridCell.swift; sourceTree = "<group>"; };
 		F1734755261855C5009EC5D6 /* Digin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1734758261855C5009EC5D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -297,7 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				F121DF1C2623087900B09F21 /* HomeViewController.swift */,
-				F1562900262DC538004FB256 /* HomeTitleHeaderView.swift */,
+				F1562900262DC538004FB256 /* HomeGreetingHeaderView.swift */,
 				F1504BC9263B00C2007C82F2 /* GreetingCell.swift */,
 				F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */,
 				F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */,
@@ -432,7 +432,7 @@
 				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
 				F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
-				F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */,
+				F1562901262DC538004FB256 /* HomeGreetingHeaderView.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,
 				22923834261B471C00B50884 /* UIViewController_extension.swift in Sources */,
 				F121DF132623049600B09F21 /* LoginViewController.swift in Sources */,
