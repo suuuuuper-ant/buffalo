@@ -9,5 +9,6 @@ import UIKit
 
 class MenuCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
 }
