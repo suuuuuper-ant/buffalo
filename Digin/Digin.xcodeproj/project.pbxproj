@@ -41,6 +41,8 @@
 		F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */; };
 		F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */; };
 		F1504BCA263B00C2007C82F2 /* GreetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC9263B00C2007C82F2 /* GreetingCell.swift */; };
+		F1504BCE263C7DBC007C82F2 /* imgBubbleStart.svg in Resources */ = {isa = PBXBuildFile; fileRef = F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */; };
+		F1504BD0263C81A9007C82F2 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BCF263C81A9007C82F2 /* BubbleView.swift */; };
 		F1562901262DC538004FB256 /* HomeGreetingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562900262DC538004FB256 /* HomeGreetingHeaderView.swift */; };
 		F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1562903262DC89B004FB256 /* HomeGridCell.swift */; };
 		F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1734758261855C5009EC5D6 /* AppDelegate.swift */; };
@@ -90,6 +92,8 @@
 		F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOpenView.swift; sourceTree = "<group>"; };
 		F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		F1504BC9263B00C2007C82F2 /* GreetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingCell.swift; sourceTree = "<group>"; };
+		F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imgBubbleStart.svg; sourceTree = "<group>"; };
+		F1504BCF263C81A9007C82F2 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		F1562900262DC538004FB256 /* HomeGreetingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGreetingHeaderView.swift; sourceTree = "<group>"; };
 		F1562903262DC89B004FB256 /* HomeGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridCell.swift; sourceTree = "<group>"; };
 		F1734755261855C5009EC5D6 /* Digin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				F1734761261855CA009EC5D6 /* Assets.xcassets */,
+				F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */,
 				F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */,
 				F1734766261855CA009EC5D6 /* Info.plist */,
 			);
@@ -303,6 +308,7 @@
 				F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */,
 				F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */,
 				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
+				F1504BCF263C81A9007C82F2 /* BubbleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */,
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
+				F1504BCE263C7DBC007C82F2 /* imgBubbleStart.svg in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
 				F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */,
@@ -431,6 +438,7 @@
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
 				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
 				F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
+				F1504BD0263C81A9007C82F2 /* BubbleView.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeGreetingHeaderView.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,

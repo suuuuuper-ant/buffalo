@@ -28,15 +28,12 @@ class HomeGridCell: UICollectionViewCell {
         let tag = UIStackView()
         tag.spacing = 10
         tag.alignment = .leading
-        tag.addArrangedSubview(UILabel())
-        tag.addArrangedSubview(UILabel())
-        tag.addArrangedSubview(UILabel())
         return tag
     }()
 
     lazy var likeButton: UIButton = {
         let like = UIButton()
-        like.backgroundColor  = .red
+        like.setImage(UIImage(named: "icon_home_like"), for: .normal)
         return like
     }()
 
@@ -141,6 +138,11 @@ class HomeGridCell: UICollectionViewCell {
             roundShadowView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+
+        for label in TagGenerator(3).generateTagLabels() {
+            relativeTagStack.addArrangedSubview(label)
+        }
+
     }
 }
 
@@ -232,5 +234,54 @@ class HomeGridPriceArea: UIView {
             buyOrSellConstraints,
             iconConstraints
         ].forEach(NSLayoutConstraint.activate(_:))
+    }
+}
+
+class TagGenerator {
+
+    let count: Int
+    let textArray: [String]?
+    init(_ count: Int, textArray: [String]? = nil) {
+        self.count = count
+        self.textArray = textArray
+    }
+
+    func generateTagLabels() -> [PaddingLabel] {
+
+        var labels: [PaddingLabel] = []
+        for index in (0...2) {
+
+            let label = PaddingLabel()
+            label.edgeInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
+            label.makeRounded(cornerRadius: 13)
+            label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+
+            if index == 0 {
+                label.backgroundColor = UIColor.init(named: "tag_color")
+                label.textColor = .white
+            } else {
+                label.backgroundColor = UIColor.white
+                label.layer.borderWidth = 1
+            }
+
+            labels.append(label)
+        }
+        return labels
+    }
+
+}
+
+class PaddingLabel: UILabel {
+
+    var edgeInset: UIEdgeInsets = .zero
+
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets.init(top: edgeInset.top, left: edgeInset.left, bottom: edgeInset.bottom, right: edgeInset.right)
+        super.drawText(in: rect.inset(by: insets))
+    }
+
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width + edgeInset.left + edgeInset.right, height: size.height + edgeInset.top + edgeInset.bottom)
     }
 }

@@ -16,6 +16,14 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
         return label
     }()
 
+    let searchButton: UIButton = {
+        let search = UIButton()
+        search.translatesAutoresizingMaskIntoConstraints = false
+        search.setImage(UIImage(named: "icon_home_search"), for: .normal)
+
+        return search
+    }()
+
     let greetingLabel: UILabel = {
         let greeting = UILabel()
         greeting.numberOfLines = 0
@@ -70,6 +78,12 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
         backContentView.setContentHuggingPriority(.defaultLow, for: .vertical)
 
         backContentView.addSubview(greetingLabel)
+        backContentView.addSubview(searchButton)
+        searchButton.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor, constant: -18).isActive = true
+        searchButton.topAnchor.constraint(equalTo: backContentView.topAnchor, constant: 18).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
+
         greetingLabel.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 25).isActive = true
         greetingLabel.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor, constant: -81).isActive = true
         greetingLabel.topAnchor.constraint(equalTo: backContentView.topAnchor, constant: 120).isActive = true
