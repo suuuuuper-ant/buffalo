@@ -26,10 +26,10 @@ class RoundShadowView: UIView {
     func layoutView() {
 
         layer.backgroundColor = UIColor.clear.cgColor
-        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowColor = UIColor.init(named: "home_background")?.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 1)
         layer.shadowOpacity = 0.1
-        layer.shadowRadius = 10.0
+        layer.shadowRadius = 5
 
         containerView.layer.cornerRadius = cornerRadius
         containerView.layer.masksToBounds = true

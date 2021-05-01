@@ -25,8 +25,9 @@ class SlideOpenView: UIView {
     }()
     let textLabel: UILabel = {
        let label = UILabel()
-        label.text = "밀어서 잠금해제"
+        label.text = "새로운 기업 밀어서 찾기"
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = .white
         return label
     }()
@@ -99,7 +100,6 @@ class SlideOpenView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(backgroundView.frame)
         let backBounds =  backgroundView.bounds
         indicatorView.gradient.frame = CGRect(origin: backBounds.origin, size: CGSize(width: backBounds.width - (thumbnailViewStartingDistance * 2), height: backBounds.height))
 

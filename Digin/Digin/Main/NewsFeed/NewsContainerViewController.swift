@@ -16,7 +16,7 @@ class NewsContainerViewController: UIViewController {
         didSet {
             segmentedControl.selectedSegmentIndex = currentIndex
             segmentedControl.changeUnderlinePosition()
-            //print(currentIndex)
+
         }
     }
 

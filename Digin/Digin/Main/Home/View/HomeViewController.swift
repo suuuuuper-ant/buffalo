@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
         viewModel.$data
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.header.greetingLabel.text  = "sds"
+                self?.header.configure(nickname: "가니", greeting: "오늘도 함께 디긴해요!")
             self?.tableView.reloadData()
                 self?.tableView.updateHeaderViewHeight()
 

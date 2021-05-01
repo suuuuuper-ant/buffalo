@@ -20,19 +20,38 @@ struct HomeCompany: Decodable {
        }
 }
 
+struct News: Codable {
+    let date: String
+    let title: String
+}
+
+struct OpinionInfo: Codable {
+    var opinion: String = ""
+    var opinionDescription: String = ""
+    var opinionCompany: String = ""
+    var opinionDate: String = ""
+    var report: String = ""
+
+}
+
 struct Company: Decodable {
     let interestingCompany: String
     let tags: [String]
     let isFavorite: Bool
     let currentPrice: String
     let targetPrice: String
-
+    let news: [News]
+    let opinionInfo: OpinionInfo
+    let likeCount: Int
     private enum CodingKeys: String, CodingKey {
         case interestingCompany
         case tags
         case isFavorite
         case currentPrice
         case targetPrice
+        case news
+        case likeCount
+        case opinionInfo
 
         }
 
@@ -43,6 +62,9 @@ struct Company: Decodable {
         isFavorite = try values.decodeIfPresent(Bool.self, forKey: .isFavorite) ??  false
         currentPrice = try values.decodeIfPresent(String.self, forKey: .currentPrice) ?? ""
         targetPrice = try values.decodeIfPresent(String.self, forKey: .targetPrice) ?? ""
+        news = try values.decodeIfPresent([News].self, forKey: .news) ?? []
+        likeCount = try values.decodeIfPresent(Int.self, forKey: .likeCount) ?? 0
+        opinionInfo = try values.decodeIfPresent(OpinionInfo.self, forKey: .opinionInfo) ?? OpinionInfo()
     }
 
 }

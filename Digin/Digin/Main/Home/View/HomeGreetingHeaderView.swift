@@ -40,7 +40,6 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
         randomPick.layer.cornerRadius = 10
         randomPick.clipsToBounds = true
         randomPick.translatesAutoresizingMaskIntoConstraints = false
-        randomPick.backgroundColor = .lightGray
         return randomPick
     }()
 
@@ -93,6 +92,22 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
         slideOpenView.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor, constant: -16).isActive = true
         slideOpenView.heightAnchor.constraint(equalToConstant: 132).isActive = true
         slideOpenView.bottomAnchor.constraint(equalTo: backContentView.bottomAnchor, constant: -50).isActive = true
+
+    }
+
+    func configure(nickname: String, greeting: String) {
+        let thinString = "\(nickname)님,\n"
+        let totalString = "\(thinString)\(greeting)"
+        let attributedString = NSMutableAttributedString(string: totalString, attributes: [
+          .font: UIFont(name: "AppleSDGothicNeo-Bold", size: 30.0)!,
+          .foregroundColor: UIColor(white: 62.0 / 255.0, alpha: 1.0),
+          .kern: -0.4
+        ])
+        if let range = totalString.range(of: thinString) {
+            attributedString.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-Medium", size: 24.0)!, range: NSRange(range, in: totalString))
+        }
+
+        self.greetingLabel.attributedText = attributedString
 
     }
 
