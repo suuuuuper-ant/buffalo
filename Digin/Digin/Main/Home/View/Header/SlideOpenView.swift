@@ -24,7 +24,7 @@ class SlideOpenView: UIView {
         return GradientView(gradientStartColor: start, gradientEndColor: end)
     }()
     let textLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "새로운 기업 밀어서 찾기"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -65,12 +65,12 @@ class SlideOpenView: UIView {
     }()
 
     public var sliderCornerRadius: CGFloat = 30.0 {
-            didSet {
-                backgroundView.layer.cornerRadius = sliderCornerRadius
-                indicatorView.layer.cornerRadius = sliderCornerRadius - thumbnailViewStartingDistance
-                indicatorView.gradient.cornerRadius = sliderCornerRadius - thumbnailViewStartingDistance
-            }
+        didSet {
+            backgroundView.layer.cornerRadius = sliderCornerRadius
+            indicatorView.layer.cornerRadius = sliderCornerRadius - thumbnailViewStartingDistance
+            indicatorView.gradient.cornerRadius = sliderCornerRadius - thumbnailViewStartingDistance
         }
+    }
     private var panGestureRecognizer: UIPanGestureRecognizer!
 
     public var thumbnailViewStartingDistance: CGFloat = 0.0 {
@@ -128,46 +128,8 @@ class SlideOpenView: UIView {
         backgroundView.clipsToBounds = true
         indicatorView.clipsToBounds = true
         backgroundView.layer.cornerRadius = sliderCornerRadius
-      //  indicatorView.layer.cornerRadius = sliderCornerRadius - 3
-
         showMeEndView.isHidden = true
-
         indicatorView.flatColor()
-
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(self.orientationChanged(notification:)),
-//            name: NSNotification.Name.Devid
-//            object: nil
-//        )
-      //  NotificationCenter.default.addObserver(self, selector: #selector(self.orientationChanged(notification:)), name: Notification.Name., object: nil)
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
-                NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
-    }
-
-    @objc func deviceOrientationDidChange() {
-        switch UIDevice.current.orientation {
-
-        case .portrait:
-            print("portrai")
-        case .portraitUpsideDown:
-            print("portraitUpsideDown")
-        case .landscapeLeft:
-            print("landscapeLeft")
-        case .landscapeRight:
-            print("landscapeRight")
-        case .faceUp:
-            print("faceUp")
-        case .faceDown:
-            print("faceDown")
-        @unknown default:
-            print("default")
-        }
-        if UIDevice.current.orientation.rawValue < 4  && !UIDevice.current.orientation.isFlat {
-            resetIndicator()
-        }
-        print("====")
     }
 
     deinit {
@@ -204,9 +166,6 @@ class SlideOpenView: UIView {
 
         showMeView.centerXAnchor.constraint(equalTo: indicatorView.trailingAnchor, constant: -20).isActive = true
         showMeView.bottomAnchor.constraint(equalTo: backgroundView.topAnchor, constant: -11).isActive = true
-        //showMeView.widthAnchor.constraint(equalToConstant: 87).isActive = true
-      //  showMeView.heightAnchor.constraint(equalToConstant: 36).isActive = true
-
         showMeTitle.leadingAnchor.constraint(equalTo: showMeView.leadingAnchor, constant: 16).isActive = true
         showMeTitle.trailingAnchor.constraint(equalTo: showMeView.trailingAnchor, constant: -16).isActive = true
         showMeTitle.topAnchor.constraint(equalTo: showMeView.topAnchor, constant: 6).isActive = true
@@ -215,7 +174,7 @@ class SlideOpenView: UIView {
         showMeEndView.leadingAnchor.constraint(equalTo: showMeView.leadingAnchor).isActive = true
         showMeEndView.bottomAnchor.constraint(equalTo: showMeView.bottomAnchor).isActive = true
         //showMeView.widthAnchor.constraint(equalToConstant: 87).isActive = true
-      //  showMeView.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        //  showMeView.heightAnchor.constraint(equalToConstant: 36).isActive = true
 
         showMeEndTitle.leadingAnchor.constraint(equalTo: showMeEndView.leadingAnchor, constant: 16).isActive = true
         showMeEndTitle.trailingAnchor.constraint(equalTo: showMeEndView.trailingAnchor, constant: -16).isActive = true
@@ -288,52 +247,4 @@ class SlideOpenView: UIView {
         }
     }
 
-}
-
-class GradientView: UIView {
-
-    let gradient: CAGradientLayer = CAGradientLayer()
-    private let gradientStartColor: UIColor
-    private let gradientEndColor: UIColor
-
-    init(gradientStartColor: UIColor, gradientEndColor: UIColor) {
-        self.gradientStartColor = gradientStartColor
-        self.gradientEndColor = gradientEndColor
-        super.init(frame: .zero)
-    }
-
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
-//    override func layoutSubviews() {
-//        superview?.layoutSubviews()
-//        refreshGradientLayer()
-//    }
-    override var frame: CGRect {
-        didSet {
-           setNeedsLayout()
-        }
-    }
-    override public func draw(_ rect: CGRect) {
-        gradient.frame = self.bounds
-        //gradient.cornerRadius = self.bounds.height / 2
-        gradient.masksToBounds = true
-        layer.masksToBounds = true
-        gradient.colors = [gradientStartColor.cgColor, gradientEndColor.cgColor]
-        gradient.startPoint = CGPoint(x: 0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        if gradient.superlayer == nil {
-            layer.insertSublayer(gradient, at: 0)
-        }
-    }
-
-    private func refreshGradientLayer() {
-        gradient.frame = bounds
-    }
-
-     func flatColor() {
-        gradient.locations = [1]
-    }
-     func gradientColor() {
-        gradient.locations = [0.1]
-    }
 }

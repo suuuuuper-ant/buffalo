@@ -47,3 +47,13 @@ extension UIView {
             layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 }
+
+extension UIView {
+
+    func fittingView(_ toView: UIView) {
+        self.leadingAnchor.constraint(equalTo: toView.leadingAnchor).isActive = true
+        self.trailingAnchor.constraint(equalTo: toView.trailingAnchor).isActive = true
+        self.topAnchor.constraint(equalTo: toView.topAnchor).isActive = true
+        self.bottomAnchor.constraint(equalTo: toView.bottomAnchor).isActive = true
+    }
+}

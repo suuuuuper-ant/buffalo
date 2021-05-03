@@ -8,68 +8,28 @@
 import Foundation
 
 struct HomeCompany: Decodable {
-    var data: HomeCompany2?
+    var data: HomeDataModel?
 
     private enum CodingKeys: String, CodingKey {
         case data
 
     }
 
-    init() {
+    init() {}
 
-    }
-//    enum Section: Decodable {
-//
-//        enum DecodingError: Error {
-//            case wrongJSON
-//        }
-//        case updatedCompany([Company])
-//        enum CodingKeys: String, CodingKey {
-//            case updatedCompany
-//
-//        }
-//        init(from decoder: Decoder) throws {
-//            let container = try decoder.container(keyedBy: CodingKeys.self)
-//            container.decode(HomeCompany2.self, forKey: .da)
-//        }
-//    }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(HomeCompany2.self, forKey: .data)
+        data = try container.decode(HomeDataModel.self, forKey: .data)
     }
 }
 
-struct HomeCompany2: Decodable {
+struct HomeDataModel: Decodable {
     var sections: [HomeSection] = []
 
     private enum CodingKeys: String, CodingKey {
         case sections
 
     }
-
-//    enum Section: Decodable {
-//
-//        enum DecodingError: Error {
-//            case wrongJSON
-//        }
-//        case updatedCompany([Company])
-//        enum CodingKeys: String, CodingKey {
-//            case groudId
-//
-//        }
-//        init(from decoder: Decoder) throws {
-//            let container = try decoder.container(keyedBy: CodingKeys.self)
-//
-//            print(container.allKeys)
-////            switch container.allKeys.first {
-////            case .groudId:
-////                let value = try container.decode([Company].self, forKey: .groudId)
-////                self = .updatedCompany(value)
-////            case .none:
-////                throw DecodingError.wrongJSON
-////            }
-//            self = .updatedCompany([])
-//        }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -140,8 +100,6 @@ protocol GroupSectionType {
 struct GroupUpdateSecton: Decodable, GroupSectionType {
     static var groupId: String = "updatedCompany"
     var content: [Company] = []
-
-    //  func decode(data: KeyedDecodingContainer)
 }
 
 struct HomeSection: Decodable {

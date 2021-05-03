@@ -135,24 +135,3 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
         gradientMask.add(animation, forKey: nil)
     }
 }
-
-extension UIView {
-
-    func fittingView(_ to: UIView) {
-        self.leadingAnchor.constraint(equalTo: to.leadingAnchor).isActive = true
-        self.trailingAnchor.constraint(equalTo: to.trailingAnchor).isActive = true
-        self.topAnchor.constraint(equalTo: to.topAnchor).isActive = true
-        self.bottomAnchor.constraint(equalTo: to.bottomAnchor).isActive = true
-
-    }
-
-}
-
-extension UITableView {
-    func updateHeaderViewHeight() {
-        if let header = self.tableHeaderView {
-            let newSize = header.systemLayoutSizeFitting(CGSize(width: self.bounds.width, height: 0))
-            header.frame.size.height = newSize.height
-        }
-    }
-}
