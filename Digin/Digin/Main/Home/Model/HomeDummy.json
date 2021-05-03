@@ -1,260 +1,84 @@
 {
     
-    "data": [
-    
-        {
-            "interestingCompany": "프레스티지바이오로직스바이오",
-            "tags": ["제약", "바이오", "제넥신"],
-            "isFavorite": false,
-            "currentPrice": "59999",
-            "targetPrice": "89999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-            
-            
-        },
-        {
-            "interestingCompany": "SK바이오이아이티 일렉트로닉스 아이티솔루션",
-            "tags": ["국방", "화학", "수출"],
-            "news": [
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                },
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                },
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                }
-            ],
-            "isFavorite": true,
-            "currentPrice": "59999",
-            "targetPrice": "99999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            "interestingCompany": "S-oil",
-            "tags": ["배", "조선", "미국경제악화"],
-            "news": [
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                },
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                }
-            ],
-            "isFavorite": false,
-            "currentPrice": "59999",
-            "targetPrice": "119999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            "interestingCompany": "제이피모건",
-            "tags": ["달러약세"],
-            "isFavorite": true,
-            "currentPrice": "39999",
-            "targetPrice": "119999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Maketperform",
-                "opinionDescription": "가니님의 판단이 필요할 때에요.",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-            
-        },
-        {
-            "interestingCompany": "메가박스",
-            "tags": ["배급사", "마블", "넷플릭스"],
-            "isFavorite": false,
-            "currentPrice": "29999",
-            "targetPrice": "79999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            
-            "interestingCompany": "인천조선소",
-            "tags": ["석유", "러시아"],
-            "isFavorite": false,
-            "currentPrice": "19999",
-            "targetPrice": "79999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            "interestingCompany": "S-oil",
-            "tags": ["배", "조선", "미국경제악화"],
-            "news": [
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                },
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                }
-            ],
-            "isFavorite": false,
-            "currentPrice": "59999",
-            "targetPrice": "119999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            "interestingCompany": "제이피모건",
-            "tags": ["달러약세"],
-            "isFavorite": true,
-            "currentPrice": "39999",
-            "targetPrice": "119999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Maketperform",
-                "opinionDescription": "가니님의 판단이 필요할 때에요.",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-            
-        },
-        {
-            "interestingCompany": "메가박스",
-            "tags": ["배급사", "마블", "넷플릭스"],
-            "isFavorite": false,
-            "currentPrice": "29999",
-            "targetPrice": "79999",
-            "likeCount": 23232,
-            "compayThumbnail": "http://das",
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            
-            "interestingCompany": "인천조선소",
-            "tags": ["석유", "러시아"],
-            "isFavorite": false,
-            "currentPrice": "19999",
-            "targetPrice": "79999",
-            "likeCount": 23,
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            "interestingCompany": "S-oil",
-            "tags": ["배", "조선", "미국경제악화"],
-            "news": [
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                },
-                {
-                    "date": "03.23",
-                    "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
-                }
-            ],
-            "isFavorite": false,
-            "currentPrice": "59999",
-            "targetPrice": "119999",
-            "likeCount": 23232,
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        },
-        {
-            "interestingCompany": "제이피모건",
-            "tags": ["달러약세"],
-            "isFavorite": true,
-            "currentPrice": "39999",
-            "targetPrice": "119999",
-            "likeCount": 23232,
-            "opinionInfo": {
-                "opinion": "Sell",
-                "opinionDescription": "적극 파세요",
-                "opinionCompany": "현대투자증권",
-                "opinionDate": "04.13",
-                "report": "http://das"
-                
-            }
-        }
+    "data": {
         
-        
-    ]
+        "sections": [
+            
+            {
+                "groupId": "updatedCompany",
+                "contents": [
+                    {
+                        "interestingCompany": "프레스티지바이오로직스바이오",
+                        "tags": ["제약", "바이오", "제넥신"],
+                        "isFavorite": false,
+                        "currentPrice": "59999",
+                        "targetPrice": "89999",
+                        "likeCount": 23232,
+                        "compayThumbnail": "http://das",
+                        "opinionInfo": {
+                            "opinion": "Sell",
+                            "opinionDescription": "적극 파세요",
+                            "opinionCompany": "현대투자증권",
+                            "opinionDate": "04.13",
+                            "report": "http://das"
+                            
+                        }
+                    },
+                    {
+                        "interestingCompany": "SK바이오이아이티 일렉트로닉스 아이티솔루션",
+                        "tags": ["국방", "화학", "수출"],
+                        "news": [
+                            {
+                                "date": "03.23",
+                                "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
+                            },
+                            {
+                                "date": "03.23",
+                                "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
+                            },
+                            {
+                                "date": "03.23",
+                                "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
+                            }
+                        ],
+                        "isFavorite": true,
+                        "currentPrice": "59999",
+                        "targetPrice": "99999",
+                        "likeCount": 23232,
+                        "compayThumbnail": "http://das",
+                        "opinionInfo": {
+                            "opinion": "Sell",
+                            "opinionDescription": "적극 파세요",
+                            "opinionCompany": "현대투자증권",
+                            "opinionDate": "04.13",
+                            "report": "http://das"
+                        }
+                    }
+                ]
+            },
+            
+            {
+                "groupId": "intetestedCompany",
+                "contents": [
+                    {
+                        "companyThumbanil": "https://aws.s3/",
+                        "company": "카카오게임즈"
+                    },
+                    {
+                        "companyThumbanil": "https://aws.s3/",
+                        "company": "Naver"
+                    },
+                    {
+                        "companyThumbanil": "https://aws.s3/",
+                        "company": "현대차"
+                    },
+                    {
+                        "companyThumbanil": "https://aws.s3/",
+                        "company": "데브시스터즈"
+                    }
+                ]
+            }
+        ]
+    }
     
 }

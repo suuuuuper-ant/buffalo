@@ -21,7 +21,7 @@ protocol TabBarCotentFactory {
 
 class HomeTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
-        let home =  HomeViewController()
+        let home =   UINavigationController(rootViewController: HomeViewController())
         home.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
         return home
     }

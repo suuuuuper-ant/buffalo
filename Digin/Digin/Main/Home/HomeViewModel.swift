@@ -11,14 +11,14 @@ import Combine
 class HomeViewModel: ObservableObject {
     let repository = HomeCompaniesDataRepository(localDataSource: CompaniesLocalDataSource())
     let objectWillChange = PassthroughSubject<HomeCompany, Error>()
-    @Published var data: [Company] = []
+    @Published var data: HomeCompany = HomeCompany()
     private var cancellables: Set<AnyCancellable> = []
     func fetch() {
 
         repository.fetchCopanies()?
             .sink { _ in
             } receiveValue: { homeCompany in
-                self.data = homeCompany.data
+                self.data = homeCompany
             }.store(in: &cancellables)
 
     }

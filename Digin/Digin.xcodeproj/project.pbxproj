@@ -55,6 +55,7 @@
 		F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */; };
 		F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */ = {isa = PBXBuildFile; fileRef = F1A8DF642635D3B200937B31 /* HomeDummy.json */; };
 		F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */; };
+		F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F1A8DF642635D3B200937B31 /* HomeDummy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeDummy.json; sourceTree = "<group>"; };
 		F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHorizontalGridCell.swift; sourceTree = "<group>"; };
+		F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCompanyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 				F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */,
 				F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */,
 				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
+				F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */,
 				F1504BCF263C81A9007C82F2 /* BubbleView.swift */,
 			);
 			path = View;
@@ -423,6 +426,7 @@
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
 				F1A8DF582635925700937B31 /* Company.swift in Sources */,
 				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
+				F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */,
 				F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */,
 				F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,

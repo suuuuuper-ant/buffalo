@@ -10,9 +10,11 @@ import Combine
 class HomeViewController: UIViewController {
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+
         tableView.register(HomeHorizontalGridCell.self, forCellReuseIdentifier: HomeHorizontalGridCell.reuseIdentifier)
         tableView.register(HomeTitleHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeTitleHeaderView.reuseIdentifier)
         tableView.register(HomeGreetingHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeGreetingHeaderView.reuseIdentifier)
+        tableView.register(InterestedCompanyCell.self, forCellReuseIdentifier: InterestedCompanyCell.reuseIdentifier)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -28,6 +30,7 @@ class HomeViewController: UIViewController {
         ["배", "조선", "미국경제악화"], ["달러약세"],
         ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
     ]
+    var statusBarHeightConstant: NSLayoutConstraint?
 
     var viewModel: HomeViewModel = HomeViewModel()
     private var cancellables: Set<AnyCancellable> = []
@@ -39,6 +42,7 @@ class HomeViewController: UIViewController {
         bindViewModel()
         viewModel.fetch()
         tableView.tableHeaderView = header
+
     }
 
     func bindViewModel() {
@@ -55,10 +59,23 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         tableView.backgroundColor = UIColor.init(named: "home_background")
+        navigationController?.isNavigationBarHidden = true
+        let statusBar = UIView()
         view.addSubview(tableView)
+        view.addSubview(statusBar)
+
+        statusBar.backgroundColor = UIColor.init(named: "home_background")
+        statusBar.translatesAutoresizingMaskIntoConstraints = false
+        statusBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        statusBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        statusBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        let height = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        statusBarHeightConstant = statusBar.heightAnchor.constraint(equalToConstant: height)
+        statusBarHeightConstant?.isActive = true
+
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: statusBar.bottomAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 
@@ -66,39 +83,84 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         UITableView.appearance().separatorStyle = .none
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.statusBarHeightConstant?.constant = self.view.safeAreaInsets.top
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.data.data?.sections.count ?? 0
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard  let section = viewModel.data.data?.sections[section] else { return 0 }
+
+        if section.groupId == "updatedCompany" {
+            return 1
+        } else if section.groupId == "intetestedCompany" {
+            return section.contents.count
+        }
         return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeHorizontalGridCell.reuseIdentifier) as? HomeHorizontalGridCell
-        cell?.configure(with: viewModel.data)
-        return cell ?? UITableViewCell()
+
+        guard let section =  viewModel.data.data?.sections[indexPath.section] else { return UITableViewCell()}
+        if section.groupId == "updatedCompany" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeHorizontalGridCell.reuseIdentifier) as? HomeHorizontalGridCell
+            let model = viewModel.data.data?.sections[indexPath.section].contents as? [Company] ?? []
+            cell?.configure(with: model)
+            return cell ?? UITableViewCell()
+        } else if section.groupId == "intetestedCompany" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: InterestedCompanyCell.reuseIdentifier) as? InterestedCompanyCell
+            if let model = viewModel.data.data?.sections[indexPath.section].contents[indexPath.row] as? InterestedCompany {
+                cell?.configure(model: model)
+                return cell ?? UITableViewCell()
+            }
+
+        }
+
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTitleHeaderView.reuseIdentifier) as? HomeTitleHeaderView
-        header?.sectionLabel.text = "New Update"
+        guard let section =  viewModel.data.data?.sections[section] else { return nil }
+        if section.groupId == "updatedCompany" {
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTitleHeaderView.reuseIdentifier) as? HomeTitleHeaderView
+            header?.sectionLabel.text = "New Update"
 
-        return header
+            return header
+        }
+       return nil
     }
+
 }
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        return CGFloat.leastNormalMagnitude
+
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//
+//        guard let section =  viewModel.data.data?.sections[section] else { return nil }
+//        if section.groupId == "intetestedCompany" {
+//            let view: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.size.width, height: 20))
+//            view.backgroundColor = .white
+//
+//            return view
+//        }
+//        return nil
+//
+//    }
 
-        let view: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.size.width, height: 20))
-        view.backgroundColor = .white
-
-        return view
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return nil
     }
+
 }
 
 class HomeTitleHeaderView: UITableViewHeaderFooterView {

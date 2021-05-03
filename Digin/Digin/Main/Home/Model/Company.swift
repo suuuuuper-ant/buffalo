@@ -8,18 +8,74 @@
 import Foundation
 
 struct HomeCompany: Decodable {
-    let data: [Company]
+    var data: HomeCompany2?
 
     private enum CodingKeys: String, CodingKey {
-            case data
-        }
+        case data
 
-    init(from decoder: Decoder) throws {
-           let container = try decoder.container(keyedBy: CodingKeys.self)
-           self.data = try container.decode([Company].self, forKey: .data)
-       }
+    }
+
+    init() {
+
+    }
+//    enum Section: Decodable {
+//
+//        enum DecodingError: Error {
+//            case wrongJSON
+//        }
+//        case updatedCompany([Company])
+//        enum CodingKeys: String, CodingKey {
+//            case updatedCompany
+//
+//        }
+//        init(from decoder: Decoder) throws {
+//            let container = try decoder.container(keyedBy: CodingKeys.self)
+//            container.decode(HomeCompany2.self, forKey: .da)
+//        }
+//    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(HomeCompany2.self, forKey: .data)
+    }
 }
 
+struct HomeCompany2: Decodable {
+    var sections: [HomeSection] = []
+
+    private enum CodingKeys: String, CodingKey {
+        case sections
+
+    }
+
+//    enum Section: Decodable {
+//
+//        enum DecodingError: Error {
+//            case wrongJSON
+//        }
+//        case updatedCompany([Company])
+//        enum CodingKeys: String, CodingKey {
+//            case groudId
+//
+//        }
+//        init(from decoder: Decoder) throws {
+//            let container = try decoder.container(keyedBy: CodingKeys.self)
+//
+//            print(container.allKeys)
+////            switch container.allKeys.first {
+////            case .groudId:
+////                let value = try container.decode([Company].self, forKey: .groudId)
+////                self = .updatedCompany(value)
+////            case .none:
+////                throw DecodingError.wrongJSON
+////            }
+//            self = .updatedCompany([])
+//        }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sections = (try? container.decode([HomeSection].self, forKey: .sections)) ?? []
+    }
+}
 struct News: Codable {
     let date: String
     let title: String
@@ -34,15 +90,21 @@ struct OpinionInfo: Codable {
 
 }
 
+struct InterestedCompany: Decodable {
+    var company: String = ""
+    var companyThumbanil: String = ""
+}
+
 struct Company: Decodable {
-    let interestingCompany: String
-    let tags: [String]
-    let isFavorite: Bool
-    let currentPrice: String
-    let targetPrice: String
-    let news: [News]
-    let opinionInfo: OpinionInfo
-    let likeCount: Int
+    var interestingCompany: String = ""
+    var tags: [String] = []
+    var isFavorite: Bool = false
+    var currentPrice: String = ""
+    var targetPrice: String = ""
+    var news: [News] = []
+    var opinionInfo: OpinionInfo = OpinionInfo()
+    var likeCount: Int = 0
+
     private enum CodingKeys: String, CodingKey {
         case interestingCompany
         case tags
@@ -53,9 +115,10 @@ struct Company: Decodable {
         case likeCount
         case opinionInfo
 
-        }
+    }
 
     public init(from decoder: Decoder) throws {
+
         let values = try decoder.container(keyedBy: CodingKeys.self)
         interestingCompany = try values.decodeIfPresent(String.self, forKey: .interestingCompany) ?? ""
         tags = try values.decodeIfPresent([String].self, forKey: .tags) ?? []
@@ -67,4 +130,41 @@ struct Company: Decodable {
         opinionInfo = try values.decodeIfPresent(OpinionInfo.self, forKey: .opinionInfo) ?? OpinionInfo()
     }
 
+}
+
+protocol GroupSectionType {
+    static var groupId: String { get }
+
+}
+
+struct GroupUpdateSecton: Decodable, GroupSectionType {
+    static var groupId: String = "updatedCompany"
+    var content: [Company] = []
+
+    //  func decode(data: KeyedDecodingContainer)
+}
+
+struct HomeSection: Decodable {
+
+    var groupId: String = ""
+    var contents: [Any] = []
+
+    init() {
+
+    }
+    enum CodingKeys: String, CodingKey {
+        case groupId
+        case contents
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        groupId = try container.decodeIfPresent(String.self, forKey: .groupId) ?? "ss"
+
+        if groupId == "updatedCompany" {
+            contents = try container.decodeIfPresent([Company].self, forKey: .contents) ?? []
+        } else {
+            contents = try container.decodeIfPresent([InterestedCompany].self, forKey: .contents) ?? []
+        }
+
+    }
 }
