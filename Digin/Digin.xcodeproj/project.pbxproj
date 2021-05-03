@@ -26,6 +26,12 @@
 		22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22923828261B45CA00B50884 /* NSObject_extension.swift */; };
 		2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2292382B261B461300B50884 /* UIAlertController_extension.swift */; };
 		22923834261B471C00B50884 /* UIViewController_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22923833261B471C00B50884 /* UIViewController_extension.swift */; };
+		229B6FA6264017B900D28B52 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229B6FA5264017B900D28B52 /* Search.storyboard */; };
+		229B6FAA2640276400D28B52 /* CategoryHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6FA92640276400D28B52 /* CategoryHeaderTableViewCell.swift */; };
+		229B6FB0264027B700D28B52 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6FAF264027B700D28B52 /* CategoryTableViewCell.swift */; };
+		229B6FB3264027C500D28B52 /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6FB2264027C500D28B52 /* CompanyTableViewCell.swift */; };
+		229B6FB6264027D200D28B52 /* SearchHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6FB5264027D200D28B52 /* SearchHeaderTableViewCell.swift */; };
+		229B6FB9264027DA00D28B52 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B6FB8264027DA00D28B52 /* SearchTableViewCell.swift */; };
 		F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F121DED426185A6C00B09F21 /* .swiftlint.yml */; };
 		F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEDB26185C3000B09F21 /* MainViewController.swift */; };
 		F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */; };
@@ -72,6 +78,12 @@
 		22923828261B45CA00B50884 /* NSObject_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject_extension.swift; sourceTree = "<group>"; };
 		2292382B261B461300B50884 /* UIAlertController_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController_extension.swift; sourceTree = "<group>"; };
 		22923833261B471C00B50884 /* UIViewController_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_extension.swift; sourceTree = "<group>"; };
+		229B6FA5264017B900D28B52 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		229B6FA92640276400D28B52 /* CategoryHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		229B6FAF264027B700D28B52 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		229B6FB2264027C500D28B52 /* CompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewCell.swift; sourceTree = "<group>"; };
+		229B6FB5264027D200D28B52 /* SearchHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		229B6FB8264027DA00D28B52 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		F121DED426185A6C00B09F21 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F121DEDB26185C3000B09F21 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_extension.swift; sourceTree = "<group>"; };
@@ -197,7 +209,13 @@
 		F121DF322623376A00B09F21 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				229B6FA5264017B900D28B52 /* Search.storyboard */,
 				F121DF1F262308AC00B09F21 /* SearchViewController.swift */,
+				229B6FA92640276400D28B52 /* CategoryHeaderTableViewCell.swift */,
+				229B6FAF264027B700D28B52 /* CategoryTableViewCell.swift */,
+				229B6FB2264027C500D28B52 /* CompanyTableViewCell.swift */,
+				229B6FB5264027D200D28B52 /* SearchHeaderTableViewCell.swift */,
+				229B6FB8264027DA00D28B52 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -360,6 +378,7 @@
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
+				229B6FA6264017B900D28B52 /* Search.storyboard in Resources */,
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
 				F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */,
 			);
@@ -398,6 +417,7 @@
 				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,
 				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
 				22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */,
+				229B6FB6264027D200D28B52 /* SearchHeaderTableViewCell.swift in Sources */,
 				2224BA892639378400E620C4 /* NewsContainerViewController.swift in Sources */,
 				F121DF1A2623083400B09F21 /* MainTabBarController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
@@ -405,10 +425,12 @@
 				2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */,
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
 				F1A8DF582635925700937B31 /* Company.swift in Sources */,
+				229B6FB0264027B700D28B52 /* CategoryTableViewCell.swift in Sources */,
 				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
 				F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,
 				2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */,
+				229B6FAA2640276400D28B52 /* CategoryHeaderTableViewCell.swift in Sources */,
 				2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */,
 				22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
@@ -422,10 +444,12 @@
                 2261893B262F0A0500A9B77B /* SkeletonTableViewCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeTitleHeaderView.swift in Sources */,
+				229B6FB3264027C500D28B52 /* CompanyTableViewCell.swift in Sources */,
 				F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */,
 				22923834261B471C00B50884 /* UIViewController_extension.swift in Sources */,
 				F121DF132623049600B09F21 /* LoginViewController.swift in Sources */,
 				F121DF1D2623087900B09F21 /* HomeViewController.swift in Sources */,
+				229B6FB9264027DA00D28B52 /* SearchTableViewCell.swift in Sources */,
 				22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */,
 				2224BA972639694D00E620C4 /* FeedTableViewCell2.swift in Sources */,
 				2224BA862639368100E620C4 /* CustomSegmentedControl.swift in Sources */,
