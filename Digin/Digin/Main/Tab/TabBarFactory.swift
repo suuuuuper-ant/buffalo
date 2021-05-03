@@ -29,7 +29,7 @@ class HomeTabBarCotentFactory: TabBarCotentFactory {
 
 class SearchTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
-        let search =  SearchViewController()
+        let search =  UIStoryboard(name: "Search", bundle: nil).instantiateViewController(identifier: SearchViewController.reuseIdentifier)
         search.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
         return search
     }
