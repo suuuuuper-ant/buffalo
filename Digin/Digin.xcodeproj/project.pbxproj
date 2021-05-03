@@ -67,6 +67,8 @@
 		F1D347182640481A00E63483 /* HomeGridCellPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D347172640481A00E63483 /* HomeGridCellPriceView.swift */; };
 		F1D3471A2640485C00E63483 /* HomeGridCellNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D347192640485C00E63483 /* HomeGridCellNewsView.swift */; };
 		F1D3471C264048DC00E63483 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3471B264048DC00E63483 /* GradientView.swift */; };
+		F1D3471E26404BC700E63483 /* Cocogoose-Pro-Semilight-trial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */; };
+		F1D3472026404C3900E63483 /* UIFont_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3471F26404C3900E63483 /* UIFont_extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +134,8 @@
 		F1D347172640481A00E63483 /* HomeGridCellPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridCellPriceView.swift; sourceTree = "<group>"; };
 		F1D347192640485C00E63483 /* HomeGridCellNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridCellNewsView.swift; sourceTree = "<group>"; };
 		F1D3471B264048DC00E63483 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cocogoose-Pro-Semilight-trial.ttf"; sourceTree = "<group>"; };
+		F1D3471F26404C3900E63483 /* UIFont_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				F1734761261855CA009EC5D6 /* Assets.xcassets */,
+				F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */,
 				F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */,
 				F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */,
 				F1734766261855CA009EC5D6 /* Info.plist */,
@@ -218,6 +223,7 @@
 				2292382B261B461300B50884 /* UIAlertController_extension.swift */,
 				22923833261B471C00B50884 /* UIViewController_extension.swift */,
 				F1D3470E264045C800E63483 /* UITableView_extension.swift */,
+				F1D3471F26404C3900E63483 /* UIFont_extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1D3471E26404BC700E63483 /* Cocogoose-Pro-Semilight-trial.ttf in Resources */,
 				F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */,
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
@@ -492,6 +499,7 @@
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
 				F121DF172623075B00B09F21 /* SignUpViewController.swift in Sources */,
 				2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */,
+				F1D3472026404C3900E63483 /* UIFont_extension.swift in Sources */,
 				F1504BCA263B00C2007C82F2 /* GreetingCell.swift in Sources */,
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
 				F1A8DF582635925700937B31 /* Company.swift in Sources */,

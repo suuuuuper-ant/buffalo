@@ -14,7 +14,7 @@ class HomeGridPriceArea: UIView {
     lazy var byOrSellLabel: UILabel = {
         let label = UILabel()
         label.text = "SELL"
-        label.font = UIFont.systemFont(ofSize: 30)
+        label.font = UIFont.englishFont(ofSize: 30)
         return label
 
     }()

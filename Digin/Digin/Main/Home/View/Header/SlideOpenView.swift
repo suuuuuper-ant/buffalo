@@ -51,7 +51,7 @@ class SlideOpenView: UIView {
         showMeTitle.text = "Show me"
         showMeTitle.textAlignment = .center
         showMeTitle.textColor = .blue
-        showMeTitle.font = UIFont.boldSystemFont(ofSize: 12)
+        showMeTitle.font = UIFont.englishFont(ofSize: 12)
         return showMeTitle
     }()
 
@@ -60,7 +60,7 @@ class SlideOpenView: UIView {
         showMeTitle.text = "Good!"
         showMeTitle.textAlignment = .center
         showMeTitle.textColor = .blue
-        showMeTitle.font = UIFont.boldSystemFont(ofSize: 12)
+        showMeTitle.font = UIFont.englishFont(ofSize: 12)
         return showMeTitle
     }()
 

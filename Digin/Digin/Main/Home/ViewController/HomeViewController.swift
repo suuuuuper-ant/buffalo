@@ -167,6 +167,7 @@ class HomeTitleHeaderView: UITableViewHeaderFooterView {
 
     let sectionLabel: UILabel = {
         let section = UILabel()
+        section.font = UIFont.englishFont(ofSize: 16)
         return section
     }()
     let backContentView = UIView()
