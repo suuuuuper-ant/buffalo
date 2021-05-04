@@ -25,11 +25,7 @@ class HomeViewController: UIViewController {
         return tableView
     }()
     var tableHeaderView: UITableViewHeaderFooterView?
-    var data  = [
-        ["제약", "바이오", "제넥신"], ["국방", "화학", "수출"],
-        ["배", "조선", "미국경제악화"], ["달러약세"],
-        ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
-    ]
+
     var statusBarHeightConstant: NSLayoutConstraint?
 
     var viewModel: HomeViewModel = HomeViewModel()
@@ -54,6 +50,15 @@ class HomeViewController: UIViewController {
                 self?.tableView.updateHeaderViewHeight()
 
         }.store(in: &cancellables)
+
+        viewModel.moveToDetailPage
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+
+            } receiveValue: { _ in
+                self.moveToDetail()
+            }.store(in: &cancellables)
+
     }
 
     private func setupUI() {
@@ -87,6 +92,10 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         self.statusBarHeightConstant?.constant = self.view.safeAreaInsets.top
     }
+
+    func moveToDetail() {
+        self.navigationController?.pushViewController(HomeDetailViewController(), animated: true)
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -111,7 +120,7 @@ extension HomeViewController: UITableViewDataSource {
         if section.groupId == "updatedCompany" {
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeHorizontalGridCell.reuseIdentifier) as? HomeHorizontalGridCell
             let model = viewModel.data.data?.sections[indexPath.section].contents as? [Company] ?? []
-            cell?.configure(with: model)
+            cell?.configure(with: model, parentViewModel: viewModel)
             return cell ?? UITableViewCell()
         } else if section.groupId == "intetestedCompany" {
             let cell = tableView.dequeueReusableCell(withIdentifier: InterestedCompanyCell.reuseIdentifier) as? InterestedCompanyCell
@@ -143,19 +152,6 @@ extension HomeViewController: UITableViewDelegate {
         return CGFloat.leastNormalMagnitude
 
     }
-
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//
-//        guard let section =  viewModel.data.data?.sections[section] else { return nil }
-//        if section.groupId == "intetestedCompany" {
-//            let view: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.size.width, height: 20))
-//            view.backgroundColor = .white
-//
-//            return view
-//        }
-//        return nil
-//
-//    }
 
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return nil

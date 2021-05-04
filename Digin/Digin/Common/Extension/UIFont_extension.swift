@@ -11,8 +11,6 @@ extension UIFont {
 
     static func englishFont(ofSize size: CGFloat) -> UIFont? {
 
-        
-         
         return UIFont(name: "COCOGOOSE-DemiBold", size: size)
     }
 }

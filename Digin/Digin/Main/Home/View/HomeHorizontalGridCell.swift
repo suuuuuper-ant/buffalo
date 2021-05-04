@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class HomeHorizontalGridCell: UITableViewCell {
+    private var cancellables: Set<AnyCancellable> = []
+    @Published var didSelectItem: IndexPath?
     let cellSize = CGSize(width: 335, height: 412)
-
     var companeis: [Company] = []
     var currentIndex: CGFloat = 0
     var isOneStepPaging = true
@@ -88,7 +90,7 @@ class HomeHorizontalGridCell: UITableViewCell {
         pageControl.bottomAnchor.constraint(equalTo: backContenView.bottomAnchor, constant: 0).isActive = true
     }
 
-    func configure(with model: [Company]) {
+    func configure(with model: [Company], parentViewModel: HomeViewModel) {
 
         companeis = model
         DispatchQueue.main.async { [weak self] in
@@ -96,7 +98,15 @@ class HomeHorizontalGridCell: UITableViewCell {
             self.pageControl.numberOfPages = self.companeis.count < 5 ? self.companeis.count : 5
             self.collectionView.reloadData()
         }
+
+        $didSelectItem.sink(receiveValue: { indexPath in parentViewModel.moveToDetailPage(indexPath)}).store(in: &cancellables)
+
     }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables =  []
+    }
+
 }
 
 extension HomeHorizontalGridCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -110,6 +120,11 @@ extension HomeHorizontalGridCell: UICollectionViewDataSource, UICollectionViewDe
         cell?.configure(model: model)
         return cell ?? UICollectionViewCell()
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        didSelectItem = indexPath
+
+    }
+
 }
 
 extension HomeHorizontalGridCell: UIScrollViewDelegate {

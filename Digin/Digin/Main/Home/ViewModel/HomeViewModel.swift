@@ -9,10 +9,12 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject {
+
     let repository = HomeCompaniesDataRepository(localDataSource: CompaniesLocalDataSource())
-    let objectWillChange = PassthroughSubject<HomeCompany, Error>()
+    let moveToDetailPage = PassthroughSubject<IndexPath, Error>()
     @Published var data: HomeCompany = HomeCompany()
     private var cancellables: Set<AnyCancellable> = []
+
     func fetch() {
 
         repository.fetchCopanies()?
@@ -20,6 +22,12 @@ class HomeViewModel: ObservableObject {
             } receiveValue: { homeCompany in
                 self.data = homeCompany
             }.store(in: &cancellables)
+
+    }
+
+    func moveToDetailPage(_ indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
+        moveToDetailPage.send(indexPath)
 
     }
 }

@@ -194,7 +194,7 @@ class TagGenerator {
     func generateTagLabels() -> [PaddingLabel] {
 
         var labels: [PaddingLabel] = []
-        for index in (0...2) {
+        for index in (0..<count) {
 
             let label = PaddingLabel()
             label.edgeInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
