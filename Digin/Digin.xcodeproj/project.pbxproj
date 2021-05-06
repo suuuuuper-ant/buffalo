@@ -72,6 +72,7 @@
 		F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */; };
 		F1F1D1312641661A00FE8C15 /* HomeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */; };
 		F1F1D1332641944F00FE8C15 /* HomeDetailLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */; };
+		F1F1D1362644392F00FE8C15 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1F1D1352644392F00FE8C15 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +143,7 @@
 		F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailHeaderView.swift; sourceTree = "<group>"; };
 		F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailLineChartCell.swift; sourceTree = "<group>"; };
+		F1F1D1352644392F00FE8C15 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				F1734761261855CA009EC5D6 /* Assets.xcassets */,
+				F1F1D1352644392F00FE8C15 /* Colors.xcassets */,
 				F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */,
 				F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */,
 				F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */,
@@ -459,6 +462,7 @@
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
 				F1504BCE263C7DBC007C82F2 /* imgBubbleStart.svg in Resources */,
+				F1F1D1362644392F00FE8C15 /* Colors.xcassets in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
 				229B6FA6264017B900D28B52 /* Search.storyboard in Resources */,
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
