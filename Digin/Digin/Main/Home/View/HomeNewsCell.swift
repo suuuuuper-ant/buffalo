@@ -12,7 +12,7 @@ class HomeNewsCell: UITableViewCell {
     let dateLabel: UILabel = {
         let date = UILabel()
         date.text = "00.00"
-        date.textColor = UIColor.init(named: "gray_160")
+        date.textColor = UIColor.init(named: "gray160")
         date.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         date.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return date

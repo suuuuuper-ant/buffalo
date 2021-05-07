@@ -72,6 +72,9 @@
 		F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */; };
 		F1F1D1312641661A00FE8C15 /* HomeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */; };
 		F1F1D1332641944F00FE8C15 /* HomeDetailLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */; };
+		F1F1D14B26455F7E00FE8C15 /* HomeDetailNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D14A26455F7E00FE8C15 /* HomeDetailNewsCell.swift */; };
+		F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */; };
+		F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1F1D14E264563D400FE8C15 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +145,9 @@
 		F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailHeaderView.swift; sourceTree = "<group>"; };
 		F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailLineChartCell.swift; sourceTree = "<group>"; };
+		F1F1D14A26455F7E00FE8C15 /* HomeDetailNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNewsCell.swift; sourceTree = "<group>"; };
+		F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNewsListCell.swift; sourceTree = "<group>"; };
+		F1F1D14E264563D400FE8C15 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				F1734761261855CA009EC5D6 /* Assets.xcassets */,
+				F1F1D14E264563D400FE8C15 /* Colors.xcassets */,
 				F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */,
 				F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */,
 				F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */,
@@ -355,6 +362,8 @@
 				F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */,
 				F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */,
 				F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */,
+				F1F1D14A26455F7E00FE8C15 /* HomeDetailNewsCell.swift */,
+				F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -459,6 +468,7 @@
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
 				F1504BCE263C7DBC007C82F2 /* imgBubbleStart.svg in Resources */,
+				F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
 				229B6FA6264017B900D28B52 /* Search.storyboard in Resources */,
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
@@ -494,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */,
+				F1F1D14B26455F7E00FE8C15 /* HomeDetailNewsCell.swift in Sources */,
 				F1D3471A2640485C00E63483 /* HomeGridCellNewsView.swift in Sources */,
 				2224BAC2263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift in Sources */,
 				F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */,
@@ -532,6 +543,7 @@
 				22618938262F09EA00A9B77B /* FeedTableViewCell1.swift in Sources */,
 				2224BA9B26396C1B00E620C4 /* FeedTableViewCell3.swift in Sources */,
 				2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */,
+				F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */,
 				F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
 				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,

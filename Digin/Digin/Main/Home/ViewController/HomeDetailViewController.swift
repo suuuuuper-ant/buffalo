@@ -18,7 +18,7 @@ class HomeDetailViewController: UIViewController, ViewType {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(HomeDetailHeaderView.self, forCellReuseIdentifier: HomeDetailHeaderView.reuseIdentifier)
         tableView.register(HomeDetailLineChartCell.self, forCellReuseIdentifier: HomeDetailLineChartCell.reuseIdentifier)
-
+        tableView.register(HomeDetailNewsListCell.self, forCellReuseIdentifier: HomeDetailNewsListCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -65,7 +65,7 @@ class HomeDetailViewController: UIViewController, ViewType {
 
 extension HomeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,9 +74,12 @@ extension HomeDetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailHeaderView.reuseIdentifier) as? HomeDetailHeaderView else { return UITableViewCell() }
             cell.configure(tags: data[indexPath.row])
             return cell
-        } else {
+        } else if indexPath.row == 1 {
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailLineChartCell.reuseIdentifier) as? HomeDetailLineChartCell else { return UITableViewCell() }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsListCell.reuseIdentifier) as? HomeDetailNewsListCell else { return UITableViewCell() }
             return cell
         }
 
