@@ -75,6 +75,7 @@
 		F1F1D14B26455F7E00FE8C15 /* HomeDetailNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D14A26455F7E00FE8C15 /* HomeDetailNewsCell.swift */; };
 		F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */; };
 		F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1F1D14E264563D400FE8C15 /* Colors.xcassets */; };
+		F1F1D1512645701700FE8C15 /* HomeDetailBarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,7 @@
 		F1F1D14A26455F7E00FE8C15 /* HomeDetailNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNewsCell.swift; sourceTree = "<group>"; };
 		F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNewsListCell.swift; sourceTree = "<group>"; };
 		F1F1D14E264563D400FE8C15 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailBarChartCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,7 @@
 				F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */,
 				F1F1D14A26455F7E00FE8C15 /* HomeDetailNewsCell.swift */,
 				F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */,
+				F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				F1504BCA263B00C2007C82F2 /* GreetingCell.swift in Sources */,
 				F121DEF1261B3CD100B09F21 /* NetworkModule.swift in Sources */,
 				F1A8DF582635925700937B31 /* Company.swift in Sources */,
+				F1F1D1512645701700FE8C15 /* HomeDetailBarChartCell.swift in Sources */,
 				229B6FB0264027B700D28B52 /* CategoryTableViewCell.swift in Sources */,
 				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
 				F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */,
