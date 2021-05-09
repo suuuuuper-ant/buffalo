@@ -302,14 +302,30 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: 기업 상세보기에 기업 index 전달하기(진호) - push?
-        var companyRow = 0
-        if isSearch == 0 { companyRow = 1 } //메인
-        if isSearch == 2 { companyRow = 0 } //검색 결과
-
         let detailsVC = HomeDetailViewController()
-        //FIXME: 네비바 처리 후, 변경
-        self.present(detailsVC, animated: true, completion: nil)
+
+        switch isSearch {
+        case 1: //검색 리스트
+            //TODO: 기업 상세보기에 기업 index 전달하기
+            self.present(detailsVC, animated: true, completion: nil)
+        case 2: //검색 결과
+            if indexPath.section == 0 { //기업
+                //TODO: 기업 상세보기에 기업 index 전달하기
+                self.present(detailsVC, animated: true, completion: nil)
+            }
+
+            if indexPath.section == 1 { //뉴스
+                let detailVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier)
+                //TODO: 뉴스 url 전달하기
+                self.present(detailVC, animated: true, completion: nil)
+            }
+        default: //메인
+            if indexPath.section == 1 {
+                //TODO: 기업 상세보기에 기업 index 전달하기
+                self.present(detailsVC, animated: true, completion: nil)
+            }
+        }
+
     }
 
 }
