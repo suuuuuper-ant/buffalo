@@ -1,13 +1,13 @@
 //
-//  CompanyTableViewCell.swift
+//  DetailsCompanyTableViewCell.swift
 //  Digin
 //
-//  Created by 김예은 on 2021/05/03.
+//  Created by 김예은 on 2021/05/10.
 //
 
 import UIKit
 
-class CompanyTableViewCell: UITableViewCell {
+class DetailsCompanyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -24,7 +24,7 @@ class CompanyTableViewCell: UITableViewCell {
 
         categoryLabel.makeRounded(cornerRadius: 13)
         categoryLabel.layer.borderWidth = 1
-        categoryLabel.edgeInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
+        categoryLabel.edgeInset = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
     }
 
 }
