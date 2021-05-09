@@ -1,13 +1,13 @@
 //
-//  CategoryTableViewCell.swift
+//  DetailsCategoryTableViewCell.swift
 //  Digin
 //
-//  Created by 김예은 on 2021/05/03.
+//  Created by 김예은 on 2021/05/10.
 //
 
 import UIKit
 
-class CategoryTableViewCell: UITableViewCell {
+class DetailsCategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -28,14 +28,14 @@ class CategoryTableViewCell: UITableViewCell {
 
 //TODO: 서버통신
 // MARK: - CollectionView
-extension CategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension DetailsCategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.reuseIdentifier, for: indexPath) as? CategoryCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailsCategoryCollectionViewCell.reuseIdentifier, for: indexPath) as? DetailsCategoryCollectionViewCell else {
             return UICollectionViewCell()
         }
 
