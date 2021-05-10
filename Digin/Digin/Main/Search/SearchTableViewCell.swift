@@ -11,8 +11,9 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var deleteClosure: (() -> Void)?
+
+    @IBAction func deleteAction(_ sender: UIButton) {
+        self.deleteClosure?()
     }
 }
