@@ -35,6 +35,7 @@ class HomeDetailViewController: UIViewController, ViewType {
         tableView.register(HomeDetailLineChartCell.self, forCellReuseIdentifier: HomeDetailLineChartCell.reuseIdentifier)
         tableView.register(HomeDetailNewsListCell.self, forCellReuseIdentifier: HomeDetailNewsListCell.reuseIdentifier)
         tableView.register(HomeDetailBarChartCell.self, forCellReuseIdentifier: HomeDetailBarChartCell.reuseIdentifier)
+        tableView.register(HomeDetailRelativeCell.self, forCellReuseIdentifier: HomeDetailRelativeCell.reuseIdentifier)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -95,7 +96,7 @@ class HomeDetailViewController: UIViewController, ViewType {
 
 extension HomeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
 
     }
 
@@ -113,11 +114,18 @@ extension HomeDetailViewController: UITableViewDataSource {
         } else  if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsListCell.reuseIdentifier) as? HomeDetailNewsListCell else { return UITableViewCell() }
             return cell
-        } else {
+        } else if indexPath.row == 3 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailBarChartCell.reuseIdentifier) as? HomeDetailBarChartCell else { return UITableViewCell() }
             cell.configure(viewModel: viewModel)
             return cell
 
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailRelativeCell.reuseIdentifier) as? HomeDetailRelativeCell else { return UITableViewCell() }
+
+            let field = RelativeCompany(relativeFields: ["같은분야"], relativeKeyword: [], companyImage: "", company: "프레스티지바이오로직스바이오")
+            let keyword = RelativeCompany(relativeFields: [], relativeKeyword: ["비슷한 시총 순위", "경기소비재", "유가원상복구"], companyImage: "", company: "닥터드레")
+            cell.configure(field, keyword: keyword)
+            return cell
         }
 
     }

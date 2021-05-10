@@ -209,6 +209,7 @@ class TagGenerator {
                 label.layer.borderWidth = 1
             }
 
+            label.text = textArray?[safe: index]
             labels.append(label)
         }
         return labels

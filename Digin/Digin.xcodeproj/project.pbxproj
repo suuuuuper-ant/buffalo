@@ -76,6 +76,7 @@
 		F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */; };
 		F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1F1D14E264563D400FE8C15 /* Colors.xcassets */; };
 		F1F1D1512645701700FE8C15 /* HomeDetailBarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */; };
+		F1F1D1552649690400FE8C15 /* HomeDetailRelativeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNewsListCell.swift; sourceTree = "<group>"; };
 		F1F1D14E264563D400FE8C15 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailBarChartCell.swift; sourceTree = "<group>"; };
+		F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailRelativeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +369,7 @@
 				F1F1D14A26455F7E00FE8C15 /* HomeDetailNewsCell.swift */,
 				F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */,
 				F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */,
+				F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
 				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
+				F1F1D1552649690400FE8C15 /* HomeDetailRelativeCell.swift in Sources */,
 				F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeGreetingHeaderView.swift in Sources */,
