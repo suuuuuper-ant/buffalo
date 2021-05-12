@@ -85,6 +85,7 @@
 		F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1F1D14E264563D400FE8C15 /* Colors.xcassets */; };
 		F1F1D1512645701700FE8C15 /* HomeDetailBarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */; };
 		F1F1D1552649690400FE8C15 /* HomeDetailRelativeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */; };
+		F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D157264BF91300FE8C15 /* AppColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +169,7 @@
 		F1F1D14E264563D400FE8C15 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailBarChartCell.swift; sourceTree = "<group>"; };
 		F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailRelativeCell.swift; sourceTree = "<group>"; };
+		F1F1D157264BF91300FE8C15 /* AppColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 			children = (
 				F1734761261855CA009EC5D6 /* Assets.xcassets */,
 				F1F1D14E264563D400FE8C15 /* Colors.xcassets */,
+				F1F1D157264BF91300FE8C15 /* AppColor.swift */,
 				F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */,
 				F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */,
 				F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */,
@@ -446,6 +449,7 @@
 				F1734752261855C5009EC5D6 /* Frameworks */,
 				F1734753261855C5009EC5D6 /* Resources */,
 				F121DED22618599A00B09F21 /* ShellScript */,
+				F1F1D156264BF85A00FE8C15 /* SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -526,6 +530,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		F1F1D156264BF85A00FE8C15 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nswiftgen xcassets --param enumName=AppColor ${TARGETNAME}/Resources/Colors.xcassets -t swift4 --output \"${TARGETNAME}/Resources/AppColor.swift\"\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -542,6 +564,7 @@
 				22A05BAB264863B200AEA69D /* DetailsHeaderTableViewCell.swift in Sources */,
 				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,
 				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
+				F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */,
 				22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */,
 				229B6FB6264027D200D28B52 /* SearchHeaderTableViewCell.swift in Sources */,
 				F1D3471C264048DC00E63483 /* GradientView.swift in Sources */,
