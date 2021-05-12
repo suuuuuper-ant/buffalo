@@ -29,6 +29,7 @@ internal enum AppColor {
   internal static let pullIndicator = ColorAsset(name: "pull_indicator")
   internal static let slidebarStartColor = ColorAsset(name: "slidebar_start_color")
   internal static let stockBlue = ColorAsset(name: "stock_blue")
+  internal static let stockRed = ColorAsset(name: "stock_red")
   internal static let tagColor = ColorAsset(name: "tag_color")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

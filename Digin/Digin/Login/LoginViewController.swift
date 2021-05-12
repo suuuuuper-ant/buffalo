@@ -7,13 +7,17 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, ViewType {
 
     var isNOl = false
     let loginButton: UIButton = {
         let login = UIButton(type: .custom)
         login.translatesAutoresizingMaskIntoConstraints = false
-        login.setTitle("LOGIN", for: .normal)
+        login.setTitle("로그인", for: .normal)
+        login.backgroundColor = AppColor.mainColor.color
+        login.layer.cornerRadius = 25
+        login.layer.masksToBounds = true
+        login.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
 
         return login
     }()
@@ -21,52 +25,188 @@ class LoginViewController: UIViewController {
     let signUpButton: UIButton = {
         let signup = UIButton(type: .custom)
         signup.translatesAutoresizingMaskIntoConstraints = false
-        signup.setTitle("SIGNUP", for: .normal)
+        signup.setTitleColor(AppColor.mainColor.color, for: .normal)
+        signup.setTitle("간편하게 회원가입하기", for: .normal)
+        signup.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return signup
     }()
 
-    let emailTextField: UITextField = {
+   lazy var emailTextField: UITextField = {
         let email = UITextField()
-        email.translatesAutoresizingMaskIntoConstraints = false
-        email.placeholder = "input text.."
+        email.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        email.isUserInteractionEnabled = true
+        email.delegate = self
+        email.placeholder = "이메일"
+
         return email
     }()
 
-    let passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         let password = UITextField()
         password.translatesAutoresizingMaskIntoConstraints = false
-        password.placeholder = "input password.."
+        password.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        password.placeholder = "비밀번호"
+        password.isSecureTextEntry = true
+        password.delegate = self
         return password
     }()
 
+    lazy var topImageView: UIImageView = {
+        let top = UIImageView()
+        top.image = UIImage(named: "login_top")
+        top.contentMode = .scaleAspectFit
+        return top
+
+    }()
+
+    lazy var greetingLabel: UILabel = {
+       let greeting = UILabel()
+        greeting.text = "투자 정보의 시작,\n함께 디긴하러 가요!"
+        greeting.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        greeting.numberOfLines = 0
+        return greeting
+    }()
+
+    lazy var emailDescriptionLabel: UILabel = {
+       let emailDescription = UILabel()
+        emailDescription.text = "투자 정보의 시작,\n함께 디긴하러 가요!"
+        emailDescription.textColor = AppColor.stockRed.color
+        emailDescription.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+
+        return emailDescription
+    }()
+
+    lazy var passwordDescriptionLabel: UILabel = {
+       let emailDescription = UILabel()
+        emailDescription.text = "투자 정보의 시작,\n함께 디긴하러 가요!"
+        emailDescription.textColor = AppColor.stockRed.color
+        emailDescription.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+
+        return emailDescription
+    }()
+
+    lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        return scroll
+    }()
+
+    lazy var contentView: UIView = {
+
+       return UIView()
+    }()
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setupUI()
+        setupConstraint()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
-        let label = UILabel()
-        view.addSubview(label)
-        label.text = "\(String(describing: self))"
-        label.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
+        view.backgroundColor = .white
 
-        //id
-        view.addSubview(emailTextField)
-        emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        emailTextField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20).isActive = true
+    }
+
+    func setupUI() {
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        [greetingLabel, passwordTextField, loginButton, signUpButton, topImageView].forEach {
+            contentView.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+
+    func emailArea() -> UIStackView {
+        let emailStack = UIStackView()
+        emailStack.isUserInteractionEnabled = true
+
+        emailStack.axis = .vertical
+        contentView.addSubview(emailStack)
+        let line = UIView()
+        line.backgroundColor = AppColor.mainColor.color
+        line.translatesAutoresizingMaskIntoConstraints = false
+        emailStack.translatesAutoresizingMaskIntoConstraints = false
+        emailStack.addArrangedSubview(emailTextField)
+        emailStack.addArrangedSubview(line)
+        emailStack.addArrangedSubview(emailDescriptionLabel)
+
+        emailStack.spacing = 6
+        emailStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        emailStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        emailStack.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 55).isActive = true
+
+        //line
+        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        return emailStack
+    }
+
+    func passwordArea() -> UIStackView {
+        let passwordStack = UIStackView()
+        passwordStack.axis = .vertical
+        contentView.addSubview(passwordStack)
+        let line = UIView()
+        line.backgroundColor = AppColor.mainColor.color
+        line.translatesAutoresizingMaskIntoConstraints = false
+        passwordStack.translatesAutoresizingMaskIntoConstraints = false
+        passwordStack.addArrangedSubview(passwordTextField)
+        passwordStack.addArrangedSubview(line)
+        passwordStack.addArrangedSubview(passwordDescriptionLabel)
+
+        passwordStack.spacing = 6
+
+        //line
+        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        return passwordStack
+    }
+
+//    func loginArea() -> UIView {
+//        let buttonB
+//    }
+
+    func setupConstraint() {
+
+        scrollView.fittingView(view)
+        contentView.fittingView(scrollView)
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        let contentViewHeght = contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
+        contentViewHeght.priority = .defaultLow
+        contentViewHeght.isActive = true
+        //topImage캐릭터
+        topImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        topImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        topImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        topImageView.heightAnchor.constraint(equalTo: topImageView.widthAnchor, multiplier: 165 / 375).isActive = true
+
+        //인사말 레이블
+        greetingLabel.topAnchor.constraint(equalTo: topImageView.bottomAnchor, constant: 41).isActive = true
+        greetingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+
+        let emailStack = emailArea()
 
         //password
-        view.addSubview(passwordTextField)
-        passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20).isActive = true
 
-        view.addSubview(loginButton)
-        loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50).isActive = true
+        let passwordStack = passwordArea()
+        passwordStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        passwordStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        passwordStack.topAnchor.constraint(equalTo: emailStack.bottomAnchor, constant: 20).isActive = true
+
+        loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordStack.bottomAnchor, constant: 62).isActive = true
         loginButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
-        view.addSubview(signUpButton)
-        signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50).isActive = true
+
+        signUpButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        signUpButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
+        signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 25).isActive = true
         signUpButton.addTarget(self, action: #selector(goToSignUp), for: .touchUpInside)
+
     }
 
     @objc func signIn() {
@@ -107,4 +247,13 @@ class LoginViewController: UIViewController {
     deinit {
        print("\(String(describing: self))")
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ sender: UITextField) -> Bool {
+        sender.resignFirstResponder()
+
+    }
+
 }
