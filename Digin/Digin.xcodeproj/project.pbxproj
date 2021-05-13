@@ -37,6 +37,12 @@
 		22A05BB2264864A700AEA69D /* DetailsNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A05BB1264864A700AEA69D /* DetailsNewsTableViewCell.swift */; };
 		22A05BB5264864B900AEA69D /* DetailsCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A05BB4264864B900AEA69D /* DetailsCategoryTableViewCell.swift */; };
 		22A05BB8264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A05BB7264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift */; };
+		22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */; };
+		22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */; };
+		22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8BC264BE52B005B6368 /* APIService.swift */; };
+		22CCD8C2264D253C005B6368 /* FavoriteCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8C1264D253C005B6368 /* FavoriteCompany.swift */; };
+		22CCD8C6264D6353005B6368 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8C4264D6353005B6368 /* LoadingTableViewCell.swift */; };
+		22CCD8C7264D6353005B6368 /* LoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22CCD8C5264D6353005B6368 /* LoadingTableViewCell.xib */; };
 		22EEBC622647FBD1009FF3FA /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEBC612647FBD1009FF3FA /* CategoryCollectionViewCell.swift */; };
 		22EEBC6626481E84009FF3FA /* CompanyNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEBC6526481E84009FF3FA /* CompanyNewsTableViewCell.swift */; };
 		22EEBC6C264831AA009FF3FA /* CategoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEBC6B264831AA009FF3FA /* CategoryDetailsViewController.swift */; };
@@ -119,6 +125,12 @@
 		22A05BB1264864A700AEA69D /* DetailsNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsTableViewCell.swift; sourceTree = "<group>"; };
 		22A05BB4264864B900AEA69D /* DetailsCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		22A05BB7264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
+		22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedService.swift; sourceTree = "<group>"; };
+		22CCD8BC264BE52B005B6368 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		22CCD8C1264D253C005B6368 /* FavoriteCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCompany.swift; sourceTree = "<group>"; };
+		22CCD8C4264D6353005B6368 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		22CCD8C5264D6353005B6368 /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
 		22EEBC612647FBD1009FF3FA /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		22EEBC6526481E84009FF3FA /* CompanyNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyNewsTableViewCell.swift; sourceTree = "<group>"; };
 		22EEBC6B264831AA009FF3FA /* CategoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +205,15 @@
 				2224BAC1263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift */,
 			);
 			path = Skeleton;
+			sourceTree = "<group>";
+		};
+		22CCD8B5264BE1C9005B6368 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */,
+				22CCD8C1264D253C005B6368 /* FavoriteCompany.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F121DEDE26185CE200B09F21 /* Main */ = {
@@ -298,6 +319,9 @@
 		F121DF332623377600B09F21 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				22CCD8BC264BE52B005B6368 /* APIService.swift */,
+				22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */,
+				22CCD8B5264BE1C9005B6368 /* Model */,
 				22618933262F07E900A9B77B /* NewsFeed.storyboard */,
 				2224BA852639368100E620C4 /* CustomSegmentedControl.swift */,
 				2224BA882639378400E620C4 /* NewsContainerViewController.swift */,
@@ -309,6 +333,8 @@
 				2224BA9A26396C1B00E620C4 /* FeedTableViewCell3.swift */,
 				2224BA9D26396D2500E620C4 /* FeedTableViewCell4.swift */,
 				22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */,
+				22CCD8C4264D6353005B6368 /* LoadingTableViewCell.swift */,
+				22CCD8C5264D6353005B6368 /* LoadingTableViewCell.xib */,
 				2224BAA12639805B00E620C4 /* Skeleton */,
 			);
 			path = NewsFeed;
@@ -497,6 +523,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CCD8C7264D6353005B6368 /* LoadingTableViewCell.xib in Resources */,
 				F1D3471E26404BC700E63483 /* Cocogoose-Pro-Semilight-trial.ttf in Resources */,
 				F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */,
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
@@ -562,6 +589,7 @@
 				2224BAC2263AA86800E620C4 /* FeedSkeletonTableViewCell4.swift in Sources */,
 				F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */,
 				22A05BAB264863B200AEA69D /* DetailsHeaderTableViewCell.swift in Sources */,
+				22CCD8C2264D253C005B6368 /* FavoriteCompany.swift in Sources */,
 				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,
 				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
 				F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */,
@@ -593,7 +621,9 @@
 				2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */,
 				F1D347182640481A00E63483 /* HomeGridCellPriceView.swift in Sources */,
 				229B6FAA2640276400D28B52 /* CategoryHeaderTableViewCell.swift in Sources */,
+				22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */,
 				2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */,
+				22CCD8C6264D6353005B6368 /* LoadingTableViewCell.swift in Sources */,
 				22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */,
 				F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
@@ -604,6 +634,7 @@
 				22A05BB8264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift in Sources */,
 				2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */,
 				F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */,
+				22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */,
 				F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
 				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
@@ -625,6 +656,7 @@
 				2224BA972639694D00E620C4 /* FeedTableViewCell2.swift in Sources */,
 				2224BA862639368100E620C4 /* CustomSegmentedControl.swift in Sources */,
 				F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */,
+				22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */,
 				F121DF23262308C500B09F21 /* NewsFeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

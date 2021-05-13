@@ -16,8 +16,7 @@ class NewsDetailsViewController: UIViewController {
 
     private var estimatedProgressObserver: NSKeyValueObservation?
 
-    //FIXME: 임시 데이터
-    let newsURL: String = "https://gigas-blog.tistory.com/5"
+    var newsURL: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()

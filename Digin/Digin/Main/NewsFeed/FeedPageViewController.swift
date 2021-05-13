@@ -13,10 +13,10 @@ class FeedPageViewController: UIPageViewController, UIPageViewControllerDelegate
         let storyBoard = UIStoryboard(name: "NewsFeed", bundle: nil)
 
         guard let vc1 = storyBoard.instantiateViewController(withIdentifier: NewsFeedViewController.reuseIdentifier) as? NewsFeedViewController else { return [UIViewController]() }
-        vc1.type = 0
+        vc1.viewType = 0
 
         guard let vc2 = storyBoard.instantiateViewController(withIdentifier: NewsFeedViewController.reuseIdentifier) as? NewsFeedViewController else { return [UIViewController]() }
-        vc2.type = 1
+        vc2.viewType = 1
 
         return [vc1, vc2]
 
