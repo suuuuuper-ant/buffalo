@@ -6,8 +6,28 @@
 //
 
 import UIKit
+import Combine
 
 class LoginViewController: UIViewController, ViewType {
+    var viewModel: LoginViewModel = LoginViewModel()
+    var cancellables: Set<AnyCancellable> = []
+    lazy var emailField: SignInputFieldView = {
+        let viewModel = SignInputFieldViewModel(
+            font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            lineColor: AppColor.mainColor.color,
+            leftButtonImage: nil,
+            placeholder: "이메일")
+        let email = SignInputFieldView(viewModel)
+
+        return email
+    }()
+
+    lazy var passwordField: SignInputFieldView = {
+        let viewModel = SignInputFieldViewModel(font: UIFont.systemFont(ofSize: 16, weight: .medium), lineColor: AppColor.mainColor.color, leftButtonImage: nil, placeholder: "비밀번호")
+        let password = SignInputFieldView(viewModel)
+
+        return password
+    }()
 
     var isNOl = false
     let loginButton: UIButton = {
@@ -31,26 +51,6 @@ class LoginViewController: UIViewController, ViewType {
         return signup
     }()
 
-   lazy var emailTextField: UITextField = {
-        let email = UITextField()
-        email.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        email.isUserInteractionEnabled = true
-        email.delegate = self
-        email.placeholder = "이메일"
-
-        return email
-    }()
-
-    lazy var passwordTextField: UITextField = {
-        let password = UITextField()
-        password.translatesAutoresizingMaskIntoConstraints = false
-        password.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        password.placeholder = "비밀번호"
-        password.isSecureTextEntry = true
-        password.delegate = self
-        return password
-    }()
-
     lazy var topImageView: UIImageView = {
         let top = UIImageView()
         top.image = UIImage(named: "login_top")
@@ -60,45 +60,29 @@ class LoginViewController: UIViewController, ViewType {
     }()
 
     lazy var greetingLabel: UILabel = {
-       let greeting = UILabel()
+        let greeting = UILabel()
         greeting.text = "투자 정보의 시작,\n함께 디긴하러 가요!"
         greeting.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         greeting.numberOfLines = 0
         return greeting
     }()
 
-    lazy var emailDescriptionLabel: UILabel = {
-       let emailDescription = UILabel()
-        emailDescription.text = "투자 정보의 시작,\n함께 디긴하러 가요!"
-        emailDescription.textColor = AppColor.stockRed.color
-        emailDescription.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-
-        return emailDescription
-    }()
-
-    lazy var passwordDescriptionLabel: UILabel = {
-       let emailDescription = UILabel()
-        emailDescription.text = "투자 정보의 시작,\n함께 디긴하러 가요!"
-        emailDescription.textColor = AppColor.stockRed.color
-        emailDescription.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-
-        return emailDescription
-    }()
-
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
+        scroll.contentInsetAdjustmentBehavior = .never
         return scroll
     }()
 
     lazy var contentView: UIView = {
 
-       return UIView()
+        return UIView()
     }()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setupUI()
         setupConstraint()
+
     }
 
     required init?(coder: NSCoder) {
@@ -108,6 +92,43 @@ class LoginViewController: UIViewController, ViewType {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        bindingViewModel()
+
+    }
+
+    func bindingViewModel() {
+//        emailField.textField.publisher(for: .touc)
+//        let button = UIButton()
+//        button.publisher(for: .touchUpInside).sink { button in
+//            print("Button is pressed!")
+//        }
+        // input
+        emailField.textField.textPublisher.sink { [unowned self] text in
+            if let text = text {
+                self.viewModel.email.send(text)
+            }
+
+        }.store(in: &cancellables)
+
+        passwordField.textField.textPublisher.sink { [unowned self] text in
+            if let text = text {
+                self.viewModel.password.send(text)
+            }
+
+        }.store(in: &cancellables)
+
+        //output
+        viewModel.emailValidation.sink { _ in
+
+        } receiveValue: {  [unowned self] message in
+            self.emailField.descriptionLabel.text = message
+        }.store(in: &cancellables)
+
+        viewModel.passwordValidation.sink { _ in
+
+        } receiveValue: {  [unowned self] message in
+            self.passwordField.descriptionLabel.text = message
+        }.store(in: &cancellables)
 
     }
 
@@ -116,58 +137,11 @@ class LoginViewController: UIViewController, ViewType {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        [greetingLabel, passwordTextField, loginButton, signUpButton, topImageView].forEach {
+        [greetingLabel, emailField, passwordField, loginButton, signUpButton, topImageView].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
-
-    func emailArea() -> UIStackView {
-        let emailStack = UIStackView()
-        emailStack.isUserInteractionEnabled = true
-
-        emailStack.axis = .vertical
-        contentView.addSubview(emailStack)
-        let line = UIView()
-        line.backgroundColor = AppColor.mainColor.color
-        line.translatesAutoresizingMaskIntoConstraints = false
-        emailStack.translatesAutoresizingMaskIntoConstraints = false
-        emailStack.addArrangedSubview(emailTextField)
-        emailStack.addArrangedSubview(line)
-        emailStack.addArrangedSubview(emailDescriptionLabel)
-
-        emailStack.spacing = 6
-        emailStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        emailStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        emailStack.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 55).isActive = true
-
-        //line
-        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        return emailStack
-    }
-
-    func passwordArea() -> UIStackView {
-        let passwordStack = UIStackView()
-        passwordStack.axis = .vertical
-        contentView.addSubview(passwordStack)
-        let line = UIView()
-        line.backgroundColor = AppColor.mainColor.color
-        line.translatesAutoresizingMaskIntoConstraints = false
-        passwordStack.translatesAutoresizingMaskIntoConstraints = false
-        passwordStack.addArrangedSubview(passwordTextField)
-        passwordStack.addArrangedSubview(line)
-        passwordStack.addArrangedSubview(passwordDescriptionLabel)
-
-        passwordStack.spacing = 6
-
-        //line
-        line.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        return passwordStack
-    }
-
-//    func loginArea() -> UIView {
-//        let buttonB
-//    }
 
     func setupConstraint() {
 
@@ -187,19 +161,22 @@ class LoginViewController: UIViewController, ViewType {
         greetingLabel.topAnchor.constraint(equalTo: topImageView.bottomAnchor, constant: 41).isActive = true
         greetingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
 
-        let emailStack = emailArea()
+      //  let emailStack = emailArea()
+
+        emailField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        emailField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        emailField.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 55).isActive = true
 
         //password
 
-        let passwordStack = passwordArea()
-        passwordStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        passwordStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        passwordStack.topAnchor.constraint(equalTo: emailStack.bottomAnchor, constant: 20).isActive = true
+        passwordField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        passwordField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 20).isActive = true
 
         loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        loginButton.topAnchor.constraint(equalTo: passwordStack.bottomAnchor, constant: 62).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 62).isActive = true
         loginButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
 
         signUpButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -229,7 +206,6 @@ class LoginViewController: UIViewController, ViewType {
 
             }
         }
-
     }
 
     @objc func goToMain() {
@@ -239,21 +215,14 @@ class LoginViewController: UIViewController, ViewType {
             sceneDelegate.window?.rootViewController = mainTabBar
         }
     }
+
     @objc func goToSignUp() {
         let signUp = SignUpViewController()
         signUp.modalPresentationStyle = .popover
         self.present(signUp, animated: true)
     }
+
     deinit {
-       print("\(String(describing: self))")
+        print("\(String(describing: self))")
     }
-}
-
-extension LoginViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ sender: UITextField) -> Bool {
-        sender.resignFirstResponder()
-
-    }
-
 }

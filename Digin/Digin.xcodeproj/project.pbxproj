@@ -68,6 +68,9 @@
 		F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */; };
 		F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */ = {isa = PBXBuildFile; fileRef = F1A8DF642635D3B200937B31 /* HomeDummy.json */; };
 		F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */; };
+		F1C6B401264EA277001E8510 /* Combine_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B400264EA277001E8510 /* Combine_extension.swift */; };
+		F1C6B403264EA314001E8510 /* SignInputFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B402264EA314001E8510 /* SignInputFieldView.swift */; };
+		F1C6B405264EBB21001E8510 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B404264EBB21001E8510 /* LoginViewModel.swift */; };
 		F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */; };
 		F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470E264045C800E63483 /* UITableView_extension.swift */; };
 		F1D34713264046A700E63483 /* HomeNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D34712264046A700E63483 /* HomeNewsCell.swift */; };
@@ -152,6 +155,9 @@
 		F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F1A8DF642635D3B200937B31 /* HomeDummy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeDummy.json; sourceTree = "<group>"; };
 		F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHorizontalGridCell.swift; sourceTree = "<group>"; };
+		F1C6B400264EA277001E8510 /* Combine_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine_extension.swift; sourceTree = "<group>"; };
+		F1C6B402264EA314001E8510 /* SignInputFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInputFieldView.swift; sourceTree = "<group>"; };
+		F1C6B404264EBB21001E8510 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCompanyCell.swift; sourceTree = "<group>"; };
 		F1D3470E264045C800E63483 /* UITableView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView_extension.swift; sourceTree = "<group>"; };
 		F1D34712264046A700E63483 /* HomeNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsCell.swift; sourceTree = "<group>"; };
@@ -260,6 +266,7 @@
 				22923833261B471C00B50884 /* UIViewController_extension.swift */,
 				F1D3470E264045C800E63483 /* UITableView_extension.swift */,
 				F1D3471F26404C3900E63483 /* UIFont_extension.swift */,
+				F1C6B400264EA277001E8510 /* Combine_extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -337,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				F121DF122623049600B09F21 /* LoginViewController.swift */,
+				F1C6B404264EBB21001E8510 /* LoginViewModel.swift */,
 				F121DF162623075B00B09F21 /* SignUpViewController.swift */,
 			);
 			path = Login;
@@ -426,6 +434,7 @@
 				F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */,
 				F1D34714264046E700E63483 /* PaddingLabel.swift */,
 				F1D3471B264048DC00E63483 /* GradientView.swift */,
+				F1C6B402264EA314001E8510 /* SignInputFieldView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -566,6 +575,7 @@
 				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
 				F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */,
 				22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */,
+				F1C6B401264EA277001E8510 /* Combine_extension.swift in Sources */,
 				229B6FB6264027D200D28B52 /* SearchHeaderTableViewCell.swift in Sources */,
 				F1D3471C264048DC00E63483 /* GradientView.swift in Sources */,
 				22EEBC6C264831AA009FF3FA /* CategoryDetailsViewController.swift in Sources */,
@@ -600,7 +610,9 @@
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
 				22618938262F09EA00A9B77B /* FeedTableViewCell1.swift in Sources */,
 				2224BA9B26396C1B00E620C4 /* FeedTableViewCell3.swift in Sources */,
+				F1C6B403264EA314001E8510 /* SignInputFieldView.swift in Sources */,
 				22A05BB2264864A700AEA69D /* DetailsNewsTableViewCell.swift in Sources */,
+				F1C6B405264EBB21001E8510 /* LoginViewModel.swift in Sources */,
 				22A05BB8264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift in Sources */,
 				2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */,
 				F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */,
