@@ -217,8 +217,8 @@ class LoginViewController: UIViewController, ViewType {
     }
 
     @objc func goToSignUp() {
-        let signUp = SignUpViewController()
-        signUp.modalPresentationStyle = .popover
+        let signUp = SignupFlowViewController()
+        signUp.modalPresentationStyle = .fullScreen
         self.present(signUp, animated: true)
     }
 
