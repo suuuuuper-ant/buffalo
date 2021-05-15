@@ -86,9 +86,9 @@ class SignupEmailViewController: SignupBaseViewController {
 
     lazy var emailField: SignInputFieldView = {
         let viewModel = SignInputFieldViewModel(
-            font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            font: UIFont.systemFont(ofSize: 20, weight: .bold),
             lineColor: AppColor.mainColor.color,
-            leftButtonImage: nil,
+            leftButtonImage: UIImage(named: "signup_cancel"),
             placeholder: "이메일")
         let email = SignInputFieldView(viewModel)
 
@@ -97,7 +97,7 @@ class SignupEmailViewController: SignupBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guide = "사용할\n 이메일을 입력해주세요"
+        guide = "사용할\n이메일을 입력해주세요"
         buttonTitle = "다음"
         inputFieldView.addArrangedSubview(emailField)
 

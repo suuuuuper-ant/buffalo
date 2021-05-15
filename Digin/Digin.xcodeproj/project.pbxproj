@@ -79,6 +79,11 @@
 		F1C6B405264EBB21001E8510 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B404264EBB21001E8510 /* LoginViewModel.swift */; };
 		F1C6B407264EC546001E8510 /* SignupFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B406264EC546001E8510 /* SignupFlowViewController.swift */; };
 		F1C6B409264EC6D7001E8510 /* SignupEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B408264EC6D7001E8510 /* SignupEmailViewController.swift */; };
+		F1C6B40B264FC617001E8510 /* SignupNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B40A264FC617001E8510 /* SignupNicknameViewController.swift */; };
+		F1C6B40D264FCF51001E8510 /* SignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B40C264FCF51001E8510 /* SignupPasswordViewController.swift */; };
+		F1C6B40F264FD411001E8510 /* SignupRepasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B40E264FD411001E8510 /* SignupRepasswordViewController.swift */; };
+		F1C6B411264FD6CD001E8510 /* SignupInterestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B410264FD6CD001E8510 /* SignupInterestingViewController.swift */; };
+		F1C6B413264FDD46001E8510 /* SingupInterestingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B412264FDD46001E8510 /* SingupInterestingCell.swift */; };
 		F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */; };
 		F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470E264045C800E63483 /* UITableView_extension.swift */; };
 		F1D34713264046A700E63483 /* HomeNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D34712264046A700E63483 /* HomeNewsCell.swift */; };
@@ -174,6 +179,11 @@
 		F1C6B404264EBB21001E8510 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F1C6B406264EC546001E8510 /* SignupFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFlowViewController.swift; sourceTree = "<group>"; };
 		F1C6B408264EC6D7001E8510 /* SignupEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailViewController.swift; sourceTree = "<group>"; };
+		F1C6B40A264FC617001E8510 /* SignupNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupNicknameViewController.swift; sourceTree = "<group>"; };
+		F1C6B40C264FCF51001E8510 /* SignupPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordViewController.swift; sourceTree = "<group>"; };
+		F1C6B40E264FD411001E8510 /* SignupRepasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRepasswordViewController.swift; sourceTree = "<group>"; };
+		F1C6B410264FD6CD001E8510 /* SignupInterestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInterestingViewController.swift; sourceTree = "<group>"; };
+		F1C6B412264FDD46001E8510 /* SingupInterestingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingupInterestingCell.swift; sourceTree = "<group>"; };
 		F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCompanyCell.swift; sourceTree = "<group>"; };
 		F1D3470E264045C800E63483 /* UITableView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView_extension.swift; sourceTree = "<group>"; };
 		F1D34712264046A700E63483 /* HomeNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsCell.swift; sourceTree = "<group>"; };
@@ -377,6 +387,11 @@
 				F1C6B404264EBB21001E8510 /* LoginViewModel.swift */,
 				F1C6B406264EC546001E8510 /* SignupFlowViewController.swift */,
 				F1C6B408264EC6D7001E8510 /* SignupEmailViewController.swift */,
+				F1C6B40A264FC617001E8510 /* SignupNicknameViewController.swift */,
+				F1C6B40C264FCF51001E8510 /* SignupPasswordViewController.swift */,
+				F1C6B40E264FD411001E8510 /* SignupRepasswordViewController.swift */,
+				F1C6B410264FD6CD001E8510 /* SignupInterestingViewController.swift */,
+				F1C6B412264FDD46001E8510 /* SingupInterestingCell.swift */,
 				F121DF162623075B00B09F21 /* SignUpViewController.swift */,
 			);
 			path = Login;
@@ -635,6 +650,7 @@
 				F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */,
 				F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,
+				F1C6B40F264FD411001E8510 /* SignupRepasswordViewController.swift in Sources */,
 				22A05BB5264864B900AEA69D /* DetailsCategoryTableViewCell.swift in Sources */,
 				2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */,
 				F1D347182640481A00E63483 /* HomeGridCellPriceView.swift in Sources */,
@@ -652,6 +668,7 @@
 				22A05BB2264864A700AEA69D /* DetailsNewsTableViewCell.swift in Sources */,
 				F1C6B405264EBB21001E8510 /* LoginViewModel.swift in Sources */,
 				22A05BB8264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift in Sources */,
+				F1C6B413264FDD46001E8510 /* SingupInterestingCell.swift in Sources */,
 				2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */,
 				F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */,
 				22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */,
@@ -661,6 +678,7 @@
 				F1F1D1552649690400FE8C15 /* HomeDetailRelativeCell.swift in Sources */,
 				F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
+				F1C6B40B264FC617001E8510 /* SignupNicknameViewController.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeGreetingHeaderView.swift in Sources */,
 				22EEBC622647FBD1009FF3FA /* CategoryCollectionViewCell.swift in Sources */,
 				F1562901262DC538004FB256 /* HomeGreetingHeaderView.swift in Sources */,
@@ -673,8 +691,10 @@
 				F1D34715264046E700E63483 /* PaddingLabel.swift in Sources */,
 				22EEBC6626481E84009FF3FA /* CompanyNewsTableViewCell.swift in Sources */,
 				22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */,
+				F1C6B411264FD6CD001E8510 /* SignupInterestingViewController.swift in Sources */,
 				2224BA972639694D00E620C4 /* FeedTableViewCell2.swift in Sources */,
 				2224BA862639368100E620C4 /* CustomSegmentedControl.swift in Sources */,
+				F1C6B40D264FCF51001E8510 /* SignupPasswordViewController.swift in Sources */,
 				F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */,
 				22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */,
 				F121DF23262308C500B09F21 /* NewsFeedViewController.swift in Sources */,

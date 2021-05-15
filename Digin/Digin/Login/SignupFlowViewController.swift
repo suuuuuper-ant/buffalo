@@ -20,8 +20,12 @@ class SignupFlowViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        pages.append(SignupNicknameViewController())
         pages.append(SignupEmailViewController())
-        pages.append(SignupEmailViewController())
+        pages.append(SignupPasswordViewController())
+        pages.append(SignupRepasswordViewController())
+        pages.append(SignupInterestingViewController())
+
         setViewControllers([pages[0]], direction: .forward, animated: false, completion: nil)
     }
 

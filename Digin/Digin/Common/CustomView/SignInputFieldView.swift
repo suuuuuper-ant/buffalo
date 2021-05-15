@@ -60,14 +60,28 @@ class SignInputFieldView: UIView, ViewType {
         return totalStackView
     }()
 
+    lazy var textFieldButton: UIButton = {
+        let input = UIButton()
+        input.setImage(viewModel.leftButtonImage, for: .normal)
+        input.imageView?.contentMode = .scaleAspectFill
+        input.isHidden = viewModel.leftButtonImage == nil ? true : false
+        return input
+    }()
+
     func setupUI() {
+        let textAreaStackView = UIStackView()
+        textAreaStackView.axis = .horizontal
+        textAreaStackView.spacing = 9
+        textAreaStackView.addArrangedSubview(textField)
+        textAreaStackView.addArrangedSubview(textFieldButton)
+        textFieldButton.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(totalStackView)
         totalStackView.translatesAutoresizingMaskIntoConstraints = false
         let stackView = UIStackView()
         stackView.spacing = 4
         stackView.axis = .vertical
-        stackView.addArrangedSubview(textField)
+        stackView.addArrangedSubview(textAreaStackView)
         stackView.addArrangedSubview(lineView)
 
         totalStackView.addArrangedSubview(stackView)
@@ -79,6 +93,8 @@ class SignInputFieldView: UIView, ViewType {
         totalStackView.fittingView(self)
 
         lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+
+        textFieldButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
     }
 
 }
