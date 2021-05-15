@@ -64,8 +64,9 @@ class SignupInterestingViewController: UIViewController, ViewType {
         let layout = UICollectionViewFlowLayout()
 
         layout.minimumInteritemSpacing = 17
-        let collectionViewWidth = 100
-        layout.itemSize = CGSize(width: collectionViewWidth, height: 142)
+        layout.minimumLineSpacing = 9
+        let collectionViewWidth = (view.bounds.width - 40 - 34)
+        layout.itemSize = CGSize(width: collectionViewWidth / 3, height: 142)
         return layout
     }()
 

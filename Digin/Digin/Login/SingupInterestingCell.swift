@@ -16,14 +16,14 @@ class SingupInterestingCell: UICollectionViewCell, ViewType {
 
     lazy var interstingImageView: UIImageView = {
         let image = UIImageView()
-        image.makeRounded(cornerRadius: 50)
+        image.makeRounded(cornerRadius: contentView.bounds.width / 2)
         image.backgroundColor = AppColor.homeBackground.color
         return image
     }()
 
     lazy var selectedImageView: UIImageView = {
         let image = UIImageView()
-        image.makeRounded(cornerRadius: 50)
+        image.makeRounded(cornerRadius: contentView.bounds.width / 2)
         image.backgroundColor = AppColor.mainColor.color.withAlphaComponent(0.9)
 
         image.addSubview(selectedHeartImageView)
