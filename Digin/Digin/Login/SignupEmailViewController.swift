@@ -144,13 +144,14 @@ class SignupEmailViewController: SignupBaseViewController {
 
     private func changeNextButton( _ activation: Bool) {
 
-        nextButton.backgroundColor = activation ? AppColor.mainColor.color : AppColor.homeBackground.color
+        nextButton.backgroundColor = activation ? AppColor.mainColor.color : AppColor.gray183.color
         nextButton.isEnabled =  activation ? true : false
 
     }
 
     @objc func moveToPage() {
         if let pageController = parent as? SignupFlowViewController {
+            pageController.temporaryUserInfo.email = emailField.textField.text
             pageController.pushNext()
         }
     }

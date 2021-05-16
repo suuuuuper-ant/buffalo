@@ -9,7 +9,13 @@ import UIKit
 
 class SignupPasswordViewController: SignupBaseViewController {
 
-    var viewModel = SingupPasswordViewModel()
+    lazy var viewModel: SingupPasswordViewModel = {
+        let viewModel = SingupPasswordViewModel()
+
+        viewModel.flowViewController = (parent as? SignupFlowViewController)
+
+        return viewModel
+    }()
 
     lazy var passwordField: SignInputFieldView = {
         let viewModel = SignInputFieldViewModel(
@@ -19,7 +25,7 @@ class SignupPasswordViewController: SignupBaseViewController {
             placeholder: "비밀번호")
         let password = SignInputFieldView(viewModel)
         password.descriptionLabel.text = "영문 + 숫자 6자리 입력해 주세요."
-        password.descriptionLabel.textColor = AppColor.homeBackground.color
+        password.descriptionLabel.textColor = AppColor.gray183.color
         return password
     }()
 
@@ -30,7 +36,6 @@ class SignupPasswordViewController: SignupBaseViewController {
         inputFieldView.addArrangedSubview(passwordField)
         passwordField.textField.isSecureTextEntry = true
 
-        nextButton.addTarget(self, action: #selector(moveToPage), for: .touchUpInside)
         changeNextButton(false)
 
         bindingUI()
@@ -50,6 +55,9 @@ class SignupPasswordViewController: SignupBaseViewController {
             self.changePasswordCharacterHidden(!passwordField.textField.isSecureTextEntry)
         }.store(in: &cancellables)
 
+        nextButton.tapPublisher.sink { [unowned self] _ in
+            self.moveToPage()
+        }.store(in: &cancellables)
     }
 
     func bindingViewModel() {
@@ -71,8 +79,9 @@ class SignupPasswordViewController: SignupBaseViewController {
 
     }
 
-    @objc func moveToPage() {
+    func moveToPage() {
         if let pageController = parent as? SignupFlowViewController {
+            pageController.temporaryUserInfo.password = passwordField.textField.text
                 pageController.pushNext()
             }
     }
@@ -86,17 +95,16 @@ class SignupPasswordViewController: SignupBaseViewController {
 
     private func changePasswordDescription(_ isValid: Bool) {
 
-        passwordField.descriptionLabel.textColor = isValid ? AppColor.homeBackground.color : AppColor.stockRed.color
+        passwordField.descriptionLabel.textColor = isValid ? AppColor.gray183.color : AppColor.stockRed.color
 
     }
 
-    
     private func changePasswordCharacterHidden(_ isHidden: Bool) {
         passwordField.textField.isSecureTextEntry = isHidden
-       
-        if  passwordField.textField.isSecureTextEntry  {
+
+        if  passwordField.textField.isSecureTextEntry {
             passwordField.textFieldButton.setImage(UIImage(named: "signup_password"), for: .normal)
-            
+
         } else {
             passwordField.textFieldButton.setImage(UIImage(named: "signup_password_active"), for: .normal)
         }

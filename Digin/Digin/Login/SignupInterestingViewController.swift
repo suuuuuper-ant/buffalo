@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class SignupInterestingViewController: UIViewController, ViewType {
+    var cancellables: Set<AnyCancellable> = []
     struct UI {
         static let selectNumber = 3
     }
@@ -118,6 +120,7 @@ class SignupInterestingViewController: UIViewController, ViewType {
         super.viewDidLoad()
         view.backgroundColor = .white
         guide = "가장 관심이 가는 기업을\n3개 선택해 주세요"
+        bindingUI()
     }
 
     func setupUI() {
@@ -127,6 +130,14 @@ class SignupInterestingViewController: UIViewController, ViewType {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
+    }
+
+    func bindingUI() {
+
+        diginStartButton.tapPublisher.sink { [unowned self] _ in
+            self.signupWithUserInfo()
+
+        }.store(in: &cancellables)
     }
 
     func setupConstraint() {
@@ -152,12 +163,30 @@ class SignupInterestingViewController: UIViewController, ViewType {
             if nextStep {
                 self?.diginStartButton.backgroundColor = AppColor.mainColor.color
                 self?.diginStartButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+                self?.diginStartButton.isEnabled = true
             } else {
                 self?.diginStartButton.setTitleColor(.white, for: .normal)
                 self?.diginStartButton.backgroundColor = AppColor.dividerColor.color
+                self?.diginStartButton.isEnabled = false
             }
         })
     }
+
+    func signupWithUserInfo() {
+
+        let interestings = selectedIndexPaths.map { indexPath in
+            return data[indexPath.row].interesting
+        }
+
+        if let pageViewController = parent as? SignupFlowViewController {
+
+            pageViewController.temporaryUserInfo.interestings = interestings
+            print(pageViewController.temporaryUserInfo)
+        }
+
+        // api콜
+    }
+
 }
 
 extension SignupInterestingViewController: UICollectionViewDataSource {

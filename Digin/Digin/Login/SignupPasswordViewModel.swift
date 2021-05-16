@@ -10,6 +10,7 @@ import Combine
 
 class SingupPasswordViewModel: ObservableObject {
 
+    var flowViewController: SignupFlowViewController?
     var cancellables: Set<AnyCancellable> = []
     //input
 

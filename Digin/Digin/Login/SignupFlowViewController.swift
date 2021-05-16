@@ -7,7 +7,17 @@
 
 import UIKit
 
+struct SignupUserInfo {
+
+    var nickname: String?
+    var email: String?
+    var password: String?
+    var interestings: [String] = []
+
+}
+
 class SignupFlowViewController: UIPageViewController {
+    var temporaryUserInfo = SignupUserInfo()
     private var currentIndex = 0
     var pages: [UIViewController] = [UIViewController]()
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey: Any]? = nil) {
