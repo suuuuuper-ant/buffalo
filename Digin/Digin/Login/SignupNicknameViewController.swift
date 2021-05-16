@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class SignupNicknameViewController: SignupBaseViewController {
+
+    var viewModel = SingupNicknameViewModel()
 
     lazy var nicknameField: SignInputFieldView = {
         let viewModel = SignInputFieldViewModel(
@@ -27,7 +30,48 @@ class SignupNicknameViewController: SignupBaseViewController {
         inputFieldView.addArrangedSubview(nicknameField)
 
         nextButton.addTarget(self, action: #selector(moveToPage), for: .touchUpInside)
-        // Do any additional setup after loading the view.
+        changeNextButton(false)
+
+        bindingUI()
+        bindingViewModel()
+    }
+
+    func bindingUI() {
+
+        nicknameField.textField.textPublisher.sink { [unowned self] text in
+            if let text = text {
+                self.viewModel.nickname.send(text)
+            }
+        }.store(in: &cancellables)
+
+        nicknameField.textFieldButton.tapPublisher.sink { [unowned self] _ in
+            self.nicknameField.textField.text = ""
+            self.nicknameField.descriptionLabel.text = ""
+            self.changeNextButton(false)
+        }.store(in: &cancellables)
+
+    }
+
+    func bindingViewModel() {
+
+        viewModel.nicknameValidation.sink { _ in
+        } receiveValue: { [unowned self] message in
+            self.nicknameField.descriptionLabel.text = message
+
+        }.store(in: &cancellables)
+
+        viewModel.nextButtonValidation.sink { _ in
+        } receiveValue: { [unowned self] nextEnable  in
+            self.changeNextButton(nextEnable)
+        }.store(in: &cancellables)
+
+    }
+
+    private func changeNextButton( _ activation: Bool) {
+
+        nextButton.backgroundColor = activation ? AppColor.mainColor.color : AppColor.homeBackground.color
+        nextButton.isEnabled =  activation ? true : false
+
     }
 
     @objc func moveToPage() {

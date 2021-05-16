@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class SignupBaseViewController: UIViewController, ViewType {
+    var cancellables: Set<AnyCancellable> = []
 
     lazy var inputFieldView: UIStackView  = {
         let input = UIStackView()
@@ -84,6 +86,8 @@ class SignupBaseViewController: UIViewController, ViewType {
 
 class SignupEmailViewController: SignupBaseViewController {
 
+    var viewModel = SingupEmailViewModel()
+
     lazy var emailField: SignInputFieldView = {
         let viewModel = SignInputFieldViewModel(
             font: UIFont.systemFont(ofSize: 20, weight: .bold),
@@ -102,13 +106,53 @@ class SignupEmailViewController: SignupBaseViewController {
         inputFieldView.addArrangedSubview(emailField)
 
         nextButton.addTarget(self, action: #selector(moveToPage), for: .touchUpInside)
-        // Do any additional setup after loading the view.
+        changeNextButton(false)
+        bindingUI()
+        bindingViewModel()
+    }
+
+    func bindingUI() {
+
+        emailField.textField.textPublisher.sink { [unowned self] text in
+            if let text = text {
+                self.viewModel.email.send(text)
+            }
+        }.store(in: &cancellables)
+
+        emailField.textFieldButton.tapPublisher.sink { [unowned self] _ in
+            self.emailField.textField.text = ""
+            self.emailField.descriptionLabel.text = ""
+            self.changeNextButton(false)
+        }.store(in: &cancellables)
+
+    }
+
+    func bindingViewModel() {
+
+        viewModel.emailValidation.sink { _ in
+        } receiveValue: { [unowned self] message in
+            self.emailField.descriptionLabel.text = message
+
+        }.store(in: &cancellables)
+
+        viewModel.nextButtonValidation.sink { _ in
+        } receiveValue: { [unowned self] nextEnable  in
+            self.changeNextButton(nextEnable)
+        }.store(in: &cancellables)
+
+    }
+
+    private func changeNextButton( _ activation: Bool) {
+
+        nextButton.backgroundColor = activation ? AppColor.mainColor.color : AppColor.homeBackground.color
+        nextButton.isEnabled =  activation ? true : false
+
     }
 
     @objc func moveToPage() {
         if let pageController = parent as? SignupFlowViewController {
-                pageController.pushNext()
-            }
+            pageController.pushNext()
+        }
     }
 
 }
