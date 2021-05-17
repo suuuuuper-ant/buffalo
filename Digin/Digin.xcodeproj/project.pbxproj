@@ -88,6 +88,8 @@
 		F1C6B41726515C96001E8510 /* SignupEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B41626515C95001E8510 /* SignupEmailViewModel.swift */; };
 		F1C6B419265160FC001E8510 /* SignupPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B418265160FC001E8510 /* SignupPasswordViewModel.swift */; };
 		F1C6B41B26516BD1001E8510 /* SignupRePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B41A26516BD1001E8510 /* SignupRePasswordViewModel.swift */; };
+		F1C6B41D2652997E001E8510 /* CombineNetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B41C2652997E001E8510 /* CombineNetworkModule.swift */; };
+		F1C6B41F2652BCEC001E8510 /* SignupInterestingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B41E2652BCEB001E8510 /* SignupInterestingViewModel.swift */; };
 		F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */; };
 		F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470E264045C800E63483 /* UITableView_extension.swift */; };
 		F1D34713264046A700E63483 /* HomeNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D34712264046A700E63483 /* HomeNewsCell.swift */; };
@@ -192,6 +194,8 @@
 		F1C6B41626515C95001E8510 /* SignupEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailViewModel.swift; sourceTree = "<group>"; };
 		F1C6B418265160FC001E8510 /* SignupPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordViewModel.swift; sourceTree = "<group>"; };
 		F1C6B41A26516BD1001E8510 /* SignupRePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRePasswordViewModel.swift; sourceTree = "<group>"; };
+		F1C6B41C2652997E001E8510 /* CombineNetworkModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineNetworkModule.swift; sourceTree = "<group>"; };
+		F1C6B41E2652BCEB001E8510 /* SignupInterestingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInterestingViewModel.swift; sourceTree = "<group>"; };
 		F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCompanyCell.swift; sourceTree = "<group>"; };
 		F1D3470E264045C800E63483 /* UITableView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView_extension.swift; sourceTree = "<group>"; };
 		F1D34712264046A700E63483 /* HomeNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsCell.swift; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				F121DEF0261B3CD100B09F21 /* NetworkModule.swift */,
+				F1C6B41C2652997E001E8510 /* CombineNetworkModule.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				F1C6B40C264FCF51001E8510 /* SignupPasswordViewController.swift */,
 				F1C6B40E264FD411001E8510 /* SignupRepasswordViewController.swift */,
 				F1C6B410264FD6CD001E8510 /* SignupInterestingViewController.swift */,
+				F1C6B41E2652BCEB001E8510 /* SignupInterestingViewModel.swift */,
 				F1C6B4142651376C001E8510 /* SingupNicknameViewModel.swift */,
 				F1C6B41626515C95001E8510 /* SignupEmailViewModel.swift */,
 				F1C6B418265160FC001E8510 /* SignupPasswordViewModel.swift */,
@@ -670,7 +676,9 @@
 				22A05BB5264864B900AEA69D /* DetailsCategoryTableViewCell.swift in Sources */,
 				2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */,
 				F1D347182640481A00E63483 /* HomeGridCellPriceView.swift in Sources */,
+				F1C6B41F2652BCEC001E8510 /* SignupInterestingViewModel.swift in Sources */,
 				229B6FAA2640276400D28B52 /* CategoryHeaderTableViewCell.swift in Sources */,
+				F1C6B41D2652997E001E8510 /* CombineNetworkModule.swift in Sources */,
 				22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */,
 				2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */,
 				22CCD8C6264D6353005B6368 /* LoadingTableViewCell.swift in Sources */,

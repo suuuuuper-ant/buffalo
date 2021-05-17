@@ -10,6 +10,13 @@ import Combine
 
 class SignupInterestingViewController: UIViewController, ViewType {
     var cancellables: Set<AnyCancellable> = []
+   lazy var viewModel: SignupInterestingViewModel = {
+        let viewModel = SignupInterestingViewModel()
+
+        viewModel.flowViewController = (parent as? SignupFlowViewController)
+
+        return viewModel
+    }()
     struct UI {
         static let selectNumber = 3
     }
@@ -25,16 +32,16 @@ class SignupInterestingViewController: UIViewController, ViewType {
     }
 
     var data: [Interesting] = [
-        Interesting(image: "login_top", interesting: "삼성전자"),
-        Interesting(image: "login_top", interesting: "삼성전자 두 줄인 경우"),
-        Interesting(image: "login_top", interesting: "여섯글자에요"),
-        Interesting(image: "login_top", interesting: "삼성전자"),
-        Interesting(image: "login_top", interesting: "삼성전자"),
-        Interesting(image: "login_top", interesting: "삼성전자"),
-        Interesting(image: "login_top", interesting: "삼성전자"),
-        Interesting(image: "login_top", interesting: "삼성전자"),
-        Interesting(image: "login_top", interesting: "삼성전자"),
-        Interesting(image: "login_top", interesting: "삼성전자")
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "095570"),
+        Interesting(image: "login_top", interesting: "삼성전자 두 줄인 경우", tiker: "282330"),
+        Interesting(image: "login_top", interesting: "여섯글자에요", tiker: "005830"),
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
+        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330")
 
     ]
 
@@ -136,6 +143,7 @@ class SignupInterestingViewController: UIViewController, ViewType {
 
         diginStartButton.tapPublisher.sink { [unowned self] _ in
             self.signupWithUserInfo()
+            self.viewModel.signup.send(Void())
 
         }.store(in: &cancellables)
     }
@@ -174,13 +182,13 @@ class SignupInterestingViewController: UIViewController, ViewType {
 
     func signupWithUserInfo() {
 
-        let interestings = selectedIndexPaths.map { indexPath in
-            return data[indexPath.row].interesting
+        let favorites = selectedIndexPaths.map { indexPath in
+            return data[indexPath.row].tiker
         }
 
         if let pageViewController = parent as? SignupFlowViewController {
 
-            pageViewController.temporaryUserInfo.interestings = interestings
+            pageViewController.temporaryUserInfo.favorites = favorites
             print(pageViewController.temporaryUserInfo)
         }
 

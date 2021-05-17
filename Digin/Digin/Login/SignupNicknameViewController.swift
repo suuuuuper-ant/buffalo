@@ -83,7 +83,7 @@ class SignupNicknameViewController: SignupBaseViewController {
 
     @objc func moveToPage() {
         if let pageController = parent as? SignupFlowViewController {
-            pageController.temporaryUserInfo.nickname = nicknameField.textField.text
+            pageController.temporaryUserInfo.name = nicknameField.textField.text
                 pageController.pushNext()
             }
     }

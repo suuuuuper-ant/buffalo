@@ -11,9 +11,12 @@ import Combine
 class SingupRePasswordViewModel: ObservableObject {
     var flowViewController: SignupFlowViewController?
     var cancellables: Set<AnyCancellable> = []
+    let networkRouter = SignupService()
     //input
 
     @Published var rePassword = CurrentValueSubject<String, Never>("")
+
+    @Published var signup = PassthroughSubject<Void, Never>()
 
     //output
     @Published var passwordValidation = PassthroughSubject<String, Error>()
@@ -29,6 +32,27 @@ class SingupRePasswordViewModel: ObservableObject {
             self.nextButtonValidation.send(message.1)
 
         }.store(in: &cancellables)
+
+        signup
+            .setFailureType(to: APIError.self)
+            .compactMap({ [unowned self] _ in
+                return self.flowViewController?.temporaryUserInfo
+            })
+            .tryMap({ userInfo in
+                try userInfo.asDictionary()
+            }).mapError({ error in
+               return  APIError.apiError(reason: error.localizedDescription)
+            })
+            .flatMap { useInfo in
+            return self.networkRouter.signupDigin(param: useInfo)
+        }
+            .sink { _ in
+
+        } receiveValue: { _ in
+            print("Signup!")
+
+        }.store(in: &cancellables)
+
     }
 
 //    func validationNextButton( rePassword: String, message: String) -> Bool {
@@ -54,4 +78,24 @@ class SingupRePasswordViewModel: ObservableObject {
 
         return ("비밀번호를 다시 한 번 입력해 주세요.", false)
     }
+
+}
+
+struct UserInfo: Decodable {
+    var email: String
+    var password: String
+    var name: String
+}
+
+struct SignupService: APIServie {
+
+    func signupDigin(param: [String: Any]) -> AnyPublisher<UserInfo, APIError> {
+
+        let path = "/auth/sign-up"
+
+      return  NetworkCombineRouter.shared.post(url: SignupService.url(path), params: param, type: UserInfo.self)
+
+//        NetworkCombineRouter.shared
+    }
+
 }

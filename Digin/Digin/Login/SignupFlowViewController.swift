@@ -7,12 +7,17 @@
 
 import UIKit
 
-struct SignupUserInfo {
+struct SignupUserInfo: Codable {
 
-    var nickname: String?
+    var name: String?
     var email: String?
     var password: String?
-    var interestings: [String] = []
+    var favorites: [String] = []
+
+    func getParam() throws -> [String: Any]? {
+
+        return  try self.asDictionary()
+    }
 
 }
 
@@ -50,7 +55,7 @@ class SignupFlowViewController: UIPageViewController {
 extension SignupFlowViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 
-        guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
+        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
 
         let previousIndex = viewControllerIndex - 1
 
@@ -62,7 +67,7 @@ extension SignupFlowViewController: UIPageViewControllerDataSource {
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
+        guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
 
         let nextIndex = viewControllerIndex + 1
 
@@ -87,10 +92,20 @@ extension SignupFlowViewController: UIPageViewControllerDelegate {
         guard let firstVC = pageViewController.viewControllers?.first else {
             return 0
         }
-        guard let firstVCIndex = pages.index(of: firstVC) else {
+        guard let firstVCIndex = pages.firstIndex(of: firstVC) else {
             return 0
         }
 
         return firstVCIndex
     }
+}
+
+extension Encodable {
+  func asDictionary() throws -> [String: Any] {
+    let data = try JSONEncoder().encode(self)
+    guard let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+        throw APIError.apiError(reason: "ParamError")
+    }
+    return dictionary
+  }
 }

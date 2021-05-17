@@ -10,6 +10,7 @@ import UIKit
 struct Interesting {
     var image = ""
     var interesting = ""
+    var tiker = ""
 }
 
 class SingupInterestingCell: UICollectionViewCell, ViewType {
