@@ -125,6 +125,13 @@ class SignupEmailViewController: SignupBaseViewController {
             self.changeNextButton(false)
         }.store(in: &cancellables)
 
+        emailField.textField.didBeginEditingPublisher.sink { [unowned self] _ in
+            self.emailField.lineView.backgroundColor = AppColor.mainColor.color
+        }.store(in: &cancellables)
+
+        emailField.textField.didEndEditingPublisher.sink { [unowned self] _ in
+            self.emailField.lineView.backgroundColor = AppColor.gray160.color
+        }.store(in: &cancellables)
     }
 
     func bindingViewModel() {

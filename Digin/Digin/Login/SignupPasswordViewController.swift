@@ -58,6 +58,14 @@ class SignupPasswordViewController: SignupBaseViewController {
         nextButton.tapPublisher.sink { [unowned self] _ in
             self.moveToPage()
         }.store(in: &cancellables)
+
+        passwordField.textField.didBeginEditingPublisher.sink { [unowned self] _ in
+            self.passwordField.lineView.backgroundColor = AppColor.mainColor.color
+        }.store(in: &cancellables)
+
+        passwordField.textField.didEndEditingPublisher.sink { [unowned self] _ in
+            self.passwordField.lineView.backgroundColor = AppColor.gray160.color
+        }.store(in: &cancellables)
     }
 
     func bindingViewModel() {

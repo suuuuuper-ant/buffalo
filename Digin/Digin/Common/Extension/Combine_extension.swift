@@ -151,6 +151,14 @@ public extension UITextField {
         Publishers.ControlProperty(control: self, events: .defaultValueEvents, keyPath: \.text)
                   .eraseToAnyPublisher()
     }
+
+    var didBeginEditingPublisher: AnyPublisher<Void, Never> {
+        Publishers.ControlEvent.init(control: self, events: .editingDidBegin).eraseToAnyPublisher()
+    }
+
+    var didEndEditingPublisher: AnyPublisher<Void, Never> {
+        Publishers.ControlEvent.init(control: self, events: .editingDidEnd).eraseToAnyPublisher()
+    }
 }
 
 public extension UIButton {

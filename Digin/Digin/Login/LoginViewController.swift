@@ -97,24 +97,33 @@ class LoginViewController: UIViewController, ViewType {
     }
 
     func bindingViewModel() {
-//        emailField.textField.publisher(for: .touc)
-//        let button = UIButton()
-//        button.publisher(for: .touchUpInside).sink { button in
-//            print("Button is pressed!")
-//        }
         // input
         emailField.textField.textPublisher.sink { [unowned self] text in
             if let text = text {
                 self.viewModel.email.send(text)
             }
-
         }.store(in: &cancellables)
 
         passwordField.textField.textPublisher.sink { [unowned self] text in
             if let text = text {
                 self.viewModel.password.send(text)
             }
+        }.store(in: &cancellables)
 
+        emailField.textField.didBeginEditingPublisher.sink { [unowned self] _ in
+            self.emailField.lineView.backgroundColor = AppColor.mainColor.color
+        }.store(in: &cancellables)
+
+        emailField.textField.didEndEditingPublisher.sink { [unowned self] _ in
+            self.emailField.lineView.backgroundColor = AppColor.gray160.color
+        }.store(in: &cancellables)
+
+        passwordField.textField.didBeginEditingPublisher.sink { [unowned self] _ in
+            self.passwordField.lineView.backgroundColor = AppColor.mainColor.color
+        }.store(in: &cancellables)
+
+        passwordField.textField.didEndEditingPublisher.sink { [unowned self] _ in
+            self.passwordField.lineView.backgroundColor = AppColor.gray160.color
         }.store(in: &cancellables)
 
         //output

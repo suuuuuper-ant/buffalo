@@ -50,6 +50,13 @@ class SignupNicknameViewController: SignupBaseViewController {
             self.changeNextButton(false)
         }.store(in: &cancellables)
 
+        nicknameField.textField.didBeginEditingPublisher.sink { [unowned self] _ in
+            self.nicknameField.lineView.backgroundColor = AppColor.mainColor.color
+        }.store(in: &cancellables)
+
+        nicknameField.textField.didEndEditingPublisher.sink { [unowned self] _ in
+            self.nicknameField.lineView.backgroundColor = AppColor.gray160.color
+        }.store(in: &cancellables)
     }
 
     func bindingViewModel() {
