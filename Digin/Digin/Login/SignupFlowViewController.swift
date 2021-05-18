@@ -27,6 +27,7 @@ class SignupFlowViewController: UIPageViewController {
     var pages: [UIViewController] = [UIViewController]()
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey: Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options: options)
+
     }
 
     required init?(coder: NSCoder) {
@@ -41,6 +42,8 @@ class SignupFlowViewController: UIPageViewController {
         pages.append(SignupRepasswordViewController())
         pages.append(SignupInterestingViewController())
 
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         setViewControllers([pages[0]], direction: .forward, animated: false, completion: nil)
     }
 

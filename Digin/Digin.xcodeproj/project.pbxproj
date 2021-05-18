@@ -91,6 +91,8 @@
 		F1C6B41D2652997E001E8510 /* CombineNetworkModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B41C2652997E001E8510 /* CombineNetworkModule.swift */; };
 		F1C6B41F2652BCEC001E8510 /* SignupInterestingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B41E2652BCEB001E8510 /* SignupInterestingViewModel.swift */; };
 		F1C6B4212652CC81001E8510 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B4202652CC81001E8510 /* TermsAndConditionsViewController.swift */; };
+		F1C6B4232654435A001E8510 /* SearchPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */; };
+		F1C6B425265444C3001E8510 /* SearchPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */; };
 		F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */; };
 		F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470E264045C800E63483 /* UITableView_extension.swift */; };
 		F1D34713264046A700E63483 /* HomeNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D34712264046A700E63483 /* HomeNewsCell.swift */; };
@@ -198,6 +200,8 @@
 		F1C6B41C2652997E001E8510 /* CombineNetworkModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineNetworkModule.swift; sourceTree = "<group>"; };
 		F1C6B41E2652BCEB001E8510 /* SignupInterestingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInterestingViewModel.swift; sourceTree = "<group>"; };
 		F1C6B4202652CC81001E8510 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
+		F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewController.swift; sourceTree = "<group>"; };
+		F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewModel.swift; sourceTree = "<group>"; };
 		F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCompanyCell.swift; sourceTree = "<group>"; };
 		F1D3470E264045C800E63483 /* UITableView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView_extension.swift; sourceTree = "<group>"; };
 		F1D34712264046A700E63483 /* HomeNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewsCell.swift; sourceTree = "<group>"; };
@@ -414,6 +418,8 @@
 				F1C6B412264FDD46001E8510 /* SingupInterestingCell.swift */,
 				F121DF162623075B00B09F21 /* SignUpViewController.swift */,
 				F1C6B4202652CC81001E8510 /* TermsAndConditionsViewController.swift */,
+				F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */,
+				F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -644,6 +650,7 @@
 				F1C6B409264EC6D7001E8510 /* SignupEmailViewController.swift in Sources */,
 				22CCD8C2264D253C005B6368 /* FavoriteCompany.swift in Sources */,
 				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,
+				F1C6B4232654435A001E8510 /* SearchPasswordViewController.swift in Sources */,
 				F1C6B4152651376D001E8510 /* SingupNicknameViewModel.swift in Sources */,
 				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
 				F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */,
@@ -718,6 +725,7 @@
 				229B6FB9264027DA00D28B52 /* SearchTableViewCell.swift in Sources */,
 				F1D34715264046E700E63483 /* PaddingLabel.swift in Sources */,
 				22EEBC6626481E84009FF3FA /* CompanyNewsTableViewCell.swift in Sources */,
+				F1C6B425265444C3001E8510 /* SearchPasswordViewModel.swift in Sources */,
 				22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */,
 				F1C6B411264FD6CD001E8510 /* SignupInterestingViewController.swift in Sources */,
 				2224BA972639694D00E620C4 /* FeedTableViewCell2.swift in Sources */,

@@ -73,6 +73,15 @@ class LoginViewController: UIViewController, ViewType {
         return scroll
     }()
 
+    let passwordSearchButton: UIButton = {
+        let passwordSearch = UIButton(type: .custom)
+        passwordSearch.translatesAutoresizingMaskIntoConstraints = false
+        passwordSearch.setTitleColor(AppColor.gray183.color, for: .normal)
+        passwordSearch.setTitle("비밀번호 찾기", for: .normal)
+        passwordSearch.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        return passwordSearch
+    }()
+
     lazy var contentView: UIView = {
 
         return UIView()
@@ -96,6 +105,11 @@ class LoginViewController: UIViewController, ViewType {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
     func bindingViewModel() {
         // input
         emailField.textField.textPublisher.sink { [unowned self] text in
@@ -126,6 +140,10 @@ class LoginViewController: UIViewController, ViewType {
             self.passwordField.lineView.backgroundColor = AppColor.gray160.color
         }.store(in: &cancellables)
 
+        passwordSearchButton.tapPublisher.sink { [unowned self] in
+            self.goToSearchPassword()
+        }.store(in: &cancellables)
+
         //output
         viewModel.emailValidation.sink { _ in
 
@@ -134,7 +152,6 @@ class LoginViewController: UIViewController, ViewType {
         }.store(in: &cancellables)
 
         viewModel.passwordValidation.sink { _ in
-
         } receiveValue: {  [unowned self] message in
             self.passwordField.descriptionLabel.text = message
         }.store(in: &cancellables)
@@ -146,7 +163,7 @@ class LoginViewController: UIViewController, ViewType {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        [greetingLabel, emailField, passwordField, loginButton, signUpButton, topImageView].forEach {
+        [greetingLabel, emailField, passwordField, loginButton, signUpButton, topImageView, passwordSearchButton].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -193,6 +210,8 @@ class LoginViewController: UIViewController, ViewType {
         signUpButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 25).isActive = true
         signUpButton.addTarget(self, action: #selector(goToSignUp), for: .touchUpInside)
 
+        passwordSearchButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        passwordSearchButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor).isActive = true
     }
 
     @objc func signIn() {
@@ -228,7 +247,14 @@ class LoginViewController: UIViewController, ViewType {
     func goToSignupFlow() {
         let flow = SignupFlowViewController()
         flow.modalPresentationStyle = .fullScreen
-        self.present(flow, animated: true)
+        self.navigationController?.pushViewController(flow, animated: true)
+
+    }
+
+    func goToSearchPassword() {
+        let flow = SearchPasswordViewController()
+        flow.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(flow, animated: true)
 
     }
 
