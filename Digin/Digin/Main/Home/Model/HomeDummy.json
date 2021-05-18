@@ -2,6 +2,11 @@
     
     "data": {
         
+        sectiontype = "header"
+        align_type = "banner"
+        content_type = "update_company"
+        
+        
         "sections": [
             
             {

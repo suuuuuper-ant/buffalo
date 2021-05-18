@@ -26,6 +26,7 @@ internal enum AppColor {
   internal static let gray160 = ColorAsset(name: "gray_160")
   internal static let gray183 = ColorAsset(name: "gray_183")
   internal static let homeBackground = ColorAsset(name: "home_background")
+  internal static let lightgray225 = ColorAsset(name: "lightgray_225")
   internal static let mainColor = ColorAsset(name: "main_color")
   internal static let pullIndicator = ColorAsset(name: "pull_indicator")
   internal static let slidebarStartColor = ColorAsset(name: "slidebar_start_color")

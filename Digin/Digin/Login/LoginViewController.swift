@@ -225,11 +225,17 @@ class LoginViewController: UIViewController, ViewType {
         }
     }
 
+    func goToSignupFlow() {
+        let flow = SignupFlowViewController()
+        flow.modalPresentationStyle = .fullScreen
+        self.present(flow, animated: true)
+
+    }
+
     @objc func goToSignUp() {
-//        let signUp = SignupFlowViewController()
 
         let signUp = TermsAndConditionsViewController()
-
+        signUp.parentVC = self
         signUp.modalPresentationStyle = .overCurrentContext
         self.present(signUp, animated: false)
     }
