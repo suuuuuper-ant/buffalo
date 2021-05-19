@@ -137,7 +137,7 @@ extension NewsFeedViewController: UICollectionViewDelegate, UICollectionViewData
         section1Contents.removeAll()
         section2Contents.removeAll()
         contents.removeAll()
-        
+
         currentPage = 0
         hasNextPage = true
     }
