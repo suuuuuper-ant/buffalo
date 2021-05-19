@@ -173,7 +173,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
                 setSkeleton(sender: cell.titleLabel)
                 setSkeleton(sender: cell.contentsLabel)
             } else {
-                cell.dateLabel.text = section0Contents[indexPath.row].createdAt
+                cell.dateLabel.text = section0Contents[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
                 cell.titleLabel.text = section0Contents[indexPath.row].title
                 cell.contentsLabel.text = section0Contents[indexPath.row].description
             }
@@ -214,7 +214,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
                 setSkeleton(sender: cell.dateLabel)
                 setSkeleton(sender: cell.titleLabel)
             } else {
-                cell.dateLabel.text = contents[indexPath.row].createdAt
+                cell.dateLabel.text = contents[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
                 cell.titleLabel.text = contents[indexPath.row].title
             }
 
@@ -283,7 +283,7 @@ extension NewsFeedViewController {
     func getAllNews() {
         NewsfeedService.getNewsData(pageNumber: currentPage) { (result) in
 
-            print(result.pageable.pageNumber)
+            //print(result.pageable.pageNumber)
             if result.first { //첫 페이지
                 self.allNewsData = result
 
@@ -330,7 +330,7 @@ extension NewsFeedViewController {
     func getCompanyNews() {
         NewsfeedService.getCompanyNews(stockCode: companyList[selectedIndex].stockCode, pageNumber: currentPage) { (result) in
 
-            print(result.pageable.pageNumber)
+            //print(result.pageable.pageNumber)
 
             if result.first { //첫 페이지
                 self.allNewsData = result

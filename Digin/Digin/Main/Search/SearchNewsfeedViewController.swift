@@ -13,6 +13,8 @@ class SearchNewsfeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var type: Int = 0 //0: 기업, 1: 카테고리
+    var header: String = ""
+    var newsData = [SearchNews]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,7 @@ class SearchNewsfeedViewController: UIViewController {
         let nibName = UINib(nibName: SearchNewsfeedTableViewCell.reuseIdentifier, bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: SearchNewsfeedTableViewCell.reuseIdentifier)
 
+        titleLabel.text = header
     }
 
 }
@@ -35,7 +38,7 @@ class SearchNewsfeedViewController: UIViewController {
 extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return newsData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,15 +46,15 @@ extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
 
-        cell.titleLabel.text = "[단독] 이찌안 귀엽다고 소리 지른 20대 여성 두명 붙잡혀..."
-        cell.dateLabel.text = "연합뉴스 | 04. 17. 19:14"
+        cell.titleLabel.text = newsData[indexPath.row].title
+        cell.dateLabel.text = newsData[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let webVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
-        webVC.newsURL = "" //TODO : url 데이터 전달
+        webVC.newsURL = newsData[indexPath.row].link
         self.present(webVC, animated: true, completion: nil)
     }
 
