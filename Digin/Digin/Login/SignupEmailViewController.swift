@@ -47,6 +47,21 @@ class SignupBaseViewController: UIViewController, ViewType {
         return next
     }()
 
+    lazy var previousButton: UIButton = {
+
+        let previous = UIButton()
+        previous.setImage( UIImage(named: "icon_navigation_back"), for: .normal)
+
+        return previous
+    }()
+
+    lazy var cancelButton: UIButton = {
+
+        let cancel = UIButton()
+        cancel.setImage( UIImage(named: "icon_cancel"), for: .normal)
+        return cancel
+    }()
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setupUI()
@@ -59,7 +74,7 @@ class SignupBaseViewController: UIViewController, ViewType {
 
     func setupUI() {
         view.backgroundColor = .white
-        [guideLabel, inputFieldView, nextButton].forEach {
+        [guideLabel, inputFieldView, nextButton, previousButton, cancelButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
 
@@ -67,6 +82,15 @@ class SignupBaseViewController: UIViewController, ViewType {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let pageController = parent as? SignupFlowViewController {
+            if   pageController.getCurrentIndex() == 0 {
+                previousButton.isHidden = true
+            }
+        }
+    }
     func setupConstraint() {
         guideLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70).isActive = true
         guideLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
@@ -79,6 +103,16 @@ class SignupBaseViewController: UIViewController, ViewType {
         nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         nextButton.topAnchor.constraint(equalTo: inputFieldView.bottomAnchor, constant: 61).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
+        previousButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        previousButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13).isActive = true
+        previousButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        previousButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
+
+        cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -14).isActive = true
+        cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13).isActive = true
+        cancelButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        cancelButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
 
     }
 
@@ -132,6 +166,14 @@ class SignupEmailViewController: SignupBaseViewController {
         emailField.textField.didEndEditingPublisher.sink { [unowned self] _ in
             self.emailField.lineView.backgroundColor = AppColor.gray160.color
         }.store(in: &cancellables)
+
+        cancelButton.tapPublisher.sink { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
+        }.store(in: &cancellables)
+
+        previousButton.tapPublisher.sink { [unowned self] _ in
+            self.moveToPrevious()
+        }.store(in: &cancellables)
     }
 
     func bindingViewModel() {
@@ -160,6 +202,12 @@ class SignupEmailViewController: SignupBaseViewController {
         if let pageController = parent as? SignupFlowViewController {
             pageController.temporaryUserInfo.email = emailField.textField.text
             pageController.pushNext()
+        }
+    }
+
+    @objc func moveToPrevious() {
+        if let pageController = parent as? SignupFlowViewController {
+            pageController.pushPrevious()
         }
     }
 

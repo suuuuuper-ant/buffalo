@@ -110,7 +110,7 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
         }
 
         cell.collectionView.reloadData()
-        cell.actionClosure = { [weak self] index in
+        cell.actionClosure = { [weak self] _ in
             let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier)
             //TODO: 카테고리 index에 맞는 JSON 데이터 전달
             self?.present(detailsVC, animated: true, completion: nil)

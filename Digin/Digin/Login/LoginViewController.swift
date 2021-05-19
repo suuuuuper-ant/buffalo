@@ -247,7 +247,7 @@ class LoginViewController: UIViewController, ViewType {
     func goToSignupFlow() {
         let flow = SignupFlowViewController()
         flow.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(flow, animated: true)
+        self.present(flow, animated: true, completion: nil)
 
     }
 

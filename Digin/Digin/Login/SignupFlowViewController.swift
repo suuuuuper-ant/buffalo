@@ -24,7 +24,14 @@ struct SignupUserInfo: Codable {
 class SignupFlowViewController: UIPageViewController {
     var temporaryUserInfo = SignupUserInfo()
     private var currentIndex = 0
+
     var pages: [UIViewController] = [UIViewController]()
+
+//    var currentIndex: Int {
+//        guard let vc = viewControllers?.first else { return 0 }
+//        return pages.firstIndex(of: vc) ?? 0
+//    }
+
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey: Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options: options)
 
@@ -52,6 +59,17 @@ class SignupFlowViewController: UIPageViewController {
             self.setViewControllers([self.pages[self.currentIndex + 1]], direction: .forward, animated: true, completion: nil)
             currentIndex += 1
         }
+    }
+
+    func pushPrevious() {
+        if currentIndex - 1 >= 0 {
+            self.setViewControllers([self.pages[self.currentIndex - 1]], direction: .reverse, animated: true, completion: nil)
+            currentIndex -= 1
+        }
+    }
+
+    func getCurrentIndex() -> Int {
+        return currentIndex
     }
 }
 
@@ -83,8 +101,6 @@ extension SignupFlowViewController: UIPageViewControllerDataSource {
 }
 
 extension SignupFlowViewController: UIPageViewControllerDelegate {
-
-    // if you do NOT want the built-in PageControl (the "dots"), comment-out these funcs
 
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count

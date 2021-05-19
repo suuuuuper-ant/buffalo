@@ -146,6 +146,7 @@ class SignupInterestingViewController: UIViewController, ViewType {
             self.viewModel.signup.send(Void())
 
         }.store(in: &cancellables)
+
     }
 
     func setupConstraint() {
