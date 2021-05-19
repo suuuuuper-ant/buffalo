@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SearchViewController: UIViewController {
 
@@ -23,9 +24,15 @@ class SearchViewController: UIViewController {
     //networking data
     var searchData = SearchResult()
 
+    //local data
+    let request = NSFetchRequest<NSManagedObject>(entityName: "RecentCompany")
+    var recentCompany: [NSManagedObject] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // MARK: CoreData - Fetch
+        recentCompany =  PersistenceManager.shared.fetch(request: request)
         setup()
     }
 
@@ -44,6 +51,9 @@ class SearchViewController: UIViewController {
 
     //검색 활성화
     @IBAction func startSearch(_ sender: UITextField) {
+        // MARK: CoreData - Fetch
+        recentCompany =  PersistenceManager.shared.fetch(request: request)
+
         isSearch = 1
         tableView.reloadData()
 
@@ -62,6 +72,11 @@ class SearchViewController: UIViewController {
     //검색
     @IBAction func searchAction(_ sender: UIButton) {
         if isTextEmpty() { return } //공백 체크
+
+        // MARK: CoreData - Insert
+        if let text = searchTextField.text {
+            PersistenceManager.shared.insertCompany(name: text)
+        }
 
         isSearch = 2
         searchTextField.resignFirstResponder()
@@ -141,8 +156,19 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             cell.deleteClosure = { [weak self] in
-                //TODO: 검색어 전체 삭제 (내부 DB 사용)
-                print("all delete")
+
+                if let req = self?.request {
+                    let cnt = PersistenceManager.shared.count(request: req) ?? 0
+
+                    if cnt > 0 {
+                        // MARK: CoreData - Delete All
+                        PersistenceManager.shared.deleteAll(request: req)
+                        // MARK: CoreData - Fetch
+                        self?.recentCompany =  PersistenceManager.shared.fetch(request: req)
+                    }
+                }
+
+                self?.tableView.reloadData()
             }
 
             return cell
@@ -217,7 +243,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         switch isSearch {
-        case 1: return 3 //검색 리스트
+        case 1: return recentCompany.count //검색 리스트
 
         case 2: //검색 결과
             if !hasSearchResult { return 1 } //검색 결과 없음
@@ -244,13 +270,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
-            cell.titleLabel.text = "카카오"
+            let company: NSManagedObject = recentCompany[indexPath.row]
+            cell.titleLabel.text = company.value(forKey: "name") as? String
             cell.layer.borderColor = AppColor.darkgray62.color.cgColor
 
             cell.deleteClosure = { [weak self] in
-                //TODO: 검색어 삭제 (내부 DB 사용)
-                //indexPath.row -> delete
-                print("delete")
+
+                if let req = self?.request {
+                    let cnt = PersistenceManager.shared.count(request: req) ?? 0
+
+                    guard let value = self?.recentCompany[indexPath.row] else { return }
+                    if cnt > 0 {
+                        // MARK: CoreData - Delete
+                        PersistenceManager.shared.delete(object: value)
+                        // MARK: CoreData - Fetch
+                        self?.recentCompany =  PersistenceManager.shared.fetch(request: req)
+                    }
+                }
+                self?.tableView.reloadData()
             }
 
             return cell

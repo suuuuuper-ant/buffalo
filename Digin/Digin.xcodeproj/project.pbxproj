@@ -25,6 +25,8 @@
 		222BC6CD2654FF3D008C1CF2 /* NoneResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BC6CB2654FF3D008C1CF2 /* NoneResultTableViewCell.swift */; };
 		222BC6CE2654FF3D008C1CF2 /* NoneResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 222BC6CC2654FF3D008C1CF2 /* NoneResultTableViewCell.xib */; };
 		222BC6D026550AE0008C1CF2 /* String_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BC6CF26550AE0008C1CF2 /* String_extension.swift */; };
+		222BC6D32655169F008C1CF2 /* CompanyModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 222BC6D12655169F008C1CF2 /* CompanyModel.xcdatamodeld */; };
+		222BC6FD26552112008C1CF2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BC6FC26552112008C1CF2 /* PersistenceManager.swift */; };
 		22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22618933262F07E900A9B77B /* NewsFeed.storyboard */; };
 		22618938262F09EA00A9B77B /* FeedTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618937262F09EA00A9B77B /* FeedTableViewCell1.swift */; };
 		2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */; };
@@ -140,6 +142,8 @@
 		222BC6CB2654FF3D008C1CF2 /* NoneResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoneResultTableViewCell.swift; sourceTree = "<group>"; };
 		222BC6CC2654FF3D008C1CF2 /* NoneResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoneResultTableViewCell.xib; sourceTree = "<group>"; };
 		222BC6CF26550AE0008C1CF2 /* String_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_extension.swift; sourceTree = "<group>"; };
+		222BC6D22655169F008C1CF2 /* CompanyModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CompanyModel.xcdatamodel; sourceTree = "<group>"; };
+		222BC6FC26552112008C1CF2 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		22618933262F07E900A9B77B /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
 		22618937262F09EA00A9B77B /* FeedTableViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell1.swift; sourceTree = "<group>"; };
 		2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -269,6 +273,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		222BC6D4265516AD008C1CF2 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				222BC6D12655169F008C1CF2 /* CompanyModel.xcdatamodeld */,
+				222BC6FC26552112008C1CF2 /* PersistenceManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		22CCD8B5264BE1C9005B6368 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				222BC6C92654E8A3008C1CF2 /* SearchService.swift */,
+				222BC6D4265516AD008C1CF2 /* CoreData */,
 				222BC6C62654E5F9008C1CF2 /* Model */,
 				229B6FA5264017B900D28B52 /* Search.storyboard */,
 				F121DF1F262308AC00B09F21 /* SearchViewController.swift */,
@@ -688,6 +702,7 @@
 				F1C6B4232654435A001E8510 /* SearchPasswordViewController.swift in Sources */,
 				F1C6B4152651376D001E8510 /* SingupNicknameViewModel.swift in Sources */,
 				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
+				222BC6FD26552112008C1CF2 /* PersistenceManager.swift in Sources */,
 				F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */,
 				22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */,
 				F1C6B401264EA277001E8510 /* Combine_extension.swift in Sources */,
@@ -702,6 +717,7 @@
 				F121DF1A2623083400B09F21 /* MainTabBarController.swift in Sources */,
 				F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
+				222BC6D32655169F008C1CF2 /* CompanyModel.xcdatamodeld in Sources */,
 				F121DF172623075B00B09F21 /* SignUpViewController.swift in Sources */,
 				F1F1D1332641944F00FE8C15 /* HomeDetailLineChartCell.swift in Sources */,
 				2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */,
@@ -975,6 +991,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		222BC6D12655169F008C1CF2 /* CompanyModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				222BC6D22655169F008C1CF2 /* CompanyModel.xcdatamodel */,
+			);
+			currentVersion = 222BC6D22655169F008C1CF2 /* CompanyModel.xcdatamodel */;
+			path = CompanyModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F173474D261855C5009EC5D6 /* Project object */;
 }
