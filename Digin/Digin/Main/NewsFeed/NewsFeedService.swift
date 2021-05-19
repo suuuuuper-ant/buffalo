@@ -16,7 +16,6 @@ struct NewsfeedService: APIServie {
         guard let stringResult = UserDefaults.standard.string(forKey: "userToken")  else { return }
         let jsonResult = convertToDictionary(text: stringResult)
         guard let token = jsonResult?["result"] as? String else { return }
-        print(token)
 
         let headers: [HTTPHeader] = [(value: token, field: "X-AUTH-TOKEN")]
 
@@ -42,7 +41,6 @@ struct NewsfeedService: APIServie {
         guard let stringResult = UserDefaults.standard.string(forKey: "userToken")  else { return }
         let jsonResult = convertToDictionary(text: stringResult)
         guard let token = jsonResult?["result"] as? String else { return }
-        print(token)
 
         let headers: [HTTPHeader] = [(value: token, field: "X-AUTH-TOKEN")]
 
@@ -68,7 +66,6 @@ struct NewsfeedService: APIServie {
         guard let stringResult = UserDefaults.standard.string(forKey: "userToken")  else { return }
         let jsonResult = convertToDictionary(text: stringResult)
         guard let token = jsonResult?["result"] as? String else { return }
-        print(token)
 
         let headers: [HTTPHeader] = [(value: token, field: "X-AUTH-TOKEN")]
 
@@ -85,17 +82,5 @@ struct NewsfeedService: APIServie {
 
             }
         }
-    }
-
-    // MARK: - String -> Dictionary(JSON)
-    static func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
     }
 }
