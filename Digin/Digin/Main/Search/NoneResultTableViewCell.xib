@@ -39,6 +39,7 @@
                     <constraint firstItem="Gkb-G7-oGJ" firstAttribute="top" secondItem="Rh2-df-nJg" secondAttribute="bottom" constant="20" id="avg-8l-qf4"/>
                     <constraint firstAttribute="bottom" secondItem="Gkb-G7-oGJ" secondAttribute="bottom" id="fv2-TE-Btl"/>
                     <constraint firstItem="Rh2-df-nJg" firstAttribute="centerX" secondItem="Gkb-G7-oGJ" secondAttribute="centerX" id="n1B-Zy-m6g"/>
+                    <constraint firstItem="Rh2-df-nJg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="103.5" id="nhF-ip-Tw2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
