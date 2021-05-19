@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="83" width="414" height="779"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryHeaderTableViewCell" id="jbv-Fn-Imx" customClass="CategoryHeaderTableViewCell" customModule="Digin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CategoryHeaderTableViewCell" id="jbv-Fn-Imx" customClass="CategoryHeaderTableViewCell" customModule="Digin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jbv-Fn-Imx" id="jeX-dX-X9H">
@@ -82,7 +82,7 @@
                                             <outlet property="titleLabel" destination="AEE-c7-d5L" id="oAI-xf-Dhq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryTableViewCell" rowHeight="156" id="nSw-W5-I8J" customClass="CategoryTableViewCell" customModule="Digin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CategoryTableViewCell" rowHeight="156" id="nSw-W5-I8J" customClass="CategoryTableViewCell" customModule="Digin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100.5" width="414" height="156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nSw-W5-I8J" id="Bkn-da-BB4">
@@ -153,7 +153,7 @@
                                             <outlet property="collectionView" destination="oaI-Fk-cZV" id="41w-mg-mUe"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CompanyTableViewCell" id="RWF-q5-X1H" customClass="CompanyTableViewCell" customModule="Digin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CompanyTableViewCell" id="RWF-q5-X1H" customClass="CompanyTableViewCell" customModule="Digin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="256.5" width="414" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RWF-q5-X1H" id="Yuu-1k-9Hl">
@@ -199,7 +199,7 @@
                                             <outlet property="titleLabel" destination="lE2-FV-zFD" id="uv1-Xq-gBJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchHeaderTableViewCell" id="6B5-GM-LyW" customClass="SearchHeaderTableViewCell" customModule="Digin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchHeaderTableViewCell" id="6B5-GM-LyW" customClass="SearchHeaderTableViewCell" customModule="Digin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="319.5" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6B5-GM-LyW" id="dKU-2y-M5T">
@@ -238,7 +238,7 @@
                                             <outlet property="titleLabel" destination="1D0-cd-ZC8" id="diY-X6-KVJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTableViewCell" id="gQQ-lp-dHN" customClass="SearchTableViewCell" customModule="Digin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchTableViewCell" id="gQQ-lp-dHN" customClass="SearchTableViewCell" customModule="Digin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="399.5" width="414" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gQQ-lp-dHN" id="l3g-eu-Cxd">
@@ -277,7 +277,7 @@
                                             <outlet property="titleLabel" destination="pgW-sA-Rgc" id="CuU-C2-gl4"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CompanyNewsTableViewCell" id="ewO-jh-3wA" customClass="CompanyNewsTableViewCell" customModule="Digin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CompanyNewsTableViewCell" id="ewO-jh-3wA" customClass="CompanyNewsTableViewCell" customModule="Digin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="445.5" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ewO-jh-3wA" id="y2c-8g-zc4">

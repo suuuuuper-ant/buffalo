@@ -19,7 +19,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
 
     var isSearch = 0 //화면 전환 상태 (0: 메인, 1: 검색리스트, 2: 검색 결과)
-    var hasSearchResult = false //검색 결과 유무
+    var hasCompanyResult = false //기업 검색 결과 유무
+    var hasNewsResult = false //뉴스 검색 결과 유무
 
     //networking data
     var searchData = SearchResult()
@@ -139,7 +140,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if isSearch == 1 { return 1 } //검색창
         if isSearch == 2 { //검색 결과
-            if !hasSearchResult { return 1 }
+            if !hasCompanyResult && !hasNewsResult { return 1 }
             return 3
         }
 
@@ -175,7 +176,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
 
         case 2: //검색 결과
-            if !hasSearchResult { return UITableViewCell() }
+            if !hasCompanyResult && !hasNewsResult { return UITableViewCell() }
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryHeaderTableViewCell.reuseIdentifier) as? CategoryHeaderTableViewCell else {
                 return UITableViewCell()
@@ -187,9 +188,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.timeLabel.isHidden = true
 
             } else if section == 1 {
+                if !hasNewsResult {
+                    cell.nextButton.isHidden = true
+                } else {
+                    cell.nextButton.isHidden = false
+                }
+
                 cell.titleLabel.text = "뉴스"
                 cell.timeLabel.isHidden = true
-                cell.nextButton.isHidden = false
 
                 cell.nextClosure = { [weak self] in //뉴스 더보기
                     let newsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(identifier: SearchNewsfeedViewController.reuseIdentifier) as SearchNewsfeedViewController
@@ -236,7 +242,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if isSearch == 2 && !hasSearchResult { return 257 }
         return UITableView.automaticDimension
     }
 
@@ -247,10 +252,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case 1: return recentCompany.count //검색 리스트
 
         case 2: //검색 결과
-            if !hasSearchResult { return 1 } //검색 결과 없음
+            if !hasCompanyResult && !hasNewsResult { return 1 } //검색 결과 없음
 
-            if section == 0 { return searchData.companies.count } //기업
+            if section == 0 {
+                if !hasCompanyResult { return 1 }
+                return searchData.companies.count
+            } //기업
             if section == 1 { //뉴스
+                if !hasNewsResult { return 1 }
                 if searchData.news.count >= 3 { return 3 }
                 return searchData.news.count
             }
@@ -297,7 +306,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
             if indexPath.section == 0 { //기업
 
-                if !hasSearchResult { //검색 결과 없음
+                if !hasCompanyResult { //검색 결과 없음
                     guard let cell = tableView.dequeueReusableCell(withIdentifier: NoneResultTableViewCell.reuseIdentifier) as? NoneResultTableViewCell else {
                         return UITableViewCell()
                     }
@@ -315,6 +324,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             if indexPath.section == 1 { //뉴스
+                if !hasNewsResult { //검색 결과 없음
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: NoneResultTableViewCell.reuseIdentifier) as? NoneResultTableViewCell else {
+                        return UITableViewCell()
+                    }
+                    return cell
+                }
+
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CompanyNewsTableViewCell.reuseIdentifier) as? CompanyNewsTableViewCell else {
                     return UITableViewCell()
                 }
@@ -385,12 +401,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             getSearchData(keyword: name)
 
         case 2: //검색 결과
-            if indexPath.section == 0 { //기업
+            if indexPath.section == 0 && hasCompanyResult { //기업
                 //TODO: 기업 상세보기에 기업 index 전달하기
                 self.present(detailsVC, animated: true, completion: nil)
             }
 
-            if indexPath.section == 1 { //뉴스
+            if indexPath.section == 1 && hasNewsResult { //뉴스
                 let detailVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
                 detailVC.newsURL = searchData.news[indexPath.row].link
                 self.present(detailVC, animated: true, completion: nil)
@@ -419,10 +435,20 @@ extension SearchViewController {
 
             DispatchQueue.main.async(execute: {
 
-                if result.companies.isEmpty {
-                    self.hasSearchResult = false
+                if result.companies.isEmpty && result.news.isEmpty {
+                    self.hasCompanyResult = false
+                    self.hasNewsResult = false
+
+                } else if result.companies.isEmpty {
+                    self.hasCompanyResult = false
+                    self.hasNewsResult = true
+
+                } else if result.news.isEmpty {
+                    self.hasCompanyResult = true
+                    self.hasNewsResult = false
                 } else {
-                    self.hasSearchResult = true
+                    self.hasCompanyResult = true
+                    self.hasNewsResult = true
                 }
 
                 self.tableView.reloadData()
