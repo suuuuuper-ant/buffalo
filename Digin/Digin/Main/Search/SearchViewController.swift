@@ -122,7 +122,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return 2 //메인
     }
 
-    //HEADER
+    // - HEADER
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         switch isSearch {
@@ -154,11 +154,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.timeLabel.isHidden = true
                 cell.nextButton.isHidden = false
                 cell.nextClosure = { [weak self] in
-                    //TODO: 기업 인덱스 전달하기 (회의에서 상의하기)
-                    let tabVC = MainTabBarController()
-                    tabVC.selectedIndex = 2
-                    tabVC.modalPresentationStyle = .fullScreen
-                    self?.present(tabVC, animated: true, completion: nil)
+                    guard let newsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(identifier: SearchNewsfeedViewController.reuseIdentifier) as? SearchNewsfeedViewController else { return }
+                    //TODO: 카테고리 / 기업 구분해서 전달 (push)
+                    self?.present(newsVC, animated: true, completion: nil)
+
                 }
             } else {
                 cell.titleLabel.text = "카테고리"
@@ -193,7 +192,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
 
-    //ROW
+    //- ROW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         switch isSearch {
