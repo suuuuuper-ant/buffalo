@@ -73,14 +73,15 @@ class SearchViewController: UIViewController {
     @IBAction func searchAction(_ sender: UIButton) {
         if isTextEmpty() { return } //공백 체크
 
-        // MARK: CoreData - Insert
-        if let text = searchTextField.text {
-            PersistenceManager.shared.insertCompany(name: text)
-        }
+        guard let text = searchTextField.text else { return }
 
+        // MARK: CoreData - Insert
+        PersistenceManager.shared.insertCompany(name: text)
+
+        //화면 전환 (검색 리스트 -> 검색 결과)
         isSearch = 2
         searchTextField.resignFirstResponder()
-        getSearchData()
+        getSearchData(keyword: text)
 
         //검색 비활성화 animation
         UIView.animate(withDuration: 2.0, delay: 1.0, options: .curveEaseIn, animations: {
@@ -377,8 +378,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch isSearch {
         case 1: //검색 리스트
-            //TODO: 기업 상세보기에 기업 index 전달하기
-            self.present(detailsVC, animated: true, completion: nil)
+            guard let name = recentCompany[indexPath.row].value(forKey: "name") as? String else { return }
+            isSearch = 2
+            searchTextField.resignFirstResponder()
+            searchTextField.text = name
+            getSearchData(keyword: name)
 
         case 2: //검색 결과
             if indexPath.section == 0 { //기업
@@ -406,13 +410,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Networking
 extension SearchViewController {
 
-    //TODO : 수정
     // GET - /news
-    func getSearchData() {
-        guard let text = searchTextField.text else { return }
-        SearchService.getSearchData(searchText: text) { (result) in
+    func getSearchData(keyword: String) {
+
+        SearchService.getSearchData(searchText: keyword) { (result) in
             self.searchData = result
             print(self.searchData)
+
             DispatchQueue.main.async(execute: {
 
                 if result.companies.isEmpty {
