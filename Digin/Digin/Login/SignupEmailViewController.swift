@@ -51,7 +51,6 @@ class SignupBaseViewController: UIViewController, ViewType {
 
         let previous = UIButton()
         previous.setImage( UIImage(named: "icon_navigation_back"), for: .normal)
-
         return previous
     }()
 

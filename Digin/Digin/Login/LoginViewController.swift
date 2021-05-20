@@ -262,8 +262,10 @@ class LoginViewController: UIViewController, ViewType {
 
         let signUp = TermsAndConditionsViewController()
         signUp.parentVC = self
-        signUp.modalPresentationStyle = .overCurrentContext
-        self.present(signUp, animated: false)
+
+        let navi = UINavigationController(rootViewController: signUp)
+        navi.modalPresentationStyle = .overCurrentContext
+        self.present(navi, animated: false)
     }
 
     deinit {

@@ -111,6 +111,22 @@ class TermsAndConditionsViewController: UIViewController, ViewType {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -141,10 +157,18 @@ class TermsAndConditionsViewController: UIViewController, ViewType {
             self.viewModel.personalChecking.send(updatedChecking)
         }.store(in: &cancellables)
 
+        personalInfoView.detailButton.tapPublisher.sink { [unowned self] _ in
+            self.goToPersonalInfoCondition()
+        }.store(in: &cancellables)
+
         serviceInfoView.checkImageView.tapPublisher.sink { [unowned self] _ in
             let updatedChecking = !serviceInfoView.isChecked
             self.serviceInfoView.isChecked = updatedChecking
             self.viewModel.serviceChecking.send(updatedChecking)
+        }.store(in: &cancellables)
+
+        serviceInfoView.detailButton.tapPublisher.sink { [unowned self] _ in
+            self.goToServiceInfoCondition()
         }.store(in: &cancellables)
 
         signupButton.tapPublisher.sink { [unowned self] in
@@ -239,6 +263,17 @@ class TermsAndConditionsViewController: UIViewController, ViewType {
 
     func updateDescriptionLabel(isActive: Bool) {
         descriptionLabel.isHidden =  isActive ? true : false
+    }
+
+    func goToPersonalInfoCondition() {
+        let personalInfoCondition = PersonalInfoConditionViewController()
+        self.navigationController?.pushViewController(personalInfoCondition, animated: true)
+    }
+
+    func goToServiceInfoCondition() {
+        let serviceInfoCondition = ServiceInfoConditionViewController()
+        serviceInfoCondition.title = "이용약관 동의"
+        self.navigationController?.pushViewController(serviceInfoCondition, animated: true)
     }
 
     deinit {
