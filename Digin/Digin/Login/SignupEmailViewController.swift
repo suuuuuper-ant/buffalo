@@ -138,13 +138,16 @@ class SignupEmailViewController: SignupBaseViewController {
         buttonTitle = "다음"
         inputFieldView.addArrangedSubview(emailField)
 
-        nextButton.addTarget(self, action: #selector(moveToPage), for: .touchUpInside)
         changeNextButton(false)
         bindingUI()
         bindingViewModel()
     }
 
     func bindingUI() {
+
+        nextButton.tapPublisher.sink { [unowned self] in
+            self.viewModel.checkEmailRepetion.send()
+        }.store(in: &cancellables)
 
         emailField.textField.textPublisher.sink { [unowned self] text in
             if let text = text {
@@ -186,6 +189,10 @@ class SignupEmailViewController: SignupBaseViewController {
         viewModel.nextButtonValidation.sink { _ in
         } receiveValue: { [unowned self] nextEnable  in
             self.changeNextButton(nextEnable)
+        }.store(in: &cancellables)
+
+        viewModel.goToNextPage.sink { [unowned self] in
+            self.moveToPage()
         }.store(in: &cancellables)
 
     }

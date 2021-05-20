@@ -8,8 +8,12 @@
 import Foundation
 import Combine
 
-class SingupEmailViewModel: ObservableObject {
+struct EmailRepetition: Codable {
+    var result: Bool
+}
 
+class SingupEmailViewModel: ObservableObject {
+    let networkRouter = SignupService()
     var cancellables: Set<AnyCancellable> = []
     //input
 
@@ -19,6 +23,8 @@ class SingupEmailViewModel: ObservableObject {
     @Published var emailValidation = PassthroughSubject<String, Error>()
     @Published var nextButtonValidation = PassthroughSubject<Bool, Error>()
 
+    @Published var checkEmailRepetion = PassthroughSubject<Void, Never>()
+    @Published var goToNextPage = PassthroughSubject<Void, Never>()
     init() {
 
         email.sink { [unowned self ] email in
@@ -26,6 +32,24 @@ class SingupEmailViewModel: ObservableObject {
             self.emailValidation.send(message)
             self.nextButtonValidation.send(validationNextButton(email: email, message: message))
         }.store(in: &cancellables)
+
+        checkEmailRepetion.setFailureType(to: APIError.self)
+            .compactMap { [unowned self] _ in
+                return email.value
+            }.flatMap { [unowned self] email in
+                self.networkRouter.checkRepetition(email: email)
+                    .receive(on: DispatchQueue.main)
+            }.sink { _ in
+
+            } receiveValue: { [unowned self] value in
+                let message = self.isUniqueEmail(value.result)
+                self.emailValidation.send(message)
+                if value.result {
+                    self.goToNextPage.send()
+                }
+
+            }.store(in: &cancellables)
+
     }
 
     func validationNextButton( email: String, message: String) -> Bool {
@@ -50,6 +74,15 @@ class SingupEmailViewModel: ObservableObject {
         } else {
             return "올바른 이메일 형식이 아닙니다."
 
+        }
+    }
+
+    func isUniqueEmail(_ unique: Bool) -> String {
+
+        if unique {
+           return ""
+        } else {
+            return "DiGiN에 이미 가입된 이메일이에요!"
         }
     }
 }

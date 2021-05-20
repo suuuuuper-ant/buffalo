@@ -98,4 +98,13 @@ struct SignupService: APIServie {
 //        NetworkCombineRouter.shared
     }
 
+    func checkRepetition(email: String) -> AnyPublisher<EmailRepetition, APIError> {
+
+        let path = "/auth/sign-up/check/email?email=\(email)"
+
+      return  NetworkCombineRouter.shared.get(url: SignupService.url(path), type: EmailRepetition.self)
+
+//        NetworkCombineRouter.shared
+    }
+
 }
