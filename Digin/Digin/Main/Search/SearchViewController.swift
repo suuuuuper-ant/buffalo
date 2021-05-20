@@ -271,6 +271,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    // swiftlint:disable all
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch isSearch {
@@ -347,10 +348,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 }
 
                 cell.collectionView.reloadData()
-                cell.actionClosure = { [weak self] index in
-                    print(index)
-                    let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier)
-                    //TODO: 카테고리 index에 맞는 JSON 데이터 전달
+                cell.actionClosure = { [weak self] (result) in
+                    print(result)
+                    guard let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier) as? CategoryDetailsViewController else {return}
+                    detailsVC.categoryReult = result
                     self?.present(detailsVC, animated: true, completion: nil)
                 }
 
@@ -364,15 +365,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 }
 
                 cell.collectionView.reloadData()
-                cell.actionClosure = { [weak self] index in
-                    print(index)
-                    let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier)
-                    //TODO: 카테고리 index에 맞는 JSON 데이터 전달
+                cell.actionClosure = { [weak self] (result) in
+                    print(result)
+                    guard let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier) as? CategoryDetailsViewController else {return}
+                    detailsVC.categoryReult = result
                     self?.present(detailsVC, animated: true, completion: nil)
                 }
 
                 return cell
-
             }
 
             //인기 검색 기업
@@ -388,6 +388,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
         return UITableViewCell()
     }
+    // swiftlint:enable all
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsVC = HomeDetailViewController()
