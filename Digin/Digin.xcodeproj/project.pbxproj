@@ -32,6 +32,9 @@
 		2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */; };
 		22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */; };
 		22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22618944262F120100A9B77B /* SkeletonLoadable.swift */; };
+		227874B82656A5D1004F97D0 /* CompanyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227874B72656A5D1004F97D0 /* CompanyResult.swift */; };
+		227874BA2656A851004F97D0 /* CategoryData.json in Resources */ = {isa = PBXBuildFile; fileRef = 227874B92656A851004F97D0 /* CategoryData.json */; };
+		227874BC2656AB8F004F97D0 /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227874BB2656AB8F004F97D0 /* CategoryService.swift */; };
 		2292381E261B431700B50884 /* UIView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2292381D261B431700B50884 /* UIView_extension.swift */; };
 		22923829261B45CA00B50884 /* NSObject_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22923828261B45CA00B50884 /* NSObject_extension.swift */; };
 		2292382C261B461300B50884 /* UIAlertController_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2292382B261B461300B50884 /* UIAlertController_extension.swift */; };
@@ -151,6 +154,9 @@
 		2261893D262F0A1400A9B77B /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		22618941262F0DE100A9B77B /* NewsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailsViewController.swift; sourceTree = "<group>"; };
 		22618944262F120100A9B77B /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
+		227874B72656A5D1004F97D0 /* CompanyResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyResult.swift; sourceTree = "<group>"; };
+		227874B92656A851004F97D0 /* CategoryData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CategoryData.json; sourceTree = "<group>"; };
+		227874BB2656AB8F004F97D0 /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		2292381D261B431700B50884 /* UIView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_extension.swift; sourceTree = "<group>"; };
 		22923828261B45CA00B50884 /* NSObject_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject_extension.swift; sourceTree = "<group>"; };
 		2292382B261B461300B50884 /* UIAlertController_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController_extension.swift; sourceTree = "<group>"; };
@@ -273,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				222BC6C72654E681008C1CF2 /* Search.swift */,
+				227874B72656A5D1004F97D0 /* CompanyResult.swift */,
+				227874B92656A851004F97D0 /* CategoryData.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -380,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				222BC6C92654E8A3008C1CF2 /* SearchService.swift */,
+				227874BB2656AB8F004F97D0 /* CategoryService.swift */,
 				222BC6D4265516AD008C1CF2 /* CoreData */,
 				222BC6C62654E5F9008C1CF2 /* Model */,
 				229B6FA5264017B900D28B52 /* Search.storyboard */,
@@ -645,6 +654,7 @@
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
 				222BC6C32654DC90008C1CF2 /* SearchNewsfeedTableViewCell.xib in Resources */,
 				F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */,
+				227874BA2656A851004F97D0 /* CategoryData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +718,7 @@
 				F1C6B4232654435A001E8510 /* SearchPasswordViewController.swift in Sources */,
 				F1C6B4152651376D001E8510 /* SingupNicknameViewModel.swift in Sources */,
 				2224BA91263943B900E620C4 /* FeedPageViewController.swift in Sources */,
+				227874B82656A5D1004F97D0 /* CompanyResult.swift in Sources */,
 				222BC6FD26552112008C1CF2 /* PersistenceManager.swift in Sources */,
 				F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */,
 				22618945262F120100A9B77B /* SkeletonLoadable.swift in Sources */,
@@ -786,6 +797,7 @@
 				F121DF132623049600B09F21 /* LoginViewController.swift in Sources */,
 				F121DF1D2623087900B09F21 /* HomeViewController.swift in Sources */,
 				229B6FB9264027DA00D28B52 /* SearchTableViewCell.swift in Sources */,
+				227874BC2656AB8F004F97D0 /* CategoryService.swift in Sources */,
 				F1D34715264046E700E63483 /* PaddingLabel.swift in Sources */,
 				22EEBC6626481E84009FF3FA /* CompanyNewsTableViewCell.swift in Sources */,
 				F1C6B4292655652F001E8510 /* ServiceInfoConditionViewController.swift in Sources */,

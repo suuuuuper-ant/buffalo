@@ -1,0 +1,69 @@
+[
+    {
+        "name" : "에너지",
+        "img" : "energy_img",
+        "bigImg" : "energy_bigimg",
+        "contents" : "석유 및 천연가스 산업재의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "소재",
+        "img" : "material_img",
+        "bigImg" : "material_bigimg",
+        "contents" : "금, 구리, 철 등을 채굴하거나 만드는 산업의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "산업재",
+        "img" : "industry_img",
+        "bigImg" : "industry_bigimg",
+        "contents" : "항공, 철도 등 중장비를 사용하는 산업재의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "헬스케어",
+        "img" : "health_img",
+        "bigImg" : "health_bigimg",
+        "contents" : "건강관리, 제약, 생명과학 산업의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "임의소비재",
+        "img" : "option_img",
+        "bigImg" : "option_bigimg",
+        "contents" : "외식, 명품, 호텔, 여행 산업의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "커뮤니케이션서비스",
+        "img" : "service_img",
+        "bigImg" : "service_bigimg",
+        "contents" : "통신, 방송, 엔터테인먼트 산업의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "정보기술",
+        "img" : "data_img",
+        "bigImg" : "data_bigimg",
+        "contents" : "IT서비스, 인터넷, 소프트웨어, 반도체 산업의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "금융",
+        "img" : "health_img",
+        "bigImg" : "health_bigimg",
+        "contents" : "은행, 투자회사, 금융거래소 산업의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "부동산",
+        "img" : "property_img",
+        "bigImg" : "property_bigimg",
+        "contents" : "부동산 임대, 종합 서비스, 간접 투자 산업의 기업을 모아뒀어요. "
+    },
+    {
+        "name" : "유틸리티",
+        "img" : "utility_img",
+        "bigImg" : "utility_bigimg",
+        "contents" : "전기, 가스, 수도 산업의 기업을 모아뒀어요."
+    },
+    {
+        "name" : "필수소비재",
+        "img" : "essential_img",
+        "bigImg" : "essential_bigimg",
+        "contents" : "우리 생활에 꼭 필요한 제품을 만드는 기업을 모아뒀어요."
+    }
+]
+

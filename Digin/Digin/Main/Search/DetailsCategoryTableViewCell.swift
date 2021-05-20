@@ -10,8 +10,10 @@ import UIKit
 class DetailsCategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    var actionClosure: ((CategoryResult) -> Void)?
 
-    var actionClosure: ((Int) -> Void)?
+    // - 카테고리
+    var categoryData = [CategoryResult]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +24,8 @@ class DetailsCategoryTableViewCell: UITableViewCell {
     private func setup() {
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        getCategoryData()
     }
 
 }
@@ -31,7 +35,7 @@ class DetailsCategoryTableViewCell: UITableViewCell {
 extension DetailsCategoryTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return categoryData.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -39,7 +43,8 @@ extension DetailsCategoryTableViewCell: UICollectionViewDelegate, UICollectionVi
             return UICollectionViewCell()
         }
 
-        cell.titleLabel.text = "에너지"
+        cell.titleLabel.text = categoryData[indexPath.row].name
+        cell.logoImageView.image = UIImage(named: categoryData[indexPath.row].img)
 
         return cell
     }
@@ -47,7 +52,20 @@ extension DetailsCategoryTableViewCell: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         //print(indexPath.item)
-        self.actionClosure?(indexPath.item)
+        self.actionClosure?(categoryData[indexPath.item])
     }
 
+}
+
+// MARK: - Networking
+extension DetailsCategoryTableViewCell {
+
+    //카테고리 데이터 로드
+    func getCategoryData() {
+
+        CategoryService.getCategory { (result) in
+            self.categoryData = result
+            self.collectionView.reloadData()
+        }
+    }
 }

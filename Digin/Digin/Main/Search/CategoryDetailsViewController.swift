@@ -15,6 +15,9 @@ class CategoryDetailsViewController: UIViewController {
     @IBOutlet weak var introLabel: UILabel!
     @IBOutlet weak var logoImageView: UIImageView!
 
+    var categoryReult = CategoryResult() //현재 카테고리 데이터
+    var categoryData = [CategoryResult]() //전체 카테고리 데이터
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +30,9 @@ class CategoryDetailsViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
 
+        titleLabel.text = categoryReult.name
+        introLabel.text = categoryReult.contents
+        logoImageView.image = UIImage(named: categoryReult.bigImg)
     }
 
 }
@@ -110,9 +116,10 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
         }
 
         cell.collectionView.reloadData()
-        cell.actionClosure = { [weak self] _ in
-            let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier)
+        cell.actionClosure = { [weak self] (result) in
+            guard let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier) as? CategoryDetailsViewController else { return }
             //TODO: 카테고리 index에 맞는 JSON 데이터 전달
+            detailsVC.categoryReult = result
             self?.present(detailsVC, animated: true, completion: nil)
         }
 
@@ -134,4 +141,17 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
 
+}
+
+// MARK: - Networking
+extension CategoryDetailsViewController {
+
+    //카테고리 데이터 로드
+    func getCategoryData() {
+
+        CategoryService.getCategory { (result) in
+            self.categoryData = result
+            self.tableView.reloadData()
+        }
+    }
 }
