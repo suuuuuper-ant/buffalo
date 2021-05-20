@@ -103,7 +103,6 @@
 		F1C6B4212652CC81001E8510 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B4202652CC81001E8510 /* TermsAndConditionsViewController.swift */; };
 		F1C6B4232654435A001E8510 /* SearchPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */; };
 		F1C6B425265444C3001E8510 /* SearchPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */; };
-		F1C6B4272655651C001E8510 /* PersonalInfoConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B4262655651C001E8510 /* PersonalInfoConditionViewController.swift */; };
 		F1C6B4292655652F001E8510 /* ServiceInfoConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B4282655652F001E8510 /* ServiceInfoConditionViewController.swift */; };
 		F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */; };
 		F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3470E264045C800E63483 /* UITableView_extension.swift */; };
@@ -224,7 +223,6 @@
 		F1C6B4202652CC81001E8510 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewController.swift; sourceTree = "<group>"; };
 		F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPasswordViewModel.swift; sourceTree = "<group>"; };
-		F1C6B4262655651C001E8510 /* PersonalInfoConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoConditionViewController.swift; sourceTree = "<group>"; };
 		F1C6B4282655652F001E8510 /* ServiceInfoConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInfoConditionViewController.swift; sourceTree = "<group>"; };
 		F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCompanyCell.swift; sourceTree = "<group>"; };
 		F1D3470E264045C800E63483 /* UITableView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView_extension.swift; sourceTree = "<group>"; };
@@ -468,7 +466,6 @@
 				F1C6B412264FDD46001E8510 /* SingupInterestingCell.swift */,
 				F121DF162623075B00B09F21 /* SignUpViewController.swift */,
 				F1C6B4202652CC81001E8510 /* TermsAndConditionsViewController.swift */,
-				F1C6B4262655651C001E8510 /* PersonalInfoConditionViewController.swift */,
 				F1C6B4282655652F001E8510 /* ServiceInfoConditionViewController.swift */,
 				F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */,
 				F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */,
@@ -751,7 +748,6 @@
 				229B6FAA2640276400D28B52 /* CategoryHeaderTableViewCell.swift in Sources */,
 				F1C6B41D2652997E001E8510 /* CombineNetworkModule.swift in Sources */,
 				222BC6C22654DC90008C1CF2 /* SearchNewsfeedTableViewCell.swift in Sources */,
-				F1C6B4272655651C001E8510 /* PersonalInfoConditionViewController.swift in Sources */,
 				22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */,
 				2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */,
 				22CCD8C6264D6353005B6368 /* LoadingTableViewCell.swift in Sources */,
