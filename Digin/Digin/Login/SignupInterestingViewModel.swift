@@ -15,7 +15,7 @@ class SignupInterestingViewModel: ObservableObject {
     //input
 
     @Published var signup = PassthroughSubject<Void, Never>()
-
+    var goToMain = PassthroughSubject<Void, Never>()
     //output
 
     init() {
@@ -36,9 +36,9 @@ class SignupInterestingViewModel: ObservableObject {
             .sink { completion in
 
                 print(completion)
-        } receiveValue: { _ in
+        } receiveValue: { [unowned self] _ in
             print("Signup!")
-
+            self.goToMain.send()
         }.store(in: &cancellables)
     }
 

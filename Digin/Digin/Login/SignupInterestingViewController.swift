@@ -13,8 +13,6 @@ class SignupInterestingViewController: UIViewController, ViewType {
    lazy var viewModel: SignupInterestingViewModel = {
         let viewModel = SignupInterestingViewModel()
 
-        viewModel.flowViewController = (parent as? SignupFlowViewController)
-
         return viewModel
     }()
     struct UI {
@@ -128,6 +126,12 @@ class SignupInterestingViewController: UIViewController, ViewType {
         view.backgroundColor = .white
         guide = "가장 관심이 가는 기업을\n3개 선택해 주세요"
         bindingUI()
+        bindingViewModel()
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.flowViewController = (parent as? SignupFlowViewController)
     }
 
     func setupUI() {
@@ -146,7 +150,13 @@ class SignupInterestingViewController: UIViewController, ViewType {
             self.viewModel.signup.send(Void())
 
         }.store(in: &cancellables)
+    }
 
+    func bindingViewModel() {
+
+        viewModel.goToMain.receive(on: DispatchQueue.main).sink { [unowned self]  in
+            self.goToMain()
+        }.store(in: &cancellables)
     }
 
     func setupConstraint() {
@@ -194,6 +204,20 @@ class SignupInterestingViewController: UIViewController, ViewType {
         }
 
         // api콜
+    }
+
+    @objc func goToMain() {
+
+        if let pageController = parent as? SignupFlowViewController {
+
+            pageController.dismiss(animated: true) {
+                let mainTabBar = MainTabBarController()
+                let scene = UIApplication.shared.connectedScenes.first
+                if let sceneDelegate: SceneDelegate = (scene?.delegate as? SceneDelegate) {
+                    sceneDelegate.window?.rootViewController = mainTabBar
+                }
+            }
+        }
     }
 
 }

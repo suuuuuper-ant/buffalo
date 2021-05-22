@@ -87,13 +87,17 @@ struct UserInfo: Decodable {
     var name: String
 }
 
+struct Status: Decodable {
+    var status: String
+}
+
 struct SignupService: APIServie {
 
-    func signupDigin(param: [String: Any]) -> AnyPublisher<UserInfo, APIError> {
+    func signupDigin(param: [String: Any]) -> AnyPublisher<Status, APIError> {
 
         let path = "/auth/sign-up"
 
-      return  NetworkCombineRouter.shared.post(url: SignupService.url(path), params: param, type: UserInfo.self)
+      return  NetworkCombineRouter.shared.post(url: SignupService.url(path), params: param, type: Status.self)
 
 //        NetworkCombineRouter.shared
     }
