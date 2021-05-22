@@ -252,9 +252,9 @@ class LoginViewController: UIViewController, ViewType {
     }
 
     func goToSearchPassword() {
-        let flow = SearchPasswordViewController()
-        flow.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(flow, animated: true)
+        let searchPassword = SearchPasswordViewController()
+        searchPassword.modalPresentationStyle = .fullScreen
+        self.present(searchPassword, animated: true, completion: nil)
 
     }
 

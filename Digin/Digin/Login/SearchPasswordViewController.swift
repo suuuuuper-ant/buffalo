@@ -38,6 +38,7 @@ class SearchPasswordViewController: SignupBaseViewController {
         inputFieldView.addArrangedSubview(emailField)
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        previousButton.isHidden = true
         updateNextButton(false)
         bindingUI()
         bindingViewModel()
@@ -82,6 +83,10 @@ class SearchPasswordViewController: SignupBaseViewController {
         nextButton.tapPublisher.sink { [unowned self] _ in
             // 임시비밀번호 콜
             self.emailSendedLabel.isHidden = false
+        }.store(in: &cancellables)
+
+        cancelButton.tapPublisher.sink { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
         }.store(in: &cancellables)
     }
 
