@@ -13,7 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
-        lauchandVisble(with: scene)
+        let window = UIWindow(windowScene: scene)
+        self.window = window
+        launchAppScreen()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -43,11 +45,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    func lauchandVisble(with scene: UIWindowScene) {
+    func lauchandVisble() {
 
-        let window = UIWindow(windowScene: scene)
-        self.window = window
         self.window?.rootViewController =  UINavigationController(rootViewController: LoginViewController())
         self.window?.makeKeyAndVisible()
+    }
+
+    func launchAppScreen() {
+        let launch = LaunchViewController()
+        launch.modalPresentationStyle = .currentContext
+        self.window?.rootViewController = launch
+        self.window?.makeKeyAndVisible()
+    }
+
+    func goToStartPoint() {
+
+        // 로그인 화면
+        lauchandVisble()
+
+        // 메인 화면
+    }
+}
+
+extension SceneDelegate {
+
+ static func getFirstScene() -> SceneDelegate? {
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sceneDelegate: SceneDelegate = (scene?.delegate as? SceneDelegate) {
+            return sceneDelegate
+        }
+        return nil
     }
 }
