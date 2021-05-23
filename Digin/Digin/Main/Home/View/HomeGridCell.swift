@@ -54,7 +54,7 @@ class HomeGridCell: UICollectionViewCell {
     lazy var contentArea: HomeGridPriceArea = {
         let area = HomeGridPriceArea()
         area.layer.cornerRadius = 15
-        area.layer.borderColor = UIColor.init(named: "stock_blue")?.cgColor
+        area.layer.borderColor = UIColor.init(named: "stock_sell")?.cgColor
         area.layer.borderWidth = 1.0
         area.layer.masksToBounds = true
         area.backgroundColor = .white

@@ -74,6 +74,7 @@
 		F1278FF026595BD30069CFDB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F1278FEF26595BD30069CFDB /* Lottie */; };
 		F1278FF226595EA10069CFDB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FF126595EA10069CFDB /* LaunchViewController.swift */; };
 		F1278FF626595FA10069CFDB /* LogoLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = F1278FF526595FA10069CFDB /* LogoLottie.json */; };
+		F1278FF8265A5DA80069CFDB /* StockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FF7265A5DA80069CFDB /* StockType.swift */; };
 		F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */; };
 		F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */; };
 		F1504BCA263B00C2007C82F2 /* GreetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC9263B00C2007C82F2 /* GreetingCell.swift */; };
@@ -197,6 +198,7 @@
 		F121DF2A26230BA000B09F21 /* TabBarFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarFactory.swift; sourceTree = "<group>"; };
 		F1278FF126595EA10069CFDB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		F1278FF526595FA10069CFDB /* LogoLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LogoLottie.json; sourceTree = "<group>"; };
+		F1278FF7265A5DA80069CFDB /* StockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockType.swift; sourceTree = "<group>"; };
 		F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOpenView.swift; sourceTree = "<group>"; };
 		F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		F1504BC9263B00C2007C82F2 /* GreetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingCell.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				F1D347112640463D00E63483 /* CustomView */,
 				F121DEE8261B3C7300B09F21 /* Extension */,
 				F121DEE7261B3C0800B09F21 /* Network */,
+				F1278FF7265A5DA80069CFDB /* StockType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				F1D34713264046A700E63483 /* HomeNewsCell.swift in Sources */,
 				F1F1D1312641661A00FE8C15 /* HomeDetailHeaderView.swift in Sources */,
 				2224BA892639378400E620C4 /* NewsContainerViewController.swift in Sources */,
+				F1278FF8265A5DA80069CFDB /* StockType.swift in Sources */,
 				F121DF1A2623083400B09F21 /* MainTabBarController.swift in Sources */,
 				F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,

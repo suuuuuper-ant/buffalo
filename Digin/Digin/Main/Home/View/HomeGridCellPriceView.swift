@@ -75,7 +75,7 @@ class HomeGridPriceArea: UIView {
     }
 
     func configure(_ model: OpinionInfo) {
-        self.byOrSellLabel.text = model.opinion
+        self.byOrSellLabel.text = model.opinion.rawValue
 
         let tailString = " | \(model.opinionCompany) \(model.opinionDate)"
         let totalString = "\(model.opinionDescription)\(tailString)"
