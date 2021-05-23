@@ -71,7 +71,12 @@ class NetworkCombineRouter {
                 if let error = error as? APIError {
                     return error
                 } else {
-                    return APIError.apiError(reason: error.localizedDescription)
+                    if let error = error as? APIError {
+                        return error
+                    } else {
+                        return APIError.apiError(reason: error.localizedDescription)
+                    }
+
                 }
             }.eraseToAnyPublisher()
     }
@@ -104,7 +109,12 @@ class NetworkCombineRouter {
                 if let error = error as? APIError {
                     return error
                 } else {
-                    return APIError.apiError(reason: error.localizedDescription)
+                    if let error = error as? APIError {
+                        return error
+                    } else {
+                        return APIError.apiError(reason: error.localizedDescription)
+                    }
+
                 }
             }.eraseToAnyPublisher()
     }
@@ -136,7 +146,12 @@ class NetworkCombineRouter {
                 if let error = error as? APIError {
                     return error
                 } else {
-                    return APIError.apiError(reason: error.localizedDescription)
+                    if let error = error as? APIError {
+                        return error
+                    } else {
+                        return APIError.apiError(reason: error.localizedDescription)
+                    }
+
                 }
             }.eraseToAnyPublisher()
     }
