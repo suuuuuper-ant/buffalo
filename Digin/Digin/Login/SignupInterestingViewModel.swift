@@ -28,7 +28,12 @@ class SignupInterestingViewModel: ObservableObject {
             .tryMap({ userInfo in
                 try userInfo.asDictionary()
             }).mapError({ error in
-               return  APIError.apiError(reason: error.localizedDescription)
+                if let error = error as? APIError {
+                    return error
+                } else {
+                    return APIError.apiError(reason: error.localizedDescription)
+                }
+
             })
             .flatMap { useInfo in
             return self.networkRouter.signupDigin(param: useInfo)

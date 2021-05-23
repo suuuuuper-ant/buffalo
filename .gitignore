@@ -82,6 +82,15 @@ fastlane/test_output
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
+*.xcworkspacedata
+
+*.xcuserstate
+
+*.xcscheme
+
+xcschememanagement.plist
+
+*.xcbkptlist
 /*.gcno
 
 # End of https://www.gitignore.io/api/swift,xcode,cocoapods
