@@ -29,6 +29,12 @@ class HomeDetailViewController: UIViewController, ViewType {
     var viewModel: HomeDetailViewModel = HomeDetailViewModel()
     private var cancellables: Set<AnyCancellable> = []
 
+    lazy var previousButton: UIButton = {
+        let previous = UIButton()
+        previous.setImage( UIImage(named: "icon_navigation_back"), for: .normal)
+        return previous
+    }()
+
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(HomeDetailHeaderView.self, forCellReuseIdentifier: HomeDetailHeaderView.reuseIdentifier)
@@ -59,9 +65,9 @@ class HomeDetailViewController: UIViewController, ViewType {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setupUI()
-        bindViewModel()
-
         setupConstraint()
+        bindngUI()
+        bindViewModel()
     }
 
     func bindViewModel() {
@@ -79,7 +85,7 @@ class HomeDetailViewController: UIViewController, ViewType {
         fatalError("init(coder:) has not been implemented")
     }
     func setupUI() {
-        tableView.backgroundColor = UIColor.init(named: "home_background")
+        tableView.backgroundColor = AppColor.homeBackground.color
         view.addSubview(tableView)
     }
 
@@ -89,9 +95,33 @@ class HomeDetailViewController: UIViewController, ViewType {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barTintColor = AppColor.homeBackground.color
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+
+        let cancelBarButton = UIBarButtonItem(customView: previousButton)
+        self.navigationItem.leftBarButtonItems = [cancelBarButton]
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: AppColor.homeBackground.color
+        ]
+
+        self.title = "프레스티지바이오로직스바이오"
+        self.navigationController?.navigationBar.layoutIfNeeded()
+    }
+
+    func bindngUI() {
+
+        previousButton.tapPublisher.sink { [unowned self] _ in
+            self.navigationController?.popViewController(animated: true)
+        }.store(in: &cancellables)
+    }
+
 }
 
 extension HomeDetailViewController: UITableViewDataSource {
@@ -123,7 +153,7 @@ extension HomeDetailViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailRelativeCell.reuseIdentifier) as? HomeDetailRelativeCell else { return UITableViewCell() }
 
             let field = RelativeCompany(relativeFields: ["같은분야"], relativeKeyword: [], companyImage: "", company: "프레스티지바이오로직스바이오")
-            let keyword = RelativeCompany(relativeFields: [], relativeKeyword: ["비슷한 시총 순위", "경기소비재", "유가원상복구"], companyImage: "", company: "닥터드레")
+            let keyword = RelativeCompany(relativeFields: [], relativeKeyword: ["비슷한 시총 순위", "경기소비재"], companyImage: "", company: "닥터드레")
             cell.configure(field, keyword: keyword)
             return cell
         }
@@ -134,4 +164,20 @@ extension HomeDetailViewController: UITableViewDataSource {
 
 extension HomeDetailViewController: UITableViewDelegate {
 
+}
+
+extension HomeDetailViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 100 {
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: AppColor.darkgray52.color
+        ]
+
+        } else {
+            self.navigationController?.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: AppColor.homeBackground.color
+            ]
+        }
+    }
 }

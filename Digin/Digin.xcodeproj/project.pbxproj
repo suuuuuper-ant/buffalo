@@ -75,6 +75,7 @@
 		F1278FF226595EA10069CFDB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FF126595EA10069CFDB /* LaunchViewController.swift */; };
 		F1278FF626595FA10069CFDB /* LogoLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = F1278FF526595FA10069CFDB /* LogoLottie.json */; };
 		F1278FF8265A5DA80069CFDB /* StockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FF7265A5DA80069CFDB /* StockType.swift */; };
+		F1278FFA265A68240069CFDB /* HomeDetailPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FF9265A68240069CFDB /* HomeDetailPriceView.swift */; };
 		F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */; };
 		F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */; };
 		F1504BCA263B00C2007C82F2 /* GreetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC9263B00C2007C82F2 /* GreetingCell.swift */; };
@@ -199,6 +200,7 @@
 		F1278FF126595EA10069CFDB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		F1278FF526595FA10069CFDB /* LogoLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LogoLottie.json; sourceTree = "<group>"; };
 		F1278FF7265A5DA80069CFDB /* StockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockType.swift; sourceTree = "<group>"; };
+		F1278FF9265A68240069CFDB /* HomeDetailPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPriceView.swift; sourceTree = "<group>"; };
 		F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOpenView.swift; sourceTree = "<group>"; };
 		F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		F1504BC9263B00C2007C82F2 /* GreetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingCell.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				F1F1D14C26455FC400FE8C15 /* HomeDetailNewsListCell.swift */,
 				F1F1D1502645701700FE8C15 /* HomeDetailBarChartCell.swift */,
 				F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */,
+				F1278FF9265A68240069CFDB /* HomeDetailPriceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				22A05BAB264863B200AEA69D /* DetailsHeaderTableViewCell.swift in Sources */,
 				F1C6B409264EC6D7001E8510 /* SignupEmailViewController.swift in Sources */,
 				22CCD8C2264D253C005B6368 /* FavoriteCompany.swift in Sources */,
+				F1278FFA265A68240069CFDB /* HomeDetailPriceView.swift in Sources */,
 				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,
 				F1C6B4232654435A001E8510 /* SearchPasswordViewController.swift in Sources */,
 				F1C6B4152651376D001E8510 /* SingupNicknameViewModel.swift in Sources */,

@@ -1,13 +1,13 @@
 //
-//  HomeGridCellPriceView.swift
+//  HomeDetailPriceView.swift
 //  Digin
 //
-//  Created by jinho jeong on 2021/05/04.
+//  Created by jinho jeong on 2021/05/23.
 //
 
 import UIKit
 
-class HomeGridPriceArea: UIView {
+class HomeDetailPriceView: UIView {
 
     lazy var originLabel: UILabel = UILabel()
     lazy var dateLabel: UILabel = UILabel()
@@ -21,7 +21,7 @@ class HomeGridPriceArea: UIView {
 
     lazy var reportButton: UIButton = {
         let report = UIButton()
-        report.setImage(UIImage(named: "home_report"), for: .normal)
+        report.setImage(UIImage(named: "home_report_white"), for: .normal)
         report.imageView?.contentMode  = .scaleAspectFill
         return report
     }()
@@ -29,7 +29,7 @@ class HomeGridPriceArea: UIView {
     lazy var reportLabel: UILabel = {
         let report = UILabel()
         report.text = "리포트"
-        report.textColor = UIColor.init(named: "darkgray62")
+        report.textColor = UIColor.white
         report.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         return report
     }()
@@ -76,13 +76,14 @@ class HomeGridPriceArea: UIView {
 
     func configure(_ model: OpinionInfo) {
         self.byOrSellLabel.text = model.opinion.rawValue
-        self.byOrSellLabel.textColor = model.opinion.colorForType()
+        self.byOrSellLabel.textColor = UIColor.white
+        self.backgroundColor = model.opinion.colorForType()
 
         let tailString = " | \(model.opinionCompany) \(model.opinionDate)"
         let totalString = "\(model.opinionDescription)\(tailString)"
         let attributedString = NSMutableAttributedString(string: "\(model.opinionDescription)\(tailString)", attributes: [
             .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 12.0)!,
-            .foregroundColor: model.opinion.colorForType(),
+            .foregroundColor: UIColor.white,
             .kern: -0.4
         ])
 

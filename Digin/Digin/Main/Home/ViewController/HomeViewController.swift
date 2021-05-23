@@ -64,7 +64,8 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         tableView.backgroundColor = UIColor.init(named: "home_background")
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
         let statusBar = UIView()
         view.addSubview(tableView)
         view.addSubview(statusBar)
@@ -87,10 +88,18 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UITableView.appearance().separatorStyle = .none
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.statusBarHeightConstant?.constant = self.view.safeAreaInsets.top
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+
     }
 
     func moveToDetail() {

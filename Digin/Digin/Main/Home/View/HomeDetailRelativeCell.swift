@@ -32,6 +32,11 @@ import UIKit
 
 class HomeDetailRelativeCell: UITableViewCell, ViewType {
 
+    lazy var relativedImageView: UIImageView = {
+       let image = UIImageView(image: UIImage(named: "bgGreen"))
+        return image
+    }()
+
     lazy var backContentView: UIView = {
         let content = UIView()
         content.backgroundColor = .white
@@ -115,7 +120,7 @@ class HomeDetailRelativeCell: UITableViewCell, ViewType {
         contentView.backgroundColor = UIColor.init(named: "home_background")
         contentView.addSubview(backContentView)
         backContentView.translatesAutoresizingMaskIntoConstraints = false
-        [relativeFieldStackView, relativeFieldImageView, fieldTitleLabel, relativeKeywordStackView, relativeKeywordImageView, keywordTitleLabel, separatedLine].forEach {
+        [relativedImageView, relativeFieldStackView, relativeFieldImageView, fieldTitleLabel, relativeKeywordStackView, relativeKeywordImageView, keywordTitleLabel, separatedLine].forEach {
             backContentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -129,6 +134,8 @@ class HomeDetailRelativeCell: UITableViewCell, ViewType {
         backContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         backContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         backContentView.heightAnchor.constraint(equalToConstant: 225).isActive = true
+
+        relativedImageView.fittingView(backContentView)
 
         relativeFieldStackView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         relativeFieldStackView.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 16).isActive = true
