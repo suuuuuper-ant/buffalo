@@ -76,6 +76,7 @@
 		F1278FF626595FA10069CFDB /* LogoLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = F1278FF526595FA10069CFDB /* LogoLottie.json */; };
 		F1278FF8265A5DA80069CFDB /* StockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FF7265A5DA80069CFDB /* StockType.swift */; };
 		F1278FFA265A68240069CFDB /* HomeDetailPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FF9265A68240069CFDB /* HomeDetailPriceView.swift */; };
+		F1278FFD265ABB860069CFDB /* RandomPickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1278FFC265ABB860069CFDB /* RandomPickViewController.swift */; };
 		F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */; };
 		F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */; };
 		F1504BCA263B00C2007C82F2 /* GreetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1504BC9263B00C2007C82F2 /* GreetingCell.swift */; };
@@ -201,6 +202,7 @@
 		F1278FF526595FA10069CFDB /* LogoLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LogoLottie.json; sourceTree = "<group>"; };
 		F1278FF7265A5DA80069CFDB /* StockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockType.swift; sourceTree = "<group>"; };
 		F1278FF9265A68240069CFDB /* HomeDetailPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailPriceView.swift; sourceTree = "<group>"; };
+		F1278FFC265ABB860069CFDB /* RandomPickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPickViewController.swift; sourceTree = "<group>"; };
 		F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOpenView.swift; sourceTree = "<group>"; };
 		F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		F1504BC9263B00C2007C82F2 /* GreetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingCell.swift; sourceTree = "<group>"; };
@@ -495,6 +497,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		F1278FFB265ABB700069CFDB /* RandomPick */ = {
+			isa = PBXGroup;
+			children = (
+				F1278FFC265ABB860069CFDB /* RandomPickViewController.swift */,
+			);
+			path = RandomPick;
+			sourceTree = "<group>";
+		};
 		F173474C261855C5009EC5D6 = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +525,7 @@
 		F1734757261855C5009EC5D6 /* Digin */ = {
 			isa = PBXGroup;
 			children = (
+				F1278FFB265ABB700069CFDB /* RandomPick */,
 				F121DF362623382F00B09F21 /* Login */,
 				F121DEE6261B3BF900B09F21 /* Common */,
 				F121DEE3261B396300B09F21 /* Application */,
@@ -731,6 +742,7 @@
 				F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */,
 				22A05BAB264863B200AEA69D /* DetailsHeaderTableViewCell.swift in Sources */,
 				F1C6B409264EC6D7001E8510 /* SignupEmailViewController.swift in Sources */,
+				F1278FFD265ABB860069CFDB /* RandomPickViewController.swift in Sources */,
 				22CCD8C2264D253C005B6368 /* FavoriteCompany.swift in Sources */,
 				F1278FFA265A68240069CFDB /* HomeDetailPriceView.swift in Sources */,
 				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,

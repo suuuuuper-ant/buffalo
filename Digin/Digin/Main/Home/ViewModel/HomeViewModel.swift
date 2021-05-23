@@ -12,6 +12,7 @@ class HomeViewModel: ObservableObject {
 
     let repository = HomeCompaniesDataRepository(localDataSource: CompaniesLocalDataSource())
     let moveToDetailPage = PassthroughSubject<IndexPath, Error>()
+    let moveToRandomPick = PassthroughSubject<Void, Error>()
     @Published var data: HomeCompany = HomeCompany()
     private var cancellables: Set<AnyCancellable> = []
 

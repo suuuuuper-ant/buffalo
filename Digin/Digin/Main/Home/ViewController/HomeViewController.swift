@@ -45,7 +45,8 @@ class HomeViewController: UIViewController {
         viewModel.$data
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.header.configure(nickname: "가니", greeting: "오늘도 함께 디긴해요!")
+
+                self?.header.configure(nickname: "가니", greeting: "오늘도 함께 디긴해요!", parentViewModel: self?.viewModel)
             self?.tableView.reloadData()
                 self?.tableView.updateHeaderViewHeight()
 
@@ -58,6 +59,12 @@ class HomeViewController: UIViewController {
             } receiveValue: { _ in
                 self.moveToDetail()
             }.store(in: &cancellables)
+
+        viewModel.moveToRandomPick.sink { _ in
+
+        } receiveValue: { [unowned self] _ in
+            self.moveToRandomPick()
+        }.store(in: &cancellables)
 
     }
 
@@ -104,6 +111,11 @@ class HomeViewController: UIViewController {
 
     func moveToDetail() {
         self.navigationController?.pushViewController(HomeDetailViewController(), animated: true)
+    }
+
+    func moveToRandomPick() {
+
+        self.navigationController?.pushViewController(RandomPickViewController(), animated: true)
     }
 }
 

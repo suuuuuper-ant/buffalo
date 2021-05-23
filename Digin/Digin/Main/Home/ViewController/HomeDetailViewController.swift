@@ -120,8 +120,8 @@ class HomeDetailViewController: UIViewController, ViewType {
         previousButton.tapPublisher.sink { [unowned self] _ in
             self.navigationController?.popViewController(animated: true)
         }.store(in: &cancellables)
-    }
 
+    }
 }
 
 extension HomeDetailViewController: UITableViewDataSource {

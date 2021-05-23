@@ -9,6 +9,8 @@ import UIKit
 
 class SlideOpenView: UIView {
 
+    @Published var reachedEnd: Bool = false
+
     let backgroundView: UIView = {
         let background = UIView()
         background.backgroundColor = UIColor.init(named: "main_color")
@@ -48,7 +50,7 @@ class SlideOpenView: UIView {
 
     let showMeTitle: UILabel = {
         let showMeTitle = UILabel()
-        showMeTitle.text = "Show me"
+        showMeTitle.text = "Slide me"
         showMeTitle.textAlignment = .center
         showMeTitle.textColor = .blue
         showMeTitle.font = UIFont.englishFont(ofSize: 12)
@@ -88,8 +90,6 @@ class SlideOpenView: UIView {
     private var initialWidth: CGFloat {
         return self.frame.width - self.backgroundView.frame.height
     }
-
-    private var didSetup: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -142,6 +142,7 @@ class SlideOpenView: UIView {
         indicatorWidthAnchor?.constant = map
         switchToBubleView(end: false)
         indicatorView.flatColor()
+        self.textLabel.alpha = 1.0
 
     }
     var indicatorWidthAnchor: NSLayoutConstraint?
@@ -173,8 +174,6 @@ class SlideOpenView: UIView {
 
         showMeEndView.leadingAnchor.constraint(equalTo: showMeView.leadingAnchor).isActive = true
         showMeEndView.bottomAnchor.constraint(equalTo: showMeView.bottomAnchor).isActive = true
-        //showMeView.widthAnchor.constraint(equalToConstant: 87).isActive = true
-        //  showMeView.heightAnchor.constraint(equalToConstant: 36).isActive = true
 
         showMeEndTitle.leadingAnchor.constraint(equalTo: showMeEndView.leadingAnchor, constant: 16).isActive = true
         showMeEndTitle.trailingAnchor.constraint(equalTo: showMeEndView.trailingAnchor, constant: -16).isActive = true
@@ -190,23 +189,26 @@ class SlideOpenView: UIView {
     @objc private func handlePanGesture(_ sender: UIPanGestureRecognizer) {
 
         let translatedPoint = sender.translation(in: backgroundView).x
-
+        var isEnd = false
         switch sender.state {
         case .began:
             break
         case .changed:
+
             let persent = (translatedPoint / initialWidth)
 
             self.textLabel.alpha = 1.0 - persent
             if translatedPoint  >= initialWidth {
                 indicatorWidthAnchor?.constant = initialWidth
-                switchToBubleView(end: true)
+                isEnd = true
+                switchToBubleView(end: isEnd)
 
             } else if translatedPoint <= 0 {
                 indicatorView.flatColor()
                 break
             } else {
-                switchToBubleView(end: false)
+                isEnd = false
+                switchToBubleView(end: isEnd)
                 indicatorWidthAnchor?.constant = translatedPoint
             }
             indicatorView.gradientColor()
@@ -215,13 +217,18 @@ class SlideOpenView: UIView {
             var persent: CGFloat = 0.0
             if translatedPoint >= (initialWidth / 2) {
                 indicatorWidthAnchor?.constant = initialWidth
-                switchToBubleView(end: true)
+                isEnd = true
+                switchToBubleView(end: isEnd)
+
+                persent = 1.0
+                self.textLabel.alpha = persent
             } else {
                 let const = indicatorHeightAnchor?.constant ?? 0
                 let map = const + (thumbnailViewStartingDistance * 2)
                 persent = 1.0
                 indicatorWidthAnchor?.constant = map
-                switchToBubleView(end: false)
+                isEnd = false
+                switchToBubleView(end: isEnd)
                 indicatorView.flatColor()
             }
 
@@ -229,6 +236,9 @@ class SlideOpenView: UIView {
                 self.textLabel.alpha = persent
                 self.layoutIfNeeded()
             } completion: { _ in
+                if isEnd {
+                    self.reachedEnd = true
+                }
 
             }
 
@@ -238,6 +248,7 @@ class SlideOpenView: UIView {
     }
 
     private func switchToBubleView(end: Bool) {
+
         if end {
             showMeView.isHidden = true
             showMeEndView.isHidden = false
@@ -246,5 +257,4 @@ class SlideOpenView: UIView {
             showMeEndView.isHidden = true
         }
     }
-
 }

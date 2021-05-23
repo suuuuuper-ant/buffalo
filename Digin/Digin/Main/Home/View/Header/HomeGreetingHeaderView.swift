@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class HomeGreetingHeaderView: UITableViewHeaderFooterView {
+    var cancellables: Set<AnyCancellable> = []
+    var parentViewModel: HomeViewModel?
     let dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +59,14 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
 
+        slideOpenView.$reachedEnd.sink {[unowned self] reached in
+            if reached {
+                self.parentViewModel?.moveToRandomPick.send()
+                self.slideOpenView.resetIndicator()
+            }
+
+        }.store(in: &cancellables)
+
     }
 
     required init?(coder: NSCoder) {
@@ -95,16 +106,17 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
 
     }
 
-    func configure(nickname: String, greeting: String) {
+    func configure(nickname: String, greeting: String, parentViewModel: HomeViewModel?) {
+        self.parentViewModel = parentViewModel
         let thinString = "\(nickname)님,\n"
         let totalString = "\(thinString)\(greeting)"
         let attributedString = NSMutableAttributedString(string: totalString, attributes: [
-          .font: UIFont(name: "AppleSDGothicNeo-Bold", size: 30.0)!,
+            .font: UIFont.systemFont(ofSize: 30, weight: .bold),
           .foregroundColor: UIColor(white: 62.0 / 255.0, alpha: 1.0),
           .kern: -0.4
         ])
         if let range = totalString.range(of: thinString) {
-            attributedString.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-Medium", size: 24.0)!, range: NSRange(range, in: totalString))
+            attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 24, weight: .medium), range: NSRange(range, in: totalString))
         }
 
         self.greetingLabel.attributedText = attributedString
