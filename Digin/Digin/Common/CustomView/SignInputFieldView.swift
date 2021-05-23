@@ -42,7 +42,7 @@ class SignInputFieldView: UIView, ViewType {
 
     lazy var lineView: UIView = {
         let line = UIView()
-        line.backgroundColor = AppColor.homeBackground.color
+        line.backgroundColor = AppColor.gray160.color
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
