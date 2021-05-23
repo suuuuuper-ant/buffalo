@@ -70,9 +70,15 @@ class NetworkRouter {
                 request.setValue(header.value, forHTTPHeaderField: header.field)
             }
         }
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+
             guard let data = data, error == nil else { return }
             let decoder = JSONDecoder()
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                completionHandler(.failure(APIError.apiError(reason: "통신에 실패하였습니다.")))
+                return
+            }
+
             do {
                // let result = try decoder.decode(model.self, from: data)
                 let result = try String(decoding: data, as: UTF8.self)

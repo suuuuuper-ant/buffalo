@@ -24,8 +24,9 @@ class LoginViewController: UIViewController, ViewType {
 
     lazy var passwordField: SignInputFieldView = {
         let viewModel = SignInputFieldViewModel(font: UIFont.systemFont(ofSize: 16, weight: .medium), lineColor: AppColor.mainColor.color, leftButtonImage: nil, placeholder: "비밀번호")
-        let password = SignInputFieldView(viewModel)
 
+        let password = SignInputFieldView(viewModel)
+        password.textField.isSecureTextEntry = true
         return password
     }()
 
@@ -216,9 +217,11 @@ class LoginViewController: UIViewController, ViewType {
 
     @objc func signIn() {
 
+        guard let email = emailField.textField.text, let password = passwordField.textField.text else { return }
+
         let params = [
-            "email": "mooyaho",
-            "password": "mooyaho"
+            "email": email,
+            "password": password
         ] as [String: Any]
 
         NetworkRouter.shared.post("http://3.35.143.195/auth/sign-in", body: params, headers: []) { (result) in
@@ -230,10 +233,19 @@ class LoginViewController: UIViewController, ViewType {
                 }
 
             case .failure(let error):
-                print(error.localizedDescription)
+                DispatchQueue.main.async { [weak self] in
+                    self?.showAlert(message: error.localizedDescription)
+                }
 
             }
         }
+    }
+
+    func showAlert(message: String) {
+        let defaultAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        let alert = UIAlertController(title: "로그인 실패", message: message, preferredStyle: .alert)
+        alert.addAction(defaultAction)
+        present(alert, animated: true)
     }
 
     @objc func goToMain() {
