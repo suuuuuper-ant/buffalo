@@ -41,8 +41,6 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
         period.alignment = .center
         period.spacing = 52
         period.distribution = .equalCentering
-
-        period.backgroundColor = .gray
         return period
     }()
     lazy var chartView: GraphView = GraphView()

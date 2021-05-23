@@ -17,6 +17,7 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         static let likeButtonWidthAndHeight: CGFloat = 20
         static let contentAreaHeight: CGFloat = 115
     }
+
     lazy var companyImageView: UIImageView = {
         let companyImage = UIImageView()
         companyImage.makeRounded(cornerRadius: UI.companyImageWidthAndHeight / 2)
@@ -48,10 +49,10 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         return label
     }()
 
-    lazy var contentArea: HomeGridPriceArea = {
-        let area = HomeGridPriceArea()
+    lazy var contentArea: HomeDetailPriceView = {
+        let area = HomeDetailPriceView()
         area.layer.cornerRadius = 15
-        area.layer.borderColor = UIColor.init(named: "stock_blue")?.cgColor
+        area.layer.borderColor = AppColor.stockSell.color.cgColor
         area.layer.borderWidth = 1.0
         area.layer.masksToBounds = true
         area.backgroundColor = .white
@@ -61,7 +62,6 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
     lazy var relativeTagStack: UIStackView = {
         let tag = UIStackView()
         tag.spacing = 10
-        tag.backgroundColor = .lightGray
         tag.alignment = .leading
         return tag
     }()
@@ -98,6 +98,8 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
             (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
 
         }
+
+        contentArea.configure(OpinionInfo(opinion: .sell, opinionDescription: "ddd", opinionCompany: "현대투자증권", opinionDate: "04.13", report: "적극 파세요"))
     }
 
     func setupConstraint() {

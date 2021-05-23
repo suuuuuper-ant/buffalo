@@ -8,11 +8,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Cocogoose-Pro-Semilight-trial.ttf">
-            <string>COCOGOOSE-DemiBold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -22,21 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DiGiN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-VU-An0">
-                                <rect key="frame" x="183.5" y="766" width="47" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="gws-uV-4lj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="COCOGOOSE-DemiBold" family="COCOGOOSE" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_title" translatesAutoresizingMaskIntoConstraints="NO" id="LWU-S3-g8A">
+                                <rect key="frame" x="180" y="802" width="54.5" height="18"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="main_color"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="U4Q-VU-An0" secondAttribute="bottom" constant="76" id="Ekw-HV-mJh"/>
-                            <constraint firstItem="U4Q-VU-An0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZYF-JC-8Uw"/>
+                            <constraint firstItem="LWU-S3-g8A" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ij3-zf-lSh"/>
+                            <constraint firstAttribute="bottom" secondItem="LWU-S3-g8A" secondAttribute="bottom" constant="76" id="mHd-FT-6d6"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -46,6 +35,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="app_title" width="54.5" height="18"/>
         <namedColor name="main_color">
             <color red="0.32156862745098042" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

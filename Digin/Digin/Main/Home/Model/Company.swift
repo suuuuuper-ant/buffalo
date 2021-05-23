@@ -41,8 +41,8 @@ struct News: Codable {
     let title: String
 }
 
-struct OpinionInfo: Codable {
-    var opinion: String = ""
+struct OpinionInfo: Decodable {
+    var opinion: StockType = .none
     var opinionDescription: String = ""
     var opinionCompany: String = ""
     var opinionDate: String = ""

@@ -16,12 +16,11 @@ class LaunchViewController: UIViewController, ViewType {
         return animation
     }()
 
-    lazy var logoLabel: UILabel = {
-        let logoLabel = UILabel()
-        logoLabel.font = UIFont.englishFont(ofSize: 16)
-        logoLabel.text = "DiGiN"
-        logoLabel.textColor = .white
-        return logoLabel
+    lazy var logoTitleImageView: UIImageView = {
+        let logoTitle = UIImageView()
+        logoTitle.image = UIImage(named: "app_title")
+        logoTitle.contentMode = .scaleAspectFill
+        return logoTitle
     }()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -48,7 +47,7 @@ class LaunchViewController: UIViewController, ViewType {
     }
 
     func setupUI() {
-        [lottieImageView, logoLabel].forEach {
+        [lottieImageView, logoTitleImageView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -62,9 +61,8 @@ class LaunchViewController: UIViewController, ViewType {
         lottieImageView.heightAnchor.constraint(equalToConstant: 140).isActive = true
 
         // LogoLabel
-        logoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -76).isActive = true
-        logoLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        logoTitleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoTitleImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -76).isActive = true
 
     }
 

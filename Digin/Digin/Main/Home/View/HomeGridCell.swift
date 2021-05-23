@@ -54,7 +54,7 @@ class HomeGridCell: UICollectionViewCell {
     lazy var contentArea: HomeGridPriceArea = {
         let area = HomeGridPriceArea()
         area.layer.cornerRadius = 15
-        area.layer.borderColor = UIColor.init(named: "stock_blue")?.cgColor
+        area.layer.borderColor = UIColor.init(named: "stock_sell")?.cgColor
         area.layer.borderWidth = 1.0
         area.layer.masksToBounds = true
         area.backgroundColor = .white
@@ -82,12 +82,10 @@ class HomeGridCell: UICollectionViewCell {
         model.tags.enumerated().forEach { (index, str) in
             (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
             (relativeTagStack.subviews[index] as? UILabel)?.text  = str
-
         }
 
         for idx in (model.tags.count..<relativeTagStack.subviews.count) {
             (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
-
         }
 
         favoriteCompanyLabel.text = model.interestingCompany
@@ -95,6 +93,7 @@ class HomeGridCell: UICollectionViewCell {
         newsArea.news = model.news
         likeCountLabel.text = String(model.likeCount)
 
+        contentArea.layer.borderColor = model.opinionInfo.opinion.colorForType().cgColor
         contentArea.configure(model.opinionInfo)
     }
 
