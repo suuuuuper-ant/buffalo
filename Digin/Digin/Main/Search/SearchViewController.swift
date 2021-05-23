@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var lineViewTopC: NSLayoutConstraint!
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var lineViewLeadingC: NSLayoutConstraint!
     @IBOutlet weak var searchTextField: UITextField!
@@ -37,7 +38,14 @@ class SearchViewController: UIViewController {
         setup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.setContentOffset(.zero, animated: true)
+    }
+
     private func setup() {
+        setNavigationBar()
+
         searchButton.isHidden = true
         searchTextField.delegate = self
 
@@ -50,6 +58,36 @@ class SearchViewController: UIViewController {
         tableView.register(nibName, forCellReuseIdentifier: NoneResultTableViewCell.reuseIdentifier)
     }
 
+    private func setNavigationBar() {
+        let topInset: CGFloat = UIApplication.shared.statusBarFrame.height
+        lineViewTopC.constant += topInset
+
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: topInset, width: view.frame.size.width, height: 44))
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        view.addSubview(navBar)
+
+        let navItem = UINavigationItem()
+        let backBTN = UIBarButtonItem(image: UIImage(named: "icon_navigation_back"),
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(backAction))
+        navItem.leftBarButtonItem = backBTN
+        backBTN.tintColor = AppColor.darkgray62.color
+        backBTN.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
+        navBar.setItems([navItem], animated: false)
+    }
+
+    @objc func backAction() {
+        if isSearch == 1 || isSearch == 2 { //메인으로 이동
+            isSearch = 0
+            self.tableView.reloadData()
+            disableSearchAnimaion()
+            searchTextField.resignFirstResponder()
+            searchTextField.text = ""
+        }
+    }
+
     //검색 활성화
     @IBAction func startSearch(_ sender: UITextField) {
         // MARK: CoreData - Fetch
@@ -57,17 +95,7 @@ class SearchViewController: UIViewController {
 
         isSearch = 1
         tableView.reloadData()
-
-        //검색 활성화 animation
-        UIView.animate(withDuration: 2.0, delay: 1.0, options: .curveEaseIn, animations: {
-            self.lineViewLeadingC.constant = -10
-        }) { (_) in
-
-            UIView.animate(withDuration: 2.0, delay: 1.0, animations: {
-                self.textFieldLeadingC.constant = 20
-                self.searchButton.isHidden = false
-            })
-        }
+        enableSearchAnimation()
     }
 
     //검색
@@ -83,8 +111,26 @@ class SearchViewController: UIViewController {
         isSearch = 2
         searchTextField.resignFirstResponder()
         getSearchData(keyword: text)
+        disableSearchAnimaion()
+    }
 
-        //검색 비활성화 animation
+    //검색 활성화
+    private func enableSearchAnimation() {
+
+        UIView.animate(withDuration: 2.0, delay: 1.0, options: .curveEaseIn, animations: {
+            self.lineViewLeadingC.constant = -10
+        }) { (_) in
+
+            UIView.animate(withDuration: 2.0, delay: 1.0, animations: {
+                self.textFieldLeadingC.constant = 20
+                self.searchButton.isHidden = false
+            })
+        }
+    }
+
+    //검색 비활성화
+    private func disableSearchAnimaion() {
+
         UIView.animate(withDuration: 2.0, delay: 1.0, options: .curveEaseIn, animations: {
             self.lineViewLeadingC.constant = 20
         }) { (_) in
@@ -103,6 +149,7 @@ class SearchViewController: UIViewController {
 
         return false
     }
+
 }
 
 // MARK: - TextField
@@ -111,25 +158,6 @@ extension SearchViewController: UITextFieldDelegate {
     //FIXME : 동작 수정
     func textFieldShouldReturn(_ sender: UITextField) -> Bool {
         sender.resignFirstResponder()
-
-        if isSearch == 1 { //검색창
-            isSearch = 0
-            searchTextField.text = ""
-        }
-
-        UIView.animate(withDuration: 2.0, delay: 1.0, options: .curveEaseIn, animations: {
-            self.lineViewLeadingC.constant = 20
-
-        }) { (_) in
-
-            UIView.animate(withDuration: 2.0, delay: 2.0, animations: {
-                self.textFieldLeadingC.constant = 30
-                self.searchButton.isHidden = true
-            })
-        }
-
-        tableView.reloadData()
-
         return true
     }
 }
@@ -208,7 +236,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                         newsVC.newsData = data
                     }
 
-                    self?.present(newsVC, animated: true, completion: nil) //Push
+                    newsVC.modalPresentationStyle = .fullScreen
+                    self?.present(newsVC, animated: false, completion: nil) //Push
                 }
 
             } else {
