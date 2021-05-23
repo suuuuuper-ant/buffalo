@@ -7,6 +7,14 @@
 
 import UIKit
 
+struct ResponseErrorBody: Decodable {
+    var status: String
+    var code: String
+    var path: String
+    var message: String
+    var timestamp: String
+}
+
 /**
  - HTTPHeader 값을 저장하고 운반하기위한 컨테이너 Tuple
  */
@@ -75,7 +83,13 @@ class NetworkRouter {
             guard let data = data, error == nil else { return }
             let decoder = JSONDecoder()
             guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                completionHandler(.failure(APIError.apiError(reason: "통신에 실패하였습니다.")))
+
+                do {
+                    let erorrMessage = try decoder.decode(ResponseErrorBody.self, from: data).message
+                    completionHandler(.failure(APIError.apiError(reason: erorrMessage)))
+                } catch {
+                    completionHandler(.failure(APIError.apiError(reason: "네트워크 에러가 발생했습니다.")))
+                }
                 return
             }
 
