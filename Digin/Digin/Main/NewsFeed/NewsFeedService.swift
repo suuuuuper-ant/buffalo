@@ -11,7 +11,7 @@ struct NewsfeedService: APIServie {
 
     // MARK: - 모든 뉴스 (GET)
     static func getNewsData(pageNumber: Int, completion: @escaping (NewsfeedResult) -> Void) {
-        let path = "/news/"
+        let path = "/news?page=\(pageNumber)"
 
         guard let stringResult = UserDefaults.standard.string(forKey: "userToken")  else { return }
         let jsonResult = convertToDictionary(text: stringResult)

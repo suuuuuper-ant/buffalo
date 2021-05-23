@@ -24,7 +24,7 @@ class NewsFeedViewController: UIViewController, APIServie {
     var isLoad = true
     var isFirstLoad = true
 
-    var viewType: Int = 0
+    var viewType: Int = 0//카테고리
     var selectedIndex = 0 //관심기업 index
 
     //network data
@@ -78,17 +78,29 @@ class NewsFeedViewController: UIViewController, APIServie {
         feedTableView.reloadData()
     }
 
+    // MARK: 새로고침 메소드
     func initRefresh() {
         feedTableView.refreshControl = refreshControl
+        refreshControl.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
 
-    // MARK: 새로고침 메소드 - 스켈레톤 처리
     @objc func refresh() {
-        refreshControl.endRefreshing()
         resetData()
+
         if viewType == 0 || selectedIndex == 0 { getAllNews() } else { getCompanyNews() }
         getCompanyList()
+        refreshControl.endRefreshing()
+    }
+
+    private func resetData() {
+        section0Contents.removeAll()
+        section1Contents.removeAll()
+        section2Contents.removeAll()
+        contents.removeAll()
+
+        currentPage = 0
+        hasNextPage = true
     }
 }
 
@@ -130,16 +142,6 @@ extension NewsFeedViewController: UICollectionViewDelegate, UICollectionViewData
 
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         collectionView.reloadData()
-    }
-
-    func resetData() {
-        section0Contents.removeAll()
-        section1Contents.removeAll()
-        section2Contents.removeAll()
-        contents.removeAll()
-
-        currentPage = 0
-        hasNextPage = true
     }
 }
 

@@ -9,6 +9,7 @@ import UIKit
 
 class SearchNewsfeedViewController: UIViewController {
 
+    @IBOutlet weak var titleLabelTopC: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
@@ -20,6 +21,7 @@ class SearchNewsfeedViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
+        setNavigationBar()
     }
 
     private func setup() {
@@ -30,6 +32,30 @@ class SearchNewsfeedViewController: UIViewController {
         tableView.register(nibName, forCellReuseIdentifier: SearchNewsfeedTableViewCell.reuseIdentifier)
 
         titleLabel.text = header
+    }
+
+    private func setNavigationBar() {
+        let topInset: CGFloat = UIApplication.shared.statusBarFrame.height
+        titleLabelTopC.constant += topInset
+
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: topInset, width: view.frame.size.width, height: 44))
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        view.addSubview(navBar)
+
+        let navItem = UINavigationItem()
+        let backBTN = UIBarButtonItem(image: UIImage(named: "icon_navigation_back"),
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(backAction))
+        navItem.leftBarButtonItem = backBTN
+        backBTN.tintColor = AppColor.darkgray62.color
+        backBTN.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
+        navBar.setItems([navItem], animated: false)
+    }
+
+    @objc func backAction() {
+        self.dismiss(animated: false, completion: nil)
     }
 
 }
