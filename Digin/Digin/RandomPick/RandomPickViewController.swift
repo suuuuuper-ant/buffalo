@@ -79,6 +79,7 @@ class RandomPickViewController: UIViewController, ViewType {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barTintColor = AppColor.dark24.color
         self.navigationController?.navigationBar.tintColor = .clear
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
