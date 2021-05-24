@@ -101,7 +101,7 @@ class HomeDetailViewController: UIViewController, ViewType {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barTintColor = AppColor.homeBackground.color
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
 

@@ -8,6 +8,11 @@
 import UIKit
 import Combine
 
+struct RandomPick {
+    var name: String
+    var category: String
+}
+
 class RandomPickViewController: UIViewController, ViewType {
     var cancellables: Set<AnyCancellable> = []
 
@@ -58,6 +63,87 @@ class RandomPickViewController: UIViewController, ViewType {
         return frontBottom
     }()
 
+    lazy var cardBackViewTopLabel: UILabel = {
+        let  cardBackView = UILabel()
+        cardBackView.text = "오늘의 새로운 기업을\n 디긴하셨네요!"
+        cardBackView.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        cardBackView.textColor = UIColor.white
+        cardBackView.numberOfLines = 0
+        cardBackView.textAlignment = .center
+
+        return  cardBackView
+    }()
+
+    lazy var cardBackView: CardBackView = {
+        let card = CardBackView()
+        card.categoryLabel.text = ""
+        card.companyLabel.text =  ""
+
+        return card
+    }()
+
+    lazy var likeButton: UIButton = {
+        let like = UIButton()
+        like.setImage(UIImage(named: "icon_like_empty"), for: .normal)
+
+        return like
+    }()
+
+    lazy var likeCountLabel: UILabel = {
+        let likeCount = UILabel()
+        likeCount.text = "342"
+        likeCount.textColor = .white
+        likeCount.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+
+        return likeCount
+    }()
+
+    lazy var likeStack: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.spacing = 7
+        stack.addArrangedSubview(likeButton)
+        stack.addArrangedSubview(likeCountLabel)
+
+        return stack
+    }()
+
+    lazy var detailButton: UIButton = {
+        let detail = UIButton()
+        detail.setImage(UIImage(named: "icon_next_circle"), for: .normal)
+
+        return detail
+    }()
+
+    lazy var detailLabel: UILabel = {
+        let likeCount = UILabel()
+        likeCount.text = "기업이 더 궁금해요!"
+        likeCount.textColor = AppColor.lightgray225.color
+        likeCount.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+
+        return likeCount
+    }()
+
+    lazy var detailStack: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.spacing = 6
+        stack.addArrangedSubview(detailLabel)
+        stack.addArrangedSubview(detailButton)
+
+        return stack
+    }()
+
+    var randomData: [RandomPick] = [RandomPick(name: "카카오뱅크", category: "금융"),
+                                RandomPick(name: "SK바이오로직스", category: "바이오 생명"),
+                                RandomPick(name: "네이버", category: ""),
+                                RandomPick(name: "현대자동차", category: "자동차"),
+                                RandomPick(name: "삼성전자", category: "반도체")
+
+                                ]
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         hidesBottomBarWhenPushed = true
@@ -79,30 +165,39 @@ class RandomPickViewController: UIViewController, ViewType {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = AppColor.dark24.color
+        self.navigationController?.navigationBar.barTintColor = .clear
         self.navigationController?.navigationBar.tintColor = .clear
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        let barbutton = UIBarButtonItem(customView: backButton)
-        self.navigationItem.leftBarButtonItems = [barbutton]
+//        / x
 
     }
 
     func setupUI() {
-        [backgroundLeftImageView, backgroundRightImageView, cardView, frontBottomLabel].forEach {
+        [ backgroundLeftImageView, backgroundRightImageView, cardView, frontBottomLabel, cardBackViewTopLabel, likeStack, detailStack, backButton].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        [cardFrontView].forEach {
+        [cardBackView ].forEach {
             cardView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+
+        cardBackView.addSubview(cardFrontView)
+        cardFrontView.translatesAutoresizingMaskIntoConstraints = false
+
+        cardBackViewTopLabel.alpha = 0.0
+        likeStack.alpha = 0.0
+        detailStack.alpha = 0.0
 
     }
 
     func setupConstraint() {
         // backbutton
         backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
 //
@@ -110,7 +205,7 @@ class RandomPickViewController: UIViewController, ViewType {
         // letftImage
 
         backgroundLeftImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        backgroundLeftImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -24).isActive = true
+        backgroundLeftImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
         backgroundLeftImageView.widthAnchor.constraint(equalToConstant: 108).isActive = true
         backgroundLeftImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -95).isActive = true
 
@@ -123,27 +218,171 @@ class RandomPickViewController: UIViewController, ViewType {
         // cardView
         cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         cardView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        cardView.widthAnchor.constraint(equalToConstant: 310).isActive = true
-        cardView.heightAnchor.constraint(equalToConstant: 435).isActive = true
+        cardView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        cardView.heightAnchor.constraint(equalToConstant: 375).isActive = true
 
         // cardFrontView
-        cardFrontView.fittingView(cardView)
+        cardBackView.fittingView(cardView)
+        cardFrontView.fittingView(cardBackView)
+
+        //cardBackViewTopLabel
+        cardBackViewTopLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        cardBackViewTopLabel.bottomAnchor.constraint(equalTo: cardView.topAnchor, constant: -36).isActive = true
 
         //frontBottomLabel
         frontBottomLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         frontBottomLabel.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 46).isActive = true
+
+        //likeStack
+        likeStack.topAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 30).isActive = true
+        likeStack.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
+
+        //detailStack
+        detailStack.topAnchor.constraint(equalTo: likeStack.bottomAnchor, constant: 23).isActive = true
+        detailStack.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
 
     }
 
     func bindingUI() {
 
         cardFrontView.tapPublisher.receive(on: DispatchQueue.main).sink { [unowned self] in
-            UIView.transition(with: cardView, duration: 1.0, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+            let randomPickIndex = Int(arc4random_uniform(UInt32(self.randomData.count)))
+
+           let pickData = self.randomData[randomPickIndex]
+            self.cardBackView.configureCardContent(pickData)
+            UIView.transition(with: cardView, duration: 1.0, options: .transitionFlipFromLeft) {
+                cardBackViewTopLabel.alpha = 1.0
+                likeStack.alpha = 1.0
+                detailStack.alpha = 1.0
+                frontBottomLabel.isHidden = true
+                self.cardFrontView.isHidden = true
+
+            } completion: { _ in
+                self.cardFrontView.isHidden = true
+            }
 
         }.store(in: &cancellables)
 
-        backButton.tapPublisher.sink {  [unowned self] in
+        backButton.tapPublisher.sink { [unowned self] in
             self.navigationController?.popViewController(animated: true)
         }.store(in: &cancellables)
+
+        detailButton.tapPublisher.sink { [unowned self] in
+            self.navigationController?.pushViewController(HomeDetailViewController(), animated: true)
+        }.store(in: &cancellables)
     }
+}
+
+class CardBackView: UIView, ViewType {
+
+    let leftTopImageView: UIImageView = {
+
+        let leftTop = UIImageView()
+        leftTop.image = UIImage(named: "random_nocomment _up")
+        return leftTop
+    }()
+
+    let rightBottomImageView: UIImageView = {
+
+        let rightBottom = UIImageView()
+        rightBottom.image = UIImage(named: "random_nocomment_down")
+        return rightBottom
+    }()
+
+    lazy var companyImageView: UIImageView = {
+        let companyImage = UIImageView()
+        companyImage.makeRounded(cornerRadius: 94 / 2)
+        companyImage.backgroundColor = UIColor.gray
+        return companyImage
+    }()
+
+    lazy var companyLabel: UILabel = {
+        let company = UILabel()
+        company.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        company.numberOfLines = 2
+        company.textAlignment = .center
+        return company
+    }()
+
+    lazy var categoryLabel: PaddingLabel = {
+        let company = PaddingLabel()
+        company.edgeInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        company.makeRounded(cornerRadius: 15)
+        company.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        company.makeBorder(color: .black, width: 1)
+        return company
+    }()
+
+    lazy var companyStackView: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = 20
+        stack.addArrangedSubview(companyImageView)
+        stack.addArrangedSubview(companyLabel)
+        return stack
+    }()
+
+    lazy var cardStackView: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = 4
+        stack.addArrangedSubview(companyStackView)
+        stack.addArrangedSubview(categoryLabel)
+        return stack
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+        setupConstraint()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func setupUI() {
+        backgroundColor = .white
+        [leftTopImageView, rightBottomImageView, cardStackView].forEach {
+            addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+
+    func setupConstraint() {
+
+        leftTopImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        leftTopImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        leftTopImageView.widthAnchor.constraint(equalToConstant: 18).isActive = true
+        leftTopImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+
+        rightBottomImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        rightBottomImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
+        rightBottomImageView.widthAnchor.constraint(equalToConstant: 18).isActive = true
+        rightBottomImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+
+        cardStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        cardStackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        cardStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        cardStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+      //  cardStackView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+       // cardStackView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+
+        companyImageView.widthAnchor.constraint(equalToConstant: 94).isActive = true
+        companyImageView.heightAnchor.constraint(equalToConstant: 94).isActive = true
+
+    }
+
+    func configureCardContent(_ model: RandomPick) {
+        if model.category != "" {
+            self.categoryLabel.text = model.category
+        } else {
+            categoryLabel.removeFromSuperview()
+        }
+
+        self.companyLabel.text = model.name
+    }
+
 }
