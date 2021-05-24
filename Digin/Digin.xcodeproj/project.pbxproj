@@ -122,6 +122,7 @@
 		F1D3471C264048DC00E63483 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3471B264048DC00E63483 /* GradientView.swift */; };
 		F1D3471E26404BC700E63483 /* Cocogoose-Pro-Semilight-trial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */; };
 		F1D3472026404C3900E63483 /* UIFont_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3471F26404C3900E63483 /* UIFont_extension.swift */; };
+		F1DC2962265C1A0300B51749 /* RandomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DC2961265C1A0300B51749 /* RandomAlertViewController.swift */; };
 		F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */; };
 		F1F1D1312641661A00FE8C15 /* HomeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */; };
 		F1F1D1332641944F00FE8C15 /* HomeDetailLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */; };
@@ -250,6 +251,7 @@
 		F1D3471B264048DC00E63483 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cocogoose-Pro-Semilight-trial.ttf"; sourceTree = "<group>"; };
 		F1D3471F26404C3900E63483 /* UIFont_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_extension.swift; sourceTree = "<group>"; };
+		F1DC2961265C1A0300B51749 /* RandomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAlertViewController.swift; sourceTree = "<group>"; };
 		F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailHeaderView.swift; sourceTree = "<group>"; };
 		F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailLineChartCell.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				F1278FFC265ABB860069CFDB /* RandomPickViewController.swift */,
+				F1DC2961265C1A0300B51749 /* RandomAlertViewController.swift */,
 			);
 			path = RandomPick;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 			files = (
 				F1C6B41B26516BD1001E8510 /* SignupRePasswordViewModel.swift in Sources */,
 				22A05BAE2648648B00AEA69D /* DetailsCompanyTableViewCell.swift in Sources */,
+				F1DC2962265C1A0300B51749 /* RandomAlertViewController.swift in Sources */,
 				222BC6C52654DE58008C1CF2 /* SearchNewsfeedViewController.swift in Sources */,
 				F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */,
 				F1F1D14B26455F7E00FE8C15 /* HomeDetailNewsCell.swift in Sources */,

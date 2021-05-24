@@ -14,6 +14,8 @@ struct RandomPick {
 }
 
 class RandomPickViewController: UIViewController, ViewType {
+    var isflip: Bool = false
+
     var cancellables: Set<AnyCancellable> = []
 
     lazy var backgroundLeftImageView: UIImageView = {
@@ -99,7 +101,7 @@ class RandomPickViewController: UIViewController, ViewType {
     }()
 
     lazy var likeStack: UIStackView = {
-       let stack = UIStackView()
+        let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
         stack.spacing = 7
@@ -126,7 +128,7 @@ class RandomPickViewController: UIViewController, ViewType {
     }()
 
     lazy var detailStack: UIStackView = {
-       let stack = UIStackView()
+        let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
         stack.spacing = 6
@@ -137,12 +139,12 @@ class RandomPickViewController: UIViewController, ViewType {
     }()
 
     var randomData: [RandomPick] = [RandomPick(name: "카카오뱅크", category: "금융"),
-                                RandomPick(name: "SK바이오로직스", category: "바이오 생명"),
-                                RandomPick(name: "네이버", category: ""),
-                                RandomPick(name: "현대자동차", category: "자동차"),
-                                RandomPick(name: "삼성전자", category: "반도체")
+                                    RandomPick(name: "SK바이오로직스", category: "바이오 생명"),
+                                    RandomPick(name: "네이버", category: ""),
+                                    RandomPick(name: "현대자동차", category: "자동차"),
+                                    RandomPick(name: "삼성전자", category: "반도체")
 
-                                ]
+    ]
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -170,7 +172,6 @@ class RandomPickViewController: UIViewController, ViewType {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-//        / x
 
     }
 
@@ -200,7 +201,7 @@ class RandomPickViewController: UIViewController, ViewType {
         backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13).isActive = true
         backButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
         backButton.heightAnchor.constraint(equalToConstant: 24).isActive = true
-//
+        //
 
         // letftImage
 
@@ -246,9 +247,10 @@ class RandomPickViewController: UIViewController, ViewType {
     func bindingUI() {
 
         cardFrontView.tapPublisher.receive(on: DispatchQueue.main).sink { [unowned self] in
+            self.isflip = true
             let randomPickIndex = Int(arc4random_uniform(UInt32(self.randomData.count)))
 
-           let pickData = self.randomData[randomPickIndex]
+            let pickData = self.randomData[randomPickIndex]
             self.cardBackView.configureCardContent(pickData)
             UIView.transition(with: cardView, duration: 1.0, options: .transitionFlipFromLeft) {
                 cardBackViewTopLabel.alpha = 1.0
@@ -264,12 +266,30 @@ class RandomPickViewController: UIViewController, ViewType {
         }.store(in: &cancellables)
 
         backButton.tapPublisher.sink { [unowned self] in
-            self.navigationController?.popViewController(animated: true)
+            if self.isflip == true {
+                showRandomAlert()
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
+
         }.store(in: &cancellables)
 
         detailButton.tapPublisher.sink { [unowned self] in
-            self.navigationController?.pushViewController(HomeDetailViewController(), animated: true)
+
+            self.goToDetail()
         }.store(in: &cancellables)
+    }
+
+    func showRandomAlert() {
+        let alert = RandomAlertViewController()
+        alert.parentController = self
+        alert.modalPresentationStyle = .overCurrentContext
+        self.present(alert, animated: false, completion: nil)
+    }
+
+    func goToDetail() {
+        self.navigationController?.pushViewController(HomeDetailViewController(), animated: true)
+        self.isflip = false
     }
 }
 
@@ -314,7 +334,7 @@ class CardBackView: UIView, ViewType {
     }()
 
     lazy var companyStackView: UIStackView = {
-       let stack = UIStackView()
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
         stack.spacing = 20
@@ -324,7 +344,7 @@ class CardBackView: UIView, ViewType {
     }()
 
     lazy var cardStackView: UIStackView = {
-       let stack = UIStackView()
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
         stack.spacing = 4
@@ -367,8 +387,6 @@ class CardBackView: UIView, ViewType {
         cardStackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         cardStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         cardStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-      //  cardStackView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-       // cardStackView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 
         companyImageView.widthAnchor.constraint(equalToConstant: 94).isActive = true
         companyImageView.heightAnchor.constraint(equalToConstant: 94).isActive = true
