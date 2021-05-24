@@ -25,6 +25,7 @@ struct NewsfeedService: APIServie {
             case .success(let resultData):
 
                 let data = resultData.result
+                //print(data)
                 completion(data)
 
             case .failure(let error):
@@ -61,7 +62,7 @@ struct NewsfeedService: APIServie {
 
     // MARK: - 기업 뉴스 (GET)
     static func getCompanyNews(stockCode: String, pageNumber: Int, completion: @escaping (NewsfeedResult) -> Void) {
-        let path = "/companies/{stockCode}/news?stockCode=\(stockCode)&page=\(pageNumber)"
+        let path = "/companies/\(stockCode)/news?page=\(pageNumber)"
 
         guard let stringResult = UserDefaults.standard.string(forKey: "userToken")  else { return }
         let jsonResult = convertToDictionary(text: stringResult)
@@ -75,6 +76,7 @@ struct NewsfeedService: APIServie {
             case .success(let resultData):
 
                 let data = resultData.result
+                //print(data)
                 completion(data)
 
             case .failure(let error):
