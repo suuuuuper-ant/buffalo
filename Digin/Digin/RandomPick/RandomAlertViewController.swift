@@ -38,7 +38,7 @@ class RandomAlertViewController: UIViewController, ViewType {
         description.text = "랜덤 추천 기업은\n하루에 딱 한 번만 볼 수 있어요."
         description.textColor = AppColor.darkgray82.color
         description.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        title.numberOfLines = 2
+        description.numberOfLines = 2
         return description
     }()
 
