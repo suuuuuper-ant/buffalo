@@ -13,11 +13,12 @@ extension UIViewController {
     func setBackBtn(color: UIColor) {
 
         //백버튼 이미지 파일 이름에 맞게 변경
-        let backBtn = UIBarButtonItem(image: UIImage(named: "btBackarrow"),
+        let backBtn = UIBarButtonItem(image: UIImage(named: "icon_navigation_back"),
             style: .plain,
             target: self,
             action: #selector(self.pop))
 
+        backBtn.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
         navigationItem.leftBarButtonItem = backBtn
         navigationItem.leftBarButtonItem?.tintColor = color
         navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
@@ -25,6 +26,15 @@ extension UIViewController {
 
     @objc func pop() {
         self.navigationController?.popViewController(animated: true)
+    }
+
+    // MARK: 네비게이션 바 투명하게 하는 함수
+    func setNavigationBar() {
+        let bar: UINavigationBar! = self.navigationController?.navigationBar
+
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor.clear
     }
 
 }

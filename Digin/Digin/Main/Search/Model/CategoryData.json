@@ -6,12 +6,6 @@
         "contents" : "석유 및 천연가스 산업재의 기업을 모아뒀어요."
     },
     {
-        "name" : "소재",
-        "img" : "material_img",
-        "bigImg" : "material_bigimg",
-        "contents" : "금, 구리, 철 등을 채굴하거나 만드는 산업의 기업을 모아뒀어요."
-    },
-    {
         "name" : "산업재",
         "img" : "industry_img",
         "bigImg" : "industry_bigimg",
@@ -64,6 +58,12 @@
         "img" : "essential_img",
         "bigImg" : "essential_bigimg",
         "contents" : "우리 생활에 꼭 필요한 제품을 만드는 기업을 모아뒀어요."
+    },
+    {
+        "name" : "소재",
+        "img" : "material_img",
+        "bigImg" : "material_bigimg",
+        "contents" : "금, 구리, 철 등을 채굴하거나 만드는 산업의 기업을 모아뒀어요."
     }
 ]
 

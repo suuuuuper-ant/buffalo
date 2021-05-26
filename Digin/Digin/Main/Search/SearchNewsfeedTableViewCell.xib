@@ -19,20 +19,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listNonePic" translatesAutoresizingMaskIntoConstraints="NO" id="xhp-sL-Jtt">
-                        <rect key="frame" x="10" y="10" width="90" height="70"/>
+                        <rect key="frame" x="20" y="10" width="90" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="1FG-25-93I"/>
                             <constraint firstAttribute="height" constant="70" id="806-Jj-fji"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e84-8k-MVQ">
-                        <rect key="frame" x="110" y="10" width="218" height="17"/>
+                        <rect key="frame" x="120" y="10" width="208" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" name="darkgray62"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEp-Qu-7xW">
-                        <rect key="frame" x="110" y="68" width="218" height="12"/>
+                        <rect key="frame" x="120" y="68" width="208" height="12"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
                         <color key="textColor" name="gray_160"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                     <constraint firstItem="IEp-Qu-7xW" firstAttribute="bottom" secondItem="xhp-sL-Jtt" secondAttribute="bottom" id="4by-wI-C7h"/>
                     <constraint firstItem="IEp-Qu-7xW" firstAttribute="leading" secondItem="e84-8k-MVQ" secondAttribute="leading" id="ADv-UM-4Km"/>
                     <constraint firstItem="e84-8k-MVQ" firstAttribute="leading" secondItem="xhp-sL-Jtt" secondAttribute="trailing" constant="10" id="G01-qY-sbR"/>
-                    <constraint firstItem="xhp-sL-Jtt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PHB-nh-ycE"/>
+                    <constraint firstItem="xhp-sL-Jtt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="PHB-nh-ycE"/>
                     <constraint firstItem="IEp-Qu-7xW" firstAttribute="trailing" secondItem="e84-8k-MVQ" secondAttribute="trailing" id="VZs-Qt-tBg"/>
                     <constraint firstItem="IEp-Qu-7xW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e84-8k-MVQ" secondAttribute="bottom" constant="10" id="Y1Z-Ol-piT"/>
                     <constraint firstItem="e84-8k-MVQ" firstAttribute="top" secondItem="xhp-sL-Jtt" secondAttribute="top" id="kSm-tl-8KI"/>

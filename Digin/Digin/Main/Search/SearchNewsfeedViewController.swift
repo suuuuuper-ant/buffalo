@@ -9,7 +9,6 @@ import UIKit
 
 class SearchNewsfeedViewController: UIViewController {
 
-    @IBOutlet weak var titleLabelTopC: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
@@ -21,10 +20,17 @@ class SearchNewsfeedViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
-        setNavigationBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = .white
     }
 
     private func setup() {
+        setBackBtn(color: AppColor.darkgray62.color)
+        self.navigationController?.navigationBar.barTintColor = .white
+
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -33,38 +39,15 @@ class SearchNewsfeedViewController: UIViewController {
 
         titleLabel.text = header
     }
-
-    private func setNavigationBar() {
-        let topInset: CGFloat = UIApplication.shared.statusBarFrame.height
-        titleLabelTopC.constant += topInset
-
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: topInset, width: view.frame.size.width, height: 44))
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.shadowImage = UIImage()
-        view.addSubview(navBar)
-
-        let navItem = UINavigationItem()
-        let backBTN = UIBarButtonItem(image: UIImage(named: "icon_navigation_back"),
-                                      style: .plain,
-                                      target: self,
-                                      action: #selector(backAction))
-        navItem.leftBarButtonItem = backBTN
-        backBTN.tintColor = AppColor.darkgray62.color
-        backBTN.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
-        navBar.setItems([navItem], animated: false)
-    }
-
-    @objc func backAction() {
-        self.dismiss(animated: false, completion: nil)
-    }
-
 }
 
+//FIXME: 카테고리 뉴스 api 추가 (API 없음)
 // MARK: - TableView
 extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsData.count
+        if type == 0 { return newsData.count } //기업
+        return 10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,15 +55,26 @@ extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
 
-        cell.titleLabel.text = newsData[indexPath.row].title
-        cell.dateLabel.text = newsData[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
+        if type == 0 { //기업
+            cell.titleLabel.text = newsData[indexPath.row].title
+            cell.dateLabel.text = newsData[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
+        } else { //카테고리
+            cell.titleLabel.text = "‘지그재그’ 인수로 카카오가 기대하는 세 가지"
+            cell.dateLabel.text = "05.06 17:24"
+        }
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let webVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
-        webVC.newsURL = newsData[indexPath.row].link
+
+        if type == 0 { //기업
+            webVC.newsURL = newsData[indexPath.row].link
+        } else { //카테고리
+            webVC.newsURL = "https://www.bloter.net/newsView/blt202105060019"
+        }
+
         self.present(webVC, animated: true, completion: nil)
     }
 
