@@ -15,7 +15,7 @@ struct CategoryService: APIServie {
         if let data = jsonData {
             if let parseData = parse(jsonData: data) {
 
-                print("category: \(parseData)")
+                //print("category: \(parseData)")
                 completion(parseData)
             }
         }

@@ -25,7 +25,7 @@ struct NewsfeedService: APIServie {
             case .success(let resultData):
 
                 let data = resultData.result
-                //print(data)
+                print(data)
                 completion(data)
 
             case .failure(let error):
@@ -76,7 +76,7 @@ struct NewsfeedService: APIServie {
             case .success(let resultData):
 
                 let data = resultData.result
-                //print(data)
+                print(data)
                 completion(data)
 
             case .failure(let error):
