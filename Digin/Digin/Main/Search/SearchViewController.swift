@@ -101,15 +101,18 @@ class SearchViewController: UIViewController {
         if isTextEmpty() { return } //공백 체크
 
         guard let text = searchTextField.text else { return }
+        if isSearch == 1 {
+            // MARK: CoreData - Insert
+            PersistenceManager.shared.insertCompany(name: text)
 
-        // MARK: CoreData - Insert
-        PersistenceManager.shared.insertCompany(name: text)
+            //화면 전환 (검색 리스트, 1 -> 검색 결과, 2)
+            isSearch = 2
+            searchTextField.resignFirstResponder()
+            getSearchData(keyword: text)
+            disableSearchAnimaion()
+        }
 
-        //화면 전환 (검색 리스트 -> 검색 결과)
-        isSearch = 2
-        searchTextField.resignFirstResponder()
         getSearchData(keyword: text)
-        disableSearchAnimaion()
     }
 
     //검색 활성화

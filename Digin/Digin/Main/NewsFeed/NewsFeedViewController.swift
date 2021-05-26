@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Foundation
 
 // MARK: 뉴스피드 카테고리 타입
 enum CategoryType: Int {
@@ -21,8 +20,7 @@ class NewsFeedViewController: UIViewController, APIServie {
     @IBOutlet weak var feedTableView: UITableView!
 
     //skeleton
-    var isLoad = true
-    var isFirstLoad = true
+    var isLoad = false
 
     var viewType: Int = 0//카테고리
     var selectedIndex = 0 //관심기업 index
@@ -44,15 +42,18 @@ class NewsFeedViewController: UIViewController, APIServie {
     var isPaging = false
 
     private let refreshControl = UIRefreshControl()
+    private var lastContentOffset: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setup()
-        getAllNews()
-        getCompanyList()
-
         initRefresh()
+
+        DispatchQueue.global(qos: .utility).async {
+            self.getAllNews()
+            self.getCompanyList()
+        }
     }
 
     func setup() {
@@ -97,6 +98,7 @@ class NewsFeedViewController: UIViewController, APIServie {
     }
 
     private func resetData() {
+        isLoad = false
         section0Contents.removeAll()
         section1Contents.removeAll()
         section2Contents.removeAll()
@@ -138,10 +140,8 @@ extension NewsFeedViewController: UICollectionViewDelegate, UICollectionViewData
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
         resetData() //데이터 초기화
         selectedIndex = indexPath.item //선택 기업 갱신
-        print(selectedIndex)
 
         if indexPath.item == 0 {
             getAllNews()
@@ -156,6 +156,11 @@ extension NewsFeedViewController: UICollectionViewDelegate, UICollectionViewData
 extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
+
+        if !isLoad {
+            return 1
+        }
+
         switch allNewsData.empty {
         case true:
             return 1
@@ -165,6 +170,10 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        if !isLoad {
+            return 1
+        }
 
         switch allNewsData.empty {
         case true: //뉴스 피드 컨텐츠가 없을 때
@@ -181,7 +190,14 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    // swiftlint:disable all
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        if !isLoad {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingTableViewCell.reuseIdentifier, for: indexPath) as? LoadingTableViewCell else { return UITableViewCell() }
+            cell.start()
+            return cell
+        }
 
         if allNewsData.empty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NoneResultTableViewCell.reuseIdentifier) as? NoneResultTableViewCell else { return UITableViewCell() }
@@ -194,55 +210,51 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell1.reuseIdentifier, for: indexPath) as? FeedTableViewCell1 else { return UITableViewCell() }
 
-            if !isLoad {
-                setSkeleton(sender: cell.dateLabel)
-                setSkeleton(sender: cell.titleLabel)
-                setSkeleton(sender: cell.contentsLabel)
-            } else {
-                cell.dateLabel.text = section0Contents[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
-                cell.titleLabel.text = section0Contents[indexPath.row].title
-                cell.contentsLabel.text = section0Contents[indexPath.row].description
-            }
+            cell.dateLabel.text = section0Contents[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
+            cell.titleLabel.text = section0Contents[indexPath.row].title
+            cell.contentsLabel.text = section0Contents[indexPath.row].description
 
+            if section0Contents[indexPath.row].imageUrl != "" {
+                let url = URL(string: section0Contents[indexPath.row].imageUrl)
+//                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
+                cell.opImageView.alpha = 0.5
+                cell.opImageView.backgroundColor = .black
+            }
+            
             return cell
 
         case 1:
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell2.reuseIdentifier, for: indexPath) as? FeedTableViewCell2 else { return UITableViewCell() }
+            
+            cell.titleLabel.text = section1Contents[indexPath.row].title
+            cell.contentsLabel.text = section1Contents[indexPath.row].description
 
-            if !isLoad {
-                setSkeleton(sender: cell.titleLabel)
-                setSkeleton(sender: cell.contentsLabel)
-            } else {
-                cell.titleLabel.text = section1Contents[indexPath.row].title
-                cell.contentsLabel.text = section1Contents[indexPath.row].description
+            if section1Contents[indexPath.row].imageUrl != "" {
+                let url = URL(string: section1Contents[indexPath.row].imageUrl)
+//                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
             }
-
+            
             return cell
 
         case 2:
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell3.reuseIdentifier, for: indexPath) as? FeedTableViewCell3 else { return UITableViewCell() }
-
-            if !isLoad {
-                setSkeleton(sender: cell.titleLabel)
-            } else {
-                cell.titleLabel.text = section2Contents[indexPath.row].title
-            }
-
+            cell.titleLabel.text = section2Contents[indexPath.row].title
             return cell
 
         case 3:
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell4.reuseIdentifier, for: indexPath) as? FeedTableViewCell4 else { return UITableViewCell() }
-
-            if !isLoad {
-                setSkeleton(sender: cell.dateLabel)
-                setSkeleton(sender: cell.titleLabel)
-            } else {
                 cell.dateLabel.text = contents[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
                 cell.titleLabel.text = contents[indexPath.row].title
-            }
+
+                if contents[indexPath.row].imageUrl != "" {
+                    let url = URL(string: contents[indexPath.row].imageUrl)
+//                    cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
+                    cell.opImageView.alpha = 0.5
+                    cell.opImageView.backgroundColor = .black
+                }
 
             return cell
 
@@ -250,15 +262,14 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingTableViewCell.reuseIdentifier, for: indexPath) as? LoadingTableViewCell else {
                 return UITableViewCell()
             }
-
             cell.start()
-
             return cell
 
         default:
             return UITableViewCell()
         }
     }
+    // swiftlint:enable all
 
     //섹션마다 매칭
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -277,16 +288,29 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.frame.height
+//        let contentHeight = scrollView.contentSize.height
+//        let height = scrollView.frame.height
 
-        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
-        if offsetY > (contentHeight - height) {
+        if (self.lastContentOffset > offsetY) {
+            // move up
+        } else if (self.lastContentOffset < offsetY) {
             if isPaging == false && hasNextPage {
                 currentPage += 1
                 beginPaging()
             }
         }
+
+        // update the new position acquired
+        self.lastContentOffset = scrollView.contentOffset.y
+
+        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
+//        if offsetY > (contentHeight - height) {
+//            if isPaging == false && hasNextPage {
+//                currentPage += 1
+//                beginPaging()
+//                print("AFDFAF")
+//            }
+//        }
     }
 
     func beginPaging() {
@@ -312,9 +336,9 @@ extension NewsFeedViewController {
 
     // GET - /news (전체 뉴스)
     func getAllNews() {
-        NewsfeedService.getNewsData(pageNumber: currentPage) { (result) in
 
-            //print(result.pageable.pageNumber)
+        NewsfeedService.getNewsData(pageNumber: self.currentPage) { (result) in
+
             if result.empty {
                 self.allNewsData = result
             } else if result.first { //첫 페이지
@@ -322,29 +346,50 @@ extension NewsFeedViewController {
 
                 // - 고정 데이터
                 self.section0Contents.append(result.content[0]) //섹션0
+//                self.section0Contents[0].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "image")
+//                self.section0Contents[0].description = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "description")
+
+                //var idx = 0
                 for index in 1..<3 { //섹션1
                     self.section1Contents.append(result.content[index])
+//                    self.section1Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+//                    self.section1Contents[idx].description = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "description")
+                    //idx += 1
                 }
+
+                //idx = 0
                 for index in 3..<9 { //섹션2
                     self.section2Contents.append(result.content[index])
+//                    self.section2Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+                    //idx += 1
                 }
+
+                //idx = 0
                 // - 페이징 데이터
                 for index in 9..<result.content.count {
                     self.contents.append(result.content[index])
+//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+                    //idx += 1
                 }
 
             } else {
+
+                //var idx = self.contents.count
                 for index in 0..<result.content.count {
                     self.contents.append(result.content[index])
+//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+                    //idx += 1
                 }
             }
 
             if result.last { self.hasNextPage = false } //페이징 종료
 
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
+                self.isLoad = true
                 self.isPaging = false
                 self.feedTableView.reloadData()
-            })
+            }
+
         }
     }
 
@@ -353,9 +398,9 @@ extension NewsFeedViewController {
         NewsfeedService.getFavorites { (result) in
             self.companyList = result
 
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
                 self.menuCollectionView.reloadData()
-            })
+            }
         }
     }
 
@@ -363,7 +408,6 @@ extension NewsFeedViewController {
     func getCompanyNews() {
         NewsfeedService.getCompanyNews(stockCode: companyList[selectedIndex - 1].stockCode, pageNumber: currentPage) { (result) in
 
-            //print(result.pageable.pageNumber)
             if result.empty {
                 self.allNewsData = result
             } else if result.first { //첫 페이지
@@ -371,32 +415,49 @@ extension NewsFeedViewController {
 
                 // - 고정 데이터
                 self.section0Contents.append(result.content[0]) //섹션0
+//                self.section0Contents[0].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "image")
+//                self.section0Contents[0].description = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "description")
 
+                //var idx = 0
                 for index in 1..<3 { //섹션1
                     self.section1Contents.append(result.content[index])
+//                    self.section1Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+//                    self.section1Contents[idx].description = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "description")
+//                    idx += 1
                 }
 
+                //idx = 0
                 for index in 3..<9 { //섹션2
                     self.section2Contents.append(result.content[index])
+//                    self.section2Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+//                    idx += 1
                 }
 
+                //idx = 0
                 // - 페이징 데이터
                 for index in 9..<result.content.count {
                     self.contents.append(result.content[index])
+//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+//                    idx += 1
                 }
+
             } else {
+
+                //var idx = self.contents.count
                 for index in 0..<result.content.count {
                     self.contents.append(result.content[index])
+//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
+//                    idx += 1
                 }
             }
 
             if result.last { self.hasNextPage = false } //페이징 종료
 
-            //처음 섹션만 뜨는거 고치기
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.async {
+                self.isLoad = true
                 self.isPaging = false
                 self.feedTableView.reloadData()
-            })
+            }
         }
     }
 
@@ -412,13 +473,13 @@ extension NewsFeedViewController: SkeletonLoadable {
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
         sender.layer.addSublayer(gradientLayer)
 
-        if isFirstLoad {
-            guard let width = sender.bounds?.width else { return }
-            guard let height = sender.bounds?.height else { return }
-            gradientLayer.frame = CGRect(x: 0, y: 0, width: width - 39, height: height)
-        } else {
-            gradientLayer.frame = sender.bounds
-        }
+//        if isFirstLoad {
+//            guard let width = sender.bounds?.width else { return }
+//            guard let height = sender.bounds?.height else { return }
+//            gradientLayer.frame = CGRect(x: 0, y: 0, width: width - 39, height: height)
+//        } else {
+//            gradientLayer.frame = sender.bounds
+//        }
 
         let group = makeAnimationGroup()
         group.beginTime = 0.0

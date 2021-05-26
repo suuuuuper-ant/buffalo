@@ -35,7 +35,7 @@ struct NewsfeedResult: Decodable {
     var sort: NewsfeedSort = NewsfeedSort()
     var first: Bool = false
     var last: Bool = false
-    var pageable: NewsfeedPageable = NewsfeedPageable()
+    var pageable: String = ""
     var empty: Bool = false
 
     private enum CodingKeys: String, CodingKey {
@@ -61,7 +61,7 @@ struct NewsfeedResult: Decodable {
         sort = try container.decodeIfPresent(NewsfeedSort.self, forKey: .sort) ?? NewsfeedSort()
         first = try container.decodeIfPresent(Bool.self, forKey: .first) ?? false
         last = try container.decodeIfPresent(Bool.self, forKey: .last) ?? false
-        pageable = try container.decodeIfPresent(NewsfeedPageable.self, forKey: .pageable) ?? NewsfeedPageable()
+        pageable = try container.decodeIfPresent(String.self, forKey: .pageable) ?? ""
         empty = try container.decodeIfPresent(Bool.self, forKey: .empty) ?? false
     }
 }
@@ -74,11 +74,11 @@ struct NewsfeedContent: Decodable {
     var link: String = ""
     var description: String = ""
     var createdAt: String = ""
-    var updatedAt: String = ""
+    var imageUrl: String = ""
 
     private enum CodingKeys: String, CodingKey {
         case id, stockCode, title, link
-        case description
+        case description, imageUrl
         case createdAt, updatedAt
     }
 
@@ -90,37 +90,37 @@ struct NewsfeedContent: Decodable {
         link = try container.decodeIfPresent(String.self, forKey: .link) ?? ""
         description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
         createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
-        updatedAt = try container.decodeIfPresent(String.self, forKey: .updatedAt) ?? ""
+        imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl) ?? ""
     }
 }
 
-// MARK: - Pageable
-struct NewsfeedPageable: Decodable {
-    var paged: Bool = false
-    var unpaged: Bool = false
-    var pageNumber: Int = 0
-    var pageSize: Int = 0
-    var offset: Int = 0
-    var sort: NewsfeedSort = NewsfeedSort()
-
-    private enum CodingKeys: String, CodingKey {
-        case paged, unpaged
-        case pageNumber, pageSize, offset
-        case sort
-    }
-
-    init() {}
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        paged = try container.decodeIfPresent(Bool.self, forKey: .paged) ?? false
-        unpaged = try container.decodeIfPresent(Bool.self, forKey: .unpaged) ?? false
-        pageNumber = try container.decodeIfPresent(Int.self, forKey: .pageNumber) ?? 0
-        pageSize = try container.decodeIfPresent(Int.self, forKey: .pageSize) ?? 0
-        offset = try container.decodeIfPresent(Int.self, forKey: .offset) ?? 0
-        sort = try container.decodeIfPresent(NewsfeedSort.self, forKey: .sort) ?? NewsfeedSort()
-    }
-}
+//// MARK: - Pageable
+//struct NewsfeedPageable: Decodable {
+//    var paged: Bool = false
+//    var unpaged: Bool = false
+//    var pageNumber: Int = 0
+//    var pageSize: Int = 0
+//    var offset: Int = 0
+//    var sort: NewsfeedSort = NewsfeedSort()
+//
+//    private enum CodingKeys: String, CodingKey {
+//        case paged, unpaged
+//        case pageNumber, pageSize, offset
+//        case sort
+//    }
+//
+//    init() {}
+//
+//    public init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        paged = try container.decodeIfPresent(Bool.self, forKey: .paged) ?? false
+//        unpaged = try container.decodeIfPresent(Bool.self, forKey: .unpaged) ?? false
+//        pageNumber = try container.decodeIfPresent(Int.self, forKey: .pageNumber) ?? 0
+//        pageSize = try container.decodeIfPresent(Int.self, forKey: .pageSize) ?? 0
+//        offset = try container.decodeIfPresent(Int.self, forKey: .offset) ?? 0
+//        sort = try container.decodeIfPresent(NewsfeedSort.self, forKey: .sort) ?? NewsfeedSort()
+//    }
+//}
 
 // MARK: - Sort
 struct NewsfeedSort: Decodable {
