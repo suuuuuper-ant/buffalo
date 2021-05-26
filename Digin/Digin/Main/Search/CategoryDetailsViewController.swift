@@ -24,7 +24,15 @@ class CategoryDetailsViewController: UIViewController {
         setup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = UIColor.appColor(.bgLightGrey)
+    }
+
     private func setup() {
+        setBackBtn(color: AppColor.darkgray62.color)
+        self.navigationController?.navigationBar.barTintColor = UIColor.appColor(.bgLightGrey)
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
@@ -37,6 +45,7 @@ class CategoryDetailsViewController: UIViewController {
 
 }
 
+//TODO: 카테고리 뉴스 api 통신 (API 없음)
 extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,8 +59,14 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
 
         if section == 0 {
             cell.titleLabel.text = "기업별 순위"
+
             cell.dateLabel.isHidden = false
-            cell.dateLabel.text = "2021. 04. 30"
+            let today = NSDate() //현재 시각 구하기
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy. MM. dd"
+            let dateString = dateFormatter.string(from: today as Date)
+            cell.dateLabel.text = dateString
+
             cell.nextButton.isHidden = true
         }
 
@@ -61,8 +76,9 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
             cell.nextButton.isHidden = false
             cell.nextClosure = { [weak self] in
                 guard let newsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(identifier: SearchNewsfeedViewController.reuseIdentifier) as? SearchNewsfeedViewController else { return }
-                //TODO: 카테고리 / 기업 구분해서 전달 (push)
-                self?.present(newsVC, animated: true, completion: nil)
+                newsVC.type = 1
+                newsVC.header = self?.categoryReult.name ?? ""
+                self?.navigationController?.pushViewController(newsVC, animated: true)
             }
         }
 
@@ -93,6 +109,7 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
             }
 
             cell.titleLabel.text = "카카오"
+            cell.categoryLabel.text = "Not Rated"
             cell.layer.borderColor = UIColor.appColor(.mainBlue).cgColor
             cell.categoryLabel.font = UIFont.englishFont(ofSize: 12)
 
@@ -104,8 +121,8 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
                 return UITableViewCell()
             }
 
-            cell.titleLabel.text = "[단독] 이찌안 귀엽다고 소리 지른 20대 여성 두명 붙잡혀..."
-            cell.dateLabel.text = "연합뉴스 | 04. 17. 19:14"
+            cell.titleLabel.text = "‘지그재그’ 인수로 카카오가 기대하는 세 가지"
+            cell.dateLabel.text = "05.06 17:24"
 
             return cell
         }
@@ -118,9 +135,8 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
         cell.collectionView.reloadData()
         cell.actionClosure = { [weak self] (result) in
             guard let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier) as? CategoryDetailsViewController else { return }
-            //TODO: 카테고리 index에 맞는 JSON 데이터 전달
             detailsVC.categoryReult = result
-            self?.present(detailsVC, animated: true, completion: nil)
+            self?.navigationController?.pushViewController(detailsVC, animated: true)
         }
 
         return cell
@@ -131,12 +147,13 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
         if indexPath.section == 0 {
             let detailsVC = HomeDetailViewController()
             //TODO: 기업 상세보기에 기업 index 전달하기 
-            self.present(detailsVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(detailsVC, animated: true)
         }
 
         if indexPath.section == 1 { //뉴스
-            let detailVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier)
-            //TODO: 뉴스 url 전달하기
+            let detailVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
+            //TODO: 뉴스 url 전달하기 (API 없음)
+            detailVC.newsURL = "https://www.bloter.net/newsView/blt202105060019"
             self.present(detailVC, animated: true, completion: nil)
         }
     }
