@@ -27,6 +27,9 @@ class SearchViewController: UIViewController {
     let request = NSFetchRequest<NSManagedObject>(entityName: "RecentCompany")
     var recentCompany: [NSManagedObject] = []
 
+    //FIXME: 추후 네트워킹 데이터로 수정
+    let dummyData = [["삼성전자", "정보기술"], ["SK하이닉스", "정보기술"], ["네이버", "커뮤니케이션 서비스"], ["카카오", "커뮤니케이션 서비스"], ["엔씨소프트", "커뮤니케이션 서비스"] ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -292,7 +295,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
         default: //메인
             if section == 0 { return 1 }
-            return 5
+            return dummyData.count
         }
     }
 
@@ -398,9 +401,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
             //인기 검색 기업
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CompanyTableViewCell.reuseIdentifier) as? CompanyTableViewCell else { return UITableViewCell() }
+            
+            if indexPath.row == 0 {
+                cell.topC.constant = 15
+            } else {
+                cell.topC.constant = 10
+            }
 
-            cell.titleLabel.text = "카카오"
-            cell.categoryLabel.text = "커뮤니케이션 서비스"
+            cell.titleLabel.text = dummyData[indexPath.row][0]
+            cell.categoryLabel.text = dummyData[indexPath.row][1]
 
             return cell
         }

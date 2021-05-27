@@ -108,6 +108,12 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
                 return UITableViewCell()
             }
 
+            if indexPath.row == 0 {
+                cell.topC.constant = 15
+            } else {
+                cell.topC.constant = 10
+            }
+
             cell.titleLabel.text = "카카오"
             cell.categoryLabel.text = "Not Rated"
             cell.layer.borderColor = UIColor.appColor(.mainBlue).cgColor
