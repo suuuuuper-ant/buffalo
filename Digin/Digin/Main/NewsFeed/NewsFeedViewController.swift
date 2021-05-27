@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 // MARK: 뉴스피드 카테고리 타입
 enum CategoryType: Int {
@@ -216,7 +217,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
             if section0Contents[indexPath.row].imageUrl != "" {
                 let url = URL(string: section0Contents[indexPath.row].imageUrl)
-//                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
+                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
                 cell.opImageView.alpha = 0.5
                 cell.opImageView.backgroundColor = .black
             }
@@ -232,7 +233,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
             if section1Contents[indexPath.row].imageUrl != "" {
                 let url = URL(string: section1Contents[indexPath.row].imageUrl)
-//                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
+                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
             }
             
             return cell
@@ -251,7 +252,7 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
                 if contents[indexPath.row].imageUrl != "" {
                     let url = URL(string: contents[indexPath.row].imageUrl)
-//                    cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
+                    cell.newsImageView.kf.setImage(with: url, placeholder: UIImage())
                     cell.opImageView.alpha = 0.5
                     cell.opImageView.backgroundColor = .black
                 }
