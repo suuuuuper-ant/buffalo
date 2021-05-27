@@ -37,7 +37,7 @@ class SearchTabBarCotentFactory: TabBarCotentFactory {
 
 class NewsFeedTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
-        let newsFeed =  UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsContainerViewController.reuseIdentifier)
+        let newsFeed = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsContainerViewController.reuseIdentifier)
         newsFeed.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
         return newsFeed
     }
@@ -45,7 +45,7 @@ class NewsFeedTabBarCotentFactory: TabBarCotentFactory {
 
 class MyPageTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
-        let myPage =  MypageViewController()
+        let myPage =  UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(identifier: "MyPageNaviViewController")
         myPage.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 3)
         return myPage
     }
