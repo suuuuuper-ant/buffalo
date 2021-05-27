@@ -292,9 +292,9 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 //        let contentHeight = scrollView.contentSize.height
 //        let height = scrollView.frame.height
 
-        if (self.lastContentOffset > offsetY) {
+        if self.lastContentOffset > offsetY {
             // move up
-        } else if (self.lastContentOffset < offsetY) {
+        } else if self.lastContentOffset < offsetY {
             if isPaging == false && hasNextPage {
                 currentPage += 1
                 beginPaging()

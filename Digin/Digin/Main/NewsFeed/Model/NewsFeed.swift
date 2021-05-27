@@ -94,7 +94,7 @@ struct NewsfeedContent: Decodable {
     }
 }
 
-//// MARK: - Pageable
+// MARK: - Pageable
 //struct NewsfeedPageable: Decodable {
 //    var paged: Bool = false
 //    var unpaged: Bool = false
