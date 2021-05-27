@@ -50,6 +50,13 @@
 		22A05BB2264864A700AEA69D /* DetailsNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A05BB1264864A700AEA69D /* DetailsNewsTableViewCell.swift */; };
 		22A05BB5264864B900AEA69D /* DetailsCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A05BB4264864B900AEA69D /* DetailsCategoryTableViewCell.swift */; };
 		22A05BB8264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A05BB7264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift */; };
+		22BCFE14265FA137006741A3 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22BCFE13265FA137006741A3 /* MyPage.storyboard */; };
+		22BCFE17265FAAD4006741A3 /* MyPageMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE15265FAAD4006741A3 /* MyPageMainTableViewCell.swift */; };
+		22BCFE18265FAAD4006741A3 /* MyPageMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BCFE16265FAAD4006741A3 /* MyPageMainTableViewCell.xib */; };
+		22BCFE1A265FB587006741A3 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE19265FB587006741A3 /* NoticeViewController.swift */; };
+		22BCFE1D265FB6E1006741A3 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE1B265FB6E1006741A3 /* NoticeTableViewCell.swift */; };
+		22BCFE1E265FB6E1006741A3 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BCFE1C265FB6E1006741A3 /* NoticeTableViewCell.xib */; };
+		22BCFE20265FC320006741A3 /* EditMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */; };
 		22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */; };
 		22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */; };
 		22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8BC264BE52B005B6368 /* APIService.swift */; };
@@ -178,6 +185,13 @@
 		22A05BB1264864A700AEA69D /* DetailsNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsTableViewCell.swift; sourceTree = "<group>"; };
 		22A05BB4264864B900AEA69D /* DetailsCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		22A05BB7264865F800AEA69D /* DetailsCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		22BCFE13265FA137006741A3 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		22BCFE15265FAAD4006741A3 /* MyPageMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMainTableViewCell.swift; sourceTree = "<group>"; };
+		22BCFE16265FAAD4006741A3 /* MyPageMainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageMainTableViewCell.xib; sourceTree = "<group>"; };
+		22BCFE19265FB587006741A3 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		22BCFE1B265FB6E1006741A3 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
+		22BCFE1C265FB6E1006741A3 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
+		22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyDataViewController.swift; sourceTree = "<group>"; };
 		22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 		22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedService.swift; sourceTree = "<group>"; };
 		22CCD8BC264BE52B005B6368 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -468,7 +482,14 @@
 		F121DF352623381C00B09F21 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				22BCFE13265FA137006741A3 /* MyPage.storyboard */,
 				F121DF25262308DF00B09F21 /* MypageViewController.swift */,
+				22BCFE19265FB587006741A3 /* NoticeViewController.swift */,
+				22BCFE15265FAAD4006741A3 /* MyPageMainTableViewCell.swift */,
+				22BCFE16265FAAD4006741A3 /* MyPageMainTableViewCell.xib */,
+				22BCFE1B265FB6E1006741A3 /* NoticeTableViewCell.swift */,
+				22BCFE1C265FB6E1006741A3 /* NoticeTableViewCell.xib */,
+				22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -677,12 +698,15 @@
 				F1278FF626595FA10069CFDB /* LogoLottie.json in Resources */,
 				F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */,
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
+				22BCFE1E265FB6E1006741A3 /* NoticeTableViewCell.xib in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
 				F1504BCE263C7DBC007C82F2 /* imgBubbleStart.svg in Resources */,
 				F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */,
 				222BC6CE2654FF3D008C1CF2 /* NoneResultTableViewCell.xib in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
 				229B6FA6264017B900D28B52 /* Search.storyboard in Resources */,
+				22BCFE14265FA137006741A3 /* MyPage.storyboard in Resources */,
+				22BCFE18265FAAD4006741A3 /* MyPageMainTableViewCell.xib in Resources */,
 				F1734760261855C5009EC5D6 /* Main.storyboard in Resources */,
 				222BC6C32654DC90008C1CF2 /* SearchNewsfeedTableViewCell.xib in Resources */,
 				F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */,
@@ -770,6 +794,7 @@
 				F121DF1A2623083400B09F21 /* MainTabBarController.swift in Sources */,
 				F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
+				22BCFE17265FAAD4006741A3 /* MyPageMainTableViewCell.swift in Sources */,
 				F1278FF226595EA10069CFDB /* LaunchViewController.swift in Sources */,
 				222BC6D32655169F008C1CF2 /* CompanyModel.xcdatamodeld in Sources */,
 				F121DF172623075B00B09F21 /* SignUpViewController.swift in Sources */,
@@ -786,6 +811,7 @@
 				2261893E262F0A1400A9B77B /* MenuCollectionViewCell.swift in Sources */,
 				F1D3470C263EBD4B00E63483 /* InterestedCompanyCell.swift in Sources */,
 				F1C6B419265160FC001E8510 /* SignupPasswordViewModel.swift in Sources */,
+				22BCFE20265FC320006741A3 /* EditMyDataViewController.swift in Sources */,
 				F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */,
 				F1504BC6263AF3DC007C82F2 /* SlideOpenView.swift in Sources */,
 				F121DF26262308DF00B09F21 /* MypageViewController.swift in Sources */,
@@ -817,9 +843,11 @@
 				2224BABC263AA80F00E620C4 /* FeedSkeletonTableViewCell1.swift in Sources */,
 				F1F1D14D26455FC400FE8C15 /* HomeDetailNewsListCell.swift in Sources */,
 				22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */,
+				22BCFE1D265FB6E1006741A3 /* NoticeTableViewCell.swift in Sources */,
 				F1504BC8263AF4CF007C82F2 /* RoundShadowView.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
 				F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */,
+				22BCFE1A265FB587006741A3 /* NoticeViewController.swift in Sources */,
 				F1F1D1552649690400FE8C15 /* HomeDetailRelativeCell.swift in Sources */,
 				F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */,
 				F121DF20262308AC00B09F21 /* SearchViewController.swift in Sources */,
