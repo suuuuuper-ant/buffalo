@@ -57,6 +57,7 @@
 		22BCFE1D265FB6E1006741A3 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE1B265FB6E1006741A3 /* NoticeTableViewCell.swift */; };
 		22BCFE1E265FB6E1006741A3 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BCFE1C265FB6E1006741A3 /* NoticeTableViewCell.xib */; };
 		22BCFE20265FC320006741A3 /* EditMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */; };
+		22BCFE24265FDFC6006741A3 /* Cocogoose_trial.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22BCFE23265FDEC2006741A3 /* Cocogoose_trial.otf */; };
 		22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */; };
 		22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */; };
 		22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8BC264BE52B005B6368 /* APIService.swift */; };
@@ -192,6 +193,7 @@
 		22BCFE1B265FB6E1006741A3 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
 		22BCFE1C265FB6E1006741A3 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyDataViewController.swift; sourceTree = "<group>"; };
+		22BCFE23265FDEC2006741A3 /* Cocogoose_trial.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cocogoose_trial.otf; sourceTree = "<group>"; };
 		22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 		22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedService.swift; sourceTree = "<group>"; };
 		22CCD8BC264BE52B005B6368 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				F1F1D14E264563D400FE8C15 /* Colors.xcassets */,
 				F1F1D157264BF91300FE8C15 /* AppColor.swift */,
 				F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */,
+				22BCFE23265FDEC2006741A3 /* Cocogoose_trial.otf */,
 				F1504BCD263C7DBC007C82F2 /* imgBubbleStart.svg */,
 				F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */,
 				F1278FF126595EA10069CFDB /* LaunchViewController.swift */,
@@ -704,6 +707,7 @@
 				F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */,
 				222BC6CE2654FF3D008C1CF2 /* NoneResultTableViewCell.xib in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
+				22BCFE24265FDFC6006741A3 /* Cocogoose_trial.otf in Resources */,
 				229B6FA6264017B900D28B52 /* Search.storyboard in Resources */,
 				22BCFE14265FA137006741A3 /* MyPage.storyboard in Resources */,
 				22BCFE18265FAAD4006741A3 /* MyPageMainTableViewCell.xib in Resources */,

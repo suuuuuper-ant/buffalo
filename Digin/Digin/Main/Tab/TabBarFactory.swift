@@ -22,7 +22,10 @@ protocol TabBarCotentFactory {
 class HomeTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
         let home =   UINavigationController(rootViewController: HomeViewController())
-        home.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        home.tabBarItem.tag = 0
+        home.tabBarItem.image = UIImage(named: "icTabHome")?.withRenderingMode(.alwaysOriginal)
+        home.tabBarItem.selectedImage = UIImage(named: "icTabHomeBlue")?.withRenderingMode(.alwaysOriginal)
+        home.tabBarItem.title = "홈"
         return home
     }
 }
@@ -30,7 +33,10 @@ class HomeTabBarCotentFactory: TabBarCotentFactory {
 class SearchTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
         let search =  UIStoryboard(name: "Search", bundle: nil).instantiateViewController(identifier: "SearchNaviViewController")
-        search.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        search.tabBarItem.tag = 1
+        search.tabBarItem.image = UIImage(named: "icTabSearch")?.withRenderingMode(.alwaysOriginal)
+        search.tabBarItem.selectedImage = UIImage(named: "icTabSearchBlue")?.withRenderingMode(.alwaysOriginal)
+        search.tabBarItem.title = "검색"
         return search
     }
 }
@@ -38,7 +44,10 @@ class SearchTabBarCotentFactory: TabBarCotentFactory {
 class NewsFeedTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
         let newsFeed = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsContainerViewController.reuseIdentifier)
-        newsFeed.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        newsFeed.tabBarItem.tag = 2
+        newsFeed.tabBarItem.image = UIImage(named: "icTabFeed")?.withRenderingMode(.alwaysOriginal)
+        newsFeed.tabBarItem.selectedImage = UIImage(named: "icTabFeedBlue")?.withRenderingMode(.alwaysOriginal)
+        newsFeed.tabBarItem.title = "뉴스피드"
         return newsFeed
     }
 }
@@ -46,7 +55,10 @@ class NewsFeedTabBarCotentFactory: TabBarCotentFactory {
 class MyPageTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
         let myPage =  UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(identifier: "MyPageNaviViewController")
-        myPage.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 3)
+        myPage.tabBarItem.tag = 3
+        myPage.tabBarItem.image = UIImage(named: "icTabHome")?.withRenderingMode(.alwaysOriginal)
+        myPage.tabBarItem.selectedImage = UIImage(named: "icTabHomeBlue")?.withRenderingMode(.alwaysOriginal)
+        myPage.tabBarItem.title = "마이디긴"
         return myPage
     }
 }

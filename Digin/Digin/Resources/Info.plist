@@ -30,6 +30,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Cocogoose-Pro-Semilight-trial.ttf</string>
+		<string>Cocogoose_trial.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

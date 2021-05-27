@@ -30,6 +30,8 @@ class MainTabBarController: UITabBarController {
 
      let viewControllers =    MainTabarFactorySet(TabBarType.allCases).generateForTabBarType()
 
+        tabBar.tintColor = AppColor.mainColor.color
+        tabBar.barTintColor = UIColor.appColor(.bgLightGrey)
         self.viewControllers = viewControllers
 
     }
