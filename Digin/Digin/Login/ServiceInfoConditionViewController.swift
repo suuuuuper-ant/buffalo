@@ -123,6 +123,10 @@ class TermAndConditionDetailViewController: UIViewController, ViewType {
         let cancelBarButton = UIBarButtonItem(customView: previousButton)
         let titleLabelBarButton = UIBarButtonItem(customView: titleLabel)
         self.navigationItem.leftBarButtonItems = [cancelBarButton, titleLabelBarButton]
+
+        //네비바 커스텀
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = .white
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -157,7 +161,7 @@ class TermAndConditionDetailViewController: UIViewController, ViewType {
         detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
 
         checkImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 33).isActive = true
-        checkImageView.topAnchor.constraint(equalTo: detailTextView.bottomAnchor, constant: 38).isActive = true
+        checkImageView.topAnchor.constraint(equalTo: detailTextView.bottomAnchor, constant: 20).isActive = true
         checkImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
         checkImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
 

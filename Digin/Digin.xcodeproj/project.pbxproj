@@ -123,6 +123,7 @@
 		F1D3471E26404BC700E63483 /* Cocogoose-Pro-Semilight-trial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */; };
 		F1D3472026404C3900E63483 /* UIFont_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3471F26404C3900E63483 /* UIFont_extension.swift */; };
 		F1DC2962265C1A0300B51749 /* RandomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DC2961265C1A0300B51749 /* RandomAlertViewController.swift */; };
+		F1DC29662660159900B51749 /* TermsAndConditions.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DC29652660159800B51749 /* TermsAndConditions.json */; };
 		F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */; };
 		F1F1D1312641661A00FE8C15 /* HomeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */; };
 		F1F1D1332641944F00FE8C15 /* HomeDetailLineChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */; };
@@ -252,6 +253,7 @@
 		F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cocogoose-Pro-Semilight-trial.ttf"; sourceTree = "<group>"; };
 		F1D3471F26404C3900E63483 /* UIFont_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_extension.swift; sourceTree = "<group>"; };
 		F1DC2961265C1A0300B51749 /* RandomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAlertViewController.swift; sourceTree = "<group>"; };
+		F1DC29652660159800B51749 /* TermsAndConditions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TermsAndConditions.json; sourceTree = "<group>"; };
 		F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailHeaderView.swift; sourceTree = "<group>"; };
 		F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailLineChartCell.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				F1C6B4282655652F001E8510 /* ServiceInfoConditionViewController.swift */,
 				F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */,
 				F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */,
+				F1DC29652660159800B51749 /* TermsAndConditions.json */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				22618934262F07E900A9B77B /* NewsFeed.storyboard in Resources */,
 				F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */,
 				F1504BCE263C7DBC007C82F2 /* imgBubbleStart.svg in Resources */,
+				F1DC29662660159900B51749 /* TermsAndConditions.json in Resources */,
 				F1F1D14F264563D400FE8C15 /* Colors.xcassets in Resources */,
 				222BC6CE2654FF3D008C1CF2 /* NoneResultTableViewCell.xib in Resources */,
 				F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */,
