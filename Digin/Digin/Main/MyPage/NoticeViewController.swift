@@ -77,10 +77,18 @@ extension NoticeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoticeTableViewCell.reuseIdentifier) as? NoticeTableViewCell else { return UITableViewCell()}
 
         cell.titleLabel.text = "디긴이 오픈했습니다!"
-        cell.dateLabel.text = "2021.05.30"
+        cell.dateLabel.text = "2021. 05. 30"
         cell.accessoryType = .disclosureIndicator
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if type == 0 {
+            let vc = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(identifier: NoticeDetailsViewController.reuseIdentifier) as NoticeDetailsViewController
+
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }

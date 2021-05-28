@@ -105,7 +105,7 @@ class SearchViewController: UIViewController {
             isSearch = 2
             searchTextField.resignFirstResponder()
             getSearchData(keyword: text)
-            disableSearchAnimaion()
+            enableSearchAnimation()
         }
 
         getSearchData(keyword: text)

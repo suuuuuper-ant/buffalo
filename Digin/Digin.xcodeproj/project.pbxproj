@@ -61,6 +61,8 @@
 		22BCFE27265FE5CE006741A3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 22BCFE26265FE5CE006741A3 /* Kingfisher */; };
 		22BCFE29265FFFB2006741A3 /* MyPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE28265FFFB2006741A3 /* MyPageService.swift */; };
 		22BCFE2C265FFFD9006741A3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE2B265FFFD9006741A3 /* Account.swift */; };
+		22BCFE302660BF00006741A3 /* NoticeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE2F2660BF00006741A3 /* NoticeDetailsViewController.swift */; };
+		22BCFE322660BF15006741A3 /* NoticeDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE312660BF15006741A3 /* NoticeDetailsTableViewCell.swift */; };
 		22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */; };
 		22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */; };
 		22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8BC264BE52B005B6368 /* APIService.swift */; };
@@ -200,6 +202,8 @@
 		22BCFE23265FDEC2006741A3 /* Cocogoose_trial.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cocogoose_trial.otf; sourceTree = "<group>"; };
 		22BCFE28265FFFB2006741A3 /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
 		22BCFE2B265FFFD9006741A3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		22BCFE2F2660BF00006741A3 /* NoticeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailsViewController.swift; sourceTree = "<group>"; };
+		22BCFE312660BF15006741A3 /* NoticeDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 		22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedService.swift; sourceTree = "<group>"; };
 		22CCD8BC264BE52B005B6368 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -505,12 +509,14 @@
 				22BCFE2A265FFFC4006741A3 /* Model */,
 				22BCFE13265FA137006741A3 /* MyPage.storyboard */,
 				F121DF25262308DF00B09F21 /* MypageViewController.swift */,
+				22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */,
 				22BCFE19265FB587006741A3 /* NoticeViewController.swift */,
 				22BCFE15265FAAD4006741A3 /* MyPageMainTableViewCell.swift */,
 				22BCFE16265FAAD4006741A3 /* MyPageMainTableViewCell.xib */,
 				22BCFE1B265FB6E1006741A3 /* NoticeTableViewCell.swift */,
 				22BCFE1C265FB6E1006741A3 /* NoticeTableViewCell.xib */,
-				22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */,
+				22BCFE2F2660BF00006741A3 /* NoticeDetailsViewController.swift */,
+				22BCFE312660BF15006741A3 /* NoticeDetailsTableViewCell.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -846,6 +852,7 @@
 				222BC6CA2654E8A3008C1CF2 /* SearchService.swift in Sources */,
 				22A05BB5264864B900AEA69D /* DetailsCategoryTableViewCell.swift in Sources */,
 				F1C6B4212652CC81001E8510 /* TermsAndConditionsViewController.swift in Sources */,
+				22BCFE322660BF15006741A3 /* NoticeDetailsTableViewCell.swift in Sources */,
 				2224BABF263AA84900E620C4 /* FeedSkeletonTableViewCell2.swift in Sources */,
 				F1D347182640481A00E63483 /* HomeGridCellPriceView.swift in Sources */,
 				F1C6B41F2652BCEC001E8510 /* SignupInterestingViewModel.swift in Sources */,
@@ -898,6 +905,7 @@
 				F1C6B411264FD6CD001E8510 /* SignupInterestingViewController.swift in Sources */,
 				2224BA972639694D00E620C4 /* FeedTableViewCell2.swift in Sources */,
 				2224BA862639368100E620C4 /* CustomSegmentedControl.swift in Sources */,
+				22BCFE302660BF00006741A3 /* NoticeDetailsViewController.swift in Sources */,
 				F1C6B40D264FCF51001E8510 /* SignupPasswordViewController.swift in Sources */,
 				F1562904262DC89B004FB256 /* HomeGridCell.swift in Sources */,
 				22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */,
