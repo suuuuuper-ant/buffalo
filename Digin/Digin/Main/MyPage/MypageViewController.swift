@@ -22,16 +22,18 @@ class MypageViewController: UIViewController {
 
     //networking data
     var companyList = [CompanyResult]()
+    var accounts = AccountResult()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
 
-            self.getCompanyList()
-
+        getCompanyList()
+        getMyPageData()
     }
 
     private func setup() {
+        setBackBtn(color: AppColor.darkgray62.color)
         setNavigationBar()
         logoImageView.makeCircle()
         backView.makeRounded(cornerRadius: 20)
@@ -45,7 +47,14 @@ class MypageViewController: UIViewController {
     }
 
     @IBAction func editAction(_ sender: UIButton) {
+        guard let vc = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(identifier: EditMyDataViewController.reuseIdentifier) as? EditMyDataViewController else {
+            return
+        }
 
+        vc.nickname = accounts.name
+        vc.email = accounts.email
+
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func favoriteCompanyAction(_ sender: UITapGestureRecognizer) {
@@ -90,6 +99,16 @@ extension MypageViewController {
             DispatchQueue.main.async {
                 self.favoriteCompanyLabel.text = self.companyList.count.description
                 print(self.companyList)
+            }
+        }
+    }
+
+    func getMyPageData() {
+        MyPageService.getMyPageData { (result) in
+            self.accounts = result
+
+            DispatchQueue.main.async {
+                self.nicknameLabel.text = result.name
             }
         }
     }

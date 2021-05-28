@@ -12,8 +12,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Cocogoose-Pro-Semilight-trial.ttf">
-            <string>COCOGOOSE-DemiBold</string>
+        <array key="Cocogoose_trial.otf">
+            <string>COCOGOOSE</string>
         </array>
     </customFonts>
     <scenes>
@@ -513,7 +513,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="RMp-sC-9d5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="COCOGOOSE-DemiBold" family="COCOGOOSE" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="COCOGOOSE" family="COCOGOOSE" pointSize="12"/>
                                 <color key="textColor" name="darkgray62"/>
                                 <nil key="highlightedColor"/>
                             </label>

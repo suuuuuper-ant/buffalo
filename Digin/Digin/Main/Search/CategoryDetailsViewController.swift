@@ -27,6 +27,7 @@ class CategoryDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = UIColor.appColor(.bgLightGrey)
+        tableView.setContentOffset(.zero, animated: true)
     }
 
     private func setup() {

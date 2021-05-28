@@ -18,6 +18,7 @@ class EditMyDataViewController: UIViewController {
     @IBOutlet weak var pwdButton: UIButton!
 
     var nickname = ""
+    var email = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,8 @@ class EditMyDataViewController: UIViewController {
         pwdButton.makeRounded(cornerRadius: 13)
         rightButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .medium)], for: .normal)
 
+        nicknameTextField.text = nickname
+        emailLabel.text = email
     }
 
     @IBAction func saveAction(_ sender: UIBarButtonItem) {

@@ -49,6 +49,7 @@ struct SearchCompany: Decodable {
     var name: String = ""
     var stockCode: String = ""
     var likeCount: Int = 0
+    var imageUrl: String = ""
 
     init() {}
 
@@ -57,6 +58,7 @@ struct SearchCompany: Decodable {
         case name
         case stockCode
         case likeCount
+        case imageUrl
     }
 
     public init(from decoder: Decoder) throws {
@@ -65,6 +67,7 @@ struct SearchCompany: Decodable {
         name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
         stockCode = try container.decodeIfPresent(String.self, forKey: .stockCode) ?? ""
         likeCount = try container.decodeIfPresent(Int.self, forKey: .likeCount) ?? 0
+        imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl) ?? ""
     }
 }
 
@@ -76,5 +79,6 @@ struct SearchNews: Codable {
     var link: String = ""
     var description: String = ""
     var createdAt: String
+    var imageUrl: String
 
 }
