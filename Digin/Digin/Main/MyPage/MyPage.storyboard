@@ -379,6 +379,133 @@
             </objects>
             <point key="canvasLocation" x="1699" y="72"/>
         </scene>
+        <!--Notice Details View Controller-->
+        <scene sceneID="ZX2-sl-1sh">
+            <objects>
+                <viewController storyboardIdentifier="NoticeDetailsViewController" id="Fdn-B6-xqV" customClass="NoticeDetailsViewController" customModule="Digin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HD9-Il-vvT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oey-Vv-s7J">
+                                <rect key="frame" x="0.0" y="140.5" width="414" height="721.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoticeDetailsTableViewCell" id="wIe-RO-Sls" customClass="NoticeDetailsTableViewCell" customModule="Digin" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="587.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wIe-RO-Sls" id="DHo-OL-X74">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="587.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group1097" translatesAutoresizingMaskIntoConstraints="NO" id="Qab-Te-ZWB">
+                                                    <rect key="frame" x="20" y="40" width="374" height="151"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="151" id="FmL-xr-ATe"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-xA-VRW">
+                                                    <rect key="frame" x="40" y="234" width="334.5" height="65"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="디기너들을 위한" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RR-VS-u4w">
+                                                            <rect key="frame" x="116.5" y="0.0" width="101" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="디긴이 오픈했어요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5p-Zc-d65">
+                                                            <rect key="frame" x="55.5" y="29" width="223.5" height="36"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="T5p-Zc-d65" firstAttribute="leading" secondItem="Hjc-xA-VRW" secondAttribute="leading" constant="55.5" id="DUU-9B-qoW"/>
+                                                        <constraint firstAttribute="height" constant="65" id="bmS-e7-b10"/>
+                                                    </constraints>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBU-dq-NGx">
+                                                    <rect key="frame" x="40" y="330" width="334" height="217.5"/>
+                                                    <mutableString key="text">주식 정보가 어려웠던 여러분들을 위한 서비스, 디긴이 드디어 오픈했습니다! 내 주식이 왜 떨어졌는지, 혹은 왜 올랐는지 그 이유를 알 수 없어서 많이 답답하셨나요?  알아볼 수 없는 표와 차트로 숨이 턱턱 막혔던 경험, 디긴으로 해결하실 수 있어요!
+
+우리는 사실 많은 수 많은 정보를 얻고 싶었던 것이 아니잖아요! 딱 필요한 정보만 알고싶은 만큼만 알아봐요.
+
+그렇다고 너무 많은 에너지를 쏟을 필요는 없어요! 디긴이 다~ 알려드려요. 디기너는 쉽게 정보를 얻어갈 준비만 하세요!
+
+앞으로도 디긴과 함께해보세요!</mutableString>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" name="darkgray62"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Qab-Te-ZWB" firstAttribute="top" secondItem="DHo-OL-X74" secondAttribute="top" constant="40" id="56F-HU-NFJ"/>
+                                                <constraint firstItem="Qab-Te-ZWB" firstAttribute="leading" secondItem="DHo-OL-X74" secondAttribute="leading" constant="20" id="JKm-vW-nOr"/>
+                                                <constraint firstItem="WBU-dq-NGx" firstAttribute="leading" secondItem="DHo-OL-X74" secondAttribute="leadingMargin" constant="20" id="Nof-gy-22M"/>
+                                                <constraint firstItem="Hjc-xA-VRW" firstAttribute="centerX" secondItem="Qab-Te-ZWB" secondAttribute="centerX" id="P9w-gW-0B2"/>
+                                                <constraint firstAttribute="trailing" secondItem="Qab-Te-ZWB" secondAttribute="trailing" constant="20" id="cRu-Jm-KVF"/>
+                                                <constraint firstItem="Hjc-xA-VRW" firstAttribute="top" secondItem="Qab-Te-ZWB" secondAttribute="bottom" constant="43" id="t5P-6F-Q8G"/>
+                                                <constraint firstItem="WBU-dq-NGx" firstAttribute="top" secondItem="Hjc-xA-VRW" secondAttribute="bottom" constant="31" id="uVk-Qr-Gej"/>
+                                                <constraint firstAttribute="bottom" secondItem="WBU-dq-NGx" secondAttribute="bottom" constant="40" id="y6S-ZD-6Tw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="WBU-dq-NGx" secondAttribute="trailing" constant="20" id="zky-lA-p3J"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="WBU-dq-NGx" id="piq-R8-cNE"/>
+                                            <outlet property="mainImageView" destination="Qab-Te-ZWB" id="OXu-Fy-gad"/>
+                                            <outlet property="subTitleLabel" destination="3RR-VS-u4w" id="eX8-2j-XX2"/>
+                                            <outlet property="titleLabel" destination="T5p-Zc-d65" id="fgc-rX-EHe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAz-LY-agH">
+                                <rect key="frame" x="20" y="139.5" width="374" height="1"/>
+                                <color key="backgroundColor" name="gray225"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="l5t-dW-2LJ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="디긴이 오픈했습니다!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITb-22-sRJ">
+                                <rect key="frame" x="20" y="81" width="134" height="19.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021. 05. 30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHY-GW-9hY">
+                                <rect key="frame" x="20" y="107.5" width="83" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" name="gray_160"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eje-ez-15A"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eje-ez-15A" firstAttribute="trailing" secondItem="oey-Vv-s7J" secondAttribute="trailing" id="3gg-AD-Oae"/>
+                            <constraint firstItem="AHY-GW-9hY" firstAttribute="leading" secondItem="ITb-22-sRJ" secondAttribute="leading" id="7Qc-6a-vxa"/>
+                            <constraint firstItem="ITb-22-sRJ" firstAttribute="leading" secondItem="eje-ez-15A" secondAttribute="leading" constant="20" id="9Dm-ti-jmo"/>
+                            <constraint firstItem="AHY-GW-9hY" firstAttribute="top" secondItem="ITb-22-sRJ" secondAttribute="bottom" constant="7" id="EEy-MV-Q55"/>
+                            <constraint firstItem="eje-ez-15A" firstAttribute="trailing" secondItem="lAz-LY-agH" secondAttribute="trailing" constant="20" id="LvS-rL-aUe"/>
+                            <constraint firstItem="oey-Vv-s7J" firstAttribute="top" secondItem="lAz-LY-agH" secondAttribute="bottom" id="S5y-H3-5SP"/>
+                            <constraint firstItem="ITb-22-sRJ" firstAttribute="top" secondItem="eje-ez-15A" secondAttribute="top" constant="37" id="cG5-3b-3vE"/>
+                            <constraint firstItem="lAz-LY-agH" firstAttribute="top" secondItem="AHY-GW-9hY" secondAttribute="bottom" constant="15" id="cQQ-ot-Xv8"/>
+                            <constraint firstItem="oey-Vv-s7J" firstAttribute="leading" secondItem="eje-ez-15A" secondAttribute="leading" id="fIu-dW-14x"/>
+                            <constraint firstItem="eje-ez-15A" firstAttribute="bottom" secondItem="oey-Vv-s7J" secondAttribute="bottom" id="gNE-lf-Uuy"/>
+                            <constraint firstItem="lAz-LY-agH" firstAttribute="leading" secondItem="eje-ez-15A" secondAttribute="leading" constant="20" id="ii2-lF-rTR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="AHY-GW-9hY" id="Ckz-3U-dc3"/>
+                        <outlet property="tableView" destination="oey-Vv-s7J" id="veu-d5-3PP"/>
+                        <outlet property="titleLabel" destination="ITb-22-sRJ" id="GrN-y0-SBk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Itx-v6-GwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1698.5507246376812" y="789.50892857142856"/>
+        </scene>
         <!--Notice View Controller-->
         <scene sceneID="OXm-Qi-0vw">
             <objects>
@@ -467,6 +594,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Group1097" width="335" height="151"/>
         <image name="digin_logo" width="60" height="60"/>
         <image name="icEdit" width="20" height="20"/>
         <image name="icEyeBlue" width="20" height="20"/>
