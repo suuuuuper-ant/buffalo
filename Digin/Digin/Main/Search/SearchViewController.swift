@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class SearchViewController: UIViewController {
 
@@ -28,7 +29,7 @@ class SearchViewController: UIViewController {
     var recentCompany: [NSManagedObject] = []
 
     //FIXME: 추후 네트워킹 데이터로 수정
-    let dummyData = [["삼성전자", "정보기술"], ["SK하이닉스", "정보기술"], ["네이버", "커뮤니케이션 서비스"], ["카카오", "커뮤니케이션 서비스"], ["엔씨소프트", "커뮤니케이션 서비스"] ]
+    let dummyData = [["삼성전자", "정보기술", "https://www.samsung.com/sec/static/etc/designs/smg/global/imgs/logo-square-letter.png"], ["SK하이닉스", "정보기술", "https://cdn.mediasr.co.kr/news/photo/201803/47817_6295_4955.png"], ["NAVER", "커뮤니케이션 서비스", "http://cdnimage.dailian.co.kr/news/201708/news_1502332947_652932_m_1.jpg"], ["카카오", "커뮤니케이션 서비스", "https://t1.kakaocdn.net/kakaocorp/corp_thumbnail/Kakao.png"], ["엔씨소프트", "커뮤니케이션 서비스", "https://image.ajunews.com/content/image/2020/01/07/20200107102203333013.jpg"] ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.barTintColor = .white
+        tableView.setContentOffset(.zero, animated: true)
     }
 
     private func setup() {
@@ -347,6 +349,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
                 cell.titleLabel.text = searchData.companies[indexPath.row].name
                 cell.categoryLabel.text = "커뮤니케이션 서비스"
+                let url = URL(string: searchData.companies[indexPath.row].imageUrl)
+                if searchData.companies[indexPath.row].imageUrl != "" {
+                    cell.logoImageView.kf.setImage(with: url, placeholder: UIImage())
+                } else {
+                    cell.logoImageView.image = UIImage(named: "digin_logo")
+                }
 
                 return cell
             }
@@ -366,6 +374,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
                 cell.titleLabel.text = searchData.news[indexPath.row].title
                 cell.dateLabel.text = searchData.news[indexPath.row].createdAt.setDate(format: "MM.dd. HH:mm")
+                let url = URL(string: searchData.news[indexPath.row].imageUrl)
+                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
 
                 return cell
             }
@@ -410,6 +420,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.titleLabel.text = dummyData[indexPath.row][0]
             cell.categoryLabel.text = dummyData[indexPath.row][1]
+            let url = URL(string: dummyData[indexPath.row][2])
+            cell.logoImageView.kf.setImage(with: url, placeholder: UIImage())
 
             return cell
         }

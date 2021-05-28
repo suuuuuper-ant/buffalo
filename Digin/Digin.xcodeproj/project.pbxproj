@@ -59,6 +59,8 @@
 		22BCFE20265FC320006741A3 /* EditMyDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */; };
 		22BCFE24265FDFC6006741A3 /* Cocogoose_trial.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22BCFE23265FDEC2006741A3 /* Cocogoose_trial.otf */; };
 		22BCFE27265FE5CE006741A3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 22BCFE26265FE5CE006741A3 /* Kingfisher */; };
+		22BCFE29265FFFB2006741A3 /* MyPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE28265FFFB2006741A3 /* MyPageService.swift */; };
+		22BCFE2C265FFFD9006741A3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BCFE2B265FFFD9006741A3 /* Account.swift */; };
 		22CCD8B7264BE1E8005B6368 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */; };
 		22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */; };
 		22CCD8BD264BE52B005B6368 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CCD8BC264BE52B005B6368 /* APIService.swift */; };
@@ -196,6 +198,8 @@
 		22BCFE1C265FB6E1006741A3 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		22BCFE1F265FC320006741A3 /* EditMyDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyDataViewController.swift; sourceTree = "<group>"; };
 		22BCFE23265FDEC2006741A3 /* Cocogoose_trial.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cocogoose_trial.otf; sourceTree = "<group>"; };
+		22BCFE28265FFFB2006741A3 /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
+		22BCFE2B265FFFD9006741A3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		22CCD8B6264BE1E8005B6368 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 		22CCD8B9264BE4EC005B6368 /* NewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedService.swift; sourceTree = "<group>"; };
 		22CCD8BC264BE52B005B6368 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -324,6 +328,14 @@
 				222BC6FC26552112008C1CF2 /* PersistenceManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		22BCFE2A265FFFC4006741A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22BCFE2B265FFFD9006741A3 /* Account.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		22CCD8B5264BE1C9005B6368 /* Model */ = {
@@ -489,6 +501,8 @@
 		F121DF352623381C00B09F21 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				22BCFE28265FFFB2006741A3 /* MyPageService.swift */,
+				22BCFE2A265FFFC4006741A3 /* Model */,
 				22BCFE13265FA137006741A3 /* MyPage.storyboard */,
 				F121DF25262308DF00B09F21 /* MypageViewController.swift */,
 				22BCFE19265FB587006741A3 /* NoticeViewController.swift */,
@@ -785,6 +799,7 @@
 				F1278FFD265ABB860069CFDB /* RandomPickViewController.swift in Sources */,
 				22CCD8C2264D253C005B6368 /* FavoriteCompany.swift in Sources */,
 				F1278FFA265A68240069CFDB /* HomeDetailPriceView.swift in Sources */,
+				22BCFE2C265FFFD9006741A3 /* Account.swift in Sources */,
 				2224BA9E26396D2500E620C4 /* FeedTableViewCell4.swift in Sources */,
 				F1C6B4232654435A001E8510 /* SearchPasswordViewController.swift in Sources */,
 				F1C6B4152651376D001E8510 /* SingupNicknameViewModel.swift in Sources */,
@@ -873,6 +888,7 @@
 				F121DF132623049600B09F21 /* LoginViewController.swift in Sources */,
 				F121DF1D2623087900B09F21 /* HomeViewController.swift in Sources */,
 				229B6FB9264027DA00D28B52 /* SearchTableViewCell.swift in Sources */,
+				22BCFE29265FFFB2006741A3 /* MyPageService.swift in Sources */,
 				227874BC2656AB8F004F97D0 /* CategoryService.swift in Sources */,
 				F1D34715264046E700E63483 /* PaddingLabel.swift in Sources */,
 				22EEBC6626481E84009FF3FA /* CompanyNewsTableViewCell.swift in Sources */,

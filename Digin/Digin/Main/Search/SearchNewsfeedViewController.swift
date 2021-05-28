@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchNewsfeedViewController: UIViewController {
 
@@ -58,6 +59,8 @@ extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSour
         if type == 0 { //기업
             cell.titleLabel.text = newsData[indexPath.row].title
             cell.dateLabel.text = newsData[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
+            let url = URL(string: newsData[indexPath.row].imageUrl)
+            cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
         } else { //카테고리
             cell.titleLabel.text = "‘지그재그’ 인수로 카카오가 기대하는 세 가지"
             cell.dateLabel.text = "05.06 17:24"

@@ -44,6 +44,7 @@ class NewsFeedViewController: UIViewController, APIServie {
 
     private let refreshControl = UIRefreshControl()
     private var lastContentOffset: CGFloat = 0
+    var contentOffset: CGPoint = CGPoint()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +109,13 @@ class NewsFeedViewController: UIViewController, APIServie {
         currentPage = 0
         hasNextPage = true
     }
+
+    func newReload(tableView: UITableView) {
+        tableView.contentOffset = .zero
+        let topIndex = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: topIndex, at: .top, animated: true)
+        feedTableView.reloadData()
+    }
 }
 
 // MARK: - CollectionView
@@ -150,6 +158,7 @@ extension NewsFeedViewController: UICollectionViewDelegate, UICollectionViewData
 
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         collectionView.reloadData()
+        newReload(tableView: feedTableView)
     }
 }
 
@@ -289,29 +298,27 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        let height = scrollView.frame.height
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
 
-        if self.lastContentOffset > offsetY {
-            // move up
-        } else if self.lastContentOffset < offsetY {
+//        if (self.lastContentOffset > offsetY) {
+//            // move up
+//        } else if (self.lastContentOffset < offsetY) {
+//            if isPaging == false && hasNextPage {
+//                currentPage += 1
+//                beginPaging()
+//            }
+//        }
+        // update the new position acquired
+        //self.lastContentOffset = scrollView.contentOffset.y
+
+        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
+        if offsetY > (contentHeight - height) {
             if isPaging == false && hasNextPage {
                 currentPage += 1
                 beginPaging()
             }
         }
-
-        // update the new position acquired
-        self.lastContentOffset = scrollView.contentOffset.y
-
-        // 스크롤이 테이블 뷰 Offset의 끝에 가게 되면 다음 페이지를 호출
-//        if offsetY > (contentHeight - height) {
-//            if isPaging == false && hasNextPage {
-//                currentPage += 1
-//                beginPaging()
-//                print("AFDFAF")
-//            }
-//        }
     }
 
     func beginPaging() {
@@ -346,40 +353,25 @@ extension NewsFeedViewController {
                 self.allNewsData = result
 
                 // - 고정 데이터
-                self.section0Contents.append(result.content[0]) //섹션0
-//                self.section0Contents[0].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "image")
-//                self.section0Contents[0].description = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "description")
+                self.section0Contents.append(result.content[0]) //섹션
 
-                //var idx = 0
                 for index in 1..<3 { //섹션1
                     self.section1Contents.append(result.content[index])
-//                    self.section1Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-//                    self.section1Contents[idx].description = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "description")
-                    //idx += 1
                 }
 
-                //idx = 0
                 for index in 3..<9 { //섹션2
                     self.section2Contents.append(result.content[index])
-//                    self.section2Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-                    //idx += 1
                 }
 
-                //idx = 0
                 // - 페이징 데이터
                 for index in 9..<result.content.count {
                     self.contents.append(result.content[index])
-//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-                    //idx += 1
                 }
 
             } else {
 
-                //var idx = self.contents.count
                 for index in 0..<result.content.count {
                     self.contents.append(result.content[index])
-//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-                    //idx += 1
                 }
             }
 
@@ -416,39 +408,24 @@ extension NewsFeedViewController {
 
                 // - 고정 데이터
                 self.section0Contents.append(result.content[0]) //섹션0
-//                self.section0Contents[0].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "image")
-//                self.section0Contents[0].description = OpenGraphParser.getStringFromHtml(urlString: result.content[0].link, tag: "description")
 
-                //var idx = 0
                 for index in 1..<3 { //섹션1
                     self.section1Contents.append(result.content[index])
-//                    self.section1Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-//                    self.section1Contents[idx].description = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "description")
-//                    idx += 1
                 }
 
-                //idx = 0
                 for index in 3..<9 { //섹션2
                     self.section2Contents.append(result.content[index])
-//                    self.section2Contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-//                    idx += 1
                 }
 
-                //idx = 0
                 // - 페이징 데이터
                 for index in 9..<result.content.count {
                     self.contents.append(result.content[index])
-//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-//                    idx += 1
                 }
 
             } else {
 
-                //var idx = self.contents.count
                 for index in 0..<result.content.count {
                     self.contents.append(result.content[index])
-//                    self.contents[idx].imageUrl = OpenGraphParser.getStringFromHtml(urlString: result.content[index].link, tag: "image")
-//                    idx += 1
                 }
             }
 
