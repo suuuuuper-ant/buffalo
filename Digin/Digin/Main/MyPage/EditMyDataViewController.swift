@@ -33,10 +33,25 @@ class EditMyDataViewController: UIViewController {
 
         nicknameTextField.text = nickname
         emailLabel.text = email
+
+        let attributes = [NSAttributedString.Key.foregroundColor: AppColor.gray160.color,
+                          .font: UIFont.systemFont(ofSize: 12, weight: .medium)]
+        pwdTextField.attributedPlaceholder = NSAttributedString(string: "영문+숫자 6자리 이상 입력해 주세요",
+                                                                   attributes: attributes)
     }
 
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
 
+    }
+
+    @IBAction func hiddenButton(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+
+        if sender.isSelected {
+            pwdTextField.isSecureTextEntry = true
+        } else {
+            pwdTextField.isSecureTextEntry = false
+        }
     }
 
     @IBAction func editPwdAction(_ sender: UIButton) {

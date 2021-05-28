@@ -43,8 +43,6 @@ class NewsFeedViewController: UIViewController, APIServie {
     var isPaging = false
 
     private let refreshControl = UIRefreshControl()
-    private var lastContentOffset: CGFloat = 0
-    var contentOffset: CGPoint = CGPoint()
 
     override func viewDidLoad() {
         super.viewDidLoad()

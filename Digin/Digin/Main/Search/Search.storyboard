@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qW0-xf-4MS">
-                                <rect key="frame" x="0.0" y="124.5" width="414" height="737.5"/>
+                                <rect key="frame" x="0.0" y="139.5" width="414" height="722.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CategoryHeaderTableViewCell" id="jbv-Fn-Imx" customClass="CategoryHeaderTableViewCell" customModule="Digin" customModuleProvider="target">
@@ -333,13 +333,13 @@
                                     <constraint firstAttribute="height" constant="24" id="jc3-wd-afe"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mM-kl-Mmh">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mM-kl-Mmh">
                                 <rect key="frame" x="370" y="98" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="hMg-bK-IxN"/>
                                     <constraint firstAttribute="width" secondItem="1mM-kl-Mmh" secondAttribute="height" multiplier="1:1" id="oyZ-uW-DDr"/>
                                 </constraints>
-                                <state key="normal" image="magnifyingglass" catalog="system"/>
+                                <state key="normal" image="icTabSearchBlue"/>
                                 <connections>
                                     <action selector="searchAction:" destination="VGo-b5-n6e" eventType="touchUpInside" id="ck7-MR-pcC"/>
                                 </connections>
@@ -371,7 +371,7 @@
                             <constraint firstItem="qW0-xf-4MS" firstAttribute="leading" secondItem="dLM-R3-4Yb" secondAttribute="leading" id="XGT-qG-mQi"/>
                             <constraint firstItem="1mM-kl-Mmh" firstAttribute="leading" secondItem="hS6-N0-wCB" secondAttribute="trailing" constant="10" id="YwE-CK-DFz"/>
                             <constraint firstItem="1mM-kl-Mmh" firstAttribute="centerY" secondItem="hS6-N0-wCB" secondAttribute="centerY" id="n3O-mY-QF8"/>
-                            <constraint firstItem="qW0-xf-4MS" firstAttribute="top" secondItem="hS6-N0-wCB" secondAttribute="bottom" id="x3r-lF-ypt"/>
+                            <constraint firstItem="qW0-xf-4MS" firstAttribute="top" secondItem="hS6-N0-wCB" secondAttribute="bottom" constant="15" id="x3r-lF-ypt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u1w-qb-tqC"/>
@@ -404,7 +404,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y3u-Nv-de8">
-                                            <rect key="frame" x="239" y="26" width="175" height="133"/>
+                                            <rect key="frame" x="239" y="10" width="175" height="149"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="175" id="xXu-Jn-AQl"/>
                                             </constraints>
@@ -430,7 +430,7 @@
                                         <constraint firstAttribute="bottom" secondItem="srG-cK-dbA" secondAttribute="bottom" constant="30" id="MWE-74-icK"/>
                                         <constraint firstItem="srG-cK-dbA" firstAttribute="top" secondItem="rPn-TS-iPk" secondAttribute="bottom" constant="20" id="QPa-oZ-K4M"/>
                                         <constraint firstAttribute="bottom" secondItem="Y3u-Nv-de8" secondAttribute="bottom" id="WSE-wa-CDd"/>
-                                        <constraint firstItem="Y3u-Nv-de8" firstAttribute="top" secondItem="OgS-NZ-Tmf" secondAttribute="top" constant="26" id="hF1-XT-VEm"/>
+                                        <constraint firstItem="Y3u-Nv-de8" firstAttribute="top" secondItem="OgS-NZ-Tmf" secondAttribute="top" constant="10" id="hF1-XT-VEm"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="srG-cK-dbA" secondAttribute="trailing" constant="148" id="tam-Xj-sUC"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rPn-TS-iPk" secondAttribute="trailing" constant="181" id="u7e-0j-Az3"/>
                                         <constraint firstItem="rPn-TS-iPk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="OgS-NZ-Tmf" secondAttribute="top" id="yrO-UK-HJH"/>
@@ -743,8 +743,8 @@
     <resources>
         <image name="digin_logo" width="60" height="60"/>
         <image name="home_new_more" width="20" height="20"/>
+        <image name="icTabSearchBlue" width="24" height="24"/>
         <image name="listNonePic" width="140" height="100"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
         <namedColor name="darkgray62">
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
