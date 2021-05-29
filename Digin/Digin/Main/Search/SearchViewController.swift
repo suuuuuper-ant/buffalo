@@ -7,12 +7,12 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    @IBOutlet weak var lineViewTopC: NSLayoutConstraint!
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var lineViewLeadingC: NSLayoutConstraint!
     @IBOutlet weak var searchTextField: UITextField!
@@ -28,6 +28,9 @@ class SearchViewController: UIViewController {
     let request = NSFetchRequest<NSManagedObject>(entityName: "RecentCompany")
     var recentCompany: [NSManagedObject] = []
 
+    //FIXME: 추후 네트워킹 데이터로 수정
+    let dummyData = [["삼성전자", "정보기술", "https://www.samsung.com/sec/static/etc/designs/smg/global/imgs/logo-square-letter.png"], ["SK하이닉스", "정보기술", "https://cdn.mediasr.co.kr/news/photo/201803/47817_6295_4955.png"], ["NAVER", "커뮤니케이션 서비스", "http://cdnimage.dailian.co.kr/news/201708/news_1502332947_652932_m_1.jpg"], ["카카오", "커뮤니케이션 서비스", "https://t1.kakaocdn.net/kakaocorp/corp_thumbnail/Kakao.png"], ["엔씨소프트", "커뮤니케이션 서비스", "https://image.ajunews.com/content/image/2020/01/07/20200107102203333013.jpg"] ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,11 +41,13 @@ class SearchViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.navigationController?.navigationBar.barTintColor = .white
         tableView.setContentOffset(.zero, animated: true)
     }
 
     private func setup() {
         setNavigationBar()
+        setBackButton()
 
         searchButton.isHidden = true
         searchTextField.delegate = self
@@ -56,24 +61,15 @@ class SearchViewController: UIViewController {
         tableView.register(nibName, forCellReuseIdentifier: NoneResultTableViewCell.reuseIdentifier)
     }
 
-    private func setNavigationBar() {
-        let topInset: CGFloat = UIApplication.shared.statusBarFrame.height
-        lineViewTopC.constant += topInset
-
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: topInset, width: view.frame.size.width, height: 44))
-        navBar.setBackgroundImage(UIImage(), for: .default)
-        navBar.shadowImage = UIImage()
-        view.addSubview(navBar)
-
-        let navItem = UINavigationItem()
+    func setBackButton() {
         let backBTN = UIBarButtonItem(image: UIImage(named: "icon_navigation_back"),
                                       style: .plain,
                                       target: self,
                                       action: #selector(backAction))
-        navItem.leftBarButtonItem = backBTN
+        navigationItem.leftBarButtonItem = backBTN
         backBTN.tintColor = AppColor.darkgray62.color
         backBTN.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
-        navBar.setItems([navItem], animated: false)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
     }
 
     @objc func backAction() {
@@ -101,15 +97,18 @@ class SearchViewController: UIViewController {
         if isTextEmpty() { return } //공백 체크
 
         guard let text = searchTextField.text else { return }
+        if isSearch == 1 {
+            // MARK: CoreData - Insert
+            PersistenceManager.shared.insertCompany(name: text)
 
-        // MARK: CoreData - Insert
-        PersistenceManager.shared.insertCompany(name: text)
+            //화면 전환 (검색 리스트, 1 -> 검색 결과, 2)
+            isSearch = 2
+            searchTextField.resignFirstResponder()
+            getSearchData(keyword: text)
+            enableSearchAnimation()
+        }
 
-        //화면 전환 (검색 리스트 -> 검색 결과)
-        isSearch = 2
-        searchTextField.resignFirstResponder()
         getSearchData(keyword: text)
-        disableSearchAnimaion()
     }
 
     //검색 활성화
@@ -234,8 +233,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                         newsVC.newsData = data
                     }
 
-                    newsVC.modalPresentationStyle = .fullScreen
-                    self?.present(newsVC, animated: false, completion: nil) //Push
+                    self?.navigationController?.pushViewController(newsVC, animated: true)
                 }
 
             } else {
@@ -259,13 +257,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.titleLabel.text = "인기 검색 기업"
                 cell.timeLabel.isHidden = false
-                cell.timeLabel.text = "21:03"
+
+                let today = NSDate()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                let dateString = dateFormatter.string(from: today as Date)
+                cell.timeLabel.text = dateString
+
                 cell.nextButton.isHidden = true
             }
 
             return cell
         }
-
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -294,7 +297,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
         default: //메인
             if section == 0 { return 1 }
-            return 5
+            return dummyData.count
         }
     }
 
@@ -346,6 +349,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
                 cell.titleLabel.text = searchData.companies[indexPath.row].name
                 cell.categoryLabel.text = "커뮤니케이션 서비스"
+                let url = URL(string: searchData.companies[indexPath.row].imageUrl)
+                if searchData.companies[indexPath.row].imageUrl != "" {
+                    cell.logoImageView.kf.setImage(with: url, placeholder: UIImage())
+                } else {
+                    cell.logoImageView.image = UIImage(named: "digin_logo")
+                }
 
                 return cell
             }
@@ -365,6 +374,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
                 cell.titleLabel.text = searchData.news[indexPath.row].title
                 cell.dateLabel.text = searchData.news[indexPath.row].createdAt.setDate(format: "MM.dd. HH:mm")
+                let url = URL(string: searchData.news[indexPath.row].imageUrl)
+                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
 
                 return cell
             }
@@ -377,7 +388,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                     //print(result)
                     guard let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier) as? CategoryDetailsViewController else {return}
                     detailsVC.categoryReult = result
-                    self?.present(detailsVC, animated: true, completion: nil)
+                    self?.navigationController?.pushViewController(detailsVC, animated: true)
                 }
 
                 return cell
@@ -392,7 +403,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                     //print(result)
                     guard let detailsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: CategoryDetailsViewController.reuseIdentifier) as? CategoryDetailsViewController else {return}
                     detailsVC.categoryReult = result
-                    self?.present(detailsVC, animated: true, completion: nil)
+                    self?.navigationController?.pushViewController(detailsVC, animated: true)
                 }
 
                 return cell
@@ -400,9 +411,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
             //인기 검색 기업
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CompanyTableViewCell.reuseIdentifier) as? CompanyTableViewCell else { return UITableViewCell() }
+            
+            if indexPath.row == 0 {
+                cell.topC.constant = 15
+            } else {
+                cell.topC.constant = 10
+            }
 
-            cell.titleLabel.text = "카카오"
-            cell.categoryLabel.text = "커뮤니케이션 서비스"
+            cell.titleLabel.text = dummyData[indexPath.row][0]
+            cell.categoryLabel.text = dummyData[indexPath.row][1]
+            let url = URL(string: dummyData[indexPath.row][2])
+            cell.logoImageView.kf.setImage(with: url, placeholder: UIImage())
 
             return cell
         }
@@ -424,20 +443,21 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
         case 2: //검색 결과
             if indexPath.section == 0 && !searchData.companies.isEmpty { //기업
-                //TODO: 기업 상세보기에 기업 index 전달하기
-                self.present(detailsVC, animated: true, completion: nil)
+                //TODO: 기업 상세보기에 기업 정보 전달하기
+                detailsVC.title = searchData.companies[indexPath.row].name
+                self.navigationController?.pushViewController(detailsVC, animated: true)
             }
 
             if indexPath.section == 1 && !searchData.news.isEmpty { //뉴스
-                let detailVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
-                detailVC.newsURL = searchData.news[indexPath.row].link
-                self.present(detailVC, animated: true, completion: nil)
+                let newsVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
+                newsVC.newsURL = searchData.news[indexPath.row].link
+                self.present(newsVC, animated: true, completion: nil)
             }
 
         default: //메인
             if indexPath.section == 1 {
-                //TODO: 기업 상세보기에 기업 index 전달하기
-                self.present(detailsVC, animated: true, completion: nil)
+                //TODO: 기업 상세보기에 기업 정보 전달하기 (API 아직 없음)
+                self.navigationController?.pushViewController(detailsVC, animated: true)
             }
         }
 

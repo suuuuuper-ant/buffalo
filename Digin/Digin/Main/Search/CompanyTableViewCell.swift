@@ -9,6 +9,7 @@ import UIKit
 
 class CompanyTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var topC: NSLayoutConstraint!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: PaddingLabel!

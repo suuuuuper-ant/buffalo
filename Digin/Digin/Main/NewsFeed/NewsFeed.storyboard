@@ -12,8 +12,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Cocogoose-Pro-Semilight-trial.ttf">
-            <string>COCOGOOSE-DemiBold</string>
+        <array key="Cocogoose_trial.otf">
+            <string>COCOGOOSE</string>
         </array>
     </customFonts>
     <scenes>
@@ -150,7 +150,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listNonePic" translatesAutoresizingMaskIntoConstraints="NO" id="QRf-Oc-qKX">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="listNonePic" translatesAutoresizingMaskIntoConstraints="NO" id="QRf-Oc-qKX">
                                                     <rect key="frame" x="20" y="10" width="140" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="gcc-sa-DgG"/>
@@ -164,7 +164,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuZ-h5-ew1">
-                                                    <rect key="frame" x="180" y="39.5" width="214" height="17"/>
+                                                    <rect key="frame" x="180" y="93" width="214" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -176,10 +176,10 @@
                                                 <constraint firstItem="tuZ-h5-ew1" firstAttribute="trailing" secondItem="Ll6-3A-Mip" secondAttribute="trailing" id="7aq-7D-bUH"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ll6-3A-Mip" secondAttribute="trailing" constant="20" id="KEC-pw-AYY"/>
                                                 <constraint firstItem="QRf-Oc-qKX" firstAttribute="top" secondItem="QF4-a4-EKX" secondAttribute="top" constant="10" id="Mly-20-lzT"/>
-                                                <constraint firstItem="tuZ-h5-ew1" firstAttribute="top" secondItem="Ll6-3A-Mip" secondAttribute="bottom" constant="10" id="WZp-PM-Pgj"/>
+                                                <constraint firstItem="tuZ-h5-ew1" firstAttribute="bottom" secondItem="QRf-Oc-qKX" secondAttribute="bottom" id="U1N-2i-ozF"/>
+                                                <constraint firstItem="tuZ-h5-ew1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ll6-3A-Mip" secondAttribute="bottom" constant="10" id="WZp-PM-Pgj"/>
                                                 <constraint firstAttribute="bottom" secondItem="QRf-Oc-qKX" secondAttribute="bottom" constant="10" id="Z9a-Xd-hM1"/>
                                                 <constraint firstItem="QRf-Oc-qKX" firstAttribute="leading" secondItem="QF4-a4-EKX" secondAttribute="leading" constant="20" id="kIu-vE-Ifg"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tuZ-h5-ew1" secondAttribute="bottom" constant="10" id="rgB-1e-93y"/>
                                                 <constraint firstItem="Ll6-3A-Mip" firstAttribute="leading" secondItem="QRf-Oc-qKX" secondAttribute="trailing" constant="20" id="wYF-eA-b6y"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -513,7 +513,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="RMp-sC-9d5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="COCOGOOSE-DemiBold" family="COCOGOOSE" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="COCOGOOSE" family="COCOGOOSE" pointSize="12"/>
                                 <color key="textColor" name="darkgray62"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -576,7 +576,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="l05-dC-iFg">
-                                <rect key="frame" x="20" y="44" width="174" height="32"/>
+                                <rect key="frame" x="20" y="67" width="174" height="32"/>
                                 <segments>
                                     <segment title="모든 뉴스"/>
                                     <segment title="관심 기업">
@@ -588,7 +588,7 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkJ-sz-92y">
-                                <rect key="frame" x="0.0" y="85" width="414" height="777"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="754"/>
                                 <connections>
                                     <segue destination="H0O-ZI-azL" kind="embed" identifier="FeedPageViewController" id="41Z-4l-2Do"/>
                                 </connections>
@@ -603,7 +603,7 @@
                             <constraint firstItem="URE-A6-jkW" firstAttribute="bottom" secondItem="TkJ-sz-92y" secondAttribute="bottom" id="Kx3-jz-D10"/>
                             <constraint firstItem="l05-dC-iFg" firstAttribute="leading" secondItem="URE-A6-jkW" secondAttribute="leading" constant="20" id="WWw-dh-Wh6"/>
                             <constraint firstItem="URE-A6-jkW" firstAttribute="trailing" secondItem="TkJ-sz-92y" secondAttribute="trailing" id="oyU-Ek-BCj"/>
-                            <constraint firstItem="l05-dC-iFg" firstAttribute="top" secondItem="URE-A6-jkW" secondAttribute="top" id="w5i-pP-KIb"/>
+                            <constraint firstItem="l05-dC-iFg" firstAttribute="top" secondItem="URE-A6-jkW" secondAttribute="top" constant="23" id="w5i-pP-KIb"/>
                         </constraints>
                     </view>
                     <connections>

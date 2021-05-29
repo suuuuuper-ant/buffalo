@@ -11,6 +11,13 @@ class SlideOpenView: UIView {
 
     @Published var reachedEnd: Bool = false
 
+    let slideFaceImageView: UIImageView = {
+        let slideFace = UIImageView()
+        let image = UIImage(named: "icon_slide_face")
+        slideFace.image = image
+        return slideFace
+    }()
+
     let backgroundView: UIView = {
         let background = UIView()
         background.backgroundColor = UIColor.init(named: "main_color")
@@ -106,21 +113,21 @@ class SlideOpenView: UIView {
     }
     private func setupView() {
 
-        addSubview(backgroundView)
-        addSubview(showMeView)
-        addSubview(showMeEndView)
+        [ backgroundView, showMeView, showMeEndView, slideFaceImageView].forEach {
+            addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+
         showMeView.addSubview(showMeTitle)
         showMeEndView.addSubview(showMeEndTitle)
-
         backgroundView.addSubview(textLabel)
         backgroundView.addSubview(indicatorView)
-        showMeView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         showMeTitle.translatesAutoresizingMaskIntoConstraints = false
-        showMeEndView.translatesAutoresizingMaskIntoConstraints = false
         showMeEndTitle.translatesAutoresizingMaskIntoConstraints = false
+
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture(_:)))
         panGestureRecognizer.minimumNumberOfTouches = 1
         indicatorView.addGestureRecognizer(panGestureRecognizer)
@@ -179,6 +186,11 @@ class SlideOpenView: UIView {
         showMeEndTitle.trailingAnchor.constraint(equalTo: showMeEndView.trailingAnchor, constant: -16).isActive = true
         showMeEndTitle.topAnchor.constraint(equalTo: showMeEndView.topAnchor, constant: 6).isActive = true
         showMeEndTitle.bottomAnchor.constraint(equalTo: showMeEndView.bottomAnchor, constant: -11).isActive = true
+
+        slideFaceImageView.trailingAnchor.constraint(equalTo: indicatorView.trailingAnchor, constant: -17).isActive = true
+        slideFaceImageView.topAnchor.constraint(equalTo: indicatorView.topAnchor, constant: 13).isActive = true
+        slideFaceImageView.widthAnchor.constraint(equalToConstant: 14).isActive = true
+        slideFaceImageView.heightAnchor.constraint(equalToConstant: 15).isActive = true
 
     }
 

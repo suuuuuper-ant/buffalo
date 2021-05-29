@@ -29,8 +29,8 @@ class RandomAlertViewController: UIViewController, ViewType {
        let title = UILabel()
         title.text = "그대로 나가시겠어요?"
         title.textColor = AppColor.darkgray62.color
+        title.textAlignment = .center
         title.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        title.numberOfLines = 2
         return title
     }()
 
@@ -39,6 +39,8 @@ class RandomAlertViewController: UIViewController, ViewType {
         description.text = "랜덤 추천 기업은\n하루에 딱 한 번만 볼 수 있어요."
         description.textColor = AppColor.darkgray82.color
         description.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        description.numberOfLines = 2
+        description.textAlignment = .center
         return description
     }()
 
