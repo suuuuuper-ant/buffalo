@@ -1,5 +1,11 @@
 [
     {
+        "name" : "금융",
+        "img" : "finance_img",
+        "bigImg" : "finance_bigimg",
+        "contents" : "은행, 투자회사, 금융거래소 산업의 기업을 모아뒀어요."
+    },
+    {
         "name" : "에너지",
         "img" : "energy_img",
         "bigImg" : "energy_bigimg",
@@ -34,12 +40,6 @@
         "img" : "data_img",
         "bigImg" : "data_bigimg",
         "contents" : "IT서비스, 인터넷, 소프트웨어, 반도체 산업의 기업을 모아뒀어요."
-    },
-    {
-        "name" : "금융",
-        "img" : "health_img",
-        "bigImg" : "health_bigimg",
-        "contents" : "은행, 투자회사, 금융거래소 산업의 기업을 모아뒀어요."
     },
     {
         "name" : "부동산",
