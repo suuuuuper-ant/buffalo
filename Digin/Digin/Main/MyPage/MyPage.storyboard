@@ -382,6 +382,107 @@
             </objects>
             <point key="canvasLocation" x="1699" y="72"/>
         </scene>
+        <!--My Page Popup View Controller-->
+        <scene sceneID="ZNR-aC-pZp">
+            <objects>
+                <viewController storyboardIdentifier="MyPagePopupViewController" id="AcU-Ax-Zia" customClass="MyPagePopupViewController" customModule="Digin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HMo-oj-vlz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wQ-pL-Arl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8H-rS-Xfv">
+                                <rect key="frame" x="42" y="282" width="330" height="342"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I53-Lg-gbU">
+                                        <rect key="frame" x="0.0" y="294" width="330" height="48"/>
+                                        <color key="backgroundColor" name="main_color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="96L-rx-Han"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <state key="normal" title="나가기">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exitAction:" destination="AcU-Ax-Zia" eventType="touchUpInside" id="FG0-SC-AcB"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group1084" translatesAutoresizingMaskIntoConstraints="NO" id="W4n-ga-2lC">
+                                        <rect key="frame" x="104" y="20" width="122" height="122"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="122" id="5KO-0P-GlO"/>
+                                            <constraint firstAttribute="width" secondItem="W4n-ga-2lC" secondAttribute="height" multiplier="1:1" id="JT4-1V-0uJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용이 저장되지 않았어요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRa-YU-nMZ">
+                                        <rect key="frame" x="82" y="162" width="166" height="20"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" name="darkgray62"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-4t-8dk">
+                                        <rect key="frame" x="15" y="205" width="300" height="33.5"/>
+                                        <string key="text">수정한 정보가 저장되지 않았어요.
+나가시겠어요?</string>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" name="darkgray_82"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEg-he-NWH">
+                                        <rect key="frame" x="291" y="15" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="nEg-he-NWH" secondAttribute="height" multiplier="1:1" id="CF1-06-C8M"/>
+                                            <constraint firstAttribute="height" constant="24" id="nC7-iY-ddj"/>
+                                        </constraints>
+                                        <state key="normal" image="icon_cancel"/>
+                                        <connections>
+                                            <action selector="dismissAction:" destination="AcU-Ax-Zia" eventType="touchUpInside" id="qvm-Nc-V7Y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="I53-Lg-gbU" secondAttribute="trailing" id="0Bz-Aw-GxM"/>
+                                    <constraint firstItem="nEg-he-NWH" firstAttribute="top" secondItem="O8H-rS-Xfv" secondAttribute="top" constant="15" id="2Er-KU-PQ7"/>
+                                    <constraint firstItem="Q4P-4t-8dk" firstAttribute="leading" secondItem="O8H-rS-Xfv" secondAttribute="leading" constant="15" id="9sa-Y9-xDE"/>
+                                    <constraint firstItem="W4n-ga-2lC" firstAttribute="top" secondItem="O8H-rS-Xfv" secondAttribute="top" constant="20" id="C5u-Ir-d4P"/>
+                                    <constraint firstItem="lRa-YU-nMZ" firstAttribute="centerX" secondItem="W4n-ga-2lC" secondAttribute="centerX" id="Cad-xE-63s"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q4P-4t-8dk" secondAttribute="trailing" constant="15" id="Ddb-hi-s3s"/>
+                                    <constraint firstAttribute="bottom" secondItem="I53-Lg-gbU" secondAttribute="bottom" id="OpU-03-Y0K"/>
+                                    <constraint firstItem="W4n-ga-2lC" firstAttribute="centerX" secondItem="O8H-rS-Xfv" secondAttribute="centerX" id="QIU-5c-VEe"/>
+                                    <constraint firstItem="lRa-YU-nMZ" firstAttribute="top" secondItem="W4n-ga-2lC" secondAttribute="bottom" constant="20" id="RRw-tU-h1K"/>
+                                    <constraint firstItem="Q4P-4t-8dk" firstAttribute="top" secondItem="lRa-YU-nMZ" secondAttribute="bottom" constant="23" id="XYj-vB-pv2"/>
+                                    <constraint firstItem="I53-Lg-gbU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Q4P-4t-8dk" secondAttribute="bottom" constant="20" id="nMD-xJ-dfn"/>
+                                    <constraint firstItem="I53-Lg-gbU" firstAttribute="leading" secondItem="O8H-rS-Xfv" secondAttribute="leading" id="quo-Ke-eaT"/>
+                                    <constraint firstAttribute="trailing" secondItem="nEg-he-NWH" secondAttribute="trailing" constant="15" id="yw0-kR-3ZH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gUR-EU-4Wn"/>
+                        <constraints>
+                            <constraint firstItem="O8H-rS-Xfv" firstAttribute="centerY" secondItem="gUR-EU-4Wn" secondAttribute="centerY" id="AZ0-W5-dpw"/>
+                            <constraint firstItem="O8H-rS-Xfv" firstAttribute="height" secondItem="HMo-oj-vlz" secondAttribute="height" multiplier="310:812" id="Fju-tW-Zpc"/>
+                            <constraint firstItem="O8H-rS-Xfv" firstAttribute="leading" secondItem="gUR-EU-4Wn" secondAttribute="leading" constant="42" id="Kdt-2N-ZLg"/>
+                            <constraint firstItem="4wQ-pL-Arl" firstAttribute="leading" secondItem="gUR-EU-4Wn" secondAttribute="leading" id="Ydc-lz-SSK"/>
+                            <constraint firstItem="gUR-EU-4Wn" firstAttribute="trailing" secondItem="4wQ-pL-Arl" secondAttribute="trailing" id="dHa-ri-bJn"/>
+                            <constraint firstAttribute="bottom" secondItem="4wQ-pL-Arl" secondAttribute="bottom" id="f9Y-tt-8HL"/>
+                            <constraint firstItem="4wQ-pL-Arl" firstAttribute="top" secondItem="HMo-oj-vlz" secondAttribute="top" id="h3U-1d-kKH"/>
+                            <constraint firstItem="gUR-EU-4Wn" firstAttribute="trailing" secondItem="O8H-rS-Xfv" secondAttribute="trailing" constant="42" id="qXQ-nZ-Spw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exitButton" destination="nEg-he-NWH" id="9gM-hp-pbU"/>
+                        <outlet property="popupView" destination="O8H-rS-Xfv" id="Hse-JZ-tud"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uju-Uw-LRr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2429" y="72"/>
+        </scene>
         <!--Notice Details View Controller-->
         <scene sceneID="ZX2-sl-1sh">
             <objects>
@@ -430,13 +531,13 @@
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBU-dq-NGx">
                                                     <rect key="frame" x="40" y="330" width="334" height="200.5"/>
-                                                    <mutableString key="text">주식 정보가 어려웠던 여러분들을 위한 서비스, 디긴이 드디어 오픈했습니다! 내 주식이 왜 떨어졌는지 혹은 왜 올랐는지 그 이유를 알 수 없어서 많이 답답하셨나요? 알아볼 수 없는 표와 차트로 숨이 턱턱 막혔던 경험, 디긴으로 해결하실 수 있어요!
+                                                    <string key="text">주식 정보가 어려웠던 여러분들을 위한 서비스, 디긴이 드디어 오픈했습니다! 내 주식이 왜 떨어졌는지 혹은 왜 올랐는지 그 이유를 알 수 없어서 많이 답답하셨나요? 알아볼 수 없는 표와 차트로 숨이 턱턱 막혔던 경험, 디긴으로 해결하실 수 있어요!
 
 우리는 사실 수많은 정보를 얻고 싶었던 것이 아니잖아요! 딱 필요한 정보만 알고 싶은 만큼만 알아봐요.
 
 그렇다고 너무 많은 에너지를 쏟을 필요는 없어요! 디긴이 다~ 알려드려요. 디기너는 쉽게 정보를 얻어 갈 준비만 하세요!
 
-앞으로도 디긴과 함께해 보세요!</mutableString>
+앞으로도 디긴과 함께해 보세요!</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" name="darkgray62"/>
                                                     <nil key="highlightedColor"/>
@@ -599,9 +700,11 @@
     <resources>
         <image name="Group1097" width="335" height="151"/>
         <image name="digin_logo" width="60" height="60"/>
+        <image name="group1084" width="122" height="122"/>
         <image name="icEdit" width="20" height="20"/>
         <image name="icEyeBlue" width="20" height="20"/>
         <image name="icon_arrow_right" width="20" height="20"/>
+        <image name="icon_cancel" width="24" height="24"/>
         <namedColor name="darkgray62">
             <color red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
