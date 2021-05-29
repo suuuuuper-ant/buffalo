@@ -38,6 +38,7 @@ class CategoryDetailsViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
 
         titleLabel.text = categoryReult.name
         introLabel.text = categoryReult.contents
