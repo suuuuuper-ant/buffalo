@@ -39,7 +39,7 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
         let period = UIStackView()
         period.axis = .horizontal
         period.alignment = .center
-        period.spacing = 52
+        period.spacing = 40
         period.distribution = .equalCentering
         return period
     }()
@@ -61,8 +61,10 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        for (index, button) in PeriodGenerator(3).generateTagLabels().enumerated() {
-            button.setTitle("오늘", for: .normal)
+        let period = ["오늘", "1주", "1달", "3달", "6달"]
+
+        for (index, button) in PeriodGenerator(5).generateTagLabels().enumerated() {
+            button.setTitle( period[index] ?? "", for: .normal)
             button.tag = index
             button.addTarget(self, action: #selector(selectedPeriodButton), for: .touchUpInside)
             periodStackView.addArrangedSubview(button)
@@ -260,6 +262,8 @@ class PeriodGenerator {
                 button.titleLabel?.textColor = .white
             } else {
                 button.backgroundColor = UIColor.white
+//                button.titleLabel?.textColor = AppColor.gray160.color
+                button.setTitleColor(AppColor.gray160.color, for: .normal)
                 button.layer.borderWidth = 1
             }
 
