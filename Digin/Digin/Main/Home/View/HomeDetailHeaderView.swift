@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class HomeDetailHeaderView: UITableViewCell, ViewType {
+    var cancellables: Set<AnyCancellable> = []
     struct UI {
         static let companyImageWidthAndHeight: CGFloat = 32
         static let contentViewLeading: CGFloat = 20
@@ -22,12 +24,13 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         let companyImage = UIImageView()
         companyImage.makeRounded(cornerRadius: UI.companyImageWidthAndHeight / 2)
         companyImage.backgroundColor = .lightGray
+        companyImage.contentMode = .scaleAspectFill
         return companyImage
     }()
 
     let companyLabel: UILabel = {
         let company = UILabel()
-        company.text = "프레스티지바이오로직스바이오"
+        company.text = ""
         company.font = UIFont.boldSystemFont(ofSize: 24)
         company.numberOfLines = 2
         company.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -52,10 +55,10 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
     lazy var contentArea: HomeDetailPriceView = {
         let area = HomeDetailPriceView()
         area.layer.cornerRadius = 15
-        area.layer.borderColor = AppColor.stockSell.color.cgColor
         area.layer.borderWidth = 1.0
         area.layer.masksToBounds = true
         area.backgroundColor = .white
+        area.layer.borderColor = UIColor.white.cgColor
         return area
     }()
 
@@ -74,6 +77,10 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables = []
+    }
 
     func setupUI() {
         contentView.backgroundColor = UIColor.init(named: "home_background")
@@ -87,19 +94,28 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         }
     }
 
-    func configure(tags: [String]) {
-        tags.enumerated().forEach { (index, str) in
+    func configure(_ company: Company, _ viewModel: HomeDetailViewModel) {
+        company.tags.enumerated().forEach { (index, str) in
             (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
             (relativeTagStack.subviews[index] as? UILabel)?.text  = str
 
         }
 
-        for idx in (tags.count..<relativeTagStack.subviews.count) {
+        for idx in (company.tags.count..<relativeTagStack.subviews.count) {
             (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
 
         }
 
-        contentArea.configure(OpinionInfo(opinion: .sell, opinionDescription: "ddd", opinionCompany: "현대투자증권", opinionDate: "04.13", report: "적극 파세요"))
+        companyLabel.text = company.interestingCompany
+        likeCountLabel.text = String(company.likeCount)
+        companyImageView.kf.setImage(with: URL(string: company.compayThumbnail))
+        contentArea.configure(company.opinionInfo)
+        companyLabel.text = company.interestingCompany
+
+        contentArea.reportButton.tapPublisher.sink { _ in
+            viewModel.goToRepoert.send( company.opinionInfo.report)
+        }.store(in: &cancellables)
+
     }
 
     func setupConstraint() {

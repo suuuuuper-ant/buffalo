@@ -65,15 +65,18 @@ class HomeDetailRelativeCell: UITableViewCell, ViewType {
 
     lazy var relativeFieldImageView: UIImageView = {
         let field = UIImageView()
-        field.backgroundColor = UIColor.init(named: "home_background")
+        field.contentMode = .scaleAspectFill
+       // field.backgroundColor = UIColor.init(named: "home_background")
         field.makeCircle()
         return field
     }()
 
     lazy var relativeKeywordImageView: UIImageView = {
         let keyword = UIImageView()
+        keyword.contentMode = .scaleAspectFill
         keyword.makeCircle()
-        keyword.backgroundColor = UIColor.init(named: "home_background")
+
+      //  keyword.backgroundColor = UIColor.init(named: "home_background")
         return keyword
     }()
 
@@ -104,7 +107,11 @@ class HomeDetailRelativeCell: UITableViewCell, ViewType {
         let generator = TagGenerator(field.relativeFields.count, textArray: field.relativeFields)
         for label in generator.generateTagLabels() {
             relativeFieldStackView.addArrangedSubview(label)
+
         }
+
+        relativeFieldImageView.kf.setImage(with: URL(string: "https://www.sk.co.kr/lib/images/desktop/footer_logo.png"))
+        relativeKeywordImageView.kf.setImage(with: URL(string: "https://img.insight.co.kr/static/2018/05/22/700/91939q9qbenssel3645j.jpg"))
 
         fieldTitleLabel.text = field.company
 

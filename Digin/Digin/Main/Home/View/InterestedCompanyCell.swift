@@ -18,13 +18,14 @@ class InterestedCompanyCell: UITableViewCell {
         companyImage.layer.cornerRadius = UI.companyImageHeight / 2
         companyImage.clipsToBounds = true
         companyImage.backgroundColor = .white
+        companyImage.contentMode = .scaleAspectFill
         return companyImage
     }()
 
     lazy var companyLabel: UILabel = {
         let company = UILabel()
         company.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        company.textColor = UIColor(named: "darkgray_62")
+        company.textColor = AppColor.darkgray62.color
         company.text = "피엔케이피부임상연구센타"
         return company
     }()
@@ -76,6 +77,7 @@ class InterestedCompanyCell: UITableViewCell {
 
     func configure(model: InterestedCompany) {
         companyLabel.text = model.company
+        companyImageView.kf.setImage(with: URL(string: model.companyThumbanil))
 
     }
     required init?(coder: NSCoder) {

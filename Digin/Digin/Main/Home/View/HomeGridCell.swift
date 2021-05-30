@@ -24,13 +24,14 @@ class HomeGridCell: UICollectionViewCell {
         let companyImage = UIImageView()
         companyImage.backgroundColor = UIColor.init(named: "home_background")
         companyImage.makeRounded(cornerRadius: 32 / 2)
+        companyImage.contentMode = .scaleAspectFill
 
         return companyImage
     }()
 
     lazy var relativeTagStack: UIStackView = {
         let tag = UIStackView()
-        tag.spacing = 10
+        tag.spacing = 5
         tag.alignment = .leading
         return tag
     }()
@@ -95,6 +96,8 @@ class HomeGridCell: UICollectionViewCell {
 
         contentArea.layer.borderColor = model.opinionInfo.opinion.colorForType().cgColor
         contentArea.configure(model.opinionInfo)
+
+        companyImageView.kf.setImage(with: URL(string: model.compayThumbnail))
     }
 
     private func setupConstraints() {

@@ -43,6 +43,12 @@ class HomeDetailNewsCell: UITableViewCell, ViewType {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func configure (news: News) {
+
+        titleLabel.text = news.title
+        dateLabel.text = news.date
+    }
+
     func setupUI() {
         [titleLabel, thumbnailImageView, dateLabel].forEach {
             contentView.addSubview($0)

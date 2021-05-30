@@ -97,7 +97,7 @@ class NewsArea: UIView, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let homeNewsCell = tableView.dequeueReusableCell(withIdentifier: HomeNewsCell.reuseIdentifier) as? HomeNewsCell
-        let news = self.news[indexPath.row]
+        let news = self.news[indexPath.section]
         homeNewsCell?.configure(news: news)
         homeNewsCell?.selectionStyle = .none
         return homeNewsCell ?? UITableViewCell()
