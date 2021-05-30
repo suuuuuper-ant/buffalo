@@ -56,8 +56,8 @@ class HomeViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { _ in
 
-            } receiveValue: { _ in
-                self.moveToDetail()
+            } receiveValue: { index in
+                self.moveToDetail(index)
             }.store(in: &cancellables)
 
         viewModel.moveToRandomPick.sink { _ in
@@ -109,8 +109,12 @@ class HomeViewController: UIViewController {
 
     }
 
-    func moveToDetail() {
-        self.navigationController?.pushViewController(HomeDetailViewController(), animated: true)
+    func moveToDetail(_ indexPath: IndexPath) {
+        let detail = HomeDetailViewController()
+        guard let company = viewModel.data.data?.sections[indexPath.section].contents[indexPath.row] as? Company else { return }
+        detail.homeSection = company
+
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 
     func moveToRandomPick() {

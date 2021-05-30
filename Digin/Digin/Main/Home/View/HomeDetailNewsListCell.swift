@@ -52,6 +52,8 @@ class HomeDetailNewsListCell: UITableViewCell, ViewType {
         return more
     }()
 
+    var news: [News] = []
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -101,16 +103,23 @@ class HomeDetailNewsListCell: UITableViewCell, ViewType {
 
     }
 
+    func configure( news: [News]) {
+        self.news = news
+    }
+
 }
 
 extension HomeDetailNewsListCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return news.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsCell.reuseIdentifier, for: indexPath) as? HomeDetailNewsCell else { return UITableViewCell() }
-
+        let new = news[indexPath.row]
+        cell.configure(news: new)
+        //dummy
+        cell.thumbnailImageView.image = UIImage(named: new.imageURL + "\(indexPath.row + 1)" )
         return cell
     }
 

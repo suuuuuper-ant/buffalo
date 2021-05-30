@@ -8,73 +8,184 @@
                 "groupId": "updatedCompany",
                 "contents": [
                     {
-                        "interestingCompany": "프레스티지바이오로직스바이오",
-                        "tags": ["제약", "바이오", "제넥신"],
+                        "interestingCompany": "삼성전자",
+                        "tags": ["반도체", "슈퍼사이클", "스마트폰"],
+                        "news": [
+                            {
+                                "date": "05.28",
+                                "title": "인사팀장 다 불렀다...삼성이 듣게한  이 강연"
+                            },
+                            {
+                                "date": "05.28",
+                                "title": "삼성이 투자한 AI스타트업 24시간 원격진로 가능"
+                            },
+                            {
+                                "date": "05.27",
+                                "title": "LG 중고폰 받고 15만원 더.. 삼성 VS 애플"
+                            }
+                        ],
                         "isFavorite": false,
-                        "currentPrice": "59999",
+                        "currentPrice": "79500",
                         "targetPrice": "89999",
-                        "likeCount": 23232,
-                        "compayThumbnail": "http://das",
+                        "likeCount": 3,
+                        "compayThumbnail": "https://www.samsung.com/sec/static/etc/designs/smg/global/imgs/logo-square-letter.png",
                         "opinionInfo": {
                             "opinion": "Buy",
                             "opinionDescription": "적극 사세요",
-                            "opinionCompany": "현대투자증권",
-                            "opinionDate": "04.13",
-                            "report": "http://das"
+                            "opinionCompany": "하나투자증권",
+                            "opinionDate": "05.24",
+                            "report": "http://consensus.hankyung.com/apps.analysis/analysis.downpdf?report_idx=590337"
                             
                         }
                     },
                     {
-                        "interestingCompany": "SK바이오이아이티 일렉트로닉스 아이티솔루션",
-                        "tags": ["국방", "화학", "수출"],
+                        "interestingCompany": "SK하이닉스",
+                        "tags": ["반도체", "비메모리", "슈퍼사이클"],
                         "news": [
                             {
-                                "date": "03.23",
-                                "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
+                                "date": "05.29",
+                                "title": "SK하이닉스의 '10조 빅딜', 공정위 승인 받았다"
                             },
                             {
-                                "date": "03.23",
-                                "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
+                                "date": "05.29",
+                                "title": "SK하이닉스, '키파운드리'다시 품을까?"
                             },
                             {
-                                "date": "03.23",
-                                "title": "[단독] 이찌안 귀엽다고 소리지른 20대 여성..."
+                                "date": "05.28",
+                                "title": "반도체 M&A훼방꾼 하이닉스 인텔 낸드 인수 '복병'되나"
                             }
                         ],
                         "isFavorite": true,
                         "currentPrice": "59999",
                         "targetPrice": "99999",
-                        "likeCount": 23232,
-                        "compayThumbnail": "http://das",
+                        "likeCount": 3,
+                        "compayThumbnail": "https://cdn.mediasr.co.kr/news/photo/201803/47817_6295_4955.png",
                         "opinionInfo": {
                             "opinion": "Sell",
                             "opinionDescription": "적극 파세요",
                             "opinionCompany": "현대투자증권",
-                            "opinionDate": "04.13",
-                            "report": "http://das"
+                            "opinionDate": "05.23",
+                            "report": "http://consensus.hankyung.com/apps.analysis/analysis.downpdf?report_idx=590753"
+                        }
+                    },
+                    {
+                        "interestingCompany": "LG화학",
+                        "tags": ["화장품", "바이오", "백신"],
+                        "news": [
+                            {
+                                "date": "05.29",
+                                "title": "신학철 부회장 '탄소줄이기가 기업의 미래 경쟁력'"
+                            },
+                            {
+                                "date": "05.29",
+                                "title": "[공매도 예고였나] 이틀 만에 7조 증발"
+                            },
+                            {
+                                "date": "03.23",
+                                "title": "LG화학 외국계 매도보고서 쇼크..."
+                            }
+                        ],
+                        "isFavorite": true,
+                        "currentPrice": "59999",
+                        "targetPrice": "99999",
+                        "likeCount": 2,
+                        "compayThumbnail": "https://img.insight.co.kr/static/2018/05/22/700/91939q9qbenssel3645j.jpg",
+                        "opinionInfo": {
+                            "opinion": "Sell",
+                            "opinionDescription": "적극 파세요",
+                            "opinionCompany": "키움투자증권",
+                            "opinionDate": "05.27",
+                            "report": "http://consensus.hankyung.com/apps.analysis/analysis.downpdf?report_idx=590753"
+                        }
+                    },
+                    {
+                        "interestingCompany": "삼성바이오로직스",
+                        "tags": ["화장품", "바이오", "백신"],
+                        "news": [
+                            {
+                                "date": "05.29",
+                                "title": "삼성 바이오로직스, 글로벌 4대 ISO 국제표준 획득"
+                            },
+                            {
+                                "date": "05.29",
+                                "title": "국제표준화기구 4대 인증 획득"
+                            },
+                            {
+                                "date": "05.29",
+                                "title": "삼성주가에 바이로직스 덩달아 반등"
+                            }
+                        ],
+                        "isFavorite": true,
+                        "currentPrice": "59999",
+                        "targetPrice": "99999",
+                        "likeCount": 7,
+                        "compayThumbnail": "https://www.samsung.com/sec/static/etc/designs/smg/global/imgs/logo-square-letter.png",
+                        "opinionInfo": {
+                            "opinion": "Marketperform",
+                            "opinionDescription": "가니님의 판단이 필요할 때에요",
+                            "opinionCompany": "현대투자증권",
+                            "opinionDate": "05.28",
+                            "report": "http://consensus.hankyung.com/apps.analysis/analysis.downpdf?report_idx=590753"
+                        }
+                    },
+                    {
+                        "interestingCompany": "NAVER",
+                        "tags": ["IT", "포털사이트", "커머스"],
+                        "news": [
+                            {
+                                "date": "05.29",
+                                "title": "2030년까지 전력 60% 재생에너지로 대체"
+                            },
+                            {
+                                "date": "05.29",
+                                "title": "네이버,카카오서 잔여백신 '0'..병원에 연락한 사람부터.."
+                            },
+                            {
+                                "date": "05.29",
+                                "title": "네이버 대표 '투명하고 객관적인 조사 받겠다.'"
+                            }
+                        ],
+                        "isFavorite": true,
+                        "currentPrice": "59999",
+                        "targetPrice": "99999",
+                        "likeCount": 10,
+                        "compayThumbnail": "https://www.le-blanc.co.kr/wp-content/uploads/2018/09/naver.png",
+                        "opinionInfo": {
+                            "opinion": "Buy",
+                            "opinionDescription": "가니님의 판단이 필요할 때에요",
+                            "opinionCompany": "키움투자증권",
+                            "opinionDate": "05.28",
+                            "report": "http://consensus.hankyung.com/apps.analysis/analysis.downpdf?report_idx=590753"
                         }
                     }
                 ]
             },
             
+            
+
+
             {
                 "groupId": "intetestedCompany",
                 "contents": [
                     {
-                        "companyThumbanil": "https://aws.s3/",
-                        "company": "카카오게임즈"
+                        "companyThumbanil": "https://www.samsung.com/sec/static/etc/designs/smg/global/imgs/logo-square-letter.png",
+                        "company": "삼성전자"
                     },
                     {
-                        "companyThumbanil": "https://aws.s3/",
-                        "company": "Naver"
+                        "companyThumbanil": "https://www.sk.co.kr/lib/images/desktop/footer_logo.png",
+                        "company": "SK하이닉스"
                     },
                     {
-                        "companyThumbanil": "https://aws.s3/",
-                        "company": "현대차"
+                        "companyThumbanil": "https://img.insight.co.kr/static/2018/05/22/700/91939q9qbenssel3645j.jpg",
+                        "company": "LG화학"
                     },
                     {
-                        "companyThumbanil": "https://aws.s3/",
-                        "company": "데브시스터즈"
+                        "companyThumbanil": "https://www.samsung.com/sec/static/etc/designs/smg/global/imgs/logo-square-letter.png",
+                        "company": "삼성바이오로직스"
+                    },
+                    {
+                        "companyThumbanil": "https://www.le-blanc.co.kr/wp-content/uploads/2018/09/naver.png",
+                        "company": "NAVER"
                     }
                 ]
             }

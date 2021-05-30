@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "iconDigin6060.png",
+      "filename" : "dummy3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iconDigin6060@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iconDigin6060@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

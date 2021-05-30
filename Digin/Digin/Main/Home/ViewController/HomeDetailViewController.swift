@@ -11,6 +11,7 @@ import Combine
 class HomeDetailViewModel: ObservableObject {
 
     let isReadMoreButtonTouched = PassthroughSubject<Bool, Error>()
+    let goToRepoert = PassthroughSubject<String, Error>()
     private var cancellables: Set<AnyCancellable> = []
 
     func reeadMoreButtonTouched(_ indexPath: IndexPath?) {
@@ -58,6 +59,8 @@ class HomeDetailViewController: UIViewController, ViewType {
         ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
     ]
 
+    var homeSection: Company?
+
     func registerCell() {
 
     }
@@ -77,6 +80,12 @@ class HomeDetailViewController: UIViewController, ViewType {
             self.tableView.beginUpdates()
             self.tableView.reloadRows(at: [IndexPath(item: 3, section: 0)], with: .automatic)
             self.tableView.endUpdates()
+        }.store(in: &cancellables)
+
+        viewModel.goToRepoert.sink { _ in
+
+        } receiveValue: { [ unowned self ]url in
+            self.gotoReport(url: url)
         }.store(in: &cancellables)
 
     }
@@ -111,7 +120,7 @@ class HomeDetailViewController: UIViewController, ViewType {
             NSAttributedString.Key.foregroundColor: AppColor.homeBackground.color
         ]
 
-        self.title = "프레스티지바이오로직스바이오"
+        self.title = homeSection?.interestingCompany
         self.navigationController?.navigationBar.layoutIfNeeded()
     }
 
@@ -121,6 +130,14 @@ class HomeDetailViewController: UIViewController, ViewType {
             self.navigationController?.popViewController(animated: true)
         }.store(in: &cancellables)
 
+    }
+
+    func gotoReport(url: String) {
+
+        let reportVIew = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
+        reportVIew.newsURL = url
+        reportVIew.modalPresentationStyle = .formSheet
+        self.present(reportVIew, animated: true, completion: nil)
     }
 }
 
@@ -134,15 +151,22 @@ extension HomeDetailViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailHeaderView.reuseIdentifier) as? HomeDetailHeaderView else { return UITableViewCell() }
-            cell.configure(tags: data[indexPath.row])
+            if let company = homeSection {
+                cell.configure(company, viewModel)
+            }
+
             return cell
         } else if indexPath.row == 1 {
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailLineChartCell.reuseIdentifier) as? HomeDetailLineChartCell else { return UITableViewCell() }
+            let type = homeSection?.opinionInfo.opinion
+          let stock = StockType.init(rawValue: type?.rawValue ?? "")
+            cell.configure(stock ?? .none)
             return cell
 
         } else  if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsListCell.reuseIdentifier) as? HomeDetailNewsListCell else { return UITableViewCell() }
+            cell.configure(news: homeSection?.news ?? [])
             return cell
         } else if indexPath.row == 3 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailBarChartCell.reuseIdentifier) as? HomeDetailBarChartCell else { return UITableViewCell() }
@@ -152,8 +176,8 @@ extension HomeDetailViewController: UITableViewDataSource {
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailRelativeCell.reuseIdentifier) as? HomeDetailRelativeCell else { return UITableViewCell() }
 
-            let field = RelativeCompany(relativeFields: ["같은분야"], relativeKeyword: [], companyImage: "", company: "프레스티지바이오로직스바이오")
-            let keyword = RelativeCompany(relativeFields: [], relativeKeyword: ["비슷한 시총 순위", "경기소비재"], companyImage: "", company: "닥터드레")
+            let field = RelativeCompany(relativeFields: ["같은분야"], relativeKeyword: [], companyImage: "", company: "SK하이닉스")
+            let keyword = RelativeCompany(relativeFields: [], relativeKeyword: ["비슷한 시총 순위", "경기소비재"], companyImage: "", company: "LG화학")
             cell.configure(field, keyword: keyword)
             return cell
         }

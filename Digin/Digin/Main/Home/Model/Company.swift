@@ -39,6 +39,7 @@ struct HomeDataModel: Decodable {
 struct News: Codable {
     let date: String
     let title: String
+    let imageURL: String = "dummy"
 }
 
 struct OpinionInfo: Decodable {
@@ -64,6 +65,7 @@ struct Company: Decodable {
     var news: [News] = []
     var opinionInfo: OpinionInfo = OpinionInfo()
     var likeCount: Int = 0
+    var compayThumbnail: String = ""
 
     private enum CodingKeys: String, CodingKey {
         case interestingCompany
@@ -74,6 +76,7 @@ struct Company: Decodable {
         case news
         case likeCount
         case opinionInfo
+        case compayThumbnail
 
     }
 
@@ -88,6 +91,7 @@ struct Company: Decodable {
         news = try values.decodeIfPresent([News].self, forKey: .news) ?? []
         likeCount = try values.decodeIfPresent(Int.self, forKey: .likeCount) ?? 0
         opinionInfo = try values.decodeIfPresent(OpinionInfo.self, forKey: .opinionInfo) ?? OpinionInfo()
+        compayThumbnail = try values.decodeIfPresent(String.self, forKey: .compayThumbnail) ?? ""
     }
 
 }

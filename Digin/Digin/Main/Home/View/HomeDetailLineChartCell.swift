@@ -19,14 +19,14 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
 
     lazy var currentPriceLabel: UILabel = {
         let price = UILabel()
-        price.text = "34,500원"
+        price.text = "827,000원"
         price.font = UIFont.boldSystemFont(ofSize: 30)
         return price
     }()
 
     lazy var percentLabel: UILabel = {
         let percent = UILabel()
-        percent.text = "-3% (-100원)"
+        percent.text = "-3% (-24810원)"
         percent.font = UIFont.boldSystemFont(ofSize: 16)
         return percent
     }()
@@ -43,7 +43,9 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
         period.distribution = .equalCentering
         return period
     }()
-    lazy var chartView: GraphView = GraphView()
+    lazy var chartView: GraphView = GraphView(frame: .zero)
+
+    var stockType: StockType = .none
 
     func setupUI() {
 
@@ -66,6 +68,7 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
         for (index, button) in PeriodGenerator(5).generateTagLabels().enumerated() {
             button.setTitle( period[index] ?? "", for: .normal)
             button.tag = index
+           // button.backgroundColor = stockType.colorForType()
             button.addTarget(self, action: #selector(selectedPeriodButton), for: .touchUpInside)
             periodStackView.addArrangedSubview(button)
         }
@@ -110,7 +113,33 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
     }
 
     @objc func selectedPeriodButton(sender: UIButton) {
+
+        periodStackView.subviews.forEach { view in
+            let button =  view as? UIButton
+            button?.isSelected = false
+            button?.backgroundColor = .white
+            button?.setTitleColor(AppColor.gray160.color, for: .normal)
+
+        }
+        sender.isSelected = true
+        sender.backgroundColor = stockType.colorForType()
+        sender.layer.borderColor = UIColor.white.cgColor
+        sender.setTitleColor(.white, for: .normal)
         chartView.periodType = GraphView.Period.init(rawValue: sender.tag) ?? .today
+
+    }
+
+    func configure(_ stockType: StockType) {
+        self.stockType =  stockType
+        periodStackView.subviews.forEach { view in
+            let button = view as? UIButton
+            if button?.isSelected ?? false {
+                button?.backgroundColor = stockType.colorForType()
+                button?.layer.borderColor = UIColor.white.cgColor
+                button?.setTitleColor(.white, for: .normal)
+            }
+        }
+        percentLabel.textColor = stockType.colorForType()
 
     }
 
@@ -129,11 +158,12 @@ class GraphView: UIView {
         var periodArray: ([Int], [Int]) {
             switch self {
             case  .today:
-                return ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                        [1000, 1600, 3500, 4600, 2900, 2300, 3200, 5000, 4500, 10000, 500, 4500] )
+                return ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                        [35800, 48000, 58200, 65000, 65000, 69000, 65000, 65000, 67000, 75000, 74000, 69000, 72000] )
             default:
-                return([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-                       [300, 1500, 1500, 600, 2900, 2300, 3200, 3200, 230, 500, 400, 1500, 1000, 500, 4500, 320, 3100, 230, 800, 400, 1500, 300, 400, 500, 200, 300, 250, 290, 390, 400])
+                return([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+                       //마지막은 목표가
+                       [59000, 60000, 63000, 62500, 64000, 65000, 65500, 65000, 68000, 68200, 67000, 69000, 70000, 75000, 79000, 69820, 65800, 100000])
             }
         }
 
@@ -155,9 +185,50 @@ class GraphView: UIView {
 
         }
     }
+
+    var currentPriceLine: UIView = {
+        let line = UIView()
+        line.backgroundColor = AppColor.darkgray82.color
+        return line
+    }()
+
     weak var shapeLayer: CAShapeLayer?
     @IBInspectable var startColor: UIColor = .white
     @IBInspectable var endColor: UIColor = .white
+
+    var lineYConstraints: NSLayoutConstraint?
+    var lineWidthConstraints: NSLayoutConstraint?
+
+    var goalLabel: UILabel = {
+       let goal = UILabel()
+        goal.textColor = AppColor.darkgray82.color
+        goal.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        goal.numberOfLines = 2
+        return goal
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(currentPriceLine)
+        currentPriceLine.translatesAutoresizingMaskIntoConstraints = false
+        currentPriceLine.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        currentPriceLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        lineWidthConstraints = currentPriceLine.widthAnchor.constraint(equalToConstant: 0)
+        lineWidthConstraints?.isActive = true
+        lineYConstraints =  currentPriceLine.topAnchor.constraint(equalTo: topAnchor)
+        lineYConstraints?.isActive = true
+
+        addSubview(goalLabel)
+        goalLabel.translatesAutoresizingMaskIntoConstraints = false
+        goalLabel.leadingAnchor.constraint(equalTo: currentPriceLine.trailingAnchor, constant: 5.5).isActive = true
+        goalLabel.centerYAnchor.constraint(equalTo: currentPriceLine.centerYAnchor).isActive = true
+
+        goalLabel.alpha = 0.0
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
@@ -190,7 +261,7 @@ class GraphView: UIView {
 
     }
     func updateChartLine() {
-        let width = frame.width
+        let width = frame.width - 40
         let height = frame.height
         self.shapeLayer?.removeFromSuperlayer()
         let margin = Constants.margin
@@ -202,7 +273,7 @@ class GraphView: UIView {
 
         let topBorder = Constants.topBorder
         let bottomBorder = Constants.bottomBorder
-        let graphHeight = height - topBorder - bottomBorder
+        let graphHeight = height - topBorder - bottomBorder + 100
         let maxValue = periodType.periodArray.1.max()!
         let columnYPoint = { (graphPoint: Int) -> CGFloat in
             let yaxis = CGFloat(graphPoint) / CGFloat(maxValue) * graphHeight
@@ -211,9 +282,9 @@ class GraphView: UIView {
 
         let graphPath = UIBezierPath()
 
-        graphPath.move(to: CGPoint(x: columnXPoint(0), y: columnYPoint(week[0])))
+        graphPath.move(to: CGPoint(x: columnXPoint(0), y: columnYPoint(periodType.periodArray.1[0])))
 
-        for index in 0..<periodType.periodArray.1.count {
+        for index in 0..<periodType.periodArray.1.count - 1 {
             let nextPoint = CGPoint(x: columnXPoint(index), y: columnYPoint(periodType.periodArray.1[index]))
             graphPath.addLine(to: nextPoint)
         }
@@ -233,6 +304,31 @@ class GraphView: UIView {
         shapeLayer.add(animation, forKey: "MyAnimation")
 
         self.shapeLayer = shapeLayer
+
+        //임시로 넣어놓음
+        let goalPrice = periodType.periodArray.1.last
+       let goalY = columnYPoint(goalPrice!)
+        lineYConstraints?.constant = goalY
+        lineWidthConstraints?.constant = width - 40
+
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        guard  let formattedPrice = numberFormatter.string(from: NSNumber(integerLiteral: periodType.periodArray.1.last ?? 0)) else { return }
+        let price = 824000
+        goalLabel.text = "목표가\n\(price)원"
+//        UIView.animate(withDuration: 2) {
+//
+//        }
+
+        UIView.animate(withDuration: 2) {
+            self.layoutIfNeeded()
+
+        } completion: {[weak self] _ in
+            UIView.animate(withDuration: 0.5) {
+                self?.goalLabel.alpha = 1
+            }
+        }
 
     }
 
@@ -256,13 +352,14 @@ class PeriodGenerator {
 
             button.makeRounded(cornerRadius: 13)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-
+            button.layer.borderColor = UIColor.white.cgColor
             if index == 0 {
-                button.backgroundColor = UIColor.init(named: "tag_color")
-                button.titleLabel?.textColor = .white
+                button.isSelected = true
+//                button.backgroundColor = UIColor.init(named: "tag_color")
+                button.titleLabel?.textColor = AppColor.gray160.color
             } else {
                 button.backgroundColor = UIColor.white
-//                button.titleLabel?.textColor = AppColor.gray160.color
+                button.titleLabel?.textColor = AppColor.gray160.color
                 button.setTitleColor(AppColor.gray160.color, for: .normal)
                 button.layer.borderWidth = 1
             }

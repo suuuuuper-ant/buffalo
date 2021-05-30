@@ -93,7 +93,7 @@ class RandomPickViewController: UIViewController, ViewType {
 
     lazy var likeCountLabel: UILabel = {
         let likeCount = UILabel()
-        likeCount.text = "342"
+        likeCount.text = "10"
         likeCount.textColor = .white
         likeCount.font = UIFont.systemFont(ofSize: 16, weight: .bold)
 
@@ -138,11 +138,12 @@ class RandomPickViewController: UIViewController, ViewType {
         return stack
     }()
 
-    var randomData: [RandomPick] = [RandomPick(name: "카카오뱅크", category: "금융"),
-                                    RandomPick(name: "SK바이오로직스", category: "바이오 생명"),
-                                    RandomPick(name: "네이버", category: ""),
-                                    RandomPick(name: "현대자동차", category: "자동차"),
-                                    RandomPick(name: "삼성전자", category: "반도체")
+    var randomData: [RandomPick] = [
+        //RandomPick(name: "카카오뱅크", category: "금융"),
+                                   // RandomPick(name: "SK바이오로직스", category: "바이오 생명"),
+                                    RandomPick(name: "네이버", category: "")
+//                                    RandomPick(name: "현대자동차", category: "자동차"),
+//                                    RandomPick(name: "삼성전자", category: "반도체")
 
     ]
 
@@ -161,7 +162,7 @@ class RandomPickViewController: UIViewController, ViewType {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = AppColor.dark24.color
+        self.view.backgroundColor = AppColor.dark22.color
 
     }
 
@@ -369,6 +370,9 @@ class CardBackView: UIView, ViewType {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+
+        self.layer.cornerRadius = 20
+        self.layer.masksToBounds = true
     }
 
     func setupConstraint() {
@@ -401,6 +405,8 @@ class CardBackView: UIView, ViewType {
         }
 
         self.companyLabel.text = model.name
+
+        self.companyImageView.kf.setImage(with: URL(string: "https://www.le-blanc.co.kr/wp-content/uploads/2018/09/naver.png"))
     }
 
 }

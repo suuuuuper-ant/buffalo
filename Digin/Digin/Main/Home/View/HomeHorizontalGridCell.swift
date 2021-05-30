@@ -86,7 +86,7 @@ class HomeHorizontalGridCell: UITableViewCell {
 
         pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0).isActive = true
         pageControl.centerXAnchor.constraint(equalTo: backContenView.centerXAnchor).isActive = true
-        pageControl.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        pageControl.heightAnchor.constraint(equalToConstant: 5).isActive = true
         pageControl.bottomAnchor.constraint(equalTo: backContenView.bottomAnchor, constant: 0).isActive = true
     }
 
