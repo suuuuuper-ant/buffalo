@@ -80,17 +80,17 @@ class HomeGridCell: UICollectionViewCell {
 
     func configure(model: Company) {
 
+        //모델개수만큼 relativeTagStack 앞에서부터 업데이트
         model.tags.enumerated().forEach { (index, str) in
             (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
             (relativeTagStack.subviews[index] as? UILabel)?.text  = str
         }
-
+        //모델 업데이트 이후에도 relativeTagStack의 서브뷰가 남아 있다면 숨김
         for idx in (model.tags.count..<relativeTagStack.subviews.count) {
             (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
         }
 
         favoriteCompanyLabel.text = model.interestingCompany
-
         newsArea.news = model.news
         likeCountLabel.text = String(model.likeCount)
 

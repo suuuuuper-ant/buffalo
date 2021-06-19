@@ -136,6 +136,7 @@
 		F1D3471C264048DC00E63483 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3471B264048DC00E63483 /* GradientView.swift */; };
 		F1D3471E26404BC700E63483 /* Cocogoose-Pro-Semilight-trial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */; };
 		F1D3472026404C3900E63483 /* UIFont_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D3471F26404C3900E63483 /* UIFont_extension.swift */; };
+		F1D7AA04267A294700696EA9 /* HomeTitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D7AA03267A294700696EA9 /* HomeTitleHeaderView.swift */; };
 		F1DC2962265C1A0300B51749 /* RandomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DC2961265C1A0300B51749 /* RandomAlertViewController.swift */; };
 		F1DC29662660159900B51749 /* TermsAndConditions.json in Resources */ = {isa = PBXBuildFile; fileRef = F1DC29652660159800B51749 /* TermsAndConditions.json */; };
 		F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */; };
@@ -279,6 +280,7 @@
 		F1D3471B264048DC00E63483 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F1D3471D26404BB600E63483 /* Cocogoose-Pro-Semilight-trial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cocogoose-Pro-Semilight-trial.ttf"; sourceTree = "<group>"; };
 		F1D3471F26404C3900E63483 /* UIFont_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont_extension.swift; sourceTree = "<group>"; };
+		F1D7AA03267A294700696EA9 /* HomeTitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleHeaderView.swift; sourceTree = "<group>"; };
 		F1DC2961265C1A0300B51749 /* RandomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAlertViewController.swift; sourceTree = "<group>"; };
 		F1DC29652660159800B51749 /* TermsAndConditions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TermsAndConditions.json; sourceTree = "<group>"; };
 		F1F1D12E2641631300FE8C15 /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				F1562900262DC538004FB256 /* HomeGreetingHeaderView.swift */,
+				F1D7AA03267A294700696EA9 /* HomeTitleHeaderView.swift */,
 				F1504BC9263B00C2007C82F2 /* GreetingCell.swift */,
 				F1504BC5263AF3DC007C82F2 /* SlideOpenView.swift */,
 			);
@@ -867,6 +870,7 @@
 				2224BAB9263AA5A600E620C4 /* FeedSkeletonTableViewCell3.swift in Sources */,
 				22CCD8C6264D6353005B6368 /* LoadingTableViewCell.swift in Sources */,
 				22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */,
+				F1D7AA04267A294700696EA9 /* HomeTitleHeaderView.swift in Sources */,
 				F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */,
 				222BC6CD2654FF3D008C1CF2 /* NoneResultTableViewCell.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,

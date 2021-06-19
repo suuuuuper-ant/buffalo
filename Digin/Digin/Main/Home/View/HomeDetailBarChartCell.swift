@@ -122,7 +122,10 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         case quater
     }
 
-    let charGraphView = UIView()
+    lazy var charGraphView: UIView = {
+        let chartView = UIView()
+        return chartView
+    }()
 
     lazy var infoView = UIView()
     lazy var bottomView: UIView = {
@@ -140,6 +143,15 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         indicator.backgroundColor = AppColor.darkgray62.color
         return indicator
     }()
+
+   lazy var standardView: UIView =  {
+        let standard = UIView()
+//        standard.backgroundColor = AppColor.gray225.color
+//        standard.translatesAutoresizingMaskIntoConstraints = false
+//        charGraphView.addSubview(standardView)
+        return standard
+    }()
+    var isButtonClicked: Bool = false
 
     var indicatorLeading: NSLayoutConstraint?
     var indicatorWidth: NSLayoutConstraint?
@@ -203,26 +215,16 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         infoView.topAnchor.constraint(equalTo: backContentView.topAnchor).isActive = true
         infoView.heightAnchor.constraint(equalToConstant: UI.topHeight).isActive = true
 
-        let leading = charGraphView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor)
-        //leading.priority = .defaultLow
+        let leading = charGraphView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
         leading.isActive = true
-        let trailing = charGraphView.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor)
-        //  trailing.priority = .defaultLow
+        let trailing = charGraphView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         trailing.isActive = true
-        //    charGraphView.centerXAnchor.constraint(equalTo: backContentView.centerXAnchor).isActive = true
         charGraphView.topAnchor.constraint(equalTo: infoView.bottomAnchor).isActive = true
-        // charGraphView.bottomAnchor.constraint(equalTo: yearView.topAnchor).isActive = true
-        charGraphView.heightAnchor.constraint(equalToConstant: UI.chartHeight).isActive = true
-
-        yearView.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor, constant: 20).isActive = true
-        yearView.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor, constant: -20).isActive = true
-        yearView.topAnchor.constraint(equalTo: charGraphView.bottomAnchor, constant: 16).isActive = true
-        yearView.heightAnchor.constraint(equalToConstant: UI.yearArea).isActive = true
+        charGraphView.heightAnchor.constraint(equalToConstant: UI.chartHeight + UI.yearArea).isActive = true
 
         bottomView.leadingAnchor.constraint(equalTo: backContentView.leadingAnchor).isActive = true
         bottomView.trailingAnchor.constraint(equalTo: backContentView.trailingAnchor).isActive = true
-        // bottomView.topAnchor.constraint(equalTo: charGraphView.bottomAnchor).isActive = true
-        bottomView.topAnchor.constraint(equalTo: yearView.bottomAnchor, constant: 40).isActive = true
+        bottomView.topAnchor.constraint(equalTo: charGraphView.bottomAnchor, constant: 40).isActive = true
         bottomView.bottomAnchor.constraint(equalTo: backContentView.bottomAnchor).isActive = true
         yearButton.addTarget(self, action: #selector(updateChart), for: .touchUpInside)
         quaterButton.addTarget(self, action: #selector(updateChart), for: .touchUpInside)
@@ -274,8 +276,7 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         }
 
     }
-    var standardView = UIView()
-    var isButtonClicked: Bool = false
+
     func configure(viewModel: HomeDetailViewModel) {
         self.viewModel = viewModel
 
@@ -296,276 +297,49 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         for subView in yearView.subviews as [UIView] {
             subView.removeFromSuperview()
         }
-
-        standardView.removeFromSuperview()
-
     }
 
     func yearBar() {
-        var standardY: CGFloat = 0
-        let before: [CGFloat] = [1230, -230, 1400 ]
+
+        let before: [CGFloat] = [1230, -10030, 1400 ]
         let after: [CGFloat] = [1590, 1002, 2900]
         let year: [String] = ["2018", "2019", "2020"]
-        if preriodType == .year {
-
-            let padding = getPaddding()
-            var startXais: CGFloat =  (padding / 2) + 10
-
-            var total: [CGFloat] = []
-
-            for index in 0..<before.count {
-                total.append(before[index])
-                total.append(after[index])
-            }
-
-            let plusMax = total .sorted(by: >).first ?? 0
-            let minusMax = total.sorted(by: <).first ?? 0
-
-            let max = max(plusMax, abs(minusMax))
-
-            let min = min(plusMax, abs(minusMax))
-
-            let ratio = max / min
-
-            standardY = (UI.chartHeight + 40) / (ratio + 1.0)
-
-            standardView = UIView()
-            standardView.backgroundColor = AppColor.gray225.color
-
-            charGraphView.addSubview(standardView)
-            standardView.translatesAutoresizingMaskIntoConstraints = false
-            standardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-            standardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-            standardView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-
-            if plusMax > abs(minusMax) {
-                standardView.topAnchor.constraint(equalTo: charGraphView.topAnchor, constant: UI.topHeight - standardY).isActive = true
-                standardY = UI.topHeight - standardY
-            } else {
-                standardView.topAnchor.constraint(equalTo: charGraphView.topAnchor, constant: standardY).isActive = true
-            }
-
-            var yearIndex = 0
-            for (index, value) in total.enumerated() {
-                let barView = UIView()
-                //                let beforeValue = before[index]
-                //                let afterValue = after[index]
-                if value > 0 {
-                    let plusRatio = value / plusMax
-
-                    let barAxis =  abs((standardY * plusRatio))
-
-                    charGraphView.addSubview(barView)
-                    barView.translatesAutoresizingMaskIntoConstraints = false
-
-                    barView.clipsToBounds = true
-                    barView.layer.cornerRadius = 3
-                    barView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-
-                    barView.widthAnchor.constraint(equalToConstant: 30).isActive = true
-                    barView.bottomAnchor.constraint(equalTo: standardView.topAnchor).isActive = true
-                    barView.heightAnchor.constraint(equalToConstant: barAxis).isActive = true
-                    barView.leadingAnchor.constraint(equalTo: charGraphView.leadingAnchor, constant: startXais).isActive = true
-
-                    let label = UILabel()
-                    charGraphView.addSubview(label)
-                    label.translatesAutoresizingMaskIntoConstraints = false
-                    label.text = "\(Int(value))억"
-                    label.textColor = AppColor.darkgray82.color
-                    label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-                    label.bottomAnchor.constraint(equalTo: barView.topAnchor, constant: -10).isActive = true
-                    label.centerXAnchor.constraint(equalTo: barView.centerXAnchor).isActive = true
-
-                } else {
-
-                    let minusRatio = abs(value / (minusMax))
-                    //  let minStandardY = (standardY * minusRatio)
-                    //마이너스기준
-                    let minStandardY = (UI.chartHeight - standardY) * minusRatio
-
-                    charGraphView.addSubview(barView)
-                    barView.translatesAutoresizingMaskIntoConstraints = false
-                    barView.layer.cornerRadius = 3
-                    barView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-
-                    barView.backgroundColor = .darkGray
-                    barView.widthAnchor.constraint(equalToConstant: 30).isActive = true
-                    barView.topAnchor.constraint(equalTo: standardView.bottomAnchor).isActive = true
-                    barView.leadingAnchor.constraint(equalTo: charGraphView.leadingAnchor, constant: startXais).isActive = true
-                    barView.heightAnchor.constraint(equalToConstant: minStandardY).isActive = true
-
-                    // startXais += 35 + 8
-
-                    let label = UILabel()
-                    charGraphView.addSubview(label)
-                    label.translatesAutoresizingMaskIntoConstraints = false
-                    label.textColor = AppColor.darkgray82.color
-                    label.text = "\(Int(value))억"
-                    label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-                    label.bottomAnchor.constraint(equalTo: barView.topAnchor, constant: -10).isActive = true
-                    label.centerXAnchor.constraint(equalTo: barView.centerXAnchor).isActive = true
-                }
-                if index == 0 {
-                    startXais += 35 + 8
-                    barView.backgroundColor = AppColor.gray160.color
-                } else   if  index % 2 != 0 {
-                    barView.backgroundColor = AppColor.darkgray82.color
-
-                    let quaterLabel = UILabel()
-                    quaterLabel.text = year[yearIndex]
-                    charGraphView.addSubview(quaterLabel)
-                    quaterLabel.translatesAutoresizingMaskIntoConstraints = false
-                    quaterLabel.textColor = AppColor.darkgray62.color
-                    quaterLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-                    quaterLabel.textAlignment = .center
-                    quaterLabel.bottomAnchor.constraint(equalTo: yearView.bottomAnchor).isActive = true
-                    quaterLabel.centerXAnchor.constraint(equalTo: barView.leadingAnchor, constant: -4).isActive = true
-                    yearIndex += 1
-                    startXais += 35 + 20
-                } else {
-                    startXais += 35 + 8
-                    barView.backgroundColor = AppColor.gray160.color
-                }
-
-            }
-
-            // startXais -= 2
-
+        var total: [CGFloat] = []
+        for index in 0..<before.count {
+            total.append(before[index])
+            total.append(after[index])
         }
+
+        let yearView = YearBarView(frame: charGraphView.bounds)
+        yearView.tag = 0
+        charGraphView.addSubview(yearView)
+        yearView.translatesAutoresizingMaskIntoConstraints = false
+        yearView.fittingView(charGraphView)
+        yearView.heightAnchor.constraint(equalTo: charGraphView.heightAnchor).isActive = true
+        yearView.setNeedsLayout()
+        yearView.layoutIfNeeded()
+        yearView.total = total
+        yearView.quater = year
+        yearView.build()
+
     }
 
     func quaterBar() {
-        var standardY: CGFloat = 0
-        let profits: [CGFloat] = [2395, 2431, 2304, 2337]
-        let quater: [String] = ["20. 06", "20. 09", "20. 12", "21. 03"]
 
-        // 음수가 더 클 때
-        let plusMax = profits.sorted(by: >).first ?? 0
-        let minusMax = profits.sorted(by: <).first ?? 0
+        let view = charGraphView.viewWithTag(1)
+        view?.removeFromSuperview()
 
-        let max = max(plusMax, abs(minusMax))
-
-        let min = min(plusMax, abs(minusMax))
-
-        let ratio = max / min
-
-        standardY = (UI.chartHeight + 40) / (ratio + 1.0)
-
-        let yAxis = UI.chartHeight / standardY
-
-        standardView = UIView()
-        standardView.backgroundColor = AppColor.gray225.color
-
-        charGraphView.addSubview(standardView)
-        standardView.translatesAutoresizingMaskIntoConstraints = false
-        standardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        standardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-        standardView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-
-        if profits.filter { $0 < 0.0 }.count == 0 {
-            //다 양수일떄
-            standardView.topAnchor.constraint(equalTo: charGraphView.topAnchor, constant: UI.chartHeight).isActive = true
-            standardY = UI.chartHeight
-        } else if plusMax > abs(minusMax) {
-            standardView.topAnchor.constraint(equalTo: charGraphView.topAnchor, constant: UI.topHeight - standardY).isActive = true
-            standardY = UI.topHeight - standardY
-        } else {
-            standardView.topAnchor.constraint(equalTo: charGraphView.topAnchor, constant: standardY).isActive = true
-        }
-
-        let padding = getPaddding()
-        var startXais: CGFloat =  (padding / 2) + 20
-
-        //            var firstBarLeadingConstraints: NSLayoutConstraint?
-        //            var nextLabel: UILabel?
-        for (index, value) in profits.enumerated() {
-
-            if value > 0 {
-                let plusRatio = value / plusMax
-
-                let barAxis =  abs((standardY * plusRatio))
-
-                let barView = UIView()
-                charGraphView.addSubview(barView)
-                barView.translatesAutoresizingMaskIntoConstraints = false
-
-                barView.clipsToBounds = true
-                barView.layer.cornerRadius = 3
-                barView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-
-                barView.backgroundColor = .darkGray
-                barView.widthAnchor.constraint(equalToConstant: 35).isActive = true
-                barView.bottomAnchor.constraint(equalTo: standardView.topAnchor).isActive = true
-                barView.heightAnchor.constraint(equalToConstant: barAxis).isActive = true
-                barView.leadingAnchor.constraint(equalTo: charGraphView.leadingAnchor, constant: startXais).isActive = true
-
-                // label
-                let label = UILabel()
-                charGraphView.addSubview(label)
-                label.translatesAutoresizingMaskIntoConstraints = false
-                label.text = "\( Int(value))억"
-                label.textColor = AppColor.darkgray82.color
-                label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-                label.bottomAnchor.constraint(equalTo: barView.topAnchor, constant: -10).isActive = true
-                label.centerXAnchor.constraint(equalTo: barView.centerXAnchor).isActive = true
-                startXais += 35 + 40
-
-                let quaterLabel = UILabel()
-                quaterLabel.text = quater[index]
-                charGraphView.addSubview(quaterLabel)
-                quaterLabel.translatesAutoresizingMaskIntoConstraints = false
-                quaterLabel.textColor = AppColor.darkgray62.color
-                quaterLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-                quaterLabel.textAlignment = .center
-                quaterLabel.bottomAnchor.constraint(equalTo: yearView.bottomAnchor).isActive = true
-                quaterLabel.centerXAnchor.constraint(equalTo: barView.centerXAnchor).isActive = true
-            } else {
-
-                let minusRatio = abs(value / (minusMax))
-                //  let minStandardY = (standardY * minusRatio)
-                //마이너스기준
-                let minStandardY = (UI.chartHeight - standardY) * minusRatio
-
-                let yAxis =  minStandardY + standardY
-
-                let barView = UIView()
-                charGraphView.addSubview(barView)
-                barView.translatesAutoresizingMaskIntoConstraints = false
-                barView.layer.cornerRadius = 3
-                barView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-
-                barView.backgroundColor = .darkGray
-                barView.widthAnchor.constraint(equalToConstant: 35).isActive = true
-                barView.topAnchor.constraint(equalTo: standardView.bottomAnchor).isActive = true
-                barView.leadingAnchor.constraint(equalTo: charGraphView.leadingAnchor, constant: startXais).isActive = true
-                barView.heightAnchor.constraint(equalToConstant: minStandardY).isActive = true
-
-                startXais += 35 + 40
-
-                let label = UILabel()
-                charGraphView.addSubview(label)
-                label.translatesAutoresizingMaskIntoConstraints = false
-                label.textColor = AppColor.darkgray82.color
-
-                label.text = "\(Int(value))억"
-                label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-                label.bottomAnchor.constraint(equalTo: barView.topAnchor, constant: -10).isActive = true
-                label.centerXAnchor.constraint(equalTo: barView.centerXAnchor).isActive = true
-
-                //quater
-                let quaterLabel = UILabel()
-                quaterLabel.text = quater[index]
-                charGraphView.addSubview(quaterLabel)
-                quaterLabel.translatesAutoresizingMaskIntoConstraints = false
-                quaterLabel.textColor = AppColor.darkgray62.color
-                quaterLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-                quaterLabel.textAlignment = .center
-
-                quaterLabel.bottomAnchor.constraint(equalTo: yearView.bottomAnchor).isActive = true
-                quaterLabel.centerXAnchor.constraint(equalTo: barView.centerXAnchor).isActive = true
-            }
-
-        }
+        let quater = QuaterBarView(frame: charGraphView.bounds)
+        quater.tag = 1
+        charGraphView.addSubview(quater)
+        quater.translatesAutoresizingMaskIntoConstraints = false
+        quater.fittingView(charGraphView)
+        quater.heightAnchor.constraint(equalTo: charGraphView.heightAnchor).isActive = true
+        quater.setNeedsLayout()
+        quater.layoutIfNeeded()
+        quater.total = [2395, 2431, 2304, 2337]
+        quater.quater = ["20. 06", "20. 09", "20. 12", "21. 03"]
+        quater.build()
 
     }
 
@@ -577,168 +351,50 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
             let content = -(30 * 6) - 24 - 80
 
             return (self.frame.width) + CGFloat(content)
-
         }
-        return 0
-
-    }
-
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-
     }
 }
 
-//let profits = [1990.0, 52.0, 600.0]
-//let profitDetail = [1590.0, 102.0, 300.0]
-//let years = [2006, 2007, 2008]
-
-struct TimeGraphData {
-    var profits: [CGFloat]
-    var profitDetail: [CGFloat]
-    var years: [Int]
-
-    init (profits: [CGFloat] = [], profitDetail: [CGFloat] = [], years: [Int] = []) {
-        self.profits = profits
-        self.profitDetail = profitDetail
-        self.years = years
-
+class BarChartBaseView: UIView, ViewType {
+    enum PeriodType {
+        case year
+        case quater
     }
-}
+    var preriodType: PeriodType = .quater
+    struct UI {
+        static let totalHeight: CGFloat = 323
+        static let topHeight: CGFloat =  90
+        static let chartHeight: CGFloat =  90
+        static let bottomHeight: CGFloat =  70
+        static let yearArea: CGFloat = 17
+        static let expandHeight: CGFloat = 40
+    }
+    var total: [CGFloat] = []
+    var quater: [String] = []
 
-class BarChartView: UIView, ViewType {
-
-    var graphs = TimeGraphData() {
-        didSet {
-            setNeedsLayout()
+    lazy var plusMax: CGFloat  = total .sorted(by: >).first ?? 0
+    lazy var minusMax = total.sorted(by: <).first ?? 0
+    lazy var maxValue = max(plusMax, abs(minusMax))
+    lazy var minValue = min(plusMax, abs(minusMax))
+    var ratio: CGFloat {
+        get {
+           return maxValue / minValue
         }
     }
 
-    lazy var totalCharStackView: UIStackView = {
-        let totalCharStackView = UIStackView()
-        totalCharStackView.axis = .vertical
-        totalCharStackView.spacing = 16
-        return totalCharStackView
+    var standardView: UIView = {
+        let standard = UIView()
+        standard.backgroundColor = AppColor.gray225.color
+        standard.translatesAutoresizingMaskIntoConstraints = false
+        return standard
     }()
 
-    lazy var chartHorizontalStackView: UIStackView = {
-        let chart = UIStackView()
-        chart.axis = .horizontal
-        chart.spacing = 40
-        return chart
+    lazy var yearView: UIView = {
+        let bottom = UIView()
+        return bottom
     }()
 
-    lazy var separatedLine: UIView = {
-        let line = UIView()
-        line.backgroundColor = UIColor.init(named: "home_background")
-        return line
-    }()
-
-    lazy var yearsStackView: UIStackView = {
-        let years = UIStackView()
-        years.axis = .horizontal
-        years.spacing = 40
-        years.alignment = .center
-        years.distribution = .equalCentering
-        return years
-    }()
-
-    func setupUI() {
-        //        addSubview(totalCharStackView)
-        //        totalCharStackView.translatesAutoresizingMaskIntoConstraints = false
-
-        //        [chartHorizontalStackView, separatedLine, yearsStackView].forEach {
-        //            totalCharStackView.addSubview($0)
-        //            $0.translatesAutoresizingMaskIntoConstraints = false
-        //        }
-        //        let chartAndLineStackView = UIStackView()
-        //        chartAndLineStackView.spacing = 0
-        //        chartAndLineStackView.axis = .vertical
-        //        chartAndLineStackView.addArrangedSubview(chartHorizontalStackView)
-        //        chartAndLineStackView.addArrangedSubview(separatedLine)
-        //
-        //        totalCharStackView.addArrangedSubview(chartAndLineStackView)
-        //        totalCharStackView.addArrangedSubview(yearsStackView)
-
-    }
-
-    func update() {
-
-        chartHorizontalStackView.arrangedSubviews.forEach { view in
-            view.removeFromSuperview()
-        }
-
-        //        let chartAndLineStackView = UIStackView()
-        //        chartAndLineStackView.spacing = 0
-        //        chartAndLineStackView.axis = .vertical
-        //        chartAndLineStackView.addArrangedSubview(chartHorizontalStackView)
-        //        chartAndLineStackView.addArrangedSubview(separatedLine)
-
-        //        totalCharStackView.addArrangedSubview(chartAndLineStackView)
-        //        totalCharStackView.addArrangedSubview(yearsStackView)
-
-        let profitsMax = graphs.profits.max() ?? 1.0
-        let profitsDetailMax = graphs.profitDetail.max() ?? 1.0
-
-        let max = max(profitsMax, profitsDetailMax)
-
-        for (index, value) in graphs.profits.enumerated() {
-            let ratio = (value / max)
-            let detail = graphs.profitDetail[index] / max
-
-            let profitBarView = BarView()
-            let profitDetailView = BarView()
-
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.spacing = 8
-            stackView.addArrangedSubview(profitDetailView)
-            stackView.addArrangedSubview(profitBarView)
-            chartHorizontalStackView.addArrangedSubview(stackView)
-
-            let spacing: CGFloat = 5
-            let labelHeight: CGFloat = 12
-            let  remainHeight: CGFloat = 1
-            profitBarView.barHeightConstraints?.constant = (self.frame.height - spacing - spacing - labelHeight - remainHeight - 17 - 1 - 40) * CGFloat(ratio)
-            profitDetailView.barHeightConstraints?.constant = (self.frame.height - spacing - spacing - labelHeight - remainHeight - 17 - 1 - 40) * CGFloat(detail)
-
-        }
-
-        yearsStackView.arrangedSubviews.forEach { view in
-            view.removeFromSuperview()
-        }
-
-        for title in graphs.years {
-            let label = UILabel()
-            label.text = String(title)
-            label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-            yearsStackView.addArrangedSubview(label)
-        }
-
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.update()
-    }
-
-    func setupConstraint() {
-        separatedLine.translatesAutoresizingMaskIntoConstraints = false
-        separatedLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        yearsStackView.translatesAutoresizingMaskIntoConstraints = false
-        yearsStackView.heightAnchor.constraint(equalToConstant: 17).isActive = true
-
-        let leading = totalCharStackView.leadingAnchor.constraint(equalTo: leadingAnchor)
-        // leading.priority = .defaultLow
-        leading.isActive = true
-        let trailing = totalCharStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        //   trailing.priority = .defaultLow
-        trailing.isActive = true
-        totalCharStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        totalCharStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        totalCharStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        // yearsStackView.heightAnchor.constraint(equalToConstant: 17).isActive = true
-    }
+    var standardTopConstraints: NSLayoutConstraint?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -750,69 +406,211 @@ class BarChartView: UIView, ViewType {
         fatalError("init(coder:) has not been implemented")
     }
 
-}
+    func setupUI() {
+        addSubview(standardView)
+        addSubview(yearView)
+        yearView.translatesAutoresizingMaskIntoConstraints = false
 
-class BarView: UIView, ViewType {
-    var maxValue: CGFloat = 0
-    var profitValue: CGFloat = 0
-    let operatinProfitBarView: UIView = {
-        let bar = UIView()
-        bar.backgroundColor = UIColor.init(named: "gray_160")
-        return bar
-    }()
+    }
 
-    let operatinProfitLabel: UILabel = {
+    func setupConstraint() {
+        standardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        standardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        standardView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        standardTopConstraints = standardView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
+        standardTopConstraints?.isActive = true
+
+        yearView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        yearView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        yearView.topAnchor.constraint(equalTo: bottomAnchor, constant: 16).isActive = true
+        yearView.heightAnchor.constraint(equalToConstant: UI.yearArea).isActive = true
+
+    }
+
+    func generateBarLabel(priceValue: CGFloat, textColor: UIColor) -> UILabel {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "\(Int(priceValue))억"
+        label.textColor = AppColor.darkgray82.color
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.text = "1,993조"
         return label
-    }()
-
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.spacing = 5
-        return stackView
-    }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupUI()
-        setupConstraint()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func generateBarView(priceValue: Int) -> UIView {
+        let barView = UIView()
+        barView.translatesAutoresizingMaskIntoConstraints = false
+        barView.layer.cornerRadius = 3
+        barView.backgroundColor = .darkGray
+        return barView
     }
 
-    func setupUI() {
-        addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        [operatinProfitLabel, operatinProfitLabel].forEach {
-            stackView.addArrangedSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
+    func generateQuater(string: String) -> UILabel {
+        let quaterLabel = UILabel()
+        quaterLabel.text = string
+        quaterLabel.translatesAutoresizingMaskIntoConstraints = false
+        quaterLabel.textColor = AppColor.darkgray62.color
+        quaterLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        quaterLabel.textAlignment = .center
+        return quaterLabel
+    }
+
+}
+
+class QuaterBarView: BarChartBaseView {
+
+    func getPaddding() -> CGFloat {
+
+        let content = -(35 * 4) - (40 * 3)
+        return (self.frame.width - 40) + CGFloat(content)
+
+    }
+
+    func build() {
+        var standardY: CGFloat = 0
+        let padding = getPaddding()
+
+        standardY = (UI.chartHeight + 40) / (ratio + 1.0)
+        var startXais: CGFloat =  (padding / 2) + 20
+
+        if total.filter({ $0 < 0.0 }).count == 0 {
+            //다 양수일떄
+            standardView.topAnchor.constraint(equalTo: topAnchor, constant: UI.chartHeight).isActive = true
+            standardY = UI.chartHeight
+        } else if plusMax > abs(minusMax) {
+            standardView.topAnchor.constraint(equalTo: topAnchor, constant: UI.topHeight - standardY).isActive = true
+            standardY = UI.topHeight - standardY
+        } else {
+            standardView.topAnchor.constraint(equalTo: topAnchor, constant: standardY).isActive = true
         }
-    }
-    var barHeightConstraints: NSLayoutConstraint?
-    func setupConstraint() {
-        stackView.fittingView(self)
-        let view = UIView()
-        // view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        stackView.addArrangedSubview(view)
-        stackView.addArrangedSubview(operatinProfitLabel)
-        stackView.addArrangedSubview(operatinProfitBarView)
-        stackView.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        operatinProfitLabel.adjustsFontSizeToFitWidth = true
-        operatinProfitLabel.heightAnchor.constraint(equalToConstant: 12).isActive = true
-        barHeightConstraints = operatinProfitBarView.heightAnchor.constraint(equalToConstant: 50)
-        barHeightConstraints?.isActive = true
+        standardTopConstraints?.constant = standardY
+
+        for (index, value) in total.enumerated() {
+            let bar = generateBarView(priceValue: Int(value))
+            addSubview(bar)
+
+            let label = generateBarLabel(priceValue: value, textColor: AppColor.darkgray62.color)
+            addSubview(label)
+            label.bottomAnchor.constraint(equalTo: bar.topAnchor, constant: -10).isActive = true
+            label.centerXAnchor.constraint(equalTo: bar.centerXAnchor).isActive = true
+
+            if value > 0 {
+                let plusRatio = value / plusMax
+
+                let barAxis =  abs((standardY * plusRatio))
+
+                bar.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+                bar.widthAnchor.constraint(equalToConstant: 35).isActive = true
+                bar.bottomAnchor.constraint(equalTo: standardView.topAnchor).isActive = true
+                bar.heightAnchor.constraint(equalToConstant: barAxis).isActive = true
+                bar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: startXais).isActive = true
+
+            } else {
+
+                let minusRatio = abs(value / (minusMax))
+                //마이너스기준
+                let minStandardY = (UI.chartHeight - standardY) * minusRatio
+
+                bar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+
+                bar.widthAnchor.constraint(equalToConstant: 35).isActive = true
+                bar.topAnchor.constraint(equalTo: standardView.bottomAnchor).isActive = true
+                bar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: startXais).isActive = true
+                bar.heightAnchor.constraint(equalToConstant: minStandardY).isActive = true
+
+                //quater
+
+            }
+            let quaterLabel = generateQuater(string: quater[index])
+             addSubview(quaterLabel)
+             quaterLabel.bottomAnchor.constraint(equalTo: yearView.bottomAnchor).isActive = true
+             quaterLabel.centerXAnchor.constraint(equalTo: bar.centerXAnchor).isActive = true
+            startXais += 35 + 40
+        }
 
     }
 
-    deinit {
-        print("deinit")
+}
+
+class YearBarView: BarChartBaseView {
+
+    func getPaddding() -> CGFloat {
+
+        let content = -(30 * 6) - 24 - 80 - 20
+
+        return (self.frame.width) + CGFloat(content)
+
+    }
+    func build() {
+        var standardY: CGFloat = 0
+        let padding = getPaddding()
+        var startXais: CGFloat =  (padding / 2) + 20
+        standardY = (UI.chartHeight + 40) / (ratio + 1.0)
+        if total.filter({ $0 < 0.0 }).count == 0 {
+            //다 양수일떄
+            standardY = UI.chartHeight
+        } else if plusMax > abs(minusMax) {
+            standardY = UI.topHeight - standardY
+        }
+
+        standardTopConstraints?.constant = standardY
+        var yearIndex = 0
+
+        for (index, value) in total.enumerated() {
+            let bar = generateBarView(priceValue: Int(value))
+            addSubview(bar)
+
+            let label = generateBarLabel(priceValue: value, textColor: AppColor.darkgray62.color)
+            addSubview(label)
+            label.bottomAnchor.constraint(equalTo: bar.topAnchor, constant: -10).isActive = true
+            label.centerXAnchor.constraint(equalTo: bar.centerXAnchor).isActive = true
+
+            if value > 0 {
+
+                let plusRatio = value / plusMax
+
+                let barAxis =  abs((standardY * plusRatio))
+
+                bar.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+                bar.widthAnchor.constraint(equalToConstant: 30).isActive = true
+                bar.bottomAnchor.constraint(equalTo: standardView.topAnchor).isActive = true
+                bar.heightAnchor.constraint(equalToConstant: barAxis).isActive = true
+                bar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: startXais).isActive = true
+
+            } else {
+
+                let minusRatio = abs(value / (minusMax))
+                                   //마이너스기준
+                let minStandardY = (UI.chartHeight - standardY) * minusRatio
+
+                bar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+
+                bar.widthAnchor.constraint(equalToConstant: 30).isActive = true
+                bar.topAnchor.constraint(equalTo: standardView.bottomAnchor).isActive = true
+                bar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: startXais).isActive = true
+                bar.heightAnchor.constraint(equalToConstant: minStandardY).isActive = true
+
+                //quater
+
+            }
+
+            if index == 0 {
+                startXais += 35 + 8
+                bar.backgroundColor = AppColor.gray160.color
+            } else   if  index % 2 != 0 {
+                bar.backgroundColor = AppColor.darkgray82.color
+
+                let quaterLabel = generateQuater(string: quater[yearIndex])
+                 addSubview(quaterLabel)
+                 quaterLabel.bottomAnchor.constraint(equalTo: yearView.bottomAnchor).isActive = true
+                 quaterLabel.centerXAnchor.constraint(equalTo: bar.centerXAnchor, constant: -8 + -15).isActive = true
+                yearIndex += 1
+                startXais += 35 + 20
+            } else {
+                startXais += 35 + 8
+                bar.backgroundColor = AppColor.gray160.color
+            }
+        }
+
     }
 
 }

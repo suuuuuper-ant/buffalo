@@ -19,7 +19,6 @@ class HomeHorizontalGridCell: UITableViewCell {
     lazy var collectionView: UICollectionView = {
         let layout =  UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
-
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 335, height: 410)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)

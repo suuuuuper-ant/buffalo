@@ -20,7 +20,6 @@ class NewsArea: UIView, UITableViewDataSource, UITableViewDelegate {
         news.delegate = self
         news.dataSource = self
         news.isScrollEnabled = false
-
         news.register(HomeNewsCell.self, forCellReuseIdentifier: HomeNewsCell.reuseIdentifier)
         return news
     }()

@@ -106,12 +106,6 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
         periodStackView.bottomAnchor.constraint(equalTo: backContentView.bottomAnchor, constant: -37).isActive = true
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        // backContentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
-    }
-
     @objc func selectedPeriodButton(sender: UIButton) {
 
         periodStackView.subviews.forEach { view in
@@ -314,12 +308,9 @@ class GraphView: UIView {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
 
-        guard  let formattedPrice = numberFormatter.string(from: NSNumber(integerLiteral: periodType.periodArray.1.last ?? 0)) else { return }
+        guard  numberFormatter.string(from: NSNumber(integerLiteral: periodType.periodArray.1.last ?? 0)) != nil else { return }
         let price = 824000
         goalLabel.text = "목표가\n\(price)원"
-//        UIView.animate(withDuration: 2) {
-//
-//        }
 
         UIView.animate(withDuration: 2) {
             self.layoutIfNeeded()
