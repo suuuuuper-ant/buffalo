@@ -72,7 +72,6 @@ class HomeDetailNewsListCell: UITableViewCell, ViewType {
             backContentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-
     }
 
     func setupConstraint() {

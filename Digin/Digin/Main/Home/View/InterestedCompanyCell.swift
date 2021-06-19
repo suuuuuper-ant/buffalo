@@ -54,7 +54,6 @@ class InterestedCompanyCell: UITableViewCell {
     func setupConstraints() {
         // companyImage
         companyImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-
         companyImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         companyImageView.widthAnchor.constraint(equalToConstant: 28).isActive = true
         companyImageView.heightAnchor.constraint(equalToConstant: 28).isActive = true
@@ -72,7 +71,6 @@ class InterestedCompanyCell: UITableViewCell {
         likeButton.widthAnchor.constraint(equalToConstant: 16).isActive = true
         likeButton.heightAnchor.constraint(equalToConstant: 16).isActive = true
         likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-
     }
 
     func configure(model: InterestedCompany) {

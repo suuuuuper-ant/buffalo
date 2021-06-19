@@ -146,13 +146,5 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         contentArea.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: UI.contentviewBottom).isActive = true
         contentArea.heightAnchor.constraint(equalToConstant: UI.contentAreaHeight).isActive = true
 
-}
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
     }
-    */
-
 }
