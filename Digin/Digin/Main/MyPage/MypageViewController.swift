@@ -58,6 +58,8 @@ class MypageViewController: UIViewController {
     }
 
     @IBAction func favoriteCompanyAction(_ sender: UITapGestureRecognizer) {
+        let myFavoriteViewController = MyFavoriteViewController()
+        self.navigationController?.pushViewController(myFavoriteViewController, animated: true)
     }
 
 }

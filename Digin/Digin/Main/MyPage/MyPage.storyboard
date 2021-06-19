@@ -272,7 +272,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qvt-CZ-92e">
-                                <rect key="frame" x="156.5" y="787.5" width="101" height="20"/>
+                                <rect key="frame" x="156.5" y="791" width="101" height="20"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKQ-Eb-AOm">
                                         <rect key="frame" x="0.0" y="0.0" width="42" height="20"/>
@@ -308,7 +308,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ver 1.0.1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2f-ZX-Niy">
-                                <rect key="frame" x="178.5" y="817.5" width="57" height="17.5"/>
+                                <rect key="frame" x="182" y="821" width="50" height="14"/>
                                 <fontDescription key="fontDescription" name="COCOGOOSE" family="COCOGOOSE" pointSize="12"/>
                                 <color key="textColor" name="darkgray_82"/>
                                 <nil key="highlightedColor"/>
