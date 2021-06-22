@@ -151,6 +151,8 @@
 		F1FA90A0267DE403006A14ED /* MyFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA909F267DE403006A14ED /* MyFavoriteViewController.swift */; };
 		F1FA90A2267DFCD3006A14ED /* MyFavoriteDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA90A1267DFCD3006A14ED /* MyFavoriteDetailCell.swift */; };
 		F1FA90A4267E115E006A14ED /* MyFavoriteCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA90A3267E115E006A14ED /* MyFavoriteCompanyCell.swift */; };
+		F1FA90A626820FE7006A14ED /* MyFavoriteHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA90A526820FE6006A14ED /* MyFavoriteHeaderView.swift */; };
+		F1FA90A826821A9D006A14ED /* MyFavoriteDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA90A726821A9D006A14ED /* MyFavoriteDetailHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,6 +300,8 @@
 		F1FA909F267DE403006A14ED /* MyFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteViewController.swift; sourceTree = "<group>"; };
 		F1FA90A1267DFCD3006A14ED /* MyFavoriteDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteDetailCell.swift; sourceTree = "<group>"; };
 		F1FA90A3267E115E006A14ED /* MyFavoriteCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteCompanyCell.swift; sourceTree = "<group>"; };
+		F1FA90A526820FE6006A14ED /* MyFavoriteHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteHeaderView.swift; sourceTree = "<group>"; };
+		F1FA90A726821A9D006A14ED /* MyFavoriteDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteDetailHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -531,6 +535,8 @@
 				F1FA909F267DE403006A14ED /* MyFavoriteViewController.swift */,
 				F1FA90A1267DFCD3006A14ED /* MyFavoriteDetailCell.swift */,
 				F1FA90A3267E115E006A14ED /* MyFavoriteCompanyCell.swift */,
+				F1FA90A526820FE6006A14ED /* MyFavoriteHeaderView.swift */,
+				F1FA90A726821A9D006A14ED /* MyFavoriteDetailHeaderView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 				22A05BAE2648648B00AEA69D /* DetailsCompanyTableViewCell.swift in Sources */,
 				F1DC2962265C1A0300B51749 /* RandomAlertViewController.swift in Sources */,
 				222BC6C52654DE58008C1CF2 /* SearchNewsfeedViewController.swift in Sources */,
+				F1FA90A826821A9D006A14ED /* MyFavoriteDetailHeaderView.swift in Sources */,
 				F1734759261855C5009EC5D6 /* AppDelegate.swift in Sources */,
 				F1F1D14B26455F7E00FE8C15 /* HomeDetailNewsCell.swift in Sources */,
 				F1D3471A2640485C00E63483 /* HomeGridCellNewsView.swift in Sources */,
@@ -819,6 +826,7 @@
 				22A05BAB264863B200AEA69D /* DetailsHeaderTableViewCell.swift in Sources */,
 				F1C6B409264EC6D7001E8510 /* SignupEmailViewController.swift in Sources */,
 				F1278FFD265ABB860069CFDB /* RandomPickViewController.swift in Sources */,
+				F1FA90A626820FE7006A14ED /* MyFavoriteHeaderView.swift in Sources */,
 				22CCD8C2264D253C005B6368 /* FavoriteCompany.swift in Sources */,
 				F1FA90A2267DFCD3006A14ED /* MyFavoriteDetailCell.swift in Sources */,
 				F1278FFA265A68240069CFDB /* HomeDetailPriceView.swift in Sources */,

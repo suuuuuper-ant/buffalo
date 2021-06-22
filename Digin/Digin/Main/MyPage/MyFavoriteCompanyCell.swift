@@ -17,14 +17,16 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
         return cornerBackGround
     }()
 
-    lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero)
+    lazy var tableView: ContentSizedTableView = {
+        let table = ContentSizedTableView(frame: .zero)
         table.backgroundColor = .red
         table.dataSource = self
-        table.estimatedRowHeight = 40
+        table.estimatedRowHeight = 50
         table.delegate = self
         table.rowHeight = UITableView.automaticDimension
         table.register(MyFavoriteDetailCell.self, forCellReuseIdentifier: MyFavoriteDetailCell.reuseIdentifier)
+        table.register(MyFavoriteDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: MyFavoriteDetailHeaderView.reuseIdentifier)
+        table.isScrollEnabled = false
         return table
     }()
 
@@ -41,7 +43,7 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        tableView.reloadData()
+      //  tableView.reloadData()
     }
 
     func setupUI() {
@@ -54,14 +56,21 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
         tableView.translatesAutoresizingMaskIntoConstraints = false
     }
 
+    func configure() {
+//        self.tableView.sizeToFit()
+    }
+
     func setupConstraint() {
-        cornerBackGroundView.fittingView(contentView)
+        cornerBackGroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28).isActive = true
+        cornerBackGroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28).isActive = true
+        cornerBackGroundView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        cornerBackGroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
 
         // tableView
-        tableView.leadingAnchor.constraint(equalTo: cornerBackGroundView.leadingAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: cornerBackGroundView.leadingAnchor, constant: 20).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cornerBackGroundView.trailingAnchor, constant: -20).isActive = true
-        tableView.topAnchor.constraint(equalTo: cornerBackGroundView.topAnchor, constant: 5).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: cornerBackGroundView.bottomAnchor, constant: -5).isActive = true
+        tableView.topAnchor.constraint(equalTo: cornerBackGroundView.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: cornerBackGroundView.bottomAnchor).isActive = true
 
     }
 
@@ -69,7 +78,7 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
 
 extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 10
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -85,7 +94,24 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
 
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyFavoriteDetailHeaderView.reuseIdentifier) as? MyFavoriteDetailHeaderView
+
+        return headerView
+    }
+
+}
+
+final class ContentSizedTableView: UITableView {
+    override var contentSize: CGSize {
+        didSet {
+            print("contentSize \(contentSize)")
+            invalidateIntrinsicContentSize()
+        }
+    }
+
+    override var intrinsicContentSize: CGSize {
+        layoutIfNeeded()
+        return CGSize(width: contentSize.width, height: contentSize.height)
     }
 }
