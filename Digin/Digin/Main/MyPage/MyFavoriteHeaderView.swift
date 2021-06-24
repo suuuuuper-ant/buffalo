@@ -12,7 +12,7 @@ class MyFavoriteHeaderView: UITableViewHeaderFooterView, ViewType {
     lazy var titleLabel: UILabel = {
        let title = UILabel()
         title.text = "홈화면"
-        title.textColor = AppColor.darkgray82.color
+        title.textColor = AppColor.darkgray62.color
         title.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return title
     }()

@@ -19,11 +19,16 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
         return cornerBackGround
     }()
 
+    var subjects: [String] = ["바이오", "제약"]
+
     lazy var tableView: ContentSizedTableView = {
         let table = ContentSizedTableView(frame: .zero)
         table.dataSource = self
         table.estimatedRowHeight = 50
         table.delegate = self
+        table.dragInteractionEnabled = true
+        table.dragDelegate = self
+        table.dropDelegate = self
         table.rowHeight = UITableView.automaticDimension
         table.register(MyFavoriteDetailCell.self, forCellReuseIdentifier: MyFavoriteDetailCell.reuseIdentifier)
         table.register(MyFavoriteDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: MyFavoriteDetailHeaderView.reuseIdentifier)
@@ -72,7 +77,7 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
         tableView.leadingAnchor.constraint(equalTo: cornerBackGroundView.leadingAnchor, constant: 20).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cornerBackGroundView.trailingAnchor, constant: -20).isActive = true
         tableView.topAnchor.constraint(equalTo: cornerBackGroundView.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: cornerBackGroundView.bottomAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: cornerBackGroundView.bottomAnchor, constant: -20).isActive = true
 
     }
 
@@ -84,7 +89,7 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return subjects.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,6 +99,11 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
             }
             cell.companyLabel.text = "\(indexPath.row)"
+            if tags.count - 1 == indexPath.row {
+                cell.separatedLine.isHidden = true
+            } else {
+                cell.separatedLine.isHidden = false
+            }
           return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFavoriteDetailCell.reuseIdentifier) as? MyFavoriteDetailCell else {
@@ -103,6 +113,7 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
             cell.companyLabel.text = "\(indexPath.row)"
             cell.tagLabel.textColor = tags[indexPath.row].colorForType()
             cell.tagLabel.layer.borderColor = tags[indexPath.row].colorForType().cgColor
+
             return cell
         }
 
@@ -121,6 +132,7 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
         let delete = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, completion in
              completion(true)
 
@@ -129,29 +141,35 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
 
     }
 
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = view as? UITableViewHeaderFooterView
-//        if isEditingMode {
-//            header?.contentView.backgroundColor = .white
-//
-//        } else {
-//            header?.contentView.backgroundColor = .white
-//
-//        }
+     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
+        view.backgroundColor = AppColor.lightgray239.color
+        return view
     }
+
+     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+
+        if subjects.count - 1 == section || isEditingMode {
+            return 0.0
+        }
+        return 1.0
+    }
+
+     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+
+    }
+//    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+//        return false
+//    }
+//
 //    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
 //        return .none
 //    }
 //
-//    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-//        return false
+//    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+//        return true
 //    }
-
-     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        //let movedObject = items[sourceIndexPath.row]
-       // items.remove(at: sourceIndexPath.row)
-    // items.insert(movedObject, at: destinationIndexPath.row)
-    }
 
 }
 
@@ -166,5 +184,38 @@ final class ContentSizedTableView: UITableView {
     override var intrinsicContentSize: CGSize {
         layoutIfNeeded()
         return CGSize(width: contentSize.width, height: contentSize.height)
+    }
+}
+
+extension MyFavoriteCompanyCell: UITableViewDragDelegate {
+func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+
+        return [UIDragItem(itemProvider: NSItemProvider())]
+    }
+}
+
+extension MyFavoriteCompanyCell: UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        let indexPath = (self.superview as? UITableView)?.indexPath(for: self)
+
+        if session.localDragSession != nil { // Drag originated from the same app.
+            print("hasActvie: \(tableView.hasActiveDrag)")
+            if let indexPath2 = self.tableView.indexPathForRow(at: session.location(in: self)) {
+
+              //  indexPath?.section = indexPath2s
+
+                print("indexsection : \(indexPath)")
+                print("indexPath.row: \(indexPath2)")
+
+            }
+
+            return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+
+        return UITableViewDropProposal(operation: .cancel, intent: .unspecified)
+    }
+
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        print("codi: \(coordinator.items)")
     }
 }

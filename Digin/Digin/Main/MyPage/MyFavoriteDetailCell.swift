@@ -71,7 +71,7 @@ class MyFavoriteDetailCell: UITableViewCell, ViewType {
         companyLabel.centerYAnchor.constraint(equalTo: thumbnailImageView.centerYAnchor).isActive = true
 
         // tagLabel
-        tagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        tagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         tagLabel.centerYAnchor.constraint(equalTo: companyLabel.centerYAnchor).isActive = true
         tagLabel.leadingAnchor.constraint(greaterThanOrEqualTo: companyLabel.trailingAnchor, constant: 20).isActive = true
 

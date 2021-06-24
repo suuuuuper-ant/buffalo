@@ -128,14 +128,14 @@ extension MyFavoriteViewController: UITableViewDataSource, UITableViewDelegate {
 
         if self.isEditMode {
 
-            cell.tableView.setEditing(true, animated: true)
+       //     cell.tableView.setEditing(true, animated: true)
             //cell.tableView.allowsSelectionDuringEditing = true
 
             cell.cornerBackGroundView.backgroundColor =  .white
             cell.contentView.backgroundColor = AppColor.lightgray249.color
 
         } else {
-            cell.tableView.setEditing(false, animated: true)
+          //  cell.tableView.setEditing(false, animated: true)
            // cell.tableView.allowsSelectionDuringEditing = false
             cell.cornerBackGroundView.backgroundColor =  AppColor.lightgray249.color
             cell.contentView.backgroundColor = .white
