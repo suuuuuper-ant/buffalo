@@ -11,19 +11,11 @@ class MyFavoriteDetailHeaderView: UITableViewHeaderFooterView, ViewType {
 
     lazy var titleLabel: UILabel = {
        let title = UILabel()
-        title.text = "홈화면"
+        title.text = "에너지"
         title.textColor = AppColor.darkgray82.color
         title.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return title
     }()
-
-//    lazy var countLabel: UILabel = {
-//       let count = UILabel()
-//        count.text = "3/15"
-//        count.textColor = AppColor.gray160.color
-//        count.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-//        return count
-//    }()
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -46,7 +38,7 @@ class MyFavoriteDetailHeaderView: UITableViewHeaderFooterView, ViewType {
     func setupConstraint() {
         // titleLabel
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -28).isActive = true
         // countLabel

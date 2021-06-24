@@ -49,8 +49,8 @@ class MyFavoriteHeaderView: UITableViewHeaderFooterView, ViewType {
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
 
         // countLabel
-        countLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 1).isActive = true
+        countLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 5).isActive = true
         countLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        countLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -28).isActive = true
+        countLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -28).isActive = true
     }
 }

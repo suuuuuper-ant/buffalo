@@ -73,6 +73,7 @@
 		22EEBC622647FBD1009FF3FA /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEBC612647FBD1009FF3FA /* CategoryCollectionViewCell.swift */; };
 		22EEBC6626481E84009FF3FA /* CompanyNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEBC6526481E84009FF3FA /* CompanyNewsTableViewCell.swift */; };
 		22EEBC6C264831AA009FF3FA /* CategoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEBC6B264831AA009FF3FA /* CategoryDetailsViewController.swift */; };
+		F11D81782684637D008B28F1 /* MyFavoriteEditDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11D81772684637D008B28F1 /* MyFavoriteEditDetailCell.swift */; };
 		F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F121DED426185A6C00B09F21 /* .swiftlint.yml */; };
 		F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEDB26185C3000B09F21 /* MainViewController.swift */; };
 		F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */; };
@@ -221,6 +222,7 @@
 		22EEBC612647FBD1009FF3FA /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		22EEBC6526481E84009FF3FA /* CompanyNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyNewsTableViewCell.swift; sourceTree = "<group>"; };
 		22EEBC6B264831AA009FF3FA /* CategoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailsViewController.swift; sourceTree = "<group>"; };
+		F11D81772684637D008B28F1 /* MyFavoriteEditDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteEditDetailCell.swift; sourceTree = "<group>"; };
 		F121DED426185A6C00B09F21 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F121DEDB26185C3000B09F21 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_extension.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				22BCFE312660BF15006741A3 /* NoticeDetailsTableViewCell.swift */,
 				F1FA909F267DE403006A14ED /* MyFavoriteViewController.swift */,
 				F1FA90A1267DFCD3006A14ED /* MyFavoriteDetailCell.swift */,
+				F11D81772684637D008B28F1 /* MyFavoriteEditDetailCell.swift */,
 				F1FA90A3267E115E006A14ED /* MyFavoriteCompanyCell.swift */,
 				F1FA90A526820FE6006A14ED /* MyFavoriteHeaderView.swift */,
 				F1FA90A726821A9D006A14ED /* MyFavoriteDetailHeaderView.swift */,
@@ -847,6 +850,7 @@
 				F1D3471C264048DC00E63483 /* GradientView.swift in Sources */,
 				22EEBC6C264831AA009FF3FA /* CategoryDetailsViewController.swift in Sources */,
 				F1D34713264046A700E63483 /* HomeNewsCell.swift in Sources */,
+				F11D81782684637D008B28F1 /* MyFavoriteEditDetailCell.swift in Sources */,
 				F1F1D1312641661A00FE8C15 /* HomeDetailHeaderView.swift in Sources */,
 				2224BA892639378400E620C4 /* NewsContainerViewController.swift in Sources */,
 				F1278FF8265A5DA80069CFDB /* StockType.swift in Sources */,

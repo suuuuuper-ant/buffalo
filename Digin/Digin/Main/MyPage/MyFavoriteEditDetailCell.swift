@@ -1,14 +1,13 @@
 //
-//  MyFavoriteDetailCell.swift
+//  MyFavoriteEditDetailCell.swift
 //  Digin
 //
-//  Created by jinho jeong on 2021/06/19.
+//  Created by jinho jeong on 2021/06/24.
 //
 
 import UIKit
 
-class MyFavoriteDetailCell: UITableViewCell, ViewType {
-
+class MyFavoriteEditDetailCell: UITableViewCell, ViewType {
     lazy var thumbnailImageView: UIImageView = {
         let thumbnail = UIImageView()
         thumbnail.layer.cornerRadius = 28 / 2
@@ -26,18 +25,6 @@ class MyFavoriteDetailCell: UITableViewCell, ViewType {
         return company
     }()
 
-    let tagLabel: PaddingLabel = {
-        let company = PaddingLabel()
-        company.edgeInset = UIEdgeInsets(top: 10, left: 12, bottom: 8, right: 12)
-        company.font = UIFont.englishFont(ofSize: 12)
-        company.layer.cornerRadius = 15
-        company.text = "Not Rated"
-        company.layer.borderColor = AppColor.darkgray82.color.cgColor
-        company.layer.borderWidth = 1
-        company.textColor = AppColor.darkgray82.color
-        return company
-    }()
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupUI()
@@ -49,16 +36,14 @@ class MyFavoriteDetailCell: UITableViewCell, ViewType {
     }
 
     func setupUI() {
-        self.contentView.backgroundColor = AppColor.lightgray249.color
-        [thumbnailImageView, companyLabel, tagLabel].forEach {
+        self.contentView.backgroundColor = .white
+        [thumbnailImageView, companyLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
 
     func setupConstraint() {
-
-        // thumbnailImageView
         thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
 
@@ -68,13 +53,7 @@ class MyFavoriteDetailCell: UITableViewCell, ViewType {
 
         // companyLabel
         companyLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10).isActive = true
+        companyLabel.trailingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -28).isActive = true
         companyLabel.centerYAnchor.constraint(equalTo: thumbnailImageView.centerYAnchor).isActive = true
-
-        // tagLabel
-        tagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
-        tagLabel.centerYAnchor.constraint(equalTo: companyLabel.centerYAnchor).isActive = true
-        tagLabel.leadingAnchor.constraint(greaterThanOrEqualTo: companyLabel.trailingAnchor, constant: 20).isActive = true
-
     }
-
 }

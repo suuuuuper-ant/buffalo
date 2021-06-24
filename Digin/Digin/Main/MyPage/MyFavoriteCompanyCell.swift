@@ -8,6 +8,8 @@
 import UIKit
 
 class MyFavoriteCompanyCell: UITableViewCell, ViewType {
+    var tags: [StockType] = [.buy, .notRated, .neutral, .marketPerform, .hold, .sell]
+    var isEditingMode: Bool = false
 
     lazy var cornerBackGroundView: UIView = {
         let cornerBackGround = UIView()
@@ -19,13 +21,13 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
 
     lazy var tableView: ContentSizedTableView = {
         let table = ContentSizedTableView(frame: .zero)
-        table.backgroundColor = .red
         table.dataSource = self
         table.estimatedRowHeight = 50
         table.delegate = self
         table.rowHeight = UITableView.automaticDimension
         table.register(MyFavoriteDetailCell.self, forCellReuseIdentifier: MyFavoriteDetailCell.reuseIdentifier)
         table.register(MyFavoriteDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: MyFavoriteDetailHeaderView.reuseIdentifier)
+        table.register(MyFavoriteEditDetailCell.self, forCellReuseIdentifier: MyFavoriteEditDetailCell.reuseIdentifier)
         table.isScrollEnabled = false
         return table
     }()
@@ -78,7 +80,7 @@ class MyFavoriteCompanyCell: UITableViewCell, ViewType {
 
 extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return tags.count
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,18 +88,69 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFavoriteDetailCell.reuseIdentifier) as? MyFavoriteDetailCell else {
-        return UITableViewCell()
-        }
 
-        return cell
+        if isEditingMode {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFavoriteEditDetailCell.reuseIdentifier) as? MyFavoriteEditDetailCell else {
+            return UITableViewCell()
+            }
+            cell.companyLabel.text = "\(indexPath.row)"
+          return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFavoriteDetailCell.reuseIdentifier) as? MyFavoriteDetailCell else {
+            return UITableViewCell()
+            }
+            cell.tagLabel.text = tags[indexPath.row].rawValue
+            cell.companyLabel.text = "\(indexPath.row)"
+            cell.tagLabel.textColor = tags[indexPath.row].colorForType()
+            cell.tagLabel.layer.borderColor = tags[indexPath.row].colorForType().cgColor
+            return cell
+        }
 
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyFavoriteDetailHeaderView.reuseIdentifier) as? MyFavoriteDetailHeaderView
+        if isEditingMode {
+            headerView?.contentView.backgroundColor = .white
 
+        } else {
+            headerView?.contentView.backgroundColor = AppColor.lightgray249.color
+
+        }
         return headerView
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "삭제") { [weak self] _, _, completion in
+             completion(true)
+
+        }
+        return UISwipeActionsConfiguration(actions: [delete])
+
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as? UITableViewHeaderFooterView
+//        if isEditingMode {
+//            header?.contentView.backgroundColor = .white
+//
+//        } else {
+//            header?.contentView.backgroundColor = .white
+//
+//        }
+    }
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return .none
+//    }
+//
+//    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+//        return false
+//    }
+
+     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        //let movedObject = items[sourceIndexPath.row]
+       // items.remove(at: sourceIndexPath.row)
+    // items.insert(movedObject, at: destinationIndexPath.row)
     }
 
 }
