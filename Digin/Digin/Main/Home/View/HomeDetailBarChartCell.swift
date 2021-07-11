@@ -159,10 +159,17 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
     lazy var infoStackView: UIStackView = {
         let info = UIStackView()
         info.axis = .horizontal
+        info.alignment = .trailing
         info.spacing = 8
+        profitInfoView.translatesAutoresizingMaskIntoConstraints = false
+        salesInfoView.translatesAutoresizingMaskIntoConstraints = false
+        profitInfoView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        salesInfoView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        info.addArrangedSubview(salesInfoView)
+        info.addArrangedSubview(profitInfoView)
         return info
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -204,10 +211,11 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         indicatorWidth?.isActive = true
         indicatorView.topAnchor.constraint(equalTo: yearButton.bottomAnchor, constant: 1).isActive = true
 
-        infoView.addSubview(salesInfoView)
-        infoView.addSubview(profitInfoView)
-        salesInfoView.translatesAutoresizingMaskIntoConstraints = false
-        profitInfoView.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        infoView.addSubview(infoStackView)
+//        salesInfoView.translatesAutoresizingMaskIntoConstraints = false
+//        profitInfoView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func setupConstraint() {
@@ -237,15 +245,15 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         quaterButton.addTarget(self, action: #selector(updateChart), for: .touchUpInside)
 
         //info
-        profitInfoView.trailingAnchor.constraint(equalTo: infoView.trailingAnchor, constant: -20).isActive = true
-        profitInfoView.topAnchor.constraint(equalTo: infoView.topAnchor, constant: 18).isActive = true
-        profitInfoView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        profitInfoView.heightAnchor.constraint(equalToConstant: 14).isActive = true
+       // infoStackView.leadingAnchor.constraint(greaterThanOrEqualTo: infoView.leadingAnchor, constant: 50).isActive = true
+        infoStackView.trailingAnchor.constraint(equalTo: infoView.trailingAnchor, constant: -20).isActive = true
+        infoStackView.topAnchor.constraint(equalTo: infoView.topAnchor, constant: 18).isActive = true
+        infoStackView.heightAnchor.constraint(equalToConstant: 14).isActive = true
 
-        salesInfoView.trailingAnchor.constraint(equalTo: profitInfoView.leadingAnchor, constant: -8).isActive = true
-        salesInfoView.topAnchor.constraint(equalTo: infoView.topAnchor, constant: 18).isActive = true
-        salesInfoView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        salesInfoView.heightAnchor.constraint(equalToConstant: 14).isActive = true
+//        salesInfoView.trailingAnchor.constraint(equalTo: profitInfoView.leadingAnchor, constant: -8).isActive = true
+//        salesInfoView.topAnchor.constraint(equalTo: infoView.topAnchor, constant: 18).isActive = true
+//        salesInfoView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+//        salesInfoView.heightAnchor.constraint(equalToConstant: 14).isActive = true
 
     }
     var bottomHeightConstraints: NSLayoutConstraint?
@@ -262,27 +270,26 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         sender.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
 
         restChartView()
-        var infoAlpha = 1.0
+        var isProfitHidden = false
         if sender.tag == 99 {
-            infoAlpha = 1.0
+            isProfitHidden = false
             preriodType = .year
             yearBar()
             indicatorLeading?.constant = 0
             indicatorWidth?.constant = yearButton.intrinsicContentSize.width
         } else {
-            infoAlpha = 0.0
+            isProfitHidden = true
             preriodType = .quater
             quaterBar()
             indicatorLeading?.constant = quaterButton.frame.minX
             indicatorWidth?.constant = quaterButton.intrinsicContentSize.width
         }
-
-        UIView.animate(withDuration: 0.5) { [weak self] in
+        self.profitInfoView.isHidden = isProfitHidden
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIView.AnimationOptions.showHideTransitionViews) {  [weak self] in
             self?.bottomView.layoutIfNeeded()
-            
-            self?.salesInfoView.alpha = CGFloat(infoAlpha)
-        }
+            self?.profitInfoView.alpha = isProfitHidden ? 0.0 : 1.0
 
+        }
     }
 
     func configure(viewModel: HomeDetailViewModel) {
