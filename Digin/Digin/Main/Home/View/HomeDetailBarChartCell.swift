@@ -156,6 +156,13 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
     var indicatorLeading: NSLayoutConstraint?
     var indicatorWidth: NSLayoutConstraint?
 
+    lazy var infoStackView: UIStackView = {
+        let info = UIStackView()
+        info.axis = .horizontal
+        info.spacing = 8
+        return info
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -272,6 +279,7 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
 
         UIView.animate(withDuration: 0.5) { [weak self] in
             self?.bottomView.layoutIfNeeded()
+            
             self?.salesInfoView.alpha = CGFloat(infoAlpha)
         }
 
@@ -440,7 +448,7 @@ class BarChartBaseView: UIView, ViewType {
         let barView = UIView()
         barView.translatesAutoresizingMaskIntoConstraints = false
         barView.layer.cornerRadius = 3
-        barView.backgroundColor = .darkGray
+        barView.backgroundColor = AppColor.darkgray82.color
         return barView
     }
 

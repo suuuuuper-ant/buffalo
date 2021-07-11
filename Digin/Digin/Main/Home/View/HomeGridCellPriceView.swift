@@ -14,7 +14,9 @@ class HomeGridPriceArea: UIView {
     lazy var byOrSellLabel: UILabel = {
         let label = UILabel()
         label.text = "SELL"
+
         label.font = UIFont.englishFont(ofSize: 24)
+
         return label
 
     }()
@@ -111,7 +113,8 @@ class HomeGridPriceArea: UIView {
         let buyOrSellConstraints = [
             byOrSellLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 33),
             byOrSellLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            byOrSellLabel.trailingAnchor.constraint(equalTo: reportButton.leadingAnchor, constant: 16)
+            byOrSellLabel.trailingAnchor.constraint(equalTo: reportButton.leadingAnchor, constant: 16),
+            byOrSellLabel.heightAnchor.constraint(equalToConstant: 29)
         ]
 
         let opinionLabelConstraints = [

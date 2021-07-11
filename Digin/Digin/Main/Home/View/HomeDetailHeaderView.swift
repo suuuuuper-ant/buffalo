@@ -64,7 +64,7 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
 
     lazy var relativeTagStack: UIStackView = {
         let tag = UIStackView()
-        tag.spacing = 10
+        tag.spacing = 5
         tag.alignment = .leading
         return tag
     }()
