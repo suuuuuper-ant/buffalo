@@ -56,8 +56,8 @@ class MyPageTabBarCotentFactory: TabBarCotentFactory {
     func getTabBarContent() -> UIViewController {
         let myPage =  UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(identifier: "MyPageNaviViewController")
         myPage.tabBarItem.tag = 3
-        myPage.tabBarItem.image = UIImage(named: "icTabHome")?.withRenderingMode(.alwaysOriginal)
-        myPage.tabBarItem.selectedImage = UIImage(named: "icTabHomeBlue")?.withRenderingMode(.alwaysOriginal)
+        myPage.tabBarItem.image = UIImage(named: "icTabMy")?.withRenderingMode(.alwaysOriginal)
+        myPage.tabBarItem.selectedImage = UIImage(named: "icTabMyBlue")?.withRenderingMode(.alwaysOriginal)
         myPage.tabBarItem.title = "마이디긴"
         return myPage
     }

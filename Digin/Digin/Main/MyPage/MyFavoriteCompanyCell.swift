@@ -199,17 +199,15 @@ extension MyFavoriteCompanyCell: UITableViewDropDelegate {
         let indexPath = (self.superview as? UITableView)?.indexPath(for: self)
 
         if session.localDragSession != nil { // Drag originated from the same app.
-            print("hasActvie: \(tableView.hasActiveDrag)")
             if let indexPath2 = self.tableView.indexPathForRow(at: session.location(in: self)) {
 
-              //  indexPath?.section = indexPath2s
-
-                print("indexsection : \(indexPath)")
-                print("indexPath.row: \(indexPath2)")
+                if indexPath!.section == indexPath2.section {
+                    return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+                }
 
             }
 
-            return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+            return UITableViewDropProposal(operation: .move, intent: .unspecified)
         }
 
         return UITableViewDropProposal(operation: .cancel, intent: .unspecified)

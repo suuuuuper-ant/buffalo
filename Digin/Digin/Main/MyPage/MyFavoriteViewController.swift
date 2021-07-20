@@ -114,7 +114,7 @@ class MyFavoriteViewController: UIViewController, ViewType {
 extension MyFavoriteViewController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,6 +124,11 @@ extension MyFavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFavoriteCompanyCell.reuseIdentifier) as? MyFavoriteCompanyCell else {
         return UITableViewCell()
+        }
+
+        //test
+        if indexPath.section == 0 {
+
         }
 
         if self.isEditMode {
