@@ -438,29 +438,3 @@ extension NewsFeedViewController {
     }
 
 }
-
-// MARK: - Skeleton Cell
-extension NewsFeedViewController: SkeletonLoadable {
-
-    func setSkeleton(sender: AnyObject) {
-
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
-        sender.layer.addSublayer(gradientLayer)
-
-//        if isFirstLoad {
-//            guard let width = sender.bounds?.width else { return }
-//            guard let height = sender.bounds?.height else { return }
-//            gradientLayer.frame = CGRect(x: 0, y: 0, width: width - 39, height: height)
-//        } else {
-//            gradientLayer.frame = sender.bounds
-//        }
-
-        let group = makeAnimationGroup()
-        group.beginTime = 0.0
-        gradientLayer.add(group, forKey: "backgroundColor")
-
-        sender.layer.insertSublayer(gradientLayer, at: 0)
-    }
-}
