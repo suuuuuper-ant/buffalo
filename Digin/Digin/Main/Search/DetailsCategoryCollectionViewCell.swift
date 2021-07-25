@@ -27,8 +27,8 @@ class DetailsCategoryCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.masksToBounds = true
 
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        self.layer.shadowRadius = 2.0
+        self.layer.shadowOffset = CGSize(width: 0, height: 3.0)
+        self.layer.shadowRadius = 5
         self.layer.shadowOpacity = 0.15
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath

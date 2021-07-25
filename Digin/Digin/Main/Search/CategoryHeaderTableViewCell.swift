@@ -14,6 +14,7 @@ class CategoryHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var nextButton: UIButton!
 
     @IBOutlet weak var lineView: UIView!
+    @IBOutlet weak var topC: NSLayoutConstraint!
 
     var nextClosure: (() -> Void)?
 
