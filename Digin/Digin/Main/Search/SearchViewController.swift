@@ -253,6 +253,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.titleLabel.text = "카테고리"
                 cell.timeLabel.isHidden = true
                 cell.nextButton.isHidden = true
+                cell.topC.constant = 35
 
             } else {
                 cell.titleLabel.text = "인기 검색 기업"
@@ -265,6 +266,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.timeLabel.text = dateString
 
                 cell.nextButton.isHidden = true
+                cell.topC.constant = 0
             }
 
             return cell

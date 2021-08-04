@@ -25,6 +25,7 @@ class CompanyTableViewCell: UITableViewCell {
 
         categoryLabel.makeRounded(cornerRadius: 13)
         categoryLabel.layer.borderWidth = 1
+        categoryLabel.layer.borderColor = AppColor.darkgray62.color.cgColor
         categoryLabel.edgeInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
     }
 
