@@ -10,19 +10,19 @@ import Combine
 
 class HomeViewModel: ObservableObject {
 
-    let repository = HomeCompaniesDataRepository(localDataSource: CompaniesLocalDataSource())
+    let repository = HomeCompaniesDataRepository(localDataSource: CompaniesRemoteDataSource())
     let moveToDetailPage = PassthroughSubject<IndexPath, Error>()
     let moveToRandomPick = PassthroughSubject<Void, Error>()
     @Published var data: HomeCompany = HomeCompany()
     private var cancellables: Set<AnyCancellable> = []
 
     func fetch() {
-
-        repository.fetchCopanies()?
-            .sink { _ in
-            } receiveValue: { homeCompany in
-                self.data = homeCompany
-            }.store(in: &cancellables)
+        repository.fetchCopanies()?.sink(receiveCompletion: { comlete in
+            print(comlete)
+        }, receiveValue: { homeCompany in
+            self.data = homeCompany
+            print(self.data.result?.groups[1].contents)
+        }).store(in: &cancellables)
 
     }
 

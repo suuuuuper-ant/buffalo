@@ -12,7 +12,7 @@ class HomeHorizontalGridCell: UITableViewCell {
     private var cancellables: Set<AnyCancellable> = []
     @Published var didSelectItem: IndexPath?
     let cellSize = CGSize(width: 335, height: 412)
-    var companeis: [Company] = []
+    var companeis: [HomeUpdatedCompany] = []
     var currentIndex: CGFloat = 0
     var isOneStepPaging = true
     var previousIndex = 0
@@ -89,7 +89,7 @@ class HomeHorizontalGridCell: UITableViewCell {
         pageControl.bottomAnchor.constraint(equalTo: backContenView.bottomAnchor, constant: 0).isActive = true
     }
 
-    func configure(with model: [Company], parentViewModel: HomeViewModel) {
+    func configure(with model: [HomeUpdatedCompany], parentViewModel: HomeViewModel) {
 
         companeis = model
         DispatchQueue.main.async { [weak self] in

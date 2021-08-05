@@ -73,9 +73,9 @@ class InterestedCompanyCell: UITableViewCell {
         likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
     }
 
-    func configure(model: InterestedCompany) {
-        companyLabel.text = model.company
-        companyImageView.kf.setImage(with: URL(string: model.companyThumbanil))
+    func configure(model: HomeInterestedCompany) {
+        companyLabel.text = model.company.shortName
+        companyImageView.kf.setImage(with: URL(string: model.company.imageUrl))
 
     }
     required init?(coder: NSCoder) {

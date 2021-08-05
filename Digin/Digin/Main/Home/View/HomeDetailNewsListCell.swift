@@ -52,7 +52,7 @@ class HomeDetailNewsListCell: UITableViewCell, ViewType {
         return more
     }()
 
-    var news: [News] = []
+    var news: [HomeNews] = []
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -102,7 +102,7 @@ class HomeDetailNewsListCell: UITableViewCell, ViewType {
 
     }
 
-    func configure( news: [News]) {
+    func configure( news: [HomeNews]) {
         self.news = news
     }
 
@@ -118,7 +118,7 @@ extension HomeDetailNewsListCell: UITableViewDelegate, UITableViewDataSource {
         let new = news[indexPath.row]
         cell.configure(news: new)
         //dummy
-        cell.thumbnailImageView.image = UIImage(named: new.imageURL + "\(indexPath.row + 1)" )
+      //  cell.thumbnailImageView.image = UIImage(named: new.link + "\(indexPath.row + 1)" )
         return cell
     }
 

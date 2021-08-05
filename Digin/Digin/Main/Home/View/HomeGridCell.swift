@@ -78,26 +78,29 @@ class HomeGridCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(model: Company) {
+    func configure(model: HomeUpdatedCompany) {
 
         //모델개수만큼 relativeTagStack 앞에서부터 업데이트
-        model.tags.enumerated().forEach { (index, str) in
-            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
-            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
-        }
+//        model.tags.enumerated().forEach { (index, str) in
+//            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
+//            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
+//        }
         //모델 업데이트 이후에도 relativeTagStack의 서브뷰가 남아 있다면 숨김
-        for idx in (model.tags.count..<relativeTagStack.subviews.count) {
-            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
+//        for idx in (model.tags.count..<relativeTagStack.subviews.count) {
+//            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
+//        }
+
+        favoriteCompanyLabel.text = model.company.shortName
+        newsArea.news = model.newsList
+        likeCountLabel.text = String(model.company.likeCount)
+
+        if let opinionInfo = model.consensusList.first {
+            contentArea.layer.borderColor = opinionInfo.opinion.colorForType().cgColor
+
+            contentArea.configure(opinionInfo)
         }
 
-        favoriteCompanyLabel.text = model.interestingCompany
-        newsArea.news = model.news
-        likeCountLabel.text = String(model.likeCount)
-
-        contentArea.layer.borderColor = model.opinionInfo.opinion.colorForType().cgColor
-        contentArea.configure(model.opinionInfo)
-
-        companyImageView.kf.setImage(with: URL(string: model.compayThumbnail))
+        companyImageView.kf.setImage(with: URL(string: model.company.imageUrl))
     }
 
     private func setupConstraints() {

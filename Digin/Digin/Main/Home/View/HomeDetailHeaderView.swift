@@ -94,27 +94,29 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         }
     }
 
-    func configure(_ company: Company, _ viewModel: HomeDetailViewModel) {
-        company.tags.enumerated().forEach { (index, str) in
-            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
-            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
+    func configure(_ companyInfo: HomeUpdatedCompany, _ viewModel: HomeDetailViewModel) {
+//        company.tags.enumerated().forEach { (index, str) in
+//            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
+//            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
+//
+//        }
+//
+//        for idx in (company.tags.count..<relativeTagStack.subviews.count) {
+//            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
+//
+//        }
 
+        likeCountLabel.text = String(companyInfo.company.likeCount)
+        companyImageView.kf.setImage(with: URL(string: companyInfo.company.imageUrl))
+        if let consensus = companyInfo.consensusList.first {
+            contentArea.configure(consensus)
         }
 
-        for idx in (company.tags.count..<relativeTagStack.subviews.count) {
-            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
+        companyLabel.text = companyInfo.company.shortName
 
-        }
-
-        companyLabel.text = company.interestingCompany
-        likeCountLabel.text = String(company.likeCount)
-        companyImageView.kf.setImage(with: URL(string: company.compayThumbnail))
-        contentArea.configure(company.opinionInfo)
-        companyLabel.text = company.interestingCompany
-
-        contentArea.reportButton.tapPublisher.sink { _ in
-            viewModel.goToRepoert.send( company.opinionInfo.report)
-        }.store(in: &cancellables)
+//        contentArea.reportButton.tapPublisher.sink { _ in
+//            viewModel.goToRepoert.send(companyInfo.consensusList.first.report)
+//        }.store(in: &cancellables)
 
     }
 

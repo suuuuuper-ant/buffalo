@@ -46,8 +46,8 @@ class HomeNewsCell: UITableViewCell {
 
     }
 
-    func configure(news: News) {
-        dateLabel.text = news.date
+    func configure(news: HomeNews) {
+        dateLabel.text = news.createdAt
         titleLabel.text = news.title
         dateLabel.sizeToFit()
 

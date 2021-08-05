@@ -59,7 +59,7 @@ class HomeDetailViewController: UIViewController, ViewType {
         ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
     ]
 
-    var homeSection: Company?
+    var homeSection: HomeUpdatedCompany?
 
     func registerCell() {
 
@@ -120,7 +120,7 @@ class HomeDetailViewController: UIViewController, ViewType {
             NSAttributedString.Key.foregroundColor: AppColor.homeBackground.color
         ]
 
-        self.title = homeSection?.interestingCompany
+        self.title = homeSection?.company.shortName
         self.navigationController?.navigationBar.layoutIfNeeded()
     }
 
@@ -151,22 +151,22 @@ extension HomeDetailViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailHeaderView.reuseIdentifier) as? HomeDetailHeaderView else { return UITableViewCell() }
-            if let company = homeSection {
-                cell.configure(company, viewModel)
+            if let companyInfo = homeSection {
+                cell.configure(companyInfo, viewModel)
             }
 
             return cell
         } else if indexPath.row == 1 {
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailLineChartCell.reuseIdentifier) as? HomeDetailLineChartCell else { return UITableViewCell() }
-            let type = homeSection?.opinionInfo.opinion
+            let type = homeSection?.consensusList.first?.opinion
           let stock = StockType.init(rawValue: type?.rawValue ?? "")
             cell.configure(stock ?? .none)
             return cell
 
         } else  if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsListCell.reuseIdentifier) as? HomeDetailNewsListCell else { return UITableViewCell() }
-            cell.configure(news: homeSection?.news ?? [])
+            cell.configure(news: homeSection?.newsList ?? [])
             return cell
         } else if indexPath.row == 3 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailBarChartCell.reuseIdentifier) as? HomeDetailBarChartCell else { return UITableViewCell() }

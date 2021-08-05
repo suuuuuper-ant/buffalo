@@ -76,13 +76,13 @@ class HomeGridPriceArea: UIView {
         super.layoutSubviews()
     }
 
-    func configure(_ model: OpinionInfo) {
+    func configure(_ model: Consensus) {
         self.byOrSellLabel.text = model.opinion.rawValue
         self.byOrSellLabel.textColor = model.opinion.colorForType()
 
-        let tailString = " | \(model.opinionCompany) \(model.opinionDate)"
-        let totalString = "\(model.opinionDescription)\(tailString)"
-        let attributedString = NSMutableAttributedString(string: "\(model.opinionDescription)\(tailString)", attributes: [
+        let tailString = " | \(model.opinionCompany) \(model.createdAt)"
+        let totalString = "\(model.opinion.decription)\(tailString)"
+        let attributedString = NSMutableAttributedString(string: "\(model.opinion.decription)\(tailString)", attributes: [
             .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 12.0)!,
             .foregroundColor: model.opinion.colorForType(),
             .kern: -0.4

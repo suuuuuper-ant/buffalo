@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum StockType: String, CaseIterableDefaultsLast {
+enum StockType: String, CaseIterableDefaultsLast, Codable {
 
     case buy = "Buy"
     case sell = "Sell"
@@ -34,6 +34,21 @@ enum StockType: String, CaseIterableDefaultsLast {
         default:
             return UIColor.white
         }
+    }
+
+    func decription() -> String {
+
+        switch self {
+        case .buy:
+            return "적극 사세요."
+        case .sell:
+            return "적극 파세요."
+        case .marketPerform:
+            return "가니님의 의견이 필요할 때에요."
+        default:
+            return "아직 정의 되지않은 마크"
+        }
+
     }
 }
 

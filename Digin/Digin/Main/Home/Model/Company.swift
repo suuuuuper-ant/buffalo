@@ -8,10 +8,10 @@
 import Foundation
 
 struct HomeCompany: Decodable {
-    var data: HomeDataModel?
+    var result: HomeDataModel?
 
     private enum CodingKeys: String, CodingKey {
-        case data
+        case result
 
     }
 
@@ -19,21 +19,21 @@ struct HomeCompany: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode(HomeDataModel.self, forKey: .data)
+        result = try container.decode(HomeDataModel.self, forKey: .result)
     }
 }
 
 struct HomeDataModel: Decodable {
-    var sections: [HomeSection] = []
+    var groups: [HomeGroup] = []
 
     private enum CodingKeys: String, CodingKey {
-        case sections
+        case groups = "groups"
 
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sections = (try? container.decode([HomeSection].self, forKey: .sections)) ?? []
+        self.groups = (try? container.decode([HomeGroup].self, forKey: .groups)) ?? []
     }
 }
 struct News: Codable {
@@ -101,32 +101,149 @@ protocol GroupSectionType {
 
 }
 
-struct GroupUpdateSecton: Decodable, GroupSectionType {
-    static var groupId: String = "updatedCompany"
-    var content: [Company] = []
-}
+struct HomeGroup: Decodable {
 
-struct HomeSection: Decodable {
-
-    var groupId: String = ""
+    var type: String = ""
+    var action: String = ""
     var contents: [Any] = []
 
     init() {
 
     }
     enum CodingKeys: String, CodingKey {
-        case groupId
+        case type
         case contents
+        case action
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        groupId = try container.decodeIfPresent(String.self, forKey: .groupId) ?? "ss"
+        type = try container.decodeIfPresent(String.self, forKey: .type) ?? "ss"
 
-        if groupId == "updatedCompany" {
-            contents = try container.decodeIfPresent([Company].self, forKey: .contents) ?? []
+        if type == "COMPANY" {
+            contents = try container.decodeIfPresent([HomeUpdatedCompany].self, forKey: .contents) ?? []
         } else {
-            contents = try container.decodeIfPresent([InterestedCompany].self, forKey: .contents) ?? []
+            contents = try container.decodeIfPresent([HomeInterestedCompany].self, forKey: .contents) ?? []
         }
 
     }
+}
+
+struct GroupUpdateSecton: Decodable, GroupSectionType {
+    static var groupId: String = "updatedCompany"
+    var content: [Company] = []
+}
+
+// home main card
+struct HomeUpdatedCompany: Decodable {
+
+    var company: HomeCompanyInfo
+    var consensusList: [Consensus]
+    var newsList: [HomeNews]
+    enum CodingKeys: String, CodingKey {
+        case company
+        case consensusList
+        case newsList
+    }
+}
+
+struct HomeCompanyInfo: Decodable {
+    var id: Int
+    var stockCode: String
+    var shortName: String
+    var likeCount: Int
+    var total: Int
+    var imageUrl: String
+    var category: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case stockCode
+        case shortName
+        case likeCount
+        case total
+        case imageUrl
+        case category
+
+    }
+
+    public init(from decoder: Decoder) throws {
+
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        stockCode = try values.decodeIfPresent(String.self, forKey: .stockCode) ?? ""
+        shortName = try values.decodeIfPresent(String.self, forKey: .shortName) ?? ""
+        likeCount = try values.decodeIfPresent(Int.self, forKey: .likeCount) ?? 0
+        total = try values.decodeIfPresent(Int.self, forKey: .total) ?? 0
+        imageUrl = try values.decodeIfPresent(String.self, forKey: .imageUrl) ?? ""
+        category = try values.decodeIfPresent(String.self, forKey: .category) ?? ""
+    }
+
+}
+
+struct Consensus: Decodable {
+
+    var id: Int
+    var stockCode: String
+    var opinion: StockType
+    var price: String
+    var createdAt: String
+    var opinionCompany = "한국경제"
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case stockCode
+        case opinion
+        case price
+        case createdAt
+        case opinionCompany
+
+    }
+
+    public init(from decoder: Decoder) throws {
+
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        stockCode = try values.decodeIfPresent(String.self, forKey: .stockCode) ?? ""
+        opinion =  try values.decodeIfPresent(StockType.self, forKey: .opinion) ?? .none
+        price = try values.decodeIfPresent(String.self, forKey: .price) ?? ""
+        createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
+        opinionCompany = try values.decodeIfPresent(String.self, forKey: .opinionCompany) ?? ""
+    }
+
+}
+
+struct HomeNews: Decodable {
+    var id: Int
+    var stockCode: String
+    var title: String
+    var link: String
+    var description: String
+    var createdAt: String
+
+//    public init(from decoder: Decoder) throws {
+//
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        id = try values.decodeIfPresent(Int.self, forKey: .id) ?? 0
+//        stockCode = try values.decodeIfPresent(String.self, forKey: .stockCode) ?? ""
+//        opinion =  try values.decodeIfPresent(StockType.self, forKey: .opinion) ?? .none
+//        price = try values.decodeIfPresent(String.self, forKey: .price) ?? ""
+//        createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
+//        opinionCompany = try values.decodeIfPresent(String.self, forKey: .opinionCompany) ?? ""
+//    }
+
+}
+
+struct HomeInterestedCompany: Decodable {
+
+    var company: HomeCompanyInfo
+
+    enum CodingKeys: String, CodingKey {
+        case company
+
+    }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        company = try values.decodeIfPresent(HomeCompanyInfo.self, forKey: .company)!
+    }
+
 }

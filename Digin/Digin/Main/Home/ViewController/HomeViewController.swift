@@ -111,7 +111,7 @@ class HomeViewController: UIViewController {
 
     func moveToDetail(_ indexPath: IndexPath) {
         let detail = HomeDetailViewController()
-        guard let company = viewModel.data.data?.sections[indexPath.section].contents[indexPath.row] as? Company else { return }
+        guard let company = viewModel.data.result?.groups[indexPath.section].contents[indexPath.row] as? HomeUpdatedCompany else { return }
         detail.homeSection = company
 
         self.navigationController?.pushViewController(detail, animated: true)
@@ -125,15 +125,15 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.data.data?.sections.count ?? 0
+        return viewModel.data.result?.groups.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard  let section = viewModel.data.data?.sections[section] else { return 0 }
+        guard  let section = viewModel.data.result?.groups[section] else { return 0 }
 
-        if section.groupId == "updatedCompany" {
+        if section.type == "COMPANY" {
             return 1
-        } else if section.groupId == "intetestedCompany" {
+        } else if section.type == "FAVORITES" {
             return section.contents.count
         }
         return 1
@@ -141,15 +141,15 @@ extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let section =  viewModel.data.data?.sections[indexPath.section] else { return UITableViewCell()}
-        if section.groupId == "updatedCompany" {
+        guard let section =  viewModel.data.result?.groups[indexPath.section] else { return UITableViewCell()}
+        if section.type == "COMPANY" {
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeHorizontalGridCell.reuseIdentifier) as? HomeHorizontalGridCell
-            let model = viewModel.data.data?.sections[indexPath.section].contents as? [Company] ?? []
+            let model = viewModel.data.result?.groups[indexPath.section].contents as? [HomeUpdatedCompany] ?? []
             cell?.configure(with: model, parentViewModel: viewModel)
             return cell ?? UITableViewCell()
-        } else if section.groupId == "intetestedCompany" {
+        } else if section.type == "FAVORITES" {
             let cell = tableView.dequeueReusableCell(withIdentifier: InterestedCompanyCell.reuseIdentifier) as? InterestedCompanyCell
-            if let model = viewModel.data.data?.sections[indexPath.section].contents[indexPath.row] as? InterestedCompany {
+            if let model = viewModel.data.result?.groups[indexPath.section].contents[indexPath.row] as? HomeInterestedCompany {
                 cell?.configure(model: model)
                 return cell ?? UITableViewCell()
             }
@@ -159,8 +159,8 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let section =  viewModel.data.data?.sections[section] else { return nil }
-        if section.groupId == "updatedCompany" {
+        guard let section =  viewModel.data.result?.groups[section] else { return nil }
+        if section.type == "COMPANY" {
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTitleHeaderView.reuseIdentifier) as? HomeTitleHeaderView
             header?.sectionLabel.text = "New Update"
 

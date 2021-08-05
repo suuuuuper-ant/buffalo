@@ -9,7 +9,7 @@ import UIKit
 
 class NewsArea: UIView, UITableViewDataSource, UITableViewDelegate {
 
-    var news: [News] = [] {
+    var news: [HomeNews] = [] {
         didSet {
             newsTableView.reloadData()
         }
