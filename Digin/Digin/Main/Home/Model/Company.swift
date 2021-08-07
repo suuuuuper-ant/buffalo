@@ -39,7 +39,7 @@ struct HomeDataModel: Decodable {
 struct News: Codable {
     let date: String
     let title: String
-    let imageURL: String = "dummy"
+    var imageURL: String = "dummy"
 }
 
 struct OpinionInfo: Decodable {
@@ -137,8 +137,9 @@ struct GroupUpdateSecton: Decodable, GroupSectionType {
 struct HomeUpdatedCompany: Decodable {
 
     var company: HomeCompanyInfo
-    var consensusList: [Consensus]
+    var consensusList: [Consensus] = [Consensus()]
     var newsList: [HomeNews]
+
     enum CodingKeys: String, CodingKey {
         case company
         case consensusList
@@ -154,7 +155,7 @@ struct HomeCompanyInfo: Decodable {
     var total: Int
     var imageUrl: String
     var category: String
-
+    var tags: [String] = []
     enum CodingKeys: String, CodingKey {
         case id
         case stockCode
@@ -182,12 +183,12 @@ struct HomeCompanyInfo: Decodable {
 
 struct Consensus: Decodable {
 
-    var id: Int
-    var stockCode: String
-    var opinion: StockType
-    var price: String
-    var createdAt: String
-    var opinionCompany = "한국경제"
+    var id: Int = -1
+    var stockCode: String = "-1"
+    var opinion: StockType = .notRated
+    var price: String = "0"
+    var createdAt: String = "0"
+    var opinionCompany = "미정"
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -198,6 +199,8 @@ struct Consensus: Decodable {
         case opinionCompany
 
     }
+
+    init() {}
 
     public init(from decoder: Decoder) throws {
 

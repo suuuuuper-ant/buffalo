@@ -38,7 +38,7 @@ class HomeNewsCell: UITableViewCell {
         dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        dateLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+//        dateLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
 
         titleLabel.leadingAnchor.constraint(equalTo: dateLabel.trailingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
@@ -47,10 +47,9 @@ class HomeNewsCell: UITableViewCell {
     }
 
     func configure(news: HomeNews) {
-        dateLabel.text = news.createdAt
+        dateLabel.text = DateFormatter().convertBy(format: "yyyy-MM-dd", dateString: news.createdAt, oldFormat: "yyyy-MM-dd'T'HH:mm:ss")
         titleLabel.text = news.title
         dateLabel.sizeToFit()
-
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

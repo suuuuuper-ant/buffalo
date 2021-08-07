@@ -15,7 +15,7 @@ class HomeDetailViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
 
     func reeadMoreButtonTouched(_ indexPath: IndexPath?) {
-        guard let indexPath = indexPath else { return }
+       // guard let indexPath = indexPath else { return }
         isReadMoreButtonTouched.send(true)
 
     }

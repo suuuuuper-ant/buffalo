@@ -162,26 +162,26 @@ class RandomAlertViewController: UIViewController, ViewType {
     func bindingUI() {
 
         exitButton.tapPublisher.sink { [unowned self] _ in
-          let vc = self.parentController as? RandomPickViewController
+          let viewController = self.parentController as? RandomPickViewController
 
             self.alertViewBottomConstraint?.constant = 0
             UIView.animate(withDuration: 0.4, delay: 0.0, options: [.curveEaseIn]) {
                 self.view.layoutIfNeeded()
             } completion: { [weak self] _ in
                 self?.dismiss(animated: false)
-                vc?.navigationController?.popViewController(animated: true)
+                viewController?.navigationController?.popViewController(animated: true)
             }
 
         }.store(in: &cancellables)
 
         detailButton.tapPublisher.sink { [unowned self] _ in
-            let vc = self.parentController as? RandomPickViewController
+            let viewController = self.parentController as? RandomPickViewController
             self.alertViewBottomConstraint?.constant = 0
             UIView.animate(withDuration: 0.4, delay: 0.0, options: [.curveEaseIn]) {
                 self.view.layoutIfNeeded()
             } completion: { [weak self] _ in
                 self?.dismiss(animated: false)
-                vc?.goToDetail()
+                viewController?.goToDetail()
             }
         }.store(in: &cancellables)
 

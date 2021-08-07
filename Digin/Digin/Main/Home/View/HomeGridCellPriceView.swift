@@ -80,9 +80,10 @@ class HomeGridPriceArea: UIView {
         self.byOrSellLabel.text = model.opinion.rawValue
         self.byOrSellLabel.textColor = model.opinion.colorForType()
 
-        let tailString = " | \(model.opinionCompany) \(model.createdAt)"
-        let totalString = "\(model.opinion.decription)\(tailString)"
-        let attributedString = NSMutableAttributedString(string: "\(model.opinion.decription)\(tailString)", attributes: [
+        let date = DateFormatter().convertBy(format: "yyyy-MM-dd", dateString: model.createdAt, oldFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS")
+        let tailString = " | \(model.opinionCompany) \(date)"
+        let totalString = "\(model.opinion.decription())\(tailString)"
+        let attributedString = NSMutableAttributedString(string: "\(model.opinion.decription())\(tailString)", attributes: [
             .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 12.0)!,
             .foregroundColor: model.opinion.colorForType(),
             .kern: -0.4

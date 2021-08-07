@@ -95,16 +95,16 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
     }
 
     func configure(_ companyInfo: HomeUpdatedCompany, _ viewModel: HomeDetailViewModel) {
-//        company.tags.enumerated().forEach { (index, str) in
-//            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
-//            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
-//
-//        }
-//
-//        for idx in (company.tags.count..<relativeTagStack.subviews.count) {
-//            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
-//
-//        }
+        companyInfo.company.tags.enumerated().forEach { (index, str) in
+            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
+            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
+
+        }
+
+        for idx in (companyInfo.company.tags.count..<relativeTagStack.subviews.count) {
+            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
+
+        }
 
         likeCountLabel.text = String(companyInfo.company.likeCount)
         companyImageView.kf.setImage(with: URL(string: companyInfo.company.imageUrl))

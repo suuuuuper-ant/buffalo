@@ -80,15 +80,15 @@ class HomeGridCell: UICollectionViewCell {
 
     func configure(model: HomeUpdatedCompany) {
 
-        //모델개수만큼 relativeTagStack 앞에서부터 업데이트
-//        model.tags.enumerated().forEach { (index, str) in
-//            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
-//            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
-//        }
-        //모델 업데이트 이후에도 relativeTagStack의 서브뷰가 남아 있다면 숨김
-//        for idx in (model.tags.count..<relativeTagStack.subviews.count) {
-//            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
-//        }
+       // 모델개수만큼 relativeTagStack 앞에서부터 업데이트
+        model.company.tags.enumerated().forEach { (index, str) in
+            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
+            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
+        }
+      //  모델 업데이트 이후에도 relativeTagStack의 서브뷰가 남아 있다면 숨김
+        for idx in (model.company.tags.count..<relativeTagStack.subviews.count) {
+            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
+        }
 
         favoriteCompanyLabel.text = model.company.shortName
         newsArea.news = model.newsList
@@ -98,6 +98,9 @@ class HomeGridCell: UICollectionViewCell {
             contentArea.layer.borderColor = opinionInfo.opinion.colorForType().cgColor
 
             contentArea.configure(opinionInfo)
+        } else {
+            contentArea.layer.borderColor = StockType.notRated.colorForType().cgColor
+            contentArea.configure(Consensus())
         }
 
         companyImageView.kf.setImage(with: URL(string: model.company.imageUrl))
