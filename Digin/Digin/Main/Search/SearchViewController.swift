@@ -433,7 +433,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     // swiftlint:enable all
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailsVC = HomeDetailViewController()
+
+       // let detailsVC = HomeDetailViewController(companyInfo: <#HomeUpdatedCompany#>)
 
         switch isSearch {
         case 1: //검색 리스트
@@ -446,8 +447,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case 2: //검색 결과
             if indexPath.section == 0 && !searchData.companies.isEmpty { //기업
                 //TODO: 기업 상세보기에 기업 정보 전달하기
-                detailsVC.title = searchData.companies[indexPath.row].name
-                self.navigationController?.pushViewController(detailsVC, animated: true)
+//                detailsVC.title = searchData.companies[indexPath.row].name
+//                self.navigationController?.pushViewController(detailsVC, animated: true)
             }
 
             if indexPath.section == 1 && !searchData.news.isEmpty { //뉴스
@@ -459,7 +460,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         default: //메인
             if indexPath.section == 1 {
                 //TODO: 기업 상세보기에 기업 정보 전달하기 (API 아직 없음)
-                self.navigationController?.pushViewController(detailsVC, animated: true)
+              //  self.navigationController?.pushViewController(detailsVC, animated: true)
             }
         }
 

@@ -110,9 +110,9 @@ class HomeViewController: UIViewController {
     }
 
     func moveToDetail(_ indexPath: IndexPath) {
-        let detail = HomeDetailViewController()
+
         guard let company = viewModel.data.result?.groups[indexPath.section].contents[indexPath.row] as? HomeUpdatedCompany else { return }
-        detail.homeSection = company
+        let detail = HomeDetailViewController(companyInfo: company)
 
         self.navigationController?.pushViewController(detail, animated: true)
     }

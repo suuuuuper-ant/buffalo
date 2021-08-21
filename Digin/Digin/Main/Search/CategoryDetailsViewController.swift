@@ -183,9 +183,9 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let detailsVC = HomeDetailViewController()
+        //    let detailsVC = HomeDetailViewController()
             //TODO: 기업 상세보기에 기업 index 전달하기 
-            self.navigationController?.pushViewController(detailsVC, animated: true)
+          //  self.navigationController?.pushViewController(detailsVC, animated: true)
         }
 
         if indexPath.section == 1 { //뉴스

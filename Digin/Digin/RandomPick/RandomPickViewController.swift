@@ -289,7 +289,8 @@ class RandomPickViewController: UIViewController, ViewType {
     }
 
     func goToDetail() {
-        self.navigationController?.pushViewController(HomeDetailViewController(), animated: true)
+        let detail = HomeDetailViewController(companyInfo: HomeUpdatedCompany(company: HomeCompanyInfo(id: 035420), consensusList: [], newsList: []))
+        self.navigationController?.pushViewController(detail, animated: true)
         self.isflip = false
     }
 }

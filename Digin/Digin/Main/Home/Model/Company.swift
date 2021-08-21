@@ -148,13 +148,13 @@ struct HomeUpdatedCompany: Decodable {
 }
 
 struct HomeCompanyInfo: Decodable {
-    var id: Int
-    var stockCode: String
-    var shortName: String
-    var likeCount: Int
-    var total: Int
-    var imageUrl: String
-    var category: String
+    var id: Int = 0
+    var stockCode: String = ""
+    var shortName: String = ""
+    var likeCount: Int = 0
+    var total: Int = 0
+    var imageUrl: String = ""
+    var category: String = ""
     var tags: [String] = []
     enum CodingKeys: String, CodingKey {
         case id
@@ -179,6 +179,9 @@ struct HomeCompanyInfo: Decodable {
         category = try values.decodeIfPresent(String.self, forKey: .category) ?? ""
     }
 
+    init(id: Int) {
+        self.id = id
+    }
 }
 
 struct Consensus: Decodable {

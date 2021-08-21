@@ -98,6 +98,8 @@
 		F1734760261855C5009EC5D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F173475E261855C5009EC5D6 /* Main.storyboard */; };
 		F1734762261855CA009EC5D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1734761261855CA009EC5D6 /* Assets.xcassets */; };
 		F1734765261855CA009EC5D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1734763261855CA009EC5D6 /* LaunchScreen.storyboard */; };
+		F177F9FF26D13700004D7EE4 /* HomeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F177F9FE26D13700004D7EE4 /* HomeDetailRepository.swift */; };
+		F177FA0126D140C3004D7EE4 /* HomeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F177FA0026D140C3004D7EE4 /* HomeDetail.swift */; };
 		F1A8DF582635925700937B31 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF572635925700937B31 /* Company.swift */; };
 		F1A8DF5D2635963700937B31 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF5C2635963700937B31 /* HomeRepository.swift */; };
 		F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */; };
@@ -245,6 +247,8 @@
 		F1734761261855CA009EC5D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1734764261855CA009EC5D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1734766261855CA009EC5D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F177F9FE26D13700004D7EE4 /* HomeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailRepository.swift; sourceTree = "<group>"; };
+		F177FA0026D140C3004D7EE4 /* HomeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetail.swift; sourceTree = "<group>"; };
 		F1A8DF572635925700937B31 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		F1A8DF5C2635963700937B31 /* HomeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -597,7 +601,9 @@
 			isa = PBXGroup;
 			children = (
 				F1A8DF5C2635963700937B31 /* HomeRepository.swift */,
+				F177F9FE26D13700004D7EE4 /* HomeDetailRepository.swift */,
 				F1A8DF572635925700937B31 /* Company.swift */,
+				F177FA0026D140C3004D7EE4 /* HomeDetail.swift */,
 				F1A8DF642635D3B200937B31 /* HomeDummy.json */,
 			);
 			path = Model;
@@ -809,6 +815,7 @@
 				F1D3471A2640485C00E63483 /* HomeGridCellNewsView.swift in Sources */,
 				F1FA90A4267E115E006A14ED /* MyFavoriteCompanyCell.swift in Sources */,
 				F173475B261855C5009EC5D6 /* SceneDelegate.swift in Sources */,
+				F177F9FF26D13700004D7EE4 /* HomeDetailRepository.swift in Sources */,
 				22A05BAB264863B200AEA69D /* DetailsHeaderTableViewCell.swift in Sources */,
 				F1C6B409264EC6D7001E8510 /* SignupEmailViewController.swift in Sources */,
 				F1278FFD265ABB860069CFDB /* RandomPickViewController.swift in Sources */,
@@ -868,6 +875,7 @@
 				F1D347182640481A00E63483 /* HomeGridCellPriceView.swift in Sources */,
 				F1C6B41F2652BCEC001E8510 /* SignupInterestingViewModel.swift in Sources */,
 				229B6FAA2640276400D28B52 /* CategoryHeaderTableViewCell.swift in Sources */,
+				F177FA0126D140C3004D7EE4 /* HomeDetail.swift in Sources */,
 				F1C6B41D2652997E001E8510 /* CombineNetworkModule.swift in Sources */,
 				222BC6C22654DC90008C1CF2 /* SearchNewsfeedTableViewCell.swift in Sources */,
 				22CCD8BA264BE4EC005B6368 /* NewsFeedService.swift in Sources */,

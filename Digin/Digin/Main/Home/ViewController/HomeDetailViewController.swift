@@ -9,14 +9,31 @@ import UIKit
 import Combine
 
 class HomeDetailViewModel: ObservableObject {
-
+    var companyInfo: HomeCompanyInfo
+   lazy var homeDetailReopository: HomeDetailRepository = DefaultHomeDetailRepository(homeDetailDataSource: DefaultHomeDetailDataSource(), company: companyInfo)
     let isReadMoreButtonTouched = PassthroughSubject<Bool, Error>()
     let goToRepoert = PassthroughSubject<String, Error>()
+    @Published var data: HomeDetail = HomeDetail()
+    var subscriptions: Set<AnyCancellable> = []
     private var cancellables: Set<AnyCancellable> = []
+
+    init(companyInfo: HomeCompanyInfo) {
+        self.companyInfo = companyInfo
+
+    }
 
     func reeadMoreButtonTouched(_ indexPath: IndexPath?) {
        // guard let indexPath = indexPath else { return }
         isReadMoreButtonTouched.send(true)
+
+    }
+
+    func fetch() {
+        homeDetailReopository.getDetailPage()?.sink(receiveCompletion: { _ in
+
+        }, receiveValue: { homeDetail in
+            self.data = homeDetail.result
+        }).store(in: &subscriptions)
 
     }
 }
@@ -27,7 +44,7 @@ protocol ViewType {
 }
 
 class HomeDetailViewController: UIViewController, ViewType {
-    var viewModel: HomeDetailViewModel = HomeDetailViewModel()
+    lazy var viewModel: HomeDetailViewModel = HomeDetailViewModel(companyInfo: self.homeSection.company)
     private var cancellables: Set<AnyCancellable> = []
 
     lazy var previousButton: UIButton = {
@@ -59,21 +76,29 @@ class HomeDetailViewController: UIViewController, ViewType {
         ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
     ]
 
-    var homeSection: HomeUpdatedCompany?
+    var homeSection: HomeUpdatedCompany
 
     func registerCell() {
 
     }
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+     init(companyInfo: HomeUpdatedCompany) {
+        self.homeSection = companyInfo
+        super.init(nibName: nil, bundle: nil)
         setupUI()
         setupConstraint()
         bindngUI()
         bindViewModel()
+
     }
 
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//
+//    }
+
     func bindViewModel() {
+
         viewModel.isReadMoreButtonTouched.sink { _ in
 
         } receiveValue: { _ in
@@ -87,7 +112,6 @@ class HomeDetailViewController: UIViewController, ViewType {
         } receiveValue: { [ unowned self ]url in
             self.gotoReport(url: url)
         }.store(in: &cancellables)
-
     }
 
     required init?(coder: NSCoder) {
@@ -104,6 +128,8 @@ class HomeDetailViewController: UIViewController, ViewType {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.fetch()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -120,7 +146,7 @@ class HomeDetailViewController: UIViewController, ViewType {
             NSAttributedString.Key.foregroundColor: AppColor.homeBackground.color
         ]
 
-        self.title = homeSection?.company.shortName
+        self.title = homeSection.company.shortName
         self.navigationController?.navigationBar.layoutIfNeeded()
     }
 
@@ -151,22 +177,22 @@ extension HomeDetailViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailHeaderView.reuseIdentifier) as? HomeDetailHeaderView else { return UITableViewCell() }
-            if let companyInfo = homeSection {
-                cell.configure(companyInfo, viewModel)
-            }
+//            if let companyInfo = homeSection {
+//                cell.configure(companyInfo, viewModel)
+//            }
 
             return cell
         } else if indexPath.row == 1 {
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailLineChartCell.reuseIdentifier) as? HomeDetailLineChartCell else { return UITableViewCell() }
-            let type = homeSection?.consensusList.first?.opinion
+            let type = homeSection.consensusList.first?.opinion
           let stock = StockType.init(rawValue: type?.rawValue ?? "")
             cell.configure(stock ?? .none)
             return cell
 
         } else  if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsListCell.reuseIdentifier) as? HomeDetailNewsListCell else { return UITableViewCell() }
-            cell.configure(news: homeSection?.newsList ?? [])
+            cell.configure(news: homeSection.newsList ?? [])
             return cell
         } else if indexPath.row == 3 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailBarChartCell.reuseIdentifier) as? HomeDetailBarChartCell else { return UITableViewCell() }
