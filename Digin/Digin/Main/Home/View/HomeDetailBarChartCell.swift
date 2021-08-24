@@ -316,9 +316,9 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
 
     func yearBar() {
 
-        let before: [CGFloat] = [1230, -10030, 1400 ]
-        let after: [CGFloat] = [1590, 1002, 2900]
-        let year: [String] = ["2018", "2019", "2020"]
+        let before: [CGFloat] = viewModel?.data?.getAnnualSales() ?? []
+        let after: [CGFloat] = viewModel?.data?.getAnnualProfits() ?? []
+        let year: [String] = viewModel?.data?.getAnumalDates() ?? []
         var total: [CGFloat] = []
         for index in 0..<before.count {
             total.append(before[index])
@@ -352,8 +352,8 @@ class HomeDetailBarChartCell: UITableViewCell, ViewType {
         quater.heightAnchor.constraint(equalTo: charGraphView.heightAnchor).isActive = true
         quater.setNeedsLayout()
         quater.layoutIfNeeded()
-        quater.total = [2395, 2431, 2304, 2337]
-        quater.quater = ["20. 06", "20. 09", "20. 12", "21. 03"]
+        quater.total = viewModel?.data?.getQuarterProfits() ?? []
+        quater.quater = viewModel?.data?.getQuatersDate() ?? []
         quater.build()
 
     }

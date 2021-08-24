@@ -46,7 +46,7 @@ class HomeDetailNewsCell: UITableViewCell, ViewType {
     func configure (news: NewsDetail) {
 
         titleLabel.text = news.title
-        dateLabel.text = news.createdAt
+        dateLabel.text = DateFormatter().convertBy(format: "yyyy-MM-dd", dateString: news.createdAt, oldFormat: "yyyy-MM-dd'T'HH:mm:ss")
         thumbnailImageView.kf.setImage(with: URL(string: news.link)!)
 
     }

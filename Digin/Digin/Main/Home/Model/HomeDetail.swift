@@ -5,7 +5,7 @@
 //  Created by jinho jeong on 2021/08/21.
 //
 
-import Foundation
+import UIKit
 
 struct HomeDetailCompanyInfo: Decodable {
     var id: Int = 0
@@ -99,6 +99,65 @@ struct HomeDetail: Decodable {
     var quarters: [Quarter] = []
 
     init() {}
+
+    func getAnnualSales() -> [CGFloat] {
+
+        let annualsSales = annuals.map { annual -> CGFloat in
+            let str = annual.sales.replacingOccurrences(of: ",", with: "")
+            return CGFloat((str as NSString).floatValue)
+        }
+
+        if annualsSales.count > 3 {
+            return annualsSales.suffix(3)
+        }
+        return annualsSales
+    }
+
+    func getAnnualProfits() -> [CGFloat] {
+
+        let annualsProfits = annuals.map { annual -> CGFloat in
+            let str = annual.profit.replacingOccurrences(of: ",", with: "")
+            return CGFloat((str as NSString).floatValue)
+        }
+
+        if annualsProfits.count > 3 {
+            return annualsProfits.suffix(3)
+        }
+        return annualsProfits
+    }
+
+    func getAnumalDates() -> [String] {
+
+        let dates = annuals.map { annual in
+            annual.date
+        }
+
+        if dates.count > 3 {
+            return dates.suffix(3)
+        }
+        return dates
+    }
+
+    func getQuatersDate() -> [String] {
+
+      return quarters.map { quarter in
+            quarter.date
+        }
+    }
+
+    func getQuarterProfits() -> [CGFloat] {
+
+        let quaterProfits = quarters.map { quarter -> CGFloat in
+           let str = quarter.profit.replacingOccurrences(of: ",", with: "")
+            return CGFloat((str as NSString).floatValue)
+
+        }
+        if quaterProfits.count > 4 {
+            return quaterProfits.suffix(4)
+        }
+        return quaterProfits
+
+    }
 }
 
 struct HomeDetailResult: Decodable {

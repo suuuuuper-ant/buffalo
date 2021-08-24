@@ -122,6 +122,7 @@ class HomeDetailViewController: UIViewController, ViewType {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         viewModel.fetch()
 
     }
@@ -170,6 +171,9 @@ class HomeDetailViewController: UIViewController, ViewType {
 
 extension HomeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.viewModel.data == nil {
+            return 0
+        }
         return 5
 
     }
