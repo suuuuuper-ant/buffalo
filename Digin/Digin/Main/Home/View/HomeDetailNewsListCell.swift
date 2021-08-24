@@ -52,7 +52,7 @@ class HomeDetailNewsListCell: UITableViewCell, ViewType {
         return more
     }()
 
-    var news: [HomeNews] = []
+    var news: [NewsDetail] = []
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -102,14 +102,19 @@ class HomeDetailNewsListCell: UITableViewCell, ViewType {
 
     }
 
-    func configure( news: [HomeNews]) {
+    func configure( news: [NewsDetail]) {
         self.news = news
+        self.tableView.reloadData()
+
     }
 
 }
 
 extension HomeDetailNewsListCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if news.count > 3 {
+            return 3
+        }
         return news.count
     }
 

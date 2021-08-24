@@ -94,25 +94,25 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         }
     }
 
-    func configure(_ companyInfo: HomeUpdatedCompany, _ viewModel: HomeDetailViewModel) {
-        companyInfo.company.tags.enumerated().forEach { (index, str) in
-            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
-            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
+    func configure(company: HomeDetailCompanyInfo, consensusList: [Consensus]) {
+//        companyInfo.company.tags.enumerated().forEach { (index, str) in
+//            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
+//            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
+//
+//        }
 
-        }
-
-        for idx in (companyInfo.company.tags.count..<relativeTagStack.subviews.count) {
+        for idx in (company.tags.count..<relativeTagStack.subviews.count) {
             (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
 
         }
 
-        likeCountLabel.text = String(companyInfo.company.likeCount)
-        companyImageView.kf.setImage(with: URL(string: companyInfo.company.imageUrl))
-        if let consensus = companyInfo.consensusList.first {
+        likeCountLabel.text = String(company.likeCount)
+        companyImageView.kf.setImage(with: URL(string: company.imageUrl))
+        if let consensus = consensusList.first {
             contentArea.configure(consensus)
         }
 
-        companyLabel.text = companyInfo.company.shortName
+        companyLabel.text = company.shortName
 
 //        contentArea.reportButton.tapPublisher.sink { _ in
 //            viewModel.goToRepoert.send(companyInfo.consensusList.first.report)

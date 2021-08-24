@@ -13,7 +13,7 @@ class HomeDetailViewModel: ObservableObject {
    lazy var homeDetailReopository: HomeDetailRepository = DefaultHomeDetailRepository(homeDetailDataSource: DefaultHomeDetailDataSource(), company: companyInfo)
     let isReadMoreButtonTouched = PassthroughSubject<Bool, Error>()
     let goToRepoert = PassthroughSubject<String, Error>()
-    @Published var data: HomeDetail = HomeDetail()
+    @Published var data: HomeDetail?
     var subscriptions: Set<AnyCancellable> = []
     private var cancellables: Set<AnyCancellable> = []
 
@@ -69,12 +69,6 @@ class HomeDetailViewController: UIViewController, ViewType {
 
         return tableView
     }()
-
-    var data  = [
-        ["제약", "바이오", "제넥신"], ["국방", "화학", "수출"],
-        ["배", "조선", "미국경제악화"], ["달러약세"],
-        ["석유", "러시아"], ["배급사", "마블", "넷플릭스"]
-    ]
 
     var homeSection: HomeUpdatedCompany
 
@@ -156,6 +150,13 @@ class HomeDetailViewController: UIViewController, ViewType {
             self.navigationController?.popViewController(animated: true)
         }.store(in: &cancellables)
 
+        viewModel
+            .$data
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] _ in
+                self.tableView.reloadData()
+            }.store(in: &cancellables)
+
     }
 
     func gotoReport(url: String) {
@@ -177,9 +178,12 @@ extension HomeDetailViewController: UITableViewDataSource {
 
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailHeaderView.reuseIdentifier) as? HomeDetailHeaderView else { return UITableViewCell() }
-//            if let companyInfo = homeSection {
-//                cell.configure(companyInfo, viewModel)
+//            if let companyInfo = viewModel.data {
+//                cell.c
 //            }
+            if let data =  viewModel.data {
+                cell.configure(company: data.company, consensusList: data.consensusList)
+            }
 
             return cell
         } else if indexPath.row == 1 {
@@ -192,7 +196,10 @@ extension HomeDetailViewController: UITableViewDataSource {
 
         } else  if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsListCell.reuseIdentifier) as? HomeDetailNewsListCell else { return UITableViewCell() }
-            cell.configure(news: homeSection.newsList ?? [])
+            if let data = viewModel.data {
+                cell.configure(news: data.newsList)
+            }
+
             return cell
         } else if indexPath.row == 3 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailBarChartCell.reuseIdentifier) as? HomeDetailBarChartCell else { return UITableViewCell() }

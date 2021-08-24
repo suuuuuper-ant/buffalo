@@ -47,7 +47,7 @@ class HomeGreetingHeaderView: UITableViewHeaderFooterView {
     }()
 
     var slideOpenView: SlideOpenView = {
-        let slide = SlideOpenView(frame: CGRect(x: 0, y: 0, width: 40, height: 0))
+        let slide = SlideOpenView(colorSet: SlideRandomColor.getRandomColor())
 
         slide.thumbnailViewStartingDistance = 6
         slide.sliderCornerRadius = 80 / 2

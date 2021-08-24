@@ -7,6 +7,45 @@
 
 import UIKit
 
+struct SlideRandomColorSet {
+    var background: UIColor
+    var gradientStart: UIColor
+    var gradientEnd: UIColor
+
+}
+
+enum SlideRandomColor: Int, CaseIterable {
+
+    case purple
+    case pink
+    case dark
+    case orange
+
+  static func getRandomColor() -> SlideRandomColorSet {
+        let colors = SlideRandomColor.allCases
+
+        let randomIndex = Int( arc4random_uniform(UInt32(colors.count)))
+
+      return SlideRandomColor.allCases[randomIndex].getColorSet()
+
+    }
+
+    func getColorSet() -> SlideRandomColorSet {
+
+        switch self {
+        case .purple:
+            return SlideRandomColorSet(background: AppColor.mainColor.color, gradientStart: AppColor.slidebarStartColor.color, gradientEnd: AppColor.pullIndicator.color)
+        case .pink:
+            return SlideRandomColorSet(background: AppColor.slideBackgroundPink.color, gradientStart: AppColor.slideStartPink.color, gradientEnd: AppColor.slideEndPink.color)
+        case .dark:
+            return SlideRandomColorSet(background: AppColor.slideBackgroundDark.color, gradientStart: AppColor.slideStartDark.color, gradientEnd: AppColor.slideEndDark.color)
+        case .orange:
+            return SlideRandomColorSet(background: AppColor.slideBackgroundOrange.color, gradientStart: AppColor.slideStartOrange.color, gradientEnd: AppColor.slideEndOrange.color)
+        }
+    }
+
+}
+
 class SlideOpenView: UIView {
 
     @Published var reachedEnd: Bool = false
@@ -24,14 +63,7 @@ class SlideOpenView: UIView {
         return background
     }()
 
-    let indicatorView: GradientView = {
-        guard let start = UIColor.init(named: "slidebar_start_color"), let end = UIColor.init(named: "pull_indicator")  else {
-            return GradientView(gradientStartColor: .purple, gradientEndColor: .purple)
-
-        }
-
-        return GradientView(gradientStartColor: start, gradientEndColor: end)
-    }()
+    var indicatorView: GradientView
     let textLabel: UILabel = {
         let label = UILabel()
         label.text = "새로운 기업 밀어서 찾기"
@@ -98,7 +130,17 @@ class SlideOpenView: UIView {
         return self.frame.width - self.backgroundView.frame.height
     }
 
+    init(colorSet: SlideRandomColorSet) {
+        indicatorView = GradientView(gradientStartColor: colorSet.gradientStart, gradientEndColor: colorSet.gradientEnd)
+        super.init(frame: .zero)
+        backgroundView.backgroundColor = colorSet.background
+
+        setupView()
+        setupConstraints()
+    }
+
     override init(frame: CGRect) {
+        indicatorView = GradientView(gradientStartColor: .purple, gradientEndColor: .purple)
         super.init(frame: frame)
 
         setupView()

@@ -96,7 +96,14 @@ class NetworkRouter {
             do {
                // let result = try decoder.decode(model.self, from: data)
                 let result = try String(decoding: data, as: UTF8.self)
-                completionHandler(.success(result))
+
+               let result2 = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any]
+                if let str = result2?["result"] as? String {
+                    completionHandler(.success(str))
+                } else {
+                  //  completionHandler(.failure())
+                }
+
             } catch let error {
                 completionHandler(.failure(error))
             }

@@ -227,6 +227,7 @@ class LoginViewController: UIViewController, ViewType {
         NetworkRouter.shared.post("http://3.35.143.195/auth/sign-in", body: params, headers: []) { (result) in
             switch result {
             case .success(let token):
+
                 UserDefaults.standard.setValue(token, forKey: "userToken")
                 DispatchQueue.main.async { [weak self] in
                     self?.goToMain()

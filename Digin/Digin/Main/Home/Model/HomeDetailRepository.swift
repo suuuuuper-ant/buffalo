@@ -36,8 +36,11 @@ protocol HomeDetailDataSource {
 
 final class DefaultHomeDetailDataSource: HomeDetailDataSource {
     func loadToCompanyDetailInfo(companyId: String) -> AnyPublisher<HomeDetailResult, APIError>? {
+        guard let token = UserDefaults.standard.value(forKey: "userToken") as? String else { return nil
+
+        }
         let url = "http://3.35.143.195" + "/home" + "/\(companyId)"
-            let headers: [HTTPHeader] = [(value: "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE4IiwibmFtZSI6InN0cmluZyIsInJvbGUiOiJVU0VSIiwic3ViIjoic3RyaW5nIiwiaWF0IjoxNjI4MDkwNDAyLCJleHAiOjI2MjgwOTA0MDJ9.piXz9zaQhbk4aqXHasGTT6SbLH9CrQofWSzbaFVWcx0", field: "X-AUTH-TOKEN")]
+            let headers: [HTTPHeader] = [(value: token, field: "X-AUTH-TOKEN")]
 
         return NetworkCombineRouter.shared.get(url: url, headers: headers, type: HomeDetailResult.self)
 

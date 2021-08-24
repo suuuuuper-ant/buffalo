@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class HomeDetailNewsCell: UITableViewCell, ViewType {
 
     lazy var  thumbnailImageView: UIImageView = {
@@ -21,7 +21,7 @@ class HomeDetailNewsCell: UITableViewCell, ViewType {
         title.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         title.textColor = UIColor.init(named: "darkgray62")
         title.text = "[단독] 이찌안 귀엽다고 소리 지른 20대 여성 두명 붙잡혀..."
-        title.numberOfLines = 2
+        title.numberOfLines = 3
         return title
     }()
 
@@ -43,10 +43,12 @@ class HomeDetailNewsCell: UITableViewCell, ViewType {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure (news: HomeNews) {
+    func configure (news: NewsDetail) {
 
         titleLabel.text = news.title
         dateLabel.text = news.createdAt
+        thumbnailImageView.kf.setImage(with: URL(string: news.link)!)
+
     }
 
     func setupUI() {
