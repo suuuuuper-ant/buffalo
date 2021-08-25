@@ -194,8 +194,11 @@ extension HomeDetailViewController: UITableViewDataSource {
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailLineChartCell.reuseIdentifier) as? HomeDetailLineChartCell else { return UITableViewCell() }
             let type = homeSection.consensusList.first?.opinion
-          let stock = StockType.init(rawValue: type?.rawValue ?? "")
-            cell.configure(stock ?? .none)
+            let stock = StockType.init(rawValue: type?.rawValue ?? "")
+            if let data = self.viewModel.data {
+                cell.configure(stockType: stock ?? .none, data)
+            }
+
             return cell
 
         } else  if indexPath.row == 2 {

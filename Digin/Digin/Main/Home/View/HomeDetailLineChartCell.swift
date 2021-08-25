@@ -46,7 +46,7 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
     lazy var chartView: GraphView = GraphView(frame: .zero)
 
     var stockType: StockType = .none
-
+    var selectedIndex = 0
     func setupUI() {
 
         contentView.backgroundColor = UIColor.init(named: "home_background")
@@ -63,9 +63,9 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        let period = ["오늘", "1주", "1달", "3달", "6달"]
+        let period = [ "1주", "1달", "3달", "6달"]
 
-        for (index, button) in PeriodGenerator(5).generateTagLabels().enumerated() {
+        for (index, button) in PeriodGenerator(period.count).generateTagLabels().enumerated() {
             button.setTitle( period[index] ?? "", for: .normal)
             button.tag = index
            // button.backgroundColor = stockType.colorForType()
@@ -119,11 +119,20 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
         sender.backgroundColor = stockType.colorForType()
         sender.layer.borderColor = UIColor.white.cgColor
         sender.setTitleColor(.white, for: .normal)
-        chartView.periodType = GraphView.Period.init(rawValue: sender.tag) ?? .today
+        selectedIndex = sender.tag
+        if let data = homeDetail {
+            let period = HomeDetail.Period(rawValue: selectedIndex) ?? .week
+            chartView.chartData = data.getStacksOnWeek(period: period)
+        }
 
     }
 
-    func configure(_ stockType: StockType) {
+    var homeDetail: HomeDetail?
+
+    func configure(stockType: StockType, _ homeDetail: HomeDetail) {
+        let period = HomeDetail.Period(rawValue: selectedIndex) ?? .week
+        self.chartView.chartData = homeDetail.getStacksOnWeek(period: period)
+        self.homeDetail = homeDetail
         self.stockType =  stockType
         periodStackView.subviews.forEach { view in
             let button = view as? UIButton
@@ -152,8 +161,8 @@ class GraphView: UIView {
         var periodArray: ([Int], [Int]) {
             switch self {
             case  .today:
-                return ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-                        [35800, 48000, 58200, 65000, 65000, 69000, 65000, 65000, 67000, 75000, 74000, 69000, 72000] )
+                return ([1, 2, 3, 4, 5 ],
+                        [8000, 5000, 58200, 65000, 65000, 69000, 65000, 65000, 67000, 75000, 74000, 69000, 72000] )
             default:
                 return([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
                        //마지막은 목표가
@@ -173,7 +182,7 @@ class GraphView: UIView {
     }
     let week =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     let price = [0, 2000]
-    var periodType: Period = .today {
+    var chartData: ([Int], [Int]) = ([], []) {
         didSet {
             updateChartLine()
 
@@ -218,6 +227,7 @@ class GraphView: UIView {
         goalLabel.centerYAnchor.constraint(equalTo: currentPriceLine.centerYAnchor).isActive = true
 
         goalLabel.alpha = 0.0
+
     }
 
     required init?(coder: NSCoder) {
@@ -226,7 +236,7 @@ class GraphView: UIView {
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-
+        updateChartLine()
         let context = UIGraphicsGetCurrentContext()!
         let colors = [startColor.cgColor, endColor.cgColor]
 
@@ -251,9 +261,8 @@ class GraphView: UIView {
 
         self.layer.backgroundColor = UIColor.white.cgColor
 
-        updateChartLine()
-
     }
+
     func updateChartLine() {
         let width = frame.width - 40
         let height = frame.height
@@ -261,14 +270,14 @@ class GraphView: UIView {
         let margin = Constants.margin
         let graphWidth = width - margin * 2 - 4
         let columnXPoint = { (column: Int) -> CGFloat in
-            let spacing = graphWidth / CGFloat(self.periodType.periodArray.0.count - 1)
+            let spacing = graphWidth / CGFloat(self.chartData.0.count - 1)
             return CGFloat(column) * spacing + margin + 2
         }
 
         let topBorder = Constants.topBorder
         let bottomBorder = Constants.bottomBorder
         let graphHeight = height - topBorder - bottomBorder + 100
-        let maxValue = periodType.periodArray.1.max()!
+        let maxValue = chartData.1.max()!
         let columnYPoint = { (graphPoint: Int) -> CGFloat in
             let yaxis = CGFloat(graphPoint) / CGFloat(maxValue) * graphHeight
             return graphHeight + topBorder - yaxis
@@ -276,10 +285,10 @@ class GraphView: UIView {
 
         let graphPath = UIBezierPath()
 
-        graphPath.move(to: CGPoint(x: columnXPoint(0), y: columnYPoint(periodType.periodArray.1[0])))
+        graphPath.move(to: CGPoint(x: columnXPoint(0), y: columnYPoint(chartData.1[0])))
 
-        for index in 0..<periodType.periodArray.1.count - 1 {
-            let nextPoint = CGPoint(x: columnXPoint(index), y: columnYPoint(periodType.periodArray.1[index]))
+        for index in 0..<chartData.1.count {
+            let nextPoint = CGPoint(x: columnXPoint(index), y: columnYPoint(chartData.1[index]))
             graphPath.addLine(to: nextPoint)
         }
 
@@ -300,7 +309,7 @@ class GraphView: UIView {
         self.shapeLayer = shapeLayer
 
         //임시로 넣어놓음
-        let goalPrice = periodType.periodArray.1.last
+        let goalPrice = chartData.1.last
        let goalY = columnYPoint(goalPrice!)
         lineYConstraints?.constant = goalY
         lineWidthConstraints?.constant = width - 40
@@ -308,12 +317,12 @@ class GraphView: UIView {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
 
-        guard  numberFormatter.string(from: NSNumber(integerLiteral: periodType.periodArray.1.last ?? 0)) != nil else { return }
+        guard  numberFormatter.string(from: NSNumber(integerLiteral: chartData.1.last ?? 0)) != nil else { return }
         let price = 824000
         goalLabel.text = "목표가\n\(price)원"
 
         UIView.animate(withDuration: 2) {
-            self.layoutIfNeeded()
+          //  self.layoutIfNeeded()
 
         } completion: {[weak self] _ in
             UIView.animate(withDuration: 0.5) {

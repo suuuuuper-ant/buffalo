@@ -13,6 +13,7 @@ class HomeDetailNewsCell: UITableViewCell, ViewType {
         let thumbnail = UIImageView()
         thumbnail.makeRounded(cornerRadius: 10)
         thumbnail.backgroundColor = .gray
+        thumbnail.contentMode = .scaleAspectFill
         return thumbnail
     }()
 
@@ -47,7 +48,7 @@ class HomeDetailNewsCell: UITableViewCell, ViewType {
 
         titleLabel.text = news.title
         dateLabel.text = DateFormatter().convertBy(format: "yyyy-MM-dd", dateString: news.createdAt, oldFormat: "yyyy-MM-dd'T'HH:mm:ss")
-        thumbnailImageView.kf.setImage(with: URL(string: news.link)!)
+        thumbnailImageView.kf.setImage(with: URL(string: news.imageUrl)!)
 
     }
 

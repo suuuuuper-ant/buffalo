@@ -399,6 +399,7 @@
 				F1D347112640463D00E63483 /* CustomView */,
 				F121DEE8261B3C7300B09F21 /* Extension */,
 				F121DEE7261B3C0800B09F21 /* Network */,
+				F1D34714264046E700E63483 /* PaddingLabel.swift */,
 				F1278FF7265A5DA80069CFDB /* StockType.swift */,
 			);
 			path = Common;
@@ -654,7 +655,6 @@
 			isa = PBXGroup;
 			children = (
 				F1504BC7263AF4CF007C82F2 /* RoundShadowView.swift */,
-				F1D34714264046E700E63483 /* PaddingLabel.swift */,
 				F1D3471B264048DC00E63483 /* GradientView.swift */,
 				F1C6B402264EA314001E8510 /* SignInputFieldView.swift */,
 			);

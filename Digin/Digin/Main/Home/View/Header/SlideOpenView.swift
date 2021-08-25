@@ -14,19 +14,19 @@ struct SlideRandomColorSet {
 
 }
 
-enum SlideRandomColor: Int, CaseIterable {
+enum SlideRandomColor: String, CaseIterable {
 
-    case purple
-    case pink
-    case dark
-    case orange
+    case purple = ""
+    case pink = "pink"
+    case dark = "dark"
+    case orange = "orange"
 
-  static func getRandomColor() -> SlideRandomColorSet {
+  static func getRandomColor() -> Self {
         let colors = SlideRandomColor.allCases
 
         let randomIndex = Int( arc4random_uniform(UInt32(colors.count)))
 
-      return SlideRandomColor.allCases[randomIndex].getColorSet()
+      return SlideRandomColor.allCases[randomIndex]
 
     }
 
@@ -130,13 +130,19 @@ class SlideOpenView: UIView {
         return self.frame.width - self.backgroundView.frame.height
     }
 
-    init(colorSet: SlideRandomColorSet) {
-        indicatorView = GradientView(gradientStartColor: colorSet.gradientStart, gradientEndColor: colorSet.gradientEnd)
+    init(colorSet: SlideRandomColor) {
+        let colorSetingValue = colorSet.getColorSet()
+        indicatorView = GradientView(gradientStartColor: colorSetingValue.gradientStart, gradientEndColor: colorSetingValue.gradientEnd)
         super.init(frame: .zero)
-        backgroundView.backgroundColor = colorSet.background
+        backgroundView.backgroundColor = colorSetingValue.background
 
+        showMeEndTitle.textColor = colorSetingValue.background
+        showMeTitle.textColor = colorSetingValue.background
+        showMeView.image = UIImage(named: "icon_bubble_start_" + colorSet.rawValue)
+        showMeEndView.image = UIImage(named: "icon_bubble_end_" + colorSet.rawValue)
         setupView()
         setupConstraints()
+
     }
 
     override init(frame: CGRect) {
