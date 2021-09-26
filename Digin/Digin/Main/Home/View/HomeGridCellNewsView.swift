@@ -111,4 +111,31 @@ class NewsArea: UIView, UITableViewDataSource, UITableViewDelegate {
         view.backgroundColor = .clear
         return view
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      let presentedViewController = UIApplication.topViewController()
+        let reportVIew = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
+        reportVIew.newsURL = news[indexPath.row].link
+        reportVIew.modalPresentationStyle = .formSheet
+        presentedViewController?.present(reportVIew, animated: true, completion: nil)
+        print("\(indexPath)")
+    }
+
+}
+
+extension UIApplication {
+    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
+    }
 }

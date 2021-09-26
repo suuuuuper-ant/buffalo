@@ -19,7 +19,7 @@ class SearchNewsfeedViewController: UIViewController {
     var header: String = "" //검색어/기업명/카테고리명
 
     // 0
-    var newsData = [SearchNews]() {
+    var newsData = [NewsDetail]() {
         didSet {
             self.isLoad = true
         }
@@ -118,10 +118,10 @@ extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSour
         }
 
         if type == 0 { //검색
-            cell.titleLabel.text = newsData[indexPath.row].title
-            cell.dateLabel.text = newsData[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
-            let url = URL(string: newsData[indexPath.row].imageUrl)
-            cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
+//            cell.titleLabel.text = newsData[indexPath.row].title
+//            cell.dateLabel.text = newsData[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
+//            let url = URL(string: newsData[indexPath.row].imageUrl)
+          //  cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
         } else if type == 1 { //기업
 
             if indexPath.section == 1 {
@@ -148,7 +148,7 @@ extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSour
         let webVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
 
         if type == 0 { //검색
-            webVC.newsURL = newsData[indexPath.row].link
+        //    webVC.newsURL = newsData[indexPath.row].link
         } else if type == 1 {
             webVC.newsURL = contents[indexPath.row].link
         } else { //카테고리

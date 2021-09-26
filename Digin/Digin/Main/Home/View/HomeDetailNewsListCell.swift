@@ -121,10 +121,19 @@ extension HomeDetailNewsListCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailNewsCell.reuseIdentifier, for: indexPath) as? HomeDetailNewsCell else { return UITableViewCell() }
         let new = news[indexPath.row]
+        cell.selectionStyle = .none
         cell.configure(news: new)
         //dummy
       //  cell.thumbnailImageView.image = UIImage(named: new.link + "\(indexPath.row + 1)" )
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let presentedViewController = UIApplication.topViewController()
+          let reportVIew = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
+          reportVIew.newsURL = news[indexPath.row].link
+          reportVIew.modalPresentationStyle = .formSheet
+          presentedViewController?.present(reportVIew, animated: true, completion: nil)
+          print("\(indexPath)")
+    }
 }

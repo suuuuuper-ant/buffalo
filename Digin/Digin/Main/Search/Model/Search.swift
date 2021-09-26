@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Search
 struct Search: Decodable {
     var status: String = ""
-    var result: SearchResult = SearchResult()
+    var result: [HomeCompanyInfo] = []
 
     private enum CodingKeys: String, CodingKey {
         case status
@@ -20,14 +20,14 @@ struct Search: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         status = try container.decodeIfPresent(String.self, forKey: .status) ?? ""
-        result = try container.decodeIfPresent(SearchResult.self, forKey: .result) ?? SearchResult()
+        result = try container.decodeIfPresent([HomeCompanyInfo].self, forKey: .result) ?? []
     }
 }
 
 // MARK: - Result
 struct SearchResult: Decodable {
-    var companies: [SearchCompany] = []
-    var news: [SearchNews] = []
+    var companies: [HomeCompanyInfo] = []
+    var news: [NewsDetail] = []
 
     init() {}
 
@@ -38,8 +38,8 @@ struct SearchResult: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        companies = try container.decodeIfPresent([SearchCompany].self, forKey: .companies) ?? []
-        news = try container.decodeIfPresent([SearchNews].self, forKey: .news) ?? []
+        companies = try container.decodeIfPresent([HomeCompanyInfo].self, forKey: .companies) ?? []
+        news = try container.decodeIfPresent([NewsDetail].self, forKey: .news) ?? []
     }
 }
 
@@ -72,13 +72,19 @@ struct SearchCompany: Decodable {
 }
 
 // MARK: - News
-struct SearchNews: Codable {
-    var id: Int = 0
-    var stockCode: String = ""
-    var title: String = ""
-    var link: String = ""
-    var description: String = ""
-    var createdAt: String
-    var imageUrl: String
+//struct SearchNews: Codable {
+//    var id: Int = 0
+//    var stockCode: String = ""
+//    var title: String = ""
+//    var link: String = ""
+//    var description: String = ""
+//    var createdAt: String
+//    var imageUrl: String
+//
+//}
+
+struct SearchNews: Decodable {
+    var status: String = ""
+    var result: [NewsDetail] = []
 
 }

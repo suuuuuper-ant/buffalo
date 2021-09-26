@@ -10,7 +10,8 @@ import Combine
 
 class HomeDetailViewModel: ObservableObject {
     var companyInfo: HomeCompanyInfo
-   lazy var homeDetailReopository: HomeDetailRepository = DefaultHomeDetailRepository(homeDetailDataSource: DefaultHomeDetailDataSource(), company: companyInfo)
+    lazy var homeDetailReopository: HomeDetailRepository = DefaultHomeDetailRepository(homeDetailDataSource: DefaultHomeDetailDataSource(), homeDetailLineChartSource: DefaultHomeDetailLineChartDataSource(), company: companyInfo)
+
     let isReadMoreButtonTouched = PassthroughSubject<Bool, Error>()
     let goToRepoert = PassthroughSubject<String, Error>()
     @Published var data: HomeDetail?
@@ -196,7 +197,7 @@ extension HomeDetailViewController: UITableViewDataSource {
             let type = homeSection.consensusList.first?.opinion
             let stock = StockType.init(rawValue: type?.rawValue ?? "")
             if let data = self.viewModel.data {
-                cell.configure(stockType: stock ?? .none, data)
+                cell.configure(stockType: stock ?? .none, data, parentViewMdoel: self.viewModel)
             }
 
             return cell

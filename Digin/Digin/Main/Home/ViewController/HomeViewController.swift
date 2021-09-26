@@ -121,6 +121,7 @@ class HomeViewController: UIViewController {
 
         self.navigationController?.pushViewController(RandomPickViewController(), animated: true)
     }
+
 }
 
 extension HomeViewController: UITableViewDataSource {

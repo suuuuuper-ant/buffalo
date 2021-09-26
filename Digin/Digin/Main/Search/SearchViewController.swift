@@ -104,7 +104,6 @@ class SearchViewController: UIViewController {
             //화면 전환 (검색 리스트, 1 -> 검색 결과, 2)
             isSearch = 2
             searchTextField.resignFirstResponder()
-            getSearchData(keyword: text)
             enableSearchAnimation()
         }
 
@@ -349,7 +348,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CompanyTableViewCell.reuseIdentifier) as? CompanyTableViewCell else { return UITableViewCell() }
 
-                cell.titleLabel.text = searchData.companies[indexPath.row].name
+                cell.titleLabel.text = searchData.companies[indexPath.row].shortName
                 cell.categoryLabel.text = "커뮤니케이션 서비스"
                 let url = URL(string: searchData.companies[indexPath.row].imageUrl)
                 if searchData.companies[indexPath.row].imageUrl != "" {
@@ -374,10 +373,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CompanyNewsTableViewCell.reuseIdentifier) as? CompanyNewsTableViewCell else { return UITableViewCell() }
 
-                cell.titleLabel.text = searchData.news[indexPath.row].title
-                cell.dateLabel.text = searchData.news[indexPath.row].createdAt.setDate(format: "MM.dd. HH:mm")
-                let url = URL(string: searchData.news[indexPath.row].imageUrl)
-                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
+//                cell.titleLabel.text = searchData.news[indexPath.row].title
+//                cell.dateLabel.text = searchData.news[indexPath.row].createdAt.setDate(format: "MM.dd. HH:mm")
+//                let url = URL(string: searchData.news[indexPath.row].imageUrl)
+//                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
 
                 return cell
             }
@@ -453,7 +452,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
             if indexPath.section == 1 && !searchData.news.isEmpty { //뉴스
                 let newsVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
-                newsVC.newsURL = searchData.news[indexPath.row].link
+              //  newsVC.newsURL = searchData.news[indexPath.row].link
                 self.present(newsVC, animated: true, completion: nil)
             }
 
@@ -470,17 +469,32 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - Networking
 extension SearchViewController {
-
     // GET - /news
     func getSearchData(keyword: String) {
+        var searchResult = SearchResult()
+        let dispatchGroup = DispatchGroup()
 
-        SearchService.getSearchData(searchText: keyword) { (result) in
-            self.searchData = result
-            print(self.searchData)
+        dispatchGroup.enter()
+        SearchService.getSearchData(searchText: keyword) { result in
 
+            searchResult.companies = result
             DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
+                dispatchGroup.leave()
             })
+        }
+
+        dispatchGroup.enter()
+        SearchService.getSearchNewsData(searchText: keyword) { result in
+
+            searchResult.news = result.result
+            DispatchQueue.main.async(execute: {
+                dispatchGroup.leave()
+            })
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.searchData = searchResult
+            self.tableView.reloadData()
         }
     }
 }

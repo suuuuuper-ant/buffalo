@@ -9,6 +9,7 @@ import UIKit
 
 class HomeDetailLineChartCell: UITableViewCell, ViewType {
 
+    var parentViewModel: HomeDetailViewModel?
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -129,7 +130,8 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
 
     var homeDetail: HomeDetail?
 
-    func configure(stockType: StockType, _ homeDetail: HomeDetail) {
+    func configure(stockType: StockType, _ homeDetail: HomeDetail, parentViewMdoel: HomeDetailViewModel) {
+        self.parentViewModel = parentViewMdoel
         let period = HomeDetail.Period(rawValue: selectedIndex) ?? .week
         self.chartView.chartData = homeDetail.getStacksOnWeek(period: period)
         self.homeDetail = homeDetail
