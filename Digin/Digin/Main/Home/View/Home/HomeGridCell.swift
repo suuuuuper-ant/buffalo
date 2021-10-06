@@ -11,7 +11,7 @@ import SwiftUI
 class HomeGridCell: UICollectionViewCell {
     lazy var favoriteCompanyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.text = "관심기업"
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
@@ -27,13 +27,6 @@ class HomeGridCell: UICollectionViewCell {
         companyImage.contentMode = .scaleAspectFill
 
         return companyImage
-    }()
-
-    lazy var relativeTagStack: UIStackView = {
-        let tag = UIStackView()
-        tag.spacing = 5
-        tag.alignment = .leading
-        return tag
     }()
 
     lazy var likeButton: UIButton = {
@@ -52,19 +45,34 @@ class HomeGridCell: UICollectionViewCell {
         return label
     }()
 
-    lazy var contentArea: HomeGridPriceArea = {
-        let area = HomeGridPriceArea()
-        area.layer.cornerRadius = 15
-        area.layer.borderColor = UIColor.init(named: "stock_sell")?.cgColor
-        area.layer.borderWidth = 1.0
-        area.layer.masksToBounds = true
-        area.backgroundColor = .white
-        return area
+    lazy var consensusView: HomeGridConsensusView = {
+        let consensus = HomeGridConsensusView()
+        return consensus
     }()
 
-    lazy var newsArea: NewsArea = {
-        let news = NewsArea()
-        return news
+    lazy var  thumbnailImageView: UIImageView = {
+        let thumbnail = UIImageView()
+        thumbnail.makeRounded(cornerRadius: 10)
+        thumbnail.backgroundColor = .gray
+        thumbnail.contentMode = .scaleAspectFill
+        return thumbnail
+    }()
+
+    lazy var newsTitleLabel: UILabel = {
+       let title = UILabel()
+        title.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        title.textColor = UIColor.init(named: "darkgray62")
+        title.text = "[단독] 이찌안 귀엽다고 소리 지른 20대 여성 두명 붙잡혀..."
+        title.numberOfLines = 3
+        return title
+    }()
+
+    lazy var dateLabel: UILabel = {
+       let date = UILabel()
+        date.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        date.textColor = UIColor.init(named: "gray160")
+        date.text = "연합뉴스 | 04. 17. 19:14"
+        return date
     }()
 
     lazy var roundShadowView = RoundShadowView()
@@ -80,30 +88,17 @@ class HomeGridCell: UICollectionViewCell {
 
     func configure(model: HomeUpdatedCompany) {
 
-       // 모델개수만큼 relativeTagStack 앞에서부터 업데이트
-        model.company.tags.enumerated().forEach { (index, str) in
-            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
-            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
-        }
-      //  모델 업데이트 이후에도 relativeTagStack의 서브뷰가 남아 있다면 숨김
-        for idx in (model.company.tags.count..<relativeTagStack.subviews.count) {
-            (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
-        }
-
         favoriteCompanyLabel.text = model.company.shortName
-        newsArea.news = model.newsList
+      //  newsArea.news = model.newsList
         likeCountLabel.text = String(model.company.likeCount)
 
-        if let opinionInfo = model.consensusList.first {
-            contentArea.layer.borderColor = opinionInfo.opinion.colorForType().cgColor
-
-            contentArea.configure(opinionInfo)
-        } else {
-            contentArea.layer.borderColor = StockType.notRated.colorForType().cgColor
-            contentArea.configure(Consensus())
-        }
-
+        consensusView.configure(model.consensusList)
         companyImageView.kf.setImage(with: URL(string: model.company.imageUrl))
+
+        if let firstNews = model.newsList.first {
+            newsTitleLabel.text = firstNews.title
+        }
+        //thumbnailImageView.kf.setImage(with: )
     }
 
     private func setupConstraints() {
@@ -124,12 +119,12 @@ class HomeGridCell: UICollectionViewCell {
 
         let favoriteCompanyLabelConstraints = [
             favoriteCompanyLabel.leadingAnchor.constraint(equalTo: companyImageView.trailingAnchor, constant: 10),
-            favoriteCompanyLabel.topAnchor.constraint(equalTo: companyImageView.topAnchor),
+            favoriteCompanyLabel.centerYAnchor.constraint(equalTo: companyImageView.centerYAnchor),
             favoriteCompanyLabel.trailingAnchor.constraint(equalTo: likeButton.leadingAnchor, constant: -10)
         ]
 
         let likeButtonConstraints = [
-            likeButton.topAnchor.constraint(equalTo: companyImageView.topAnchor),
+            likeButton.centerYAnchor.constraint(equalTo: companyImageView.centerYAnchor),
             likeButton.widthAnchor.constraint(equalToConstant: 20),
             likeButton.heightAnchor.constraint(equalToConstant: 20)
         ]
@@ -139,36 +134,35 @@ class HomeGridCell: UICollectionViewCell {
             likeCountLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 4),
             likeCountLabel.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -14)
         ]
-
-        let relativeTagStackConstraints = [
-            relativeTagStack.leadingAnchor.constraint(equalTo: companyImageView.leadingAnchor),
-            relativeTagStack.topAnchor.constraint(equalTo: companyImageView.bottomAnchor, constant: 17),
-            relativeTagStack.trailingAnchor.constraint(lessThanOrEqualTo: roundShadowView.trailingAnchor, constant: -40)
-
+        let consensusViewConstraints = [
+            consensusView.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor),
+            consensusView.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor),
+            consensusView.topAnchor.constraint(equalTo: favoriteCompanyLabel.bottomAnchor, constant: 25),
+            consensusView.heightAnchor.constraint(equalToConstant: 135)
         ]
 
-        let contentAreaConstraints = [
-            contentArea.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 16),
-            contentArea.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -16),
-            contentArea.topAnchor.constraint(equalTo: relativeTagStack.bottomAnchor, constant: 20),
-            contentArea.heightAnchor.constraint(equalToConstant: 115)
+        let thumbnailImageViewConst = [
+            thumbnailImageView.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 16),
+            thumbnailImageView.topAnchor.constraint(equalTo: consensusView.bottomAnchor, constant: 24),
+            thumbnailImageView.widthAnchor.constraint(equalToConstant: 90),
+            thumbnailImageView.heightAnchor.constraint(equalToConstant: 70)
         ]
 
-        let newsAreaConstraints = [
-            newsArea.leadingAnchor.constraint(equalTo: roundShadowView.leadingAnchor, constant: 16),
-            newsArea.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -16),
-            newsArea.topAnchor.constraint(equalTo: contentArea.bottomAnchor, constant: 20),
-            newsArea.heightAnchor.constraint(equalToConstant: 150)
+        let newsTitleLabelConst = [
+            newsTitleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
+            newsTitleLabel.topAnchor.constraint(equalTo: consensusView.bottomAnchor, constant: 24),
+            newsTitleLabel.trailingAnchor.constraint(equalTo: roundShadowView.trailingAnchor, constant: -16)
+
         ]
 
         [roundShadowViewConstraints,
          companyImageViewConstraints,
          favoriteCompanyLabelConstraints,
-         relativeTagStackConstraints,
          likeButtonConstraints,
          likeCountConstraints,
-         contentAreaConstraints,
-         newsAreaConstraints
+         consensusViewConstraints,
+         thumbnailImageViewConst,
+         newsTitleLabelConst
         ].forEach(NSLayoutConstraint.activate(_:))
     }
 
@@ -177,16 +171,13 @@ class HomeGridCell: UICollectionViewCell {
         backgroundColor = UIColor.init(named: "home_background")
         roundShadowView.backgroundColor = UIColor.init(named: "home_background")
         roundShadowView.translatesAutoresizingMaskIntoConstraints = false
-        let subviews = [companyImageView, favoriteCompanyLabel, relativeTagStack, likeButton, likeCountLabel, contentArea, newsArea]
+        let subviews = [companyImageView, favoriteCompanyLabel, likeButton, likeCountLabel, consensusView, thumbnailImageView, newsTitleLabel]
 
         subviews.forEach {
             roundShadowView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        for label in TagGenerator(3).generateTagLabels() {
-            relativeTagStack.addArrangedSubview(label)
-        }
     }
 }
 

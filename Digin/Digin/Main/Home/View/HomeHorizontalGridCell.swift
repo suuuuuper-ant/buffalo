@@ -20,7 +20,7 @@ class HomeHorizontalGridCell: UITableViewCell {
         let layout =  UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 5
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 335, height: 410)
+        layout.itemSize = CGSize(width: 335, height: 341)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.init(named: "home_background")
         collectionView.dataSource = self
@@ -81,7 +81,7 @@ class HomeHorizontalGridCell: UITableViewCell {
         collectionView.leadingAnchor.constraint(equalTo: backContenView.leadingAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: backContenView.topAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: backContenView.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: 430).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 361).isActive = true
 
         pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0).isActive = true
         pageControl.centerXAnchor.constraint(equalTo: backContenView.centerXAnchor).isActive = true

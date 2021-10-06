@@ -105,6 +105,7 @@
 		F1A8DF602635C8D900937B31 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */; };
 		F1A8DF652635D3B200937B31 /* HomeDummy.json in Resources */ = {isa = PBXBuildFile; fileRef = F1A8DF642635D3B200937B31 /* HomeDummy.json */; };
 		F1A8DF712637179700937B31 /* HomeHorizontalGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */; };
+		F1B67192270DAF2200BE19D0 /* HomeGridConsensusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B67191270DAF2200BE19D0 /* HomeGridConsensusView.swift */; };
 		F1C6B401264EA277001E8510 /* Combine_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B400264EA277001E8510 /* Combine_extension.swift */; };
 		F1C6B403264EA314001E8510 /* SignInputFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B402264EA314001E8510 /* SignInputFieldView.swift */; };
 		F1C6B405264EBB21001E8510 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C6B404264EBB21001E8510 /* LoginViewModel.swift */; };
@@ -254,6 +255,7 @@
 		F1A8DF5F2635C8D900937B31 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F1A8DF642635D3B200937B31 /* HomeDummy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeDummy.json; sourceTree = "<group>"; };
 		F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHorizontalGridCell.swift; sourceTree = "<group>"; };
+		F1B67191270DAF2200BE19D0 /* HomeGridConsensusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridConsensusView.swift; sourceTree = "<group>"; };
 		F1C6B400264EA277001E8510 /* Combine_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine_extension.swift; sourceTree = "<group>"; };
 		F1C6B402264EA314001E8510 /* SignInputFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInputFieldView.swift; sourceTree = "<group>"; };
 		F1C6B404264EBB21001E8510 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -615,7 +617,7 @@
 			children = (
 				F1D347102640461C00E63483 /* Header */,
 				F1A8DF702637179700937B31 /* HomeHorizontalGridCell.swift */,
-				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
+				F1B67193270DB15300BE19D0 /* Home */,
 				F1D347172640481A00E63483 /* HomeGridCellPriceView.swift */,
 				F1D347192640485C00E63483 /* HomeGridCellNewsView.swift */,
 				F1D34712264046A700E63483 /* HomeNewsCell.swift */,
@@ -629,6 +631,15 @@
 				F1278FF9265A68240069CFDB /* HomeDetailPriceView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F1B67193270DB15300BE19D0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
+				F1B67191270DAF2200BE19D0 /* HomeGridConsensusView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		F1D3470D2640456800E63483 /* ViewController */ = {
@@ -884,6 +895,7 @@
 				22618942262F0DE100A9B77B /* NewsDetailsViewController.swift in Sources */,
 				F1D7AA04267A294700696EA9 /* HomeTitleHeaderView.swift in Sources */,
 				F1D3470F264045C800E63483 /* UITableView_extension.swift in Sources */,
+				F1B67192270DAF2200BE19D0 /* HomeGridConsensusView.swift in Sources */,
 				222BC6CD2654FF3D008C1CF2 /* NoneResultTableViewCell.swift in Sources */,
 				F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */,
 				F121DF2B26230BA000B09F21 /* TabBarFactory.swift in Sources */,
