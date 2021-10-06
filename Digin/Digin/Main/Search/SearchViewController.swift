@@ -373,6 +373,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CompanyNewsTableViewCell.reuseIdentifier) as? CompanyNewsTableViewCell else { return UITableViewCell() }
 
+                let search = searchData.news[indexPath.row]
+                cell.titleLabel.text = search.title
+                cell.dateLabel.text = search.createdAt.setDate(format: "MM.dd. HH:mm")
+                let url = URL(string: searchData.news[indexPath.row].imageUrl)
+                cell.newsImageView.kf.setImage(with: url, placeholder: UIImage(named: "listNonePic"))
 //                cell.titleLabel.text = searchData.news[indexPath.row].title
 //                cell.dateLabel.text = searchData.news[indexPath.row].createdAt.setDate(format: "MM.dd. HH:mm")
 //                let url = URL(string: searchData.news[indexPath.row].imageUrl)
