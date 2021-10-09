@@ -9,49 +9,77 @@ import UIKit
 
 class HomeDetailPriceView: UIView {
 
-    lazy var originLabel: UILabel = UILabel()
-    lazy var dateLabel: UILabel = UILabel()
-    lazy var byOrSellLabel: UILabel = {
-        let label = UILabel()
-        label.text = "SELL"
-        label.font = UIFont.englishFont(ofSize: 30)
-        return label
+    //    lazy var majorityOpinion = {
+    //        let opinion = UIView()
+    //        opinion.
+    //        return opinion
+    //    }
+    //    lazy var originLabel: UILabel = UILabel()
+    //    lazy var dateLabel: UILabel = UILabel()
+    //    lazy var byOrSellLabel: UILabel = {
+    //        let label = UILabel()
+    //        label.text = "SELL"
+    //        label.font = UIFont.englishFont(ofSize: 30)
+    //        return label
+    //
+    //    }()
+    //
+    //    lazy var reportButton: UIButton = {
+    //        let report = UIButton()
+    //        report.setImage(UIImage(named: "home_report_white"), for: .normal)
+    //        report.imageView?.contentMode  = .scaleAspectFill
+    //        return report
+    //    }()
+    //
+    //    lazy var reportLabel: UILabel = {
+    //        let report = UILabel()
+    //        report.text = "리포트"
+    //        report.textColor = UIColor.white
+    //        report.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+    //        return report
+    //    }()
+    //    lazy var progressBarView: UIProgressView = {
+    //        let progressBar = UIProgressView()
+    //        progressBar.progress = 0.5
+    //        progressBar.backgroundColor = .darkGray
+    //        progressBar.layer.cornerRadius = 10
+    //        progressBar.clipsToBounds = true
+    //        progressBar.layer.sublayers![1].cornerRadius = 10
+    //        progressBar.progressTintColor = .systemPink
+    //        return progressBar
+    //    }()
+    //
+    //    var opinionLabel: UILabel = {
+    //        let label = UILabel()
+    //        label.translatesAutoresizingMaskIntoConstraints = false
+    //        label.numberOfLines = 0
+    //        label.text = "투자의견"
+    //        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12.0)
+    //        label.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+    //        return label
+    //    }()
 
+    lazy var topTagView: UILabel = {
+        let topTag = UILabel()
+        topTag.font = UIFont.englishFont(ofSize: 10)
+        topTag.layer.cornerRadius = 10
+        topTag.clipsToBounds = true
+        topTag.text = "NEW!"
+        topTag.backgroundColor = .white
+        return topTag
     }()
 
-    lazy var reportButton: UIButton = {
-        let report = UIButton()
-        report.setImage(UIImage(named: "home_report_white"), for: .normal)
-        report.imageView?.contentMode  = .scaleAspectFill
-        return report
+    lazy var headOpinionLabel: UILabel = {
+        let head = UILabel()
+        head.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        head.textColor = .white
+        head.numberOfLines = 0
+        return head
     }()
 
-    lazy var reportLabel: UILabel = {
-        let report = UILabel()
-        report.text = "리포트"
-        report.textColor = UIColor.white
-        report.font = UIFont.systemFont(ofSize: 10, weight: .medium)
-        return report
-    }()
-    lazy var progressBarView: UIProgressView = {
-        let progressBar = UIProgressView()
-        progressBar.progress = 0.5
-        progressBar.backgroundColor = .darkGray
-        progressBar.layer.cornerRadius = 10
-        progressBar.clipsToBounds = true
-        progressBar.layer.sublayers![1].cornerRadius = 10
-        progressBar.progressTintColor = .systemPink
-        return progressBar
-    }()
-
-    var opinionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.text = "투자의견"
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12.0)
-        label.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        return label
+    lazy var tailOpinionLabel: UILabel = {
+        let tailOpinion = UILabel()
+        return tailOpinion
     }()
 
     var model: Float = 0.5 {
@@ -62,8 +90,8 @@ class HomeDetailPriceView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubiews()
-        setupConstraints()
+        setupSubViews()
+        addConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -74,72 +102,56 @@ class HomeDetailPriceView: UIView {
         super.layoutSubviews()
     }
 
+    private func setupSubViews() {
+
+        [topTagView, headOpinionLabel, tailOpinionLabel].forEach { view in
+            addSubview(view)
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+
+    }
+
+    private func addConstraints() {
+
+        topTagView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        topTagView.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        topTagView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+
+        headOpinionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        headOpinionLabel.topAnchor.constraint(equalTo: topTagView.bottomAnchor, constant: 12).isActive = true
+
+    }
+
     func configure(_ model: Consensus) {
-        self.byOrSellLabel.text = model.opinion.rawValue
-        self.byOrSellLabel.textColor = UIColor.white
         self.backgroundColor = model.opinion.colorForType()
-        let date = DateFormatter().convertBy(format: "yyyy-MM-dd", dateString: model.createdAt, oldFormat: "yyyy-MM-dd'T'HH:mm:ss")
-        let tailString = " | \(model.opinionCompany) \(date)"
-        let totalString = "\(model.opinion.decription())\(tailString)"
-        let attributedString = NSMutableAttributedString(string: "\(model.opinion.decription())\(tailString)", attributes: [
-            .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 12.0)!,
-            .foregroundColor: UIColor.white,
-            .kern: -0.4
-        ])
+        updateHeadTitleAttributed(model: model)
 
-        if let range = totalString.range(of: tailString) {
-            attributedString.addAttribute(.font, value: UIFont(name: "AppleSDGothicNeo-Medium", size: 10.0)!, range: NSRange(range, in: totalString))
-        }
-
-        self.opinionLabel.attributedText = attributedString
     }
-    private func addSubiews() {
-        let subviews = [
-            byOrSellLabel,
-            reportButton,
-            reportLabel,
-            opinionLabel
-        ]
 
-        subviews.forEach {
-            self.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
+    private func updateHeadTitleAttributed(model: Consensus) {
+        let headString = model.opinion.stockTypeHeadString()
+        let attributeString = NSMutableAttributedString.init(string: headString.0)
+        attributeString.addAttributes([
+            .font: UIFont.systemFont(ofSize: 20, weight: .heavy),
+            .foregroundColor: UIColor.white
+
+        ], range: NSRange(location: 0, length: headString.0.count))
+
+        if let attachImage = model.opinion.stockTypeIconImage(.white) {
+            let attachment = NSTextAttachment(image: attachImage)
+
+            let attatchString = NSAttributedString.init(attachment: attachment)
+            attributeString.append(attatchString)
         }
-    }
-    var const: NSLayoutConstraint?
-    private func setupConstraints() {
+        attributeString.append(NSAttributedString(string: "\n"))
 
-        let buyOrSellConstraints = [
-            byOrSellLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 33),
-            byOrSellLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            byOrSellLabel.trailingAnchor.constraint(equalTo: reportButton.leadingAnchor, constant: 16)
-        ]
+        let tail = NSMutableAttributedString.init(string: headString.1)
+        tail.addAttributes([
+            .font: UIFont.systemFont(ofSize: 20, weight: .medium)
+        ], range: NSRange(location: 0, length: headString.1.count))
 
-        let opinionLabelConstraints = [
-            opinionLabel.topAnchor.constraint(equalTo: byOrSellLabel.bottomAnchor, constant: 11),
-            opinionLabel.leadingAnchor.constraint(equalTo: byOrSellLabel.leadingAnchor),
-            opinionLabel.trailingAnchor.constraint(equalTo: reportButton.leadingAnchor, constant: 16),
-            opinionLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -5)
-        ]
+        attributeString.append(tail)
+        headOpinionLabel.attributedText = attributeString
 
-        let reportConstraints = [
-            reportButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            reportButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            reportButton.widthAnchor.constraint(equalToConstant: 20),
-            reportButton.heightAnchor.constraint(equalToConstant: 20)
-        ]
-
-        let reportLabelConstraints = [
-            reportLabel.topAnchor.constraint(equalTo: reportButton.bottomAnchor, constant: 1),
-            reportLabel.centerXAnchor.constraint(equalTo: reportButton.centerXAnchor)
-
-        ]
-
-        [
-            buyOrSellConstraints,
-            opinionLabelConstraints,
-            reportConstraints,
-            reportLabelConstraints
-        ].forEach(NSLayoutConstraint.activate(_:))
     }
 }

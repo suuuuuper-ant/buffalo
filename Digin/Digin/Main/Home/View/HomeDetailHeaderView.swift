@@ -17,7 +17,7 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         static let contentviewTop: CGFloat = 29
         static let contentviewBottom: CGFloat = 0
         static let likeButtonWidthAndHeight: CGFloat = 20
-        static let contentAreaHeight: CGFloat = 115
+        static let contentAreaHeight: CGFloat = 142
     }
 
     lazy var companyImageView: UIImageView = {
@@ -95,11 +95,6 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
     }
 
     func configure(company: HomeDetailCompanyInfo, consensusList: [Consensus]) {
-//        companyInfo.company.tags.enumerated().forEach { (index, str) in
-//            (relativeTagStack.subviews[index] as? UILabel)?.isHidden = false
-//            (relativeTagStack.subviews[index] as? UILabel)?.text  = str
-//
-//        }
 
         for idx in (company.tags.count..<relativeTagStack.subviews.count) {
             (relativeTagStack.subviews[idx] as? UILabel)?.isHidden = true
@@ -113,10 +108,6 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         }
 
         companyLabel.text = company.shortName
-
-//        contentArea.reportButton.tapPublisher.sink { _ in
-//            viewModel.goToRepoert.send(companyInfo.consensusList.first.report)
-//        }.store(in: &cancellables)
 
     }
 

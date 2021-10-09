@@ -620,7 +620,6 @@
 				F1B67193270DB15300BE19D0 /* Home */,
 				F1D347172640481A00E63483 /* HomeGridCellPriceView.swift */,
 				F1D347192640485C00E63483 /* HomeGridCellNewsView.swift */,
-				F1D34712264046A700E63483 /* HomeNewsCell.swift */,
 				F1D3470B263EBD4B00E63483 /* InterestedCompanyCell.swift */,
 				F1F1D1302641661A00FE8C15 /* HomeDetailHeaderView.swift */,
 				F1F1D1322641944F00FE8C15 /* HomeDetailLineChartCell.swift */,
@@ -638,6 +637,7 @@
 			children = (
 				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
 				F1B67191270DAF2200BE19D0 /* HomeGridConsensusView.swift */,
+				F1D34712264046A700E63483 /* HomeNewsCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";

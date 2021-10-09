@@ -52,22 +52,44 @@ enum StockType: String, CaseIterableDefaultsLast, Codable {
         }
     }
 
-    func stockTypeIconImage() -> UIImage? {
+    enum IconType: String {
+        case normal = ""
+        case white = "white"
+
+    }
+    func stockTypeIconImage(_ iconType: IconType = .normal) -> UIImage? {
         switch self {
         case .buy:
-            return UIImage(named: "icon_home_buy")
+            return UIImage(named: "icon_home_buy_\(iconType)")
         case .sell:
-            return UIImage(named: "icon_home_sell")
+            return UIImage(named: "icon_home_sell_\(iconType)")
         case .hold:
-            return UIImage(named: "icon_home_hold")
+            return UIImage(named: "icon_home_hold_\(iconType)")
         case .neutral:
-            return UIImage(named: "icon_home_normal")
+            return UIImage(named: "icon_home_normal_\(iconType)")
         case .marketPerform:
-            return UIImage(named: "icon_home_marketplatform")
+            return UIImage(named: "icon_home_marketplatform_\(iconType)")
         default:
-            return UIImage(named: "icon_home_normal")
+            return UIImage(named: "icon_home_normal_\(iconType)")
         }
 
+    }
+
+    func stockTypeHeadString() -> (String, String) {
+        switch self {
+        case .buy:
+            return ("구매해도", "좋다는 의견이에요")
+        case .sell:
+            return ("팔아도", "좋다는 의견이에요")
+        case .hold:
+            return ("평가하지 않은", "의견이에요")
+        case .neutral:
+            return  ("중립적인", "의견이에요")
+        case .marketPerform:
+            return ("좀 더 지켜보자는", "의견이에요")
+        default:
+            return ("평가하지 않은", "의견이에요")
+        }
     }
 }
 
