@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icTabMyBlue.png",
+      "filename" : "imgDetailReportNone.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icTabMyBlue@2x.png",
+      "filename" : "imgDetailReportNone@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icTabMyBlue@3x.png",
+      "filename" : "imgDetailReportNone@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

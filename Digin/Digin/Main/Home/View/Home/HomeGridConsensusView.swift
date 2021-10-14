@@ -30,6 +30,8 @@ final class HomeGridConsensusView: UIView {
         return table
     }()
 
+    lazy var emptyListView: HomeGridEmptyView = HomeGridEmptyView(description: "추가적인 전문가 의견이 없어요")
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = AppColor.lightgray239.color.withAlphaComponent(0.2)
@@ -42,7 +44,7 @@ final class HomeGridConsensusView: UIView {
     }
 
     private func addSubiews() {
-        [iconImageView, titleLabel, tableView].forEach {
+        [iconImageView, titleLabel, tableView, emptyListView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
@@ -61,21 +63,40 @@ final class HomeGridConsensusView: UIView {
         tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
+
+        emptyListView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 18).isActive = true
+        emptyListView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        emptyListView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        emptyListView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
     }
 
     func configure(_ model: [Consensus]) {
         setNeedsLayout()
-        self.model = model
         titleLabel.text = model.first?.opinion.decription()
         titleLabel.textColor = model.first?.opinion.colorForType()
         iconImageView.image = model.first?.opinion.stockTypeIconImage()
-
+        if model.isEmpty {
+            hideConsensusList()
+        } else {
+            showConsensusList()
+            self.model = model
+        }
     }
 
     var model: [Consensus] = [] {
         didSet {
             self.tableView.reloadData()
         }
+    }
+
+    func hideConsensusList() {
+        tableView.isHidden = true
+        emptyListView.isHidden = false
+    }
+
+    func showConsensusList() {
+        tableView.isHidden = false
+        emptyListView.isHidden = true
     }
 }
 

@@ -149,6 +149,7 @@
 		F1F1D1552649690400FE8C15 /* HomeDetailRelativeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */; };
 		F1F1D158264BF91300FE8C15 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F1D157264BF91300FE8C15 /* AppColor.swift */; };
 		F1F5A0ED26A7255A00E63980 /* MyFavoriteCompanyInHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F5A0EC26A7255A00E63980 /* MyFavoriteCompanyInHomeCell.swift */; };
+		F1F9C7C427184D01006919C5 /* HomeGridEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F9C7C327184D01006919C5 /* HomeGridEmptyView.swift */; };
 		F1FA90A0267DE403006A14ED /* MyFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA909F267DE403006A14ED /* MyFavoriteViewController.swift */; };
 		F1FA90A2267DFCD3006A14ED /* MyFavoriteDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA90A1267DFCD3006A14ED /* MyFavoriteDetailCell.swift */; };
 		F1FA90A4267E115E006A14ED /* MyFavoriteCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FA90A3267E115E006A14ED /* MyFavoriteCompanyCell.swift */; };
@@ -299,6 +300,7 @@
 		F1F1D1542649690400FE8C15 /* HomeDetailRelativeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailRelativeCell.swift; sourceTree = "<group>"; };
 		F1F1D157264BF91300FE8C15 /* AppColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		F1F5A0EC26A7255A00E63980 /* MyFavoriteCompanyInHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteCompanyInHomeCell.swift; sourceTree = "<group>"; };
+		F1F9C7C327184D01006919C5 /* HomeGridEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGridEmptyView.swift; sourceTree = "<group>"; };
 		F1FA909F267DE403006A14ED /* MyFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteViewController.swift; sourceTree = "<group>"; };
 		F1FA90A1267DFCD3006A14ED /* MyFavoriteDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteDetailCell.swift; sourceTree = "<group>"; };
 		F1FA90A3267E115E006A14ED /* MyFavoriteCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteCompanyCell.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				F1562903262DC89B004FB256 /* HomeGridCell.swift */,
 				F1B67191270DAF2200BE19D0 /* HomeGridConsensusView.swift */,
 				F1D34712264046A700E63483 /* HomeNewsCell.swift */,
+				F1F9C7C327184D01006919C5 /* HomeGridEmptyView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,
 				22BCFE17265FAAD4006741A3 /* MyPageMainTableViewCell.swift in Sources */,
+				F1F9C7C427184D01006919C5 /* HomeGridEmptyView.swift in Sources */,
 				F1278FF226595EA10069CFDB /* LaunchViewController.swift in Sources */,
 				222BC6D32655169F008C1CF2 /* CompanyModel.xcdatamodeld in Sources */,
 				F121DF172623075B00B09F21 /* SignUpViewController.swift in Sources */,

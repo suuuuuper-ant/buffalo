@@ -62,6 +62,15 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         return area
     }()
 
+    lazy var emptyListView: HomeGridEmptyView = {
+       let emptyList = HomeGridEmptyView(description: "전문가 의견이 등록되지 않았어요.", isIconHidden: false)
+        emptyList.layer.cornerRadius = 15
+        emptyList.layer.masksToBounds = true
+        emptyList.backgroundColor = .white
+        return emptyList
+
+    }()
+
     lazy var relativeTagStack: UIStackView = {
         let tag = UIStackView()
         tag.spacing = 5
@@ -84,7 +93,7 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
 
     func setupUI() {
         contentView.backgroundColor = UIColor.init(named: "home_background")
-        [companyImageView, companyLabel, likeButton, likeCountLabel, contentArea, relativeTagStack].forEach {
+        [companyImageView, companyLabel, likeButton, likeCountLabel, contentArea, relativeTagStack, emptyListView].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -103,8 +112,16 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
 
         likeCountLabel.text = String(company.likeCount)
         companyImageView.kf.setImage(with: URL(string: company.imageUrl))
-        if let consensus = consensusList.first {
-            contentArea.configure(consensus)
+
+        if consensusList.isEmpty {
+            contentArea.isHidden = true
+            emptyListView.isHidden = false
+        } else {
+            emptyListView.isHidden = true
+            contentArea.isHidden = false
+            if let consensus = consensusList.first {
+                contentArea.configure(consensus)
+            }
         }
 
         companyLabel.text = company.shortName
@@ -138,6 +155,12 @@ class HomeDetailHeaderView: UITableViewCell, ViewType {
         contentArea.topAnchor.constraint(equalTo: relativeTagStack.bottomAnchor, constant: 25).isActive = true
         contentArea.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: UI.contentviewBottom).isActive = true
         contentArea.heightAnchor.constraint(equalToConstant: UI.contentAreaHeight).isActive = true
+
+        emptyListView.leadingAnchor.constraint(equalTo: companyImageView.leadingAnchor).isActive = true
+        emptyListView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: UI.contentviewTrailing).isActive = true
+        emptyListView.topAnchor.constraint(equalTo: relativeTagStack.bottomAnchor, constant: 25).isActive = true
+        emptyListView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: UI.contentviewBottom).isActive = true
+        emptyListView.heightAnchor.constraint(equalToConstant: UI.contentAreaHeight).isActive = true
 
     }
 }

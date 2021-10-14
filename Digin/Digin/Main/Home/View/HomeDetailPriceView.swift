@@ -59,8 +59,9 @@ class HomeDetailPriceView: UIView {
     //        return label
     //    }()
 
-    lazy var topTagView: UILabel = {
-        let topTag = UILabel()
+    lazy var topTagView: PaddingLabel = {
+        let topTag = PaddingLabel()
+        topTag.edgeInset = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
         topTag.font = UIFont.englishFont(ofSize: 10)
         topTag.layer.cornerRadius = 10
         topTag.clipsToBounds = true
@@ -80,6 +81,21 @@ class HomeDetailPriceView: UIView {
     lazy var tailOpinionLabel: UILabel = {
         let tailOpinion = UILabel()
         return tailOpinion
+    }()
+
+    lazy var consensusInfoLabel: UILabel = {
+        let consensusInfo = UILabel()
+        consensusInfo.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        consensusInfo.textColor = .white
+        return consensusInfo
+    }()
+
+    lazy var linkButton: UIButton = {
+        let link = UIButton()
+        link.setImage(UIImage(named: "icon_report"), for: .normal)
+        link.layer.cornerRadius = 30 / 2
+        link.clipsToBounds = true
+        return link
     }()
 
     var model: Float = 0.5 {
@@ -104,7 +120,7 @@ class HomeDetailPriceView: UIView {
 
     private func setupSubViews() {
 
-        [topTagView, headOpinionLabel, tailOpinionLabel].forEach { view in
+        [topTagView, headOpinionLabel, tailOpinionLabel, consensusInfoLabel, linkButton].forEach { view in
             addSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -120,11 +136,21 @@ class HomeDetailPriceView: UIView {
         headOpinionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         headOpinionLabel.topAnchor.constraint(equalTo: topTagView.bottomAnchor, constant: 12).isActive = true
 
+        consensusInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
+        consensusInfoLabel.topAnchor.constraint(equalTo: headOpinionLabel.bottomAnchor, constant: 10).isActive = true
+
+        linkButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        linkButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+        linkButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        linkButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
     }
 
     func configure(_ model: Consensus) {
         self.backgroundColor = model.opinion.colorForType()
         updateHeadTitleAttributed(model: model)
+        let date = DateFormatter().convertBy(format: "MM-dd", dateString: model.createdAt, oldFormat: "yyyy-MM-dd'T'HH:mm:ss")
+        self.consensusInfoLabel.text = "\(model.opinionCompany) | \(date)"
 
     }
 
