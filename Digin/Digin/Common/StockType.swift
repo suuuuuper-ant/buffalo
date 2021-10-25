@@ -54,23 +54,24 @@ enum StockType: String, CaseIterableDefaultsLast, Codable {
 
     enum IconType: String {
         case normal = ""
-        case white = "white"
+        case white = "_white"
 
     }
     func stockTypeIconImage(_ iconType: IconType = .normal) -> UIImage? {
+        let typeString = "\(iconType)"
         switch self {
         case .buy:
-            return UIImage(named: "icon_home_buy_\(iconType)")
+            return UIImage(named: "icon_home_buy\(typeString)")
         case .sell:
-            return UIImage(named: "icon_home_sell_\(iconType)")
+            return UIImage(named: "icon_home_sell\(typeString)")
         case .hold:
-            return UIImage(named: "icon_home_hold_\(iconType)")
+            return UIImage(named: "icon_home_hold\(typeString))")
         case .neutral:
-            return UIImage(named: "icon_home_normal_\(iconType)")
+            return UIImage(named: "icon_home_normal\(typeString)")
         case .marketPerform:
-            return UIImage(named: "icon_home_marketplatform_\(iconType)")
+            return UIImage(named: "icon_home_marketplatform\(typeString)")
         default:
-            return UIImage(named: "icon_home_normal_\(iconType)")
+            return UIImage(named: "icon_home_normal\(typeString)")
         }
 
     }

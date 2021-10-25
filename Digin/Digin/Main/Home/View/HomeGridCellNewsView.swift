@@ -113,7 +113,7 @@ class NewsArea: UIView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      let presentedViewController = UIApplication.topViewController()
+        let presentedViewController = UIApplication.topViewController()
         let reportVIew = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
         reportVIew.newsURL = news[indexPath.row].link
         reportVIew.modalPresentationStyle = .formSheet

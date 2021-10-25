@@ -10,7 +10,7 @@ import Foundation
 struct SearchService: APIServie {
 
     // MARK: - 검색 (GET)
-    static func getSearchData(searchText: String, completion: @escaping ([HomeCompanyInfo]) -> Void) {
+    static func getSearchData(searchText: String, completion: @escaping (Result<[HomeCompanyInfo], Error>) -> Void) {
         let path = "/companies/search?"
 
         var urlComponents = URLComponents(string: url(path))
@@ -29,16 +29,17 @@ struct SearchService: APIServie {
             case .success(let resultData):
 
                 let data = resultData.result
-                completion(resultData.result)
+                completion(.success(resultData.result))
 
             case .failure(let error):
+                completion(.failure(error))
                 print(error.localizedDescription)
 
             }
         }
     }
 
-    static func getSearchNewsData(searchText: String, completion: @escaping (SearchNews) -> Void) {
+    static func getSearchNewsData(searchText: String, completion: @escaping  (Result<SearchNews, Error>) -> Void) {
         let path = "/news/search?"
 
         var urlComponents = URLComponents(string: url(path))
@@ -57,10 +58,10 @@ struct SearchService: APIServie {
             case .success(let resultData):
 
                 let data = resultData.result
-                completion(resultData)
+                completion(.success(resultData))
 
             case .failure(let error):
-                print(error.localizedDescription)
+                completion(.failure(error))
 
             }
         }

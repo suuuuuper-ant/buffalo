@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 class HomeDetailPriceView: UIView {
-
+    var subscriptions = Set<AnyCancellable>()
     //    lazy var majorityOpinion = {
     //        let opinion = UIView()
     //        opinion.
@@ -95,14 +96,16 @@ class HomeDetailPriceView: UIView {
         link.setImage(UIImage(named: "icon_report"), for: .normal)
         link.layer.cornerRadius = 30 / 2
         link.clipsToBounds = true
+
         return link
     }()
 
-    var model: Float = 0.5 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
+    var model: Consensus?
+//    var model: Float = 0.5 {
+//        didSet {
+//            setNeedsLayout()
+//        }
+//    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -125,6 +128,11 @@ class HomeDetailPriceView: UIView {
             view.translatesAutoresizingMaskIntoConstraints = false
         }
 
+        linkButton.tapPublisher.sink { [weak self] _ in
+            guard let model = self?.model else { return }
+            self?.goReport(link: "http://consensus.hankyung.com/apps.analysis/analysis.list?search_text=\(model.stockCode)&business_code=")
+
+        }.store(in: &subscriptions)
     }
 
     private func addConstraints() {
@@ -147,6 +155,8 @@ class HomeDetailPriceView: UIView {
     }
 
     func configure(_ model: Consensus) {
+        self.model = model
+        self.topTagView.textColor = model.opinion.colorForType()
         self.backgroundColor = model.opinion.colorForType()
         updateHeadTitleAttributed(model: model)
         let date = DateFormatter().convertBy(format: "MM-dd", dateString: model.createdAt, oldFormat: "yyyy-MM-dd'T'HH:mm:ss")
@@ -178,6 +188,16 @@ class HomeDetailPriceView: UIView {
 
         attributeString.append(tail)
         headOpinionLabel.attributedText = attributeString
+
+    }
+
+    func goReport(link: String) {
+
+        let presentedViewController = UIApplication.topViewController()
+        let reportVIew = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
+        reportVIew.newsURL = link
+        reportVIew.modalPresentationStyle = .formSheet
+        presentedViewController?.present(reportVIew, animated: true, completion: nil)
 
     }
 }

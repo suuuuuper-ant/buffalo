@@ -94,6 +94,10 @@ class SearchViewController: UIViewController {
 
     //검색
     @IBAction func searchAction(_ sender: UIButton) {
+        getResult()
+    }
+
+    private func getResult() {
         if isTextEmpty() { return } //공백 체크
 
         guard let text = searchTextField.text else { return }
@@ -109,7 +113,6 @@ class SearchViewController: UIViewController {
 
         getSearchData(keyword: text)
     }
-
     //검색 활성화
     private func enableSearchAnimation() {
 
@@ -451,18 +454,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case 2: //검색 결과
             if indexPath.section == 0 && !searchData.companies.isEmpty { //기업
                 //TODO: 기업 상세보기에 기업 정보 전달하기
-//                detailsVC.title = searchData.companies[indexPath.row].name
-//                self.navigationController?.pushViewController(detailsVC, animated: true)
+                //                detailsVC.title = searchData.companies[indexPath.row].name
+                //                self.navigationController?.pushViewController(detailsVC, animated: true)
             }
-
             if indexPath.section == 1 && !searchData.news.isEmpty { //뉴스
                 let newsVC = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(identifier: NewsDetailsViewController.reuseIdentifier) as NewsDetailsViewController
-              //  newsVC.newsURL = searchData.news[indexPath.row].link
+                newsVC.newsURL = searchData.news[indexPath.row].link
                 self.present(newsVC, animated: true, completion: nil)
             }
 
         default: //메인
             if indexPath.section == 1 {
+                if let searchText = dummyData[indexPath.row].first {
+                    searchTextField.text = searchText
+                    isSearch = 2
+                    searchTextField.resignFirstResponder()
+                    getSearchData(keyword: searchText)
+                }
+
                 //TODO: 기업 상세보기에 기업 정보 전달하기 (API 아직 없음)
               //  self.navigationController?.pushViewController(detailsVC, animated: true)
             }
@@ -477,12 +486,20 @@ extension SearchViewController {
     // GET - /news
     func getSearchData(keyword: String) {
         var searchResult = SearchResult()
+        var resultError: Error?
         let dispatchGroup = DispatchGroup()
 
         dispatchGroup.enter()
         SearchService.getSearchData(searchText: keyword) { result in
 
-            searchResult.companies = result
+            switch result {
+
+            case .success(let companies):
+                searchResult.companies = companies
+            case .failure(let error):
+                resultError = error
+            }
+
             DispatchQueue.main.async(execute: {
                 dispatchGroup.leave()
             })
@@ -491,7 +508,14 @@ extension SearchViewController {
         dispatchGroup.enter()
         SearchService.getSearchNewsData(searchText: keyword) { result in
 
-            searchResult.news = result.result
+            switch result {
+
+            case .success(let news):
+                searchResult.news = news.result
+            case .failure(let error):
+                resultError = error
+            }
+
             DispatchQueue.main.async(execute: {
                 dispatchGroup.leave()
             })
