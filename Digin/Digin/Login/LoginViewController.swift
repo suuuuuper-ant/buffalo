@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Lottie
 
 class LoginViewController: UIViewController, ViewType {
     var viewModel: LoginViewModel = LoginViewModel()
@@ -30,7 +31,15 @@ class LoginViewController: UIViewController, ViewType {
         return password
     }()
 
-    var isNOl = false
+    lazy var lottieImageView: AnimationView = {
+        let animation = AnimationView(name: "Loading")
+        animation.contentMode = .scaleAspectFill
+        animation.translatesAutoresizingMaskIntoConstraints = false
+        animation.isHidden = true
+        animation.loopMode = .loop
+        return animation
+    }()
+
     let loginButton: UIButton = {
         let login = UIButton(type: .custom)
         login.translatesAutoresizingMaskIntoConstraints = false
@@ -160,6 +169,8 @@ class LoginViewController: UIViewController, ViewType {
     }
 
     func setupUI() {
+        view.addSubview(lottieImageView)
+        view.bringSubviewToFront(lottieImageView)
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
@@ -213,10 +224,19 @@ class LoginViewController: UIViewController, ViewType {
 
         passwordSearchButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         passwordSearchButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor).isActive = true
+
+        //lottieImageView
+        lottieImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        lottieImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        lottieImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        lottieImageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
     }
 
     @objc func signIn() {
+        lottieImageView.isHidden = false
+        lottieImageView.play { _ in
 
+        }
         guard let email = emailField.textField.text, let password = passwordField.textField.text else { return }
 
         let params = [
@@ -230,11 +250,13 @@ class LoginViewController: UIViewController, ViewType {
 
                 UserDefaults.standard.setValue(token, forKey: "userToken")
                 DispatchQueue.main.async { [weak self] in
+                    self?.lottieImageView.isHidden = true
                     self?.goToMain()
                 }
 
             case .failure(let error):
                 DispatchQueue.main.async { [weak self] in
+                    self?.lottieImageView.isHidden = true
                     self?.showAlert(message: error.localizedDescription)
                 }
 

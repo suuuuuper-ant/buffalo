@@ -160,13 +160,13 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let section =  viewModel.data.result?.groups[section] else { return nil }
-        if section.type == "COMPANY" {
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTitleHeaderView.reuseIdentifier) as? HomeTitleHeaderView
-            header?.sectionLabel.text = "New Update"
-
-            return header
-        }
+//        guard let section =  viewModel.data.result?.groups[section] else { return nil }
+//        if section.type == "COMPANY" {
+//            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTitleHeaderView.reuseIdentifier) as? HomeTitleHeaderView
+//            header?.sectionLabel.text = "New Update"
+//
+//            return header
+//        }
        return nil
     }
 }

@@ -126,29 +126,29 @@ extension CategoryDetailsViewController: UITableViewDelegate, UITableViewDataSou
 
             cell.titleLabel.text = dummyData[indexPath.row][0]
             let url = URL(string: dummyData[indexPath.row][1])
-            cell.logoImageView.kf.setImage(with: url, placeholder: UIImage())
+            cell.logoImageView.kf.setImage(with: url, placeholder: UIImage(named: "digin_logo"))
 
             let category = dummyData[indexPath.row][2]
-            if category == "Marketperform" {
-                cell.categoryLabel.textColor = AppColor.stockMarketperform.color
-                cell.categoryLabel.layer.borderColor = AppColor.stockMarketperform.color.cgColor
-            } else if category == "Hold" {
-                cell.categoryLabel.textColor = AppColor.stockHold.color
-                cell.categoryLabel.layer.borderColor = AppColor.stockHold.color.cgColor
-            } else if category == "Neutral" {
-                cell.categoryLabel.textColor = AppColor.stockNeutral.color
-                cell.categoryLabel.layer.borderColor = AppColor.stockNeutral.color.cgColor
-            } else if category == "Buy" {
-                cell.categoryLabel.textColor = AppColor.stockSell.color
-                cell.categoryLabel.layer.borderColor = AppColor.stockSell.color.cgColor
-            } else {
-                cell.categoryLabel.textColor = AppColor.stockNotRated.color
-                cell.categoryLabel.layer.borderColor = AppColor.stockNotRated.color.cgColor
-            }
-            cell.categoryLabel.text = category
+//            if category == "Marketperform" {
+//                cell.categoryLabel.textColor = AppColor.stockMarketperform.color
+//                cell.categoryLabel.layer.borderColor = AppColor.stockMarketperform.color.cgColor
+//            } else if category == "Hold" {
+//                cell.categoryLabel.textColor = AppColor.stockHold.color
+//                cell.categoryLabel.layer.borderColor = AppColor.stockHold.color.cgColor
+//            } else if category == "Neutral" {
+//                cell.categoryLabel.textColor = AppColor.stockNeutral.color
+//                cell.categoryLabel.layer.borderColor = AppColor.stockNeutral.color.cgColor
+//            } else if category == "Buy" {
+//                cell.categoryLabel.textColor = AppColor.stockSell.color
+//                cell.categoryLabel.layer.borderColor = AppColor.stockSell.color.cgColor
+//            } else {
+//                cell.categoryLabel.textColor = AppColor.stockNotRated.color
+//                cell.categoryLabel.layer.borderColor = AppColor.stockNotRated.color.cgColor
+//            }
+//            cell.categoryLabel.text = category
 
             cell.layer.borderColor = UIColor.appColor(.mainBlue).cgColor
-            cell.categoryLabel.font = UIFont.englishFont(ofSize: 12)
+        //    cell.categoryLabel.font = UIFont.englishFont(ofSize: 12)
 
             return cell
         }

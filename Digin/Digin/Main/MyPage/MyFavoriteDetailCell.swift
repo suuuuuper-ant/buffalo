@@ -26,17 +26,17 @@ class MyFavoriteDetailCell: UITableViewCell, ViewType {
         return company
     }()
 
-    let tagLabel: PaddingLabel = {
-        let company = PaddingLabel()
-        company.edgeInset = UIEdgeInsets(top: 10, left: 12, bottom: 8, right: 12)
-        company.font = UIFont.englishFont(ofSize: 12)
-        company.layer.cornerRadius = 15
-        company.text = "Not Rated"
-        company.layer.borderColor = AppColor.darkgray82.color.cgColor
-        company.layer.borderWidth = 1
-        company.textColor = AppColor.darkgray82.color
-        return company
-    }()
+//    let tagLabel: PaddingLabel = {
+//        let company = PaddingLabel()
+//        company.edgeInset = UIEdgeInsets(top: 10, left: 12, bottom: 8, right: 12)
+//        company.font = UIFont.englishFont(ofSize: 12)
+//        company.layer.cornerRadius = 15
+//        company.text = "Not Rated"
+//        company.layer.borderColor = AppColor.darkgray82.color.cgColor
+//        company.layer.borderWidth = 1
+//        company.textColor = AppColor.darkgray82.color
+//        return company
+//    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,7 +50,7 @@ class MyFavoriteDetailCell: UITableViewCell, ViewType {
 
     func setupUI() {
         self.contentView.backgroundColor = AppColor.lightgray249.color
-        [thumbnailImageView, companyLabel, tagLabel].forEach {
+        [thumbnailImageView, companyLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -69,11 +69,6 @@ class MyFavoriteDetailCell: UITableViewCell, ViewType {
         // companyLabel
         companyLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10).isActive = true
         companyLabel.centerYAnchor.constraint(equalTo: thumbnailImageView.centerYAnchor).isActive = true
-
-        // tagLabel
-        tagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        tagLabel.centerYAnchor.constraint(equalTo: companyLabel.centerYAnchor).isActive = true
-        tagLabel.leadingAnchor.constraint(greaterThanOrEqualTo: companyLabel.trailingAnchor, constant: 20).isActive = true
 
     }
 

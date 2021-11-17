@@ -16,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
         self.window = window
         launchAppScreen()
+        disableDarkMode()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -51,6 +52,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
 
+    func lauchMainTab() {
+        let mainTabBar = MainTabBarController()
+        let scene = UIApplication.shared.connectedScenes.first
+        window?.rootViewController = mainTabBar
+
+    }
+
     func launchAppScreen() {
         let launch = LaunchViewController()
         launch.modalPresentationStyle = .currentContext
@@ -58,12 +66,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
 
+    func disableDarkMode() {
+        window?.overrideUserInterfaceStyle = .light
+    }
+
     func goToStartPoint() {
 
         // 로그인 화면
-        lauchandVisble()
+      //  lauchandVisble()
 
         // 메인 화면
+       lauchMainTab()
     }
 }
 

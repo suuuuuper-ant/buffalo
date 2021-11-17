@@ -22,7 +22,6 @@ struct SearchService: APIServie {
 //        guard let token = jsonResult?["result"] as? String else { return }
 
         let headers: [HTTPHeader] = [(value: stringResult, field: "X-AUTH-TOKEN")]
-        print("search: \(urlComponents?.url)")
         NetworkRouter.shared.get(urlComponents?.string ?? "", headers: headers, model: Search.self) { (result) in
 
             switch result {

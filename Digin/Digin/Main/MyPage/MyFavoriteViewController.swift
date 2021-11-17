@@ -26,7 +26,7 @@ class MyFavoriteViewController: UIViewController, ViewType {
 
         let previous = UIButton(type: .custom)
         previous.setImage( UIImage(named: "icon_navigation_back"), for: .normal)
-
+        previous.addTarget(self, action: #selector(popToMypage), for: .touchUpInside)
         return previous
     }()
 
@@ -92,23 +92,27 @@ class MyFavoriteViewController: UIViewController, ViewType {
 
     }
 
-    @objc func editFavorites(sender: UIButton) {
+    @objc
+    func editFavorites(sender: UIButton) {
         self.isEditMode = !isEditMode
         if isEditMode {
             tableView.backgroundColor = AppColor.lightgray249.color
-
             self.editButton.setTitle("완료", for: .normal)
-          //  self.tableView.setEditing(false, animated: true)
         } else {
             self.editButton.setTitle("편집", for: .normal)
             tableView.backgroundColor = .white
-            //self.tableView.setEditing(true, animated: true)
         }
 
         self.navigationController?.navigationBar.barTintColor = isEditMode ? AppColor.lightgray249.color : .white
 
         self.tableView.reloadData()
     }
+
+    @objc
+    private func popToMypage() {
+        self.navigationController?.popViewController(animated: true)
+    }
+
 }
 
 extension MyFavoriteViewController: UITableViewDataSource, UITableViewDelegate {

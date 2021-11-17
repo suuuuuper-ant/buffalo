@@ -47,14 +47,14 @@ class MypageViewController: UIViewController {
     }
 
     @IBAction func editAction(_ sender: UIButton) {
-        guard let vc = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(identifier: EditMyDataViewController.reuseIdentifier) as? EditMyDataViewController else {
+        guard let viewController = UIStoryboard(name: "MyPage", bundle: nil).instantiateViewController(identifier: EditMyDataViewController.reuseIdentifier) as? EditMyDataViewController else {
             return
         }
 
-        vc.nickname = accounts.name
-        vc.email = accounts.email
+        viewController.nickname = accounts.name
+        viewController.email = accounts.email
 
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 
     @IBAction func favoriteCompanyAction(_ sender: UITapGestureRecognizer) {

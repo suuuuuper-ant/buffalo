@@ -355,7 +355,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.categoryLabel.text = "커뮤니케이션 서비스"
                 let url = URL(string: searchData.companies[indexPath.row].imageUrl)
                 if searchData.companies[indexPath.row].imageUrl != "" {
-                    cell.logoImageView.kf.setImage(with: url, placeholder: UIImage())
+                    cell.logoImageView.kf.setImage(with: url, placeholder: UIImage(named: "digin_logo"))
                 } else {
                     cell.logoImageView.image = UIImage(named: "digin_logo")
                 }
@@ -430,7 +430,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell.titleLabel.text = dummyData[indexPath.row][0]
             cell.categoryLabel.text = dummyData[indexPath.row][1]
             let url = URL(string: dummyData[indexPath.row][2])
-            cell.logoImageView.kf.setImage(with: url, placeholder: UIImage())
+            cell.logoImageView.kf.setImage(with: url, placeholder: UIImage(named: "digin_logo"))
 
             return cell
         }

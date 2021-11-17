@@ -12,7 +12,7 @@ class DetailsCompanyTableViewCell: UITableViewCell {
     @IBOutlet weak var topC: NSLayoutConstraint!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var categoryLabel: PaddingLabel!
+   // @IBOutlet weak var categoryLabel: PaddingLabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,9 +23,9 @@ class DetailsCompanyTableViewCell: UITableViewCell {
     private func setup() {
         logoImageView.makeCircle()
 
-        categoryLabel.makeRounded(cornerRadius: 13)
-        categoryLabel.layer.borderWidth = 1
-        categoryLabel.edgeInset = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+        //categoryLabel.makeRounded(cornerRadius: 13)
+       // categoryLabel.layer.borderWidth = 1
+      //  categoryLabel.edgeInset = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
     }
 
 }

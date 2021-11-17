@@ -109,10 +109,8 @@ extension MyFavoriteCompanyCell: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyFavoriteDetailCell.reuseIdentifier) as? MyFavoriteDetailCell else {
             return UITableViewCell()
             }
-            cell.tagLabel.text = tags[indexPath.row].rawValue
+
             cell.companyLabel.text = "\(indexPath.row)"
-            cell.tagLabel.textColor = tags[indexPath.row].colorForType()
-            cell.tagLabel.layer.borderColor = tags[indexPath.row].colorForType().cgColor
 
             return cell
         }
