@@ -74,8 +74,8 @@ class InterestedCompanyCell: UITableViewCell {
     }
 
     func configure(model: HomeInterestedCompany) {
-        companyLabel.text = model.company.shortName
-        companyImageView.kf.setImage(with: URL(string: model.company.imageUrl))
+        companyLabel.text = model.company?.shortName
+        companyImageView.kf.setImage(with: URL(string: model.company?.imageUrl ?? ""))
 
     }
     required init?(coder: NSCoder) {

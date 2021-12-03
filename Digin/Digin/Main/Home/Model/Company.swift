@@ -241,7 +241,7 @@ struct HomeNews: Decodable {
 
 struct HomeInterestedCompany: Decodable {
 
-    var company: HomeCompanyInfo
+    var company: HomeCompanyInfo?
 
     enum CodingKeys: String, CodingKey {
         case company
@@ -249,7 +249,7 @@ struct HomeInterestedCompany: Decodable {
     }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        company = try values.decodeIfPresent(HomeCompanyInfo.self, forKey: .company)!
+        company = try? values.decodeIfPresent(HomeCompanyInfo.self, forKey: .company)
     }
 
 }

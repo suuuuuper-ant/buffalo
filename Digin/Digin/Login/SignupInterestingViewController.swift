@@ -8,11 +8,18 @@
 import UIKit
 import Combine
 
-class SignupInterestingViewController: UIViewController, ViewType {
-    var cancellables: Set<AnyCancellable> = []
-   lazy var viewModel: SignupInterestingViewModel = {
-        let viewModel = SignupInterestingViewModel()
+protocol SignupInterestingViewControllerPresenter: AnyObject {
 
+    func updateCompanies(companies: [Interesting])
+
+}
+
+class SignupInterestingViewController: UIViewController, SignupInterestingViewControllerPresenter, ViewType {
+
+    var cancellables: Set<AnyCancellable> = []
+   lazy var viewModel: SignupInterestingInterator = {
+       var viewModel = SignupInterestingInteratorImpl(simpleCompanyRepository: SimpleCompanyRepositoryImpl())
+       viewModel.presenter = self
         return viewModel
     }()
     struct UI {
@@ -29,20 +36,11 @@ class SignupInterestingViewController: UIViewController, ViewType {
         return selectedIndexPaths.count >= UI.selectNumber
     }
 
-    var data: [Interesting] = [
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "095570"),
-        Interesting(image: "login_top", interesting: "삼성전자 두 줄인 경우", tiker: "282330"),
-        Interesting(image: "login_top", interesting: "여섯글자에요", tiker: "005830"),
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330"),
-        Interesting(image: "login_top", interesting: "삼성전자", tiker: "282330")
-
-    ]
-
+    var data: [Interesting] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     var guide: String = "" {
         didSet {
             guideLabel.text = guide
@@ -125,6 +123,7 @@ class SignupInterestingViewController: UIViewController, ViewType {
         super.viewDidLoad()
         view.backgroundColor = .white
         guide = "가장 관심이 가는 기업을\n3개 선택해 주세요"
+        viewModel.getCompanies()
         bindingUI()
         bindingViewModel()
 
@@ -218,6 +217,13 @@ class SignupInterestingViewController: UIViewController, ViewType {
                 }
             }
         }
+    }
+
+    func updateCompanies(companies: [Interesting]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.data = companies
+        }
+
     }
 
 }

@@ -17,6 +17,7 @@ class SingupInterestingCell: UICollectionViewCell, ViewType {
 
     lazy var interstingImageView: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFill
         image.makeRounded(cornerRadius: contentView.bounds.width / 2)
         image.backgroundColor = AppColor.homeBackground.color
         return image
@@ -101,8 +102,10 @@ class SingupInterestingCell: UICollectionViewCell, ViewType {
         } else {
             deselectCell()
         }
+        if let url = URL(string: model.image) {
+            self.interstingImageView.kf.setImage(with: url, placeholder: UIImage(named: "icon_heart"))
+        }
         self.interestingLabel.text = model.interesting
-        self.interstingImageView.image = UIImage(named: model.image)
     }
 
     func selectCell() {

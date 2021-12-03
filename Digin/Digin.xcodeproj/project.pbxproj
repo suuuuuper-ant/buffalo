@@ -72,6 +72,7 @@
 		F11E1ED4275A3B6E00E8DAC7 /* SearchNewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1ED3275A3B6E00E8DAC7 /* SearchNewsRepository.swift */; };
 		F11E1ED6275A3CAD00E8DAC7 /* SearchNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1ED5275A3CAD00E8DAC7 /* SearchNewsModel.swift */; };
 		F11E1ED8275A415300E8DAC7 /* SearchNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1ED7275A415300E8DAC7 /* SearchNewsViewModel.swift */; };
+		F11E1EDA275AAC1100E8DAC7 /* SimpleCompanyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11E1ED9275AAC1100E8DAC7 /* SimpleCompanyRepository.swift */; };
 		F121DED526185A6C00B09F21 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F121DED426185A6C00B09F21 /* .swiftlint.yml */; };
 		F121DEDC26185C3000B09F21 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEDB26185C3000B09F21 /* MainViewController.swift */; };
 		F121DEEE261B3C9B00B09F21 /* UIColor_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */; };
@@ -231,6 +232,7 @@
 		F11E1ED3275A3B6E00E8DAC7 /* SearchNewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNewsRepository.swift; sourceTree = "<group>"; };
 		F11E1ED5275A3CAD00E8DAC7 /* SearchNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNewsModel.swift; sourceTree = "<group>"; };
 		F11E1ED7275A415300E8DAC7 /* SearchNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNewsViewModel.swift; sourceTree = "<group>"; };
+		F11E1ED9275AAC1100E8DAC7 /* SimpleCompanyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCompanyRepository.swift; sourceTree = "<group>"; };
 		F121DED426185A6C00B09F21 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F121DEDB26185C3000B09F21 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F121DEED261B3C9B00B09F21 /* UIColor_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_extension.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				F1C6B4222654435A001E8510 /* SearchPasswordViewController.swift */,
 				F1C6B424265444C3001E8510 /* SearchPasswordViewModel.swift */,
 				F1DC29652660159800B51749 /* TermsAndConditions.json */,
+				F11E1ED9275AAC1100E8DAC7 /* SimpleCompanyRepository.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				F1F1D1312641661A00FE8C15 /* HomeDetailHeaderView.swift in Sources */,
 				2224BA892639378400E620C4 /* NewsContainerViewController.swift in Sources */,
 				F1278FF8265A5DA80069CFDB /* StockType.swift in Sources */,
+				F11E1EDA275AAC1100E8DAC7 /* SimpleCompanyRepository.swift in Sources */,
 				F121DF1A2623083400B09F21 /* MainTabBarController.swift in Sources */,
 				F1F1D12F2641631300FE8C15 /* HomeDetailViewController.swift in Sources */,
 				2292381E261B431700B50884 /* UIView_extension.swift in Sources */,

@@ -33,7 +33,9 @@ class HomeDetailViewModel: ObservableObject {
         homeDetailReopository.getDetailPage()?.sink(receiveCompletion: { _ in
 
         }, receiveValue: { homeDetail in
-            self.data = homeDetail.result
+            var home = homeDetail
+            home.result.stacks.reverse()
+            self.data =  home.result
         }).store(in: &subscriptions)
 
     }
@@ -142,7 +144,6 @@ class HomeDetailViewController: UIViewController, ViewType {
             NSAttributedString.Key.foregroundColor: AppColor.homeBackground.color
         ]
 
-        self.title = homeSection.company.shortName
         self.navigationController?.navigationBar.layoutIfNeeded()
     }
 
@@ -155,7 +156,8 @@ class HomeDetailViewController: UIViewController, ViewType {
         viewModel
             .$data
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] _ in
+            .sink { [unowned self] data in
+                self.title = viewModel.data?.company.shortName
                 self.tableView.reloadData()
             }.store(in: &cancellables)
 
@@ -194,7 +196,7 @@ extension HomeDetailViewController: UITableViewDataSource {
         } else if indexPath.row == 1 {
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeDetailLineChartCell.reuseIdentifier) as? HomeDetailLineChartCell else { return UITableViewCell() }
-            let type = homeSection.consensusList.first?.opinion
+            let type = viewModel.data?.consensusList.first?.opinion
             let stock = StockType.init(rawValue: type?.rawValue ?? "")
             if let data = self.viewModel.data {
                 cell.configure(stockType: stock ?? .none, data, parentViewMdoel: self.viewModel)
