@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsfeedService: APIServie {
+struct NewsfeedService: APIService {
 
     // MARK: - 모든 뉴스 (GET)
     static func getNewsData(pageNumber: Int, completion: @escaping (NewsfeedResult) -> Void) {

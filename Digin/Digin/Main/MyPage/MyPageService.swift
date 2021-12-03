@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MyPageService: APIServie {
+struct MyPageService: APIService {
 
     static func getMyPageData(completion: @escaping (AccountResult) -> Void) {
         let path = "/accounts"

@@ -8,11 +8,23 @@
 import UIKit
 import Kingfisher
 
-class SearchNewsfeedViewController: UIViewController {
+protocol SearchNewsfeedViewControllerPresenter {
 
+    func updateList(list: [SearchNewsViewModel])
+
+}
+
+class SearchNewsfeedViewController: UIViewController, SearchNewsfeedViewControllerPresenter {
+
+    var interator: SearchNewsInterator?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    var newsList: [SearchNewsViewModel] = [] {
+        didSet {
 
+            self.tableView.reloadData()
+        }
+    }
     var type: Int = 0 //0: 검색, 1: 기업, 2: 카테고리
 
     var isLoad = false
@@ -42,9 +54,9 @@ class SearchNewsfeedViewController: UIViewController {
 
         setup()
 
-        if type == 1 {
-            getCompanyNews()
-        }
+       // if type == 1 {
+            self.interator?.fetchNewsList(keyword: header)
+       // }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -118,6 +130,11 @@ extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSour
         }
 
         if type == 0 { //검색
+            if !newsList.isEmpty {
+                let viewModel = newsList[indexPath.row]
+                cell.configure(viewModel: viewModel)
+            }
+
 //            cell.titleLabel.text = newsData[indexPath.row].title
 //            cell.dateLabel.text = newsData[indexPath.row].createdAt.setDate(format: "MM.dd. HH:ss")
 //            let url = URL(string: newsData[indexPath.row].imageUrl)
@@ -187,6 +204,14 @@ extension SearchNewsfeedViewController: UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+
+    func updateList(list: [SearchNewsViewModel]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.newsList = list
+        }
+
+    }
+
 }
 
 extension SearchNewsfeedViewController {

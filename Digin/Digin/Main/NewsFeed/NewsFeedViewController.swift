@@ -14,7 +14,7 @@ enum CategoryType: Int {
     case FAVORITES = 1
 }
 
-class NewsFeedViewController: UIViewController, APIServie {
+class NewsFeedViewController: UIViewController, APIService {
 
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!

@@ -227,6 +227,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.nextClosure = { [weak self] in //뉴스 더보기
                     let newsVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(identifier: SearchNewsfeedViewController.reuseIdentifier) as SearchNewsfeedViewController
 
+                    newsVC.interator = SearchNewsInteratorImpl(searchNewsRepository: SearchNewsRepositoryImpl())
+                    newsVC.interator?.presenter = newsVC
                     guard let searchText = self?.searchTextField.text else { return }
                     newsVC.type = 0
                     newsVC.header = searchText
@@ -234,7 +236,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                     if let data = self?.searchData.news {
                         newsVC.newsData = data
                     }
-
                     self?.navigationController?.pushViewController(newsVC, animated: true)
                 }
 

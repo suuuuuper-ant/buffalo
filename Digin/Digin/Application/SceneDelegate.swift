@@ -73,10 +73,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func goToStartPoint() {
 
         // 로그인 화면
-      //  lauchandVisble()
+       lauchandVisble()
 
         // 메인 화면
-       lauchMainTab()
+      // lauchMainTab()
     }
 }
 

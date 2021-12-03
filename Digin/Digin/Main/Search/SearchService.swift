@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchService: APIServie {
+struct SearchService: APIService {
 
     // MARK: - 검색 (GET)
     static func getSearchData(searchText: String, completion: @escaping (Result<[HomeCompanyInfo], Error>) -> Void) {

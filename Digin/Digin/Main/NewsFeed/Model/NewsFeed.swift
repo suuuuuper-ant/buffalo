@@ -75,6 +75,7 @@ struct NewsfeedContent: Decodable {
     var description: String = ""
     var createdAt: String = ""
     var imageUrl: String = ""
+    var updatedAt: String = ""
 
     private enum CodingKeys: String, CodingKey {
         case id, stockCode, title, link
@@ -90,6 +91,7 @@ struct NewsfeedContent: Decodable {
         link = try container.decodeIfPresent(String.self, forKey: .link) ?? ""
         description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
         createdAt = try container.decodeIfPresent(String.self, forKey: .createdAt) ?? ""
+        updatedAt = try container.decodeIfPresent(String.self, forKey: .updatedAt) ?? ""
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl) ?? ""
     }
 }

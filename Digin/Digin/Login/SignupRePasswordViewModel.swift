@@ -96,7 +96,7 @@ struct Status: Decodable {
     var status: String
 }
 
-struct SignupService: APIServie {
+struct SignupService: APIService {
 
     func signupDigin(param: [String: Any]) -> AnyPublisher<Status, APIError> {
 

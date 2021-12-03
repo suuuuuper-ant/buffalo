@@ -10,13 +10,17 @@ import Combine
 
 enum APIError: Error, LocalizedError {
     case unknown, apiError(reason: String)
+    case urlStringError
     var errorDescription: String? {
         switch self {
         case .unknown:
             return "Unknown error"
         case .apiError(let reason):
             return reason
+        case .urlStringError:
+            return "url String Error"
         }
+
     }
 }
 
@@ -48,6 +52,41 @@ class NetworkCombineRouter {
         return Just(url)
             .map {url in
                 URL(string: url)!}
+            .setFailureType(to: URLError.self)
+            .map({ url -> URLRequest in
+                var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 5)
+                request.httpMethod = "GET"
+                if let headers = headers {
+                    for header in headers {
+                        request.setValue(header.value, forHTTPHeaderField: header.field)
+                    }
+                }
+                return request
+            })
+            .flatMap({ url in return URLSession.shared.dataTaskPublisher(for: url)})
+            .tryMap({ output -> Data in
+                guard let httpResponse = output.response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                    throw APIError.unknown
+                }
+                return output.data
+            })
+            .decode(type: T.self, decoder: JSONDecoder())
+            .mapError { error in
+                if let error = error as? APIError {
+                    return error
+                } else {
+                    if let error = error as? APIError {
+                        return error
+                    } else {
+                        return APIError.apiError(reason: error.localizedDescription)
+                    }
+
+                }
+            }.eraseToAnyPublisher()
+    }
+
+    func get<T: Decodable>(url: URL, headers: [HTTPHeader]? = nil, type: T.Type) -> AnyPublisher<T, APIError> {
+        return Just(url)
             .setFailureType(to: URLError.self)
             .map({ url -> URLRequest in
                 var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 5)

@@ -23,4 +23,10 @@ class SearchNewsfeedTableViewCell: UITableViewCell {
         newsImageView.makeRounded(cornerRadius: 10)
     }
 
+    func configure(viewModel: SearchNewsViewModel) {
+        self.newsImageView.kf.setImage(with: URL(string: viewModel.imageURL), placeholder: UIImage(named: "listNonePic"))
+        self.titleLabel.text = viewModel.title
+        self.dateLabel.text = viewModel.newsInfoString
+    }
+
 }

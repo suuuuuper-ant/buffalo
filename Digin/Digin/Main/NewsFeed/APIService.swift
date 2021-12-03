@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol APIServie {}
+protocol APIService {}
 
-extension APIServie {
+extension APIService {
 
     static func url(_ path: String) -> String {
         return "http://3.35.143.195" + path

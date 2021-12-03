@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryService: APIServie {
+struct CategoryService: APIService {
 
     static func getCategory(completion: @escaping ([CategoryResult]) -> Void) {
         let jsonData = readLocalJSONFile(forName: "CategoryData")
