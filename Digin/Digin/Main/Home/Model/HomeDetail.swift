@@ -99,23 +99,6 @@ struct HomeDetail: Decodable {
         case month =  2
         case threeMonth = 3
         case sixMonth = 4
-
-//        var periodArray: ([Int], [Int]) {
-//            switch self {
-//            case  .today:
-//                return ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-//                        [35800, 48000, 58200, 65000, 65000, 69000, 65000, 65000, 67000, 75000, 74000, 69000, 72000] )
-//
-//            case .week:
-//
-//
-//            default:
-//                return([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-//                       //마지막은 목표가
-//                       [59000, 60000, 63000, 62500, 64000, 65000, 65500, 65000, 68000, 68200, 67000, 69000, 70000, 75000, 79000, 69820, 65800, 100000])
-//            }
-//        }
-
     }
 
     var company: HomeDetailCompanyInfo  = HomeDetailCompanyInfo()
@@ -189,14 +172,14 @@ struct HomeDetail: Decodable {
         switch period {
         case .week:
             let values = stacks.map { stack in
-                stack.close / 1000
+                stack.close
             }
             let day = stacks.enumerated().map { stack in
                 stack.offset + 1
             }
             //20000 [8000, 13500, 11500, 12500, 0]
             // [12000,6500,8500,7500,20000]
-            return ([1, 2, 3, 4, 5], [12000, 6500, 8500, 7500, 20000])
+            return ([1, 2, 3, 4, 5], values)
         default:
             let values = stacks.map { stack in
                 stack.close

@@ -133,9 +133,38 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
     func configure(stockType: StockType, _ homeDetail: HomeDetail, parentViewMdoel: HomeDetailViewModel) {
         self.parentViewModel = parentViewMdoel
         let period = HomeDetail.Period(rawValue: selectedIndex) ?? .week
-        self.chartView.chartData = homeDetail.getStacksOnWeek(period: period)
+        let periodData = homeDetail.getStacksOnWeek(period: period)
+        self.chartView.chartData = periodData
         self.homeDetail = homeDetail
         self.stockType =  stockType
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        guard let number = numberFormatter.string(from: NSNumber(integerLiteral: (homeDetail.stacks.last?.close ?? 0))) else { return }
+        currentPriceLabel.text = "\(number)"
+
+        let lastSufix =  Array(homeDetail.stacks.suffix(2))
+        var differencialValue: Int = 0
+        var differencialRatio: CGFloat = 0
+        if lastSufix.count > 1 {
+
+            differencialValue = (lastSufix.last?.close ?? 0) - (lastSufix.first?.close ?? 0)
+            differencialRatio = (1 - CGFloat((lastSufix.first?.close ?? 0)) / CGFloat((lastSufix.last?.close ?? 0))) * 100
+        } else {
+            differencialValue = lastSufix.last?.close ?? 0
+            differencialRatio = 0.0
+        }
+        let ratio = String(format: "%.2f", differencialRatio)
+
+        percentLabel.text =  "\(ratio)% (\(differencialValue)원)"
+
+        if differencialValue < 0 {
+            percentLabel.textColor = StockType.sell.colorForType()
+        } else if differencialValue > 0 {
+            percentLabel.textColor = StockType.buy.colorForType()
+        } else {
+            percentLabel.textColor = StockType.notRated.colorForType()
+        }
+
         periodStackView.subviews.forEach { view in
             let button = view as? UIButton
             if button?.isSelected ?? false {
@@ -144,7 +173,6 @@ class HomeDetailLineChartCell: UITableViewCell, ViewType {
                 button?.setTitleColor(.white, for: .normal)
             }
         }
-        percentLabel.textColor = stockType.colorForType()
 
     }
 
@@ -278,10 +306,14 @@ class GraphView: UIView {
 
         let topBorder = Constants.topBorder
         let bottomBorder = Constants.bottomBorder
-        let graphHeight = height - topBorder - bottomBorder + 100
+        let graphHeight = height - topBorder - bottomBorder
         let maxValue = chartData.1.max()!
+        let minValue = chartData.1.min()!
+        let differectValue = maxValue - minValue
+
         let columnYPoint = { (graphPoint: Int) -> CGFloat in
-            let yaxis = CGFloat(graphPoint) / CGFloat(maxValue) * graphHeight
+            let value = maxValue - graphPoint
+            let yaxis = 100 - (CGFloat(value) / CGFloat(differectValue))  * graphHeight
             return graphHeight + topBorder - yaxis
         }
 
@@ -319,8 +351,8 @@ class GraphView: UIView {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
 
-        guard  numberFormatter.string(from: NSNumber(integerLiteral: chartData.1.last ?? 0)) != nil else { return }
-        let price = 824000
+        guard  let number = numberFormatter.string(from: NSNumber(integerLiteral: chartData.1.last ?? 0)) else { return }
+        let price = number
         goalLabel.text = "목표가\n\(price)원"
 
         UIView.animate(withDuration: 2) {
